@@ -10,6 +10,7 @@ import {
 import { CssVarsProvider, extendTheme as extendJoyTheme, useColorScheme } from '@mui/joy/styles';
 import { ModeToggle } from './components/toggle';
 import { ThemeWrapper } from './components/themeWrapper';
+import { SettingsProvider } from './context/Settings';
 
 const darkTheme = createTheme({
   palette: {
@@ -112,9 +113,11 @@ function App() {
     //   <ModeToggle/>
     // </CssVarsProvider>
     <ThemeWrapper>
-      <BrowserRouter>
-        <MainWrapper/>
-      </BrowserRouter>
+      <SettingsProvider>
+        <BrowserRouter>
+          <MainWrapper/>
+        </BrowserRouter>
+      </SettingsProvider>
     </ThemeWrapper>
   );
 }
