@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress } from "@mui/material";
+import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress } from "@mui/joy";
 import React, { useEffect, useState } from "react";
 import {BsExclamationCircle, BsX, BsArrowRightShort} from 'react-icons/bs';
 import { GiCargoCrate, GiF1Car, GiMineTruck } from "react-icons/gi";
@@ -30,13 +30,13 @@ export const Vehicles:React.FC = (props) => {
     return(
         <Container sx={{paddingTop:'50px'}}>
             <Grid container display={'flex'} alignItems={'center'}>
-                <Grid item xs>
-                    <Typography variant="h2" fontWeight={600}>
+                <Grid xs>
+                    <Typography level="h2" fontWeight={600}>
                     Manual Vehicles
                     </Typography>
                 </Grid>
-                <Grid item>
-                    <IconButton size="large">
+                <Grid>
+                    <IconButton size="lg">
                         <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
                     </IconButton> 
                 </Grid>
@@ -54,35 +54,35 @@ export const Vehicles:React.FC = (props) => {
                             } else {
                                 // Mode Autopilot -> hide
                                 return ( 
-                                    <Grid item xs={4}>
+                                    <Grid xs={4}>
                                         <Card sx={{position:'relative'}}>
                                             <CardContent>
                                                 <Grid container spacing={2} sx={{marginBottomBottom: '10px'}}>
-                                                    <Grid item >
+                                                    <Grid>
                                                         {vehicle.VehicleType === "Explorer" &&  <GiF1Car size="36px"/>  }
                                                         {vehicle.VehicleType === "Truck" &&  <GiMineTruck size="36px"/>  }
                                                     </Grid>
-                                                    <Grid item xs>
+                                                    <Grid xs>
                                                         <Box sx={{position: 'relative'}}>
                                                             <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                            <Grid item xs>
-                                                                    <Typography variant="h6">{vehicle.VehicleType}</Typography>
+                                                            <Grid xs>
+                                                                    <Typography level="h6">{vehicle.VehicleType}</Typography>
                                                                 </Grid>
-                                                                <Grid item xs>
-                                                                    <Typography variant="h6">{vehicle.Airborne}</Typography>
+                                                                <Grid xs>
+                                                                    <Typography level="h6">{vehicle.Airborne}</Typography>
                                                                 </Grid>
-                                                                <Grid item>
+                                                                <Grid>
                                                                     {vehicle.Airborne === false ? 
-                                                                        <Chip label="No Problems" color="success" size="small" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}></Chip>
+                                                                        <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>No Problems</Chip>
                                                                     :
-                                                                        <Chip label="Airborne" color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>
+                                                                        <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Airborne</Chip>
                                                                     }               
                                                                 </Grid>
-                                                                <Grid item>
+                                                                <Grid>
                                                                 {vehicle.AutoPilot === false ? 
-                                                                        <Chip label="Manual" color="default" size="small" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}></Chip>
+                                                                        <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
                                                                     :
-                                                                        <Chip label="Autopilot" color="info" size="small" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}></Chip>
+                                                                        <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
                                                                     }
                                                                 </Grid>
                                                             </Grid>
@@ -91,44 +91,44 @@ export const Vehicles:React.FC = (props) => {
                                                 </Grid>
                                                                                 
                                                 <Grid container spacing={2} >
-                                                    <Grid item xs>
+                                                    <Grid xs>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Gear</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.CurrentGear)}</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.EngineRPM)} RPM</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.FuelInventory)}</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(vehicle.FuelType)}</Typography>
                                                             </Grid>
                                                         </Grid>
@@ -144,7 +144,7 @@ export const Vehicles:React.FC = (props) => {
                         })}
                     </Grid> 
                     {/* Show all vehicles that are in autopilot */}
-                        <Typography variant="h2" fontWeight={600}>
+                        <Typography level="h2" fontWeight={600}>
                             Autopiloted Vehicles
                         </Typography>
                     {vehicles.map((vehicle:any, index:number)=>{
@@ -156,35 +156,35 @@ export const Vehicles:React.FC = (props) => {
                             
                             return( 
                                 <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
-                                    <Grid item xs={4}>
+                                    <Grid xs={4}>
                                         <Card sx={{position:'relative'}}>
                                             <CardContent>
                                             <Grid container spacing={2} sx={{marginBottomBottom: '10px'}}>
-                                                <Grid item>
+                                                <Grid>
                                                     {vehicle.VehicleType === "Explorer" &&  <GiF1Car size="36px"/>  }
                                                     {vehicle.VehicleType === "Truck" &&  <GiMineTruck size="36px"/>  }
                                                 </Grid>
-                                                <Grid item xs>
+                                                <Grid xs>
                                                     <Box sx={{position: 'relative'}}>
                                                         <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                        <Grid item xs>
-                                                                <Typography variant="h6">{vehicle.VehicleType}</Typography>
+                                                        <Grid xs>
+                                                                <Typography level="h6">{vehicle.VehicleType}</Typography>
                                                             </Grid>
-                                                            <Grid item xs>
-                                                                <Typography variant="h6">{vehicle.Airborne}</Typography>
+                                                            <Grid xs>
+                                                                <Typography level="h6">{vehicle.Airborne}</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 {vehicle.Airborne === false ? 
-                                                                    <Chip label="No Problems" color="success" size="small" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}></Chip>
+                                                                    <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>No Problems</Chip>
                                                                 :
-                                                                    <Chip label="Airborne" color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>
+                                                                    <Chip  color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Airborne</Chip>
                                                                 }               
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                             {vehicle.AutoPilot === false ? 
-                                                                    <Chip label="Manual" color="default" size="small" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}></Chip>
+                                                                    <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
                                                                 :
-                                                                    <Chip label="Autopilot" color="info" size="small" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}></Chip>
+                                                                    <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
                                                                 }
                                                             </Grid>
                                                         </Grid>
@@ -193,52 +193,52 @@ export const Vehicles:React.FC = (props) => {
                                             </Grid>
     
                                             <Grid container spacing={2} display={'flex'} alignItems={'flex-end'}>
-                                                <Grid item xs>
+                                                <Grid xs>
                                                     <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Path Name</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{vehicle.PathName}</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Gear</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.CurrentGear)}</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.EngineRPM)} RPM</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{marginBottom:"10px"}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.FuelInventory)}</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container sx={{}}>
-                                                            <Grid item xs>
+                                                            <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
                                                             </Grid>
-                                                            <Grid item>
+                                                            <Grid>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(vehicle.FuelType)}</Typography>
                                                             </Grid>
                                                         </Grid>
@@ -249,7 +249,7 @@ export const Vehicles:React.FC = (props) => {
                                         </Card>
                                     </Grid>
     
-                                    <Grid item xs={1}>
+                                    <Grid xs={1}>
                                     </Grid>
     
                             </Grid> 
