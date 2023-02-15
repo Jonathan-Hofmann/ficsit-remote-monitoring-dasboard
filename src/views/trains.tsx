@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress } from "@mui/material";
+import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress } from "@mui/joy";
 import React, { useEffect, useState } from "react";
 import {BsExclamationCircle, BsX, BsArrowRightShort} from 'react-icons/bs';
 import { GiCargoCrate } from "react-icons/gi";
@@ -37,33 +37,37 @@ export const Trains:React.FC = (props) => {
             const train = trains_data[i];
             const timetable:{[key:string]:any}[] = train.TimeTable;
 
-            let foundIndex = 0;
-            for (let index = 0; index < timetable.length; index++) {
-                const station = timetable[index];
-                if(station.StationName === train.TrainStation){
-                    foundIndex = index;
-                }
-            }
-
-            for (let index = 0; index < trainstaions.length; index++) {
-                const station = trainstaions[index];
-                if(station.StationName === timetable[foundIndex].StationName){
-                    tmp.push([station]);
-                }
-            }
-
-            for (let index = 0; index < trainstaions.length; index++) {
-                const station = trainstaions[index];
-                if(foundIndex === 0){
-                    if(station.StationName === timetable[timetable.length-1].StationName){
-                        tmp[tmp.length-1].unshift(station);
-                    }
-                } else {
-                    if(station.StationName === timetable[foundIndex-1].StationName){
-                        tmp[tmp.length-1].unshift(station);
+            if(timetable.length > 0){
+                let foundIndex = 0;
+                for (let index = 0; index < timetable.length; index++) {
+                    const station = timetable[index];
+                    if(station.StationName === train.TrainStation){
+                        foundIndex = index;
                     }
                 }
-                
+
+                for (let index = 0; index < trainstaions.length; index++) {
+                    const station = trainstaions[index];
+                    if(station.StationName === timetable[foundIndex].StationName){
+                        tmp.push([station]);
+                    }
+                }
+
+                for (let index = 0; index < trainstaions.length; index++) {
+                    const station = trainstaions[index];
+                    if(foundIndex === 0){
+                        if(station.StationName === timetable[timetable.length-1].StationName){
+                            tmp[tmp.length-1].unshift(station);
+                        }
+                    } else {
+                        if(station.StationName === timetable[foundIndex-1].StationName){
+                            tmp[tmp.length-1].unshift(station);
+                        }
+                    }
+                    
+                }
+            } else {
+                tmp.push([]);
             }
 
             // tmp.push([timetable[foundIndex]]);
@@ -86,15 +90,15 @@ export const Trains:React.FC = (props) => {
     return(
         <Container sx={{paddingTop:'50px'}}>
             <Grid container display={'flex'} alignItems={'center'}>
-                <Grid item xs>
-                    <Typography variant="h2" fontWeight={600}>
+                <Grid xs>
+                    <Typography level="h2" fontWeight={600}>
                     Trains
                     </Typography>
                 </Grid>
-                <Grid item>
-                    <IconButton size="large">
+                <Grid>
+                    {/* <IconButton size="sm">
                         <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                    </IconButton> 
+                    </IconButton>  */}
                 </Grid>
             </Grid>
 
@@ -102,84 +106,97 @@ export const Trains:React.FC = (props) => {
                 <>
                     {trains.map((train:any, index:number)=>{
 
-                        const left = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][0].location.x)-(train.location.x)), 2))+(Math.pow(((tStation_PrevNext[index][0].location.y)-(train.location.y)), 2)), 0.5)/100);
-                        const right = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][1].location.x)-(train.location.x)), 2))+(Math.pow(((tStation_PrevNext[index][1].location.y)-(train.location.y)), 2)), 0.5)/100);
+                        let percentDone = 0;
+                        let left = 0;
+                        let right = 0;
+                        let totalLength = 0;
 
-                        const totalLength = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][0].location.x)-(tStation_PrevNext[index][1].location.x)), 2))+(Math.pow(((tStation_PrevNext[index][0].location.y)-(tStation_PrevNext[index][1].location.y)), 2)), 0.5)/100);
+                        if(tStation_PrevNext[index].length > 0){
+                            left = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][0].location.x)-(train.location.x)), 2))+(Math.pow(((tStation_PrevNext[index][0].location.y)-(train.location.y)), 2)), 0.5)/100);
+                            right = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][1].location.x)-(train.location.x)), 2))+(Math.pow(((tStation_PrevNext[index][1].location.y)-(train.location.y)), 2)), 0.5)/100);
 
-                        const percentDone = left/totalLength*100;
+                            totalLength = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][0].location.x)-(tStation_PrevNext[index][1].location.x)), 2))+(Math.pow(((tStation_PrevNext[index][0].location.y)-(tStation_PrevNext[index][1].location.y)), 2)), 0.5)/100);
+
+                            percentDone = left/totalLength*100;
+                        }
                         // const _percentDone = percentDone*100;
                         // console.log(index+" -> "+_percentDone);
                         return(
                             <Grid container spacing={2} sx={{marginY: '30px'}} display={'flex'} alignItems={'center'}>
-                                <Grid item xs={3}>
+                                <Grid xs={3}>
                                     <Card sx={{position: 'relative'}}>
-                                        <CardContent>
-                                            <GiCargoCrate size="36px"/>
-                                            <Typography variant="h6" sx={{marginY: '10px'}}>{tStation_PrevNext[index][0].StationName}</Typography>
-                                            
-                                            <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Departure</Typography>
+                                        {tStation_PrevNext[index].length > 0 ? 
+                                            <CardContent>
+                                                <GiCargoCrate size="36px"/>
+                                                <Typography level="h6" sx={{marginY: '10px'}}>{tStation_PrevNext[index][0].StationName}</Typography>
+                                                
+                                                <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Departure</Typography>
 
-                                            <Grid container display={'flex'} alignItems={'center'} sx={{marginBottom: '10px'}}>
-                                                <Grid item xs>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Current State</Typography> 
-                                                </Grid>
-                                                <Grid item>
-                                                    {tStation_PrevNext[index][0].LoadingStatus === "Idle" && <Chip label="Platform Idle" color="success" size="small" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}></Chip>}
-                                                    {tStation_PrevNext[index][0].LoadingStatus === "Loading" && <Chip label="Loading ..." color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>}
-                                                    {tStation_PrevNext[index][0].LoadingStatus === "Unloading" && <Chip label="Unloading ..." color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>}
-                                                </Grid>
-                                            </Grid>                                           
-                                            <Grid container>
-                                                <Grid item xs>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
-                                                </Grid>
-                                                <Grid item>
-                                                    {/* {tStation_PrevNext[index][0].location.x}
-                                                    {tStation_PrevNext[index][0].location.y}
-                                                    {tStation_PrevNext[index][0].location.z}
-                                                    {train.location.x}
-                                                    {train.location.y}
-                                                    {train.location.z} */}
+                                                <Grid container display={'flex'} alignItems={'center'} sx={{marginBottom: '10px'}}>
+                                                    <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Current State</Typography> 
+                                                    </Grid>
+                                                    <Grid>
+                                                        {tStation_PrevNext[index][0].LoadingStatus === "Idle" && <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>Platform Idle</Chip>}
+                                                        {tStation_PrevNext[index][0].LoadingStatus === "Loading" && <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Loading ...</Chip>}
+                                                        {tStation_PrevNext[index][0].LoadingStatus === "Unloading" && <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Unloading ...</Chip>}
+                                                    </Grid>
+                                                </Grid>                                           
+                                                <Grid container>
+                                                    <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
+                                                    </Grid>
+                                                    <Grid>
+                                                        {/* {tStation_PrevNext[index][0].location.x}
+                                                        {tStation_PrevNext[index][0].location.y}
+                                                        {tStation_PrevNext[index][0].location.z}
+                                                        {train.location.x}
+                                                        {train.location.y}
+                                                        {train.location.z} */}
 
-                                                    {left} m
+                                                        {left} m
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
-                                        </CardContent>
+                                            </CardContent>
+                                        :
+                                            <CardContent>
+                                                <Typography level="body2">No Timetable connected</Typography>
+                                            </CardContent>
+                                        }
                                     </Card>
                                 </Grid>
 
 
-                                <Grid item xs={1}>
+                                <Grid xs={1}>
                                 </Grid>
 
 
-                                <Grid item xs={4}>
+                                <Grid xs={4}>
                                     <Card sx={{position:'relative'}}>
                                         <CardContent>
                                         <Grid container spacing={2} sx={{marginBottom: '10px'}}>
-                                            <Grid item>
+                                            <Grid>
                                                 <TbTrain size="36px"/>
                                             </Grid>
-                                            <Grid item xs>
+                                            <Grid xs>
                                                 <Box sx={{position: 'relative'}}>
                                                     <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                        <Grid item xs>
-                                                            <Typography variant="h6">{train.TrainName}</Typography>
+                                                        <Grid xs>
+                                                            <Typography level="h6">{train.TrainName}</Typography>
                                                         </Grid>
-                                                        <Grid item>
+                                                        <Grid>
                                                             {train.Derailed === false ? 
-                                                                <Chip label="No Problems" color="success" size="small" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}></Chip>
+                                                                <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>No Problems</Chip>
                                                             :
-                                                                <Chip label="Derailed" color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>
+                                                                <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Derailed</Chip>
                                                             }
                                                         </Grid>
 
-                                                        <Grid item>
+                                                        <Grid>
                                                             {train.Status === "TS_SelfDriving" ? 
-                                                                <Chip label="Autopilot" color="info" size="small" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}></Chip>
+                                                                <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
                                                             :
-                                                                <Chip label="Manual" color="default" size="small" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}></Chip>
+                                                                <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
                                                             }
                                                         </Grid>
                                                     </Grid>
@@ -188,74 +205,82 @@ export const Trains:React.FC = (props) => {
                                         </Grid>
 
                                         <Grid container spacing={2} display={'flex'} alignItems={'flex-end'}>
-                                            <Grid item xs>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Next To</Typography>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{train.TrainStation}</Typography>
+                                            <Grid xs>
+                                                <Typography sx={{color: 'rgba(255,255,255,0.5)', marginBottom: '10px'}}>Next To</Typography>
+                                                {tStation_PrevNext[index].length > 0 && <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{train.TrainStation}</Typography>}
+                                                {tStation_PrevNext[index].length === 0 && <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>No Timetable connected</Typography>}
+                                                
                                             </Grid>
-                                            <Grid item xs>
-                                                <Grid container sx={{marginBottom: '10px'}}>
-                                                    <Grid item xs>
+                                            <Grid xs>
+                                                <Grid container sx={{marginBottom: '0px'}}>
+                                                    <Grid xs>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                     </Grid>
-                                                    <Grid item>
+                                                    <Grid>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseFloat(train.ForwardSpeed) <0 ? (parseInt(train.ForwardSpeed)*-1): parseInt(train.ForwardSpeed)} km/h</Typography>
                                                     </Grid>
                                                 </Grid>
-                                                <Grid container sx={{marginBottom: '10px'}}>
-                                                    <Grid item xs>
+                                                <Grid container sx={{marginBottom: '0px'}}>
+                                                    <Grid xs>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Throttle</Typography>
                                                     </Grid>
-                                                    <Grid item>
+                                                    <Grid>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.ThrottlePercent)} %</Typography>
                                                     </Grid>
                                                 </Grid>
                                                 <Grid container>
-                                                    <Grid item xs>
+                                                    <Grid xs>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Power</Typography>
                                                     </Grid>
-                                                    <Grid item>
+                                                    <Grid>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.PowerConsumed)} MW</Typography>
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
-                                        <LinearProgress color="info" variant="determinate" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} />
+                                        <LinearProgress color="info" variant="soft" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} />
                                         </CardContent>
                                     </Card>
                                 </Grid>
 
-                                <Grid item xs={1}>
+                                <Grid xs={1}>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid xs={3}>
                                     <Card sx={{position: 'relative'}}>
-                                        <CardContent>
-                                            <GiCargoCrate size="36px"/>
-                                            <Typography variant="h6" sx={{marginY: '10px'}}>{tStation_PrevNext[index][1].StationName}</Typography>
-                                            
-                                            <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Destination</Typography>
+                                        {tStation_PrevNext[index].length > 0 ? 
+                                            <CardContent>
+                                                <GiCargoCrate size="36px"/>
+                                                <Typography level="h6" sx={{marginY: '10px'}}>{tStation_PrevNext[index][1].StationName}</Typography>
+                                                
+                                                <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Destination</Typography>
 
-                                            <Grid container display={'flex'} alignItems={'center'} sx={{marginBottom: '10px'}}>
-                                                <Grid item xs>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Status</Typography> 
-                                                </Grid>
-                                                <Grid item>
-                                                    {tStation_PrevNext[index][1].LoadingStatus === "Idle" && <Chip label="Platform Idle" color="success" size="small" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}></Chip>}
-                                                    {tStation_PrevNext[index][1].LoadingStatus === "Loading" && <Chip label="Loading ..." color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>}
-                                                    {tStation_PrevNext[index][1].LoadingStatus === "Unloading" && <Chip label="Unloading ..." color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>}
-                                                </Grid>
-                                            </Grid>                                       
-                                            <Grid container>
-                                                <Grid item xs>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
-                                                </Grid>
-                                                <Grid item>
+                                                <Grid container display={'flex'} alignItems={'center'} sx={{marginBottom: '10px'}}>
+                                                    <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Status</Typography> 
+                                                    </Grid>
+                                                    <Grid>
+                                                        {tStation_PrevNext[index][1].LoadingStatus === "Idle" && <Chip  color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>Platform Idle</Chip>}
+                                                        {tStation_PrevNext[index][1].LoadingStatus === "Loading" && <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Loading ...</Chip>}
+                                                        {tStation_PrevNext[index][1].LoadingStatus === "Unloading" && <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Unloading ...</Chip>}
+                                                    </Grid>
+                                                </Grid>                                       
+                                                <Grid container>
+                                                    <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
+                                                    </Grid>
+                                                    <Grid>
 
-                                                    {right} m
+                                                        {right} m
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
 
-                                        </CardContent>
+                                            </CardContent>
+                                        :
+                                            <CardContent>
+                                                <Typography level="body2">No Timetable connected</Typography>
+                                            </CardContent>
+                                        }
                                     </Card>
                                 </Grid>
 
