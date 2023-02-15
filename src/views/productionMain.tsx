@@ -1,4 +1,4 @@
-import { Card, CardHeader, Chip, CircularProgress, Container, Divider, Grid, Paper, Skeleton, Stack, Typography } from "@mui/material"
+import { Card, Chip, CircularProgress, Container, Divider, Grid, Stack, Typography } from "@mui/joy"
 import { useTheme } from "@mui/system";
 import { useEffect, useState } from "react";
 import { BsBattery, BsBatteryHalf, BsCheck, BsCheck2, BsCloudSlash, BsExclamationTriangleFill } from "react-icons/bs";
@@ -92,7 +92,7 @@ export const Factorys:React.FC = (props) => {
 
     return(
         <Container>
-            <Typography variant="h3" sx={{marginTop: '30px', marginBottom: '30px'}}>All Factorys</Typography>
+            <Typography level="h3" sx={{marginTop: '30px', marginBottom: '30px'}}>All Factorys</Typography>
              
             <Divider sx={{marginBottom: '50px'}}/>
 
@@ -101,14 +101,26 @@ export const Factorys:React.FC = (props) => {
             {factorys && allFactorys ? 
                 <>
                     <Grid container spacing={2} sx={{marginBottom: '30px'}}>
-                        <Grid item xs>
+                        <Grid xs>
                             <Card>
-                                <CardHeader title={factorys.length} subheader="Total Number of Factorys"></CardHeader>
+                                {/* <CardHeader title={factorys.length} subheader="Total Number of Factorys"></CardHeader> */}
+                                <Typography level="h3">
+                                    {factorys.length}
+                                </Typography>
+                                <Typography level="body2">
+                                    Total Number of Factorys
+                                </Typography>
                             </Card>
                         </Grid>
-                        <Grid item xs>
+                        <Grid xs>
                             <Card>
-                                <CardHeader title={ " MW"} subheader="Total Power Production"></CardHeader>
+                                {/* <CardHeader title={ " MW"} subheader="Total Power Production"></CardHeader> */}
+                                <Typography level="h3">
+                                    {factorys.length} MW
+                                </Typography>
+                                <Typography level="body2">
+                                    Total Number of Factorys
+                                </Typography>
                             </Card>
                         </Grid>
                     </Grid>

@@ -97,6 +97,15 @@ const _joyTheme = extendTheme({
         } 
       }
     },
+    components: {
+      JoyCard: {
+        styleOverrides: {
+          root: {
+            borderRadius: '10px'
+          }
+        }
+      }
+    }
   });
 
 const { unstable_sxConfig: joySxConfig, ...joyTheme} = extendJoyTheme(_joyTheme);
