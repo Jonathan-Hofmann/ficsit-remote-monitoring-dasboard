@@ -10,6 +10,7 @@ import { BsSearch } from 'react-icons/bs';
 import { Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { GiDeliveryDrone, GiFactory, GiPowerGenerator } from 'react-icons/gi';
+import { TbTrain } from 'react-icons/tb';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -90,6 +91,11 @@ export default function SearchAppBar() {
               <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/drones">
                 <Button startIcon={<GiDeliveryDrone/>}>
                   Drones
+                </Button>
+              </Link>
+              <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/trains">
+                <Button startIcon={<TbTrain/>}>
+                  Trains
                 </Button>
               </Link>
           </Stack>

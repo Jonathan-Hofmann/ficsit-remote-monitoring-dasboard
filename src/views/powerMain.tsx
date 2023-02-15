@@ -80,12 +80,12 @@ export const PowerMain:React.FC = (props) => {
             <Typography variant="h4" sx={{marginTop: '30px', marginBottom: '30px'}}>All Power Circuits</Typography>
             {power ? 
                 <>
-                    {power.map((powerGroup:any) => {
+                    {power.map((powerGroup:any, index:number) => {
                         return(
                             <Paper elevation={1} sx={{marginBottom: '30px', padding: '20px'}}>
                                 <Grid container>
                                     <Grid item xs>
-                                        <Typography variant="h5" sx={{marginBottom: '20px'}}>Power Circuit #{powerGroup.CircuitID}</Typography>
+                                        <Typography variant="h5" sx={{marginBottom: '20px'}}>Power Circuit #{index+1}</Typography>
                                     </Grid>
                                     <Grid item>
                                         {powerGroup.FuseTriggered === true ? <Chip icon={<BsExclamationTriangleFill size={'17px'}/> } sx={{paddingLeft: '6px'}} color="error" label="FUSE BROKEN"></Chip> : <Chip icon={<BsCheck size={'22px'}/> } sx={{paddingLeft: '6px', color: 'white'}} color="success" label="Fuse: All Good"></Chip>}
