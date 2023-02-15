@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import { BsSearch } from 'react-icons/bs';
 import { Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { GiDeliveryDrone, GiFactory, GiPowerGenerator } from 'react-icons/gi';
+import { GiDeliveryDrone, GiFactory, GiMineTruck, GiPowerGenerator } from 'react-icons/gi';
 import { TbTrain } from 'react-icons/tb';
 
 const Search = styled('div')(({ theme }) => ({
@@ -79,7 +79,7 @@ export default function SearchAppBar() {
 
           <Stack display={'flex'} flexDirection={"row"}>
               <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/power">
-                <Button startIcon={<GiPowerGenerator/>}>
+                <Button color='primary' startIcon={<GiPowerGenerator/>}>
                   Power Screen
                 </Button>
               </Link>
@@ -96,6 +96,11 @@ export default function SearchAppBar() {
               <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/trains">
                 <Button startIcon={<TbTrain/>}>
                   Trains
+                </Button>
+              </Link>
+              <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/vehicles">
+                <Button startIcon={<GiMineTruck/>}>
+                  Vehicles
                 </Button>
               </Link>
           </Stack>

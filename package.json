@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/joy": "^5.0.0-alpha.67",
     "@mui/material": "^5.6.3",
     "@mui/styled-engine-sc": "^5.6.1",
     "@testing-library/jest-dom": "^5.16.4",

@@ -49,7 +49,7 @@ export const Building:React.FC = (props) => {
     "CircuitID": 1
   },
      */
-    
+
     const isFailingStep = (step:number) => {
         if (step === 0) {
             if(b.IsConfigured === true){

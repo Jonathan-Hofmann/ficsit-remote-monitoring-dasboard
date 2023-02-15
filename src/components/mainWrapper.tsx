@@ -8,18 +8,20 @@ import { PowerMain } from "../views/powerMain";
 import { Factorys } from "../views/productionMain";
 import { Start } from "../views/start";
 import SearchAppBar from "./topBar";
+import { Vehicles } from "../views/vehicles";
 
 export const MainWrapper:React.FC = (props) => {
     return(
         <>
             <SearchAppBar/>
             <Routes>
-                {/* <Route path="/" element={<Start />} /> */}
+                <Route path="/" element={<Start />} />
                 <Route path="/power" element={<PowerMain />} />
                 <Route path="/production" element={<Factorys />} />
                 <Route path="/building" element={<Building />} />
                 <Route path="/drones" element={<Drones />} />
                 <Route path="/trains" element={<Trains />} />
+                <Route path="/vehicles" element={<Vehicles />} />
             </Routes>
         </>
     )
