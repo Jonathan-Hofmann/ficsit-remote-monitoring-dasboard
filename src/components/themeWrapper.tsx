@@ -94,7 +94,7 @@ const _joyTheme = extendTheme({
                 plainDisabledBorder: 'rgba(236, 198, 47, 0.05)',
                 plainColor: 'rgba(236, 198, 47, 1)',
             }
-        }
+        } 
       }
     },
   });
