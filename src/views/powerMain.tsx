@@ -1,4 +1,4 @@
-import { Card, CardHeader, Chip, CircularProgress, Container, Divider, Grid, Paper, Typography } from "@mui/material"
+import { Card, Chip, CircularProgress, Container, Divider, Grid, Typography, CardContent } from "@mui/joy"
 import { useTheme } from "@mui/system";
 import { useEffect, useState } from "react";
 import { BsBattery, BsBatteryHalf, BsCheck, BsCheck2, BsCloudSlash, BsExclamationTriangleFill } from "react-icons/bs";
@@ -47,79 +47,107 @@ export const PowerMain:React.FC = (props) => {
 
     return(
         <Container>
-            <Typography variant="h3" sx={{marginTop: '30px', marginBottom: '30px'}}>All Power</Typography>
+            <Typography level="h3" sx={{marginTop: '30px', marginBottom: '30px'}}>All Power</Typography>
             <Grid container spacing={2} sx={{marginBottom: '30px'}}>
-                <Grid item xs>
+                <Grid xs>
                     <Card>
-                        <CardHeader title={allCapacity+ " MW"} subheader="Total Power Capacity"></CardHeader>
+                        {/* <CardHeader title={allCapacity+ " MW"} subheader="Total Power Capacity"></CardHeader> */}
+                        <Typography>
+                            {allCapacity} MW
+                        </Typography>
                     </Card>
                 </Grid>
-                <Grid item xs>
+                <Grid xs>
                     <Card>
-                        <CardHeader title={allProduction+ " MW"} subheader="Total Power Production"></CardHeader>
+                        {/* <CardHeader title={allProduction+ " MW"} subheader="Total Power Production"></CardHeader> */}
+                        <Typography>
+                            {allProduction} MW
+                        </Typography>
                     </Card>
                 </Grid>
-                <Grid item xs>
+                <Grid xs>
                     <Card>
-                        <CardHeader title={allBatteryCapacity+ " MW"} subheader="Total Battery Capacity"></CardHeader>
+                        {/* <CardHeader title={allBatteryCapacity+ " MW"} subheader="Total Battery Capacity"></CardHeader> */}
+                        <Typography>
+                            {allBatteryCapacity} MW
+                        </Typography>
                     </Card>
                 </Grid>
-                <Grid item xs>
+                <Grid xs>
                     {fuseBroken === false ? 
                         <Card sx={{backgroundColor: theme.palette.success.main}}>
-                            <CardHeader title="All Good" subheader="Fuse Status"></CardHeader>
+                            {/* <CardHeader title="All Good" subheader="Fuse Status"></CardHeader> */}
+                            <Typography level="h1">
+                                All Good
+                            </Typography>
                         </Card>
                     :
                         <Card sx={{backgroundColor: theme.palette.error.main}}>
-                            <CardHeader title="Broken!" subheader="Fuse Status"></CardHeader>
+                            {/* <CardHeader title="Broken!" subheader="Fuse Status"></CardHeader> */}
+                            <Typography>
+                                Broken!
+                            </Typography>
                         </Card>
                     }
                 </Grid>
             </Grid>
             <Divider sx={{marginBottom: '50px'}}/>
-            <Typography variant="h4" sx={{marginTop: '30px', marginBottom: '30px'}}>All Power Circuits</Typography>
+            <Typography level="h4" sx={{marginTop: '30px', marginBottom: '30px'}}>All Power Circuits</Typography>
             {power ? 
                 <>
                     {power.map((powerGroup:any, index:number) => {
                         return(
-                            <Paper elevation={1} sx={{marginBottom: '30px', padding: '20px'}}>
+                            <Card sx={{marginBottom: '30px', padding: '20px'}}>
+                                <CardContent>
                                 <Grid container>
-                                    <Grid item xs>
-                                        <Typography variant="h5" sx={{marginBottom: '20px'}}>Power Circuit #{index+1}</Typography>
+                                    <Grid xs>
+                                        <Typography level="h5" sx={{marginBottom: '20px'}}>Power Circuit #{index+1}</Typography>
                                     </Grid>
-                                    <Grid item>
-                                        {powerGroup.FuseTriggered === true ? <Chip icon={<BsExclamationTriangleFill size={'17px'}/> } sx={{paddingLeft: '6px'}} color="error" label="FUSE BROKEN"></Chip> : <Chip icon={<BsCheck size={'22px'}/> } sx={{paddingLeft: '6px', color: 'white'}} color="success" label="Fuse: All Good"></Chip>}
+                                    <Grid>
+                                        {powerGroup.FuseTriggered === true ? <Chip startDecorator={<BsExclamationTriangleFill size={'17px'}/> } sx={{paddingLeft: '6px'}} color="danger" >FUSE BROKEN</Chip> : <Chip startDecorator={<BsCheck size={'22px'}/> } sx={{paddingLeft: '6px', color: 'white'}} color="success">Fuse: All Good</Chip>}
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={2}>
-                                    <Grid item xs>
+                                    <Grid xs>
                                         <Card variant="outlined">
-                                            <CardHeader title={powerGroup.PowerCapacity+ " MW"} subheader="Power Capacity"></CardHeader>
+                                            {/* <CardHeader title={powerGroup.PowerCapacity+ " MW"} subheader="Power Capacity"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.PowerCapacity} MW
+                                                </Typography>
                                         </Card>
                                     </Grid>
-                                    <Grid item xs>
+                                    <Grid xs>
                                         <Card variant="outlined">
-                                            <CardHeader title={powerGroup.PowerProduction+ " MW"} subheader="Power Production"></CardHeader>
+                                            {/* <CardHeader title={powerGroup.PowerProduction+ " MW"} subheader="Power Production"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.PowerProduction} MW
+                                                </Typography>
                                         </Card>
                                     </Grid>
-                                    <Grid item xs>
+                                    <Grid xs>
                                         <Card variant="outlined">
-                                            <CardHeader title={powerGroup.PowerConsumed+ " MW"} subheader="Power Consumed"></CardHeader>
+                                            {/* <CardHeader title={powerGroup.PowerConsumed+ " MW"} subheader="Power Consumed"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.PowerConsumed} MW
+                                                </Typography>
                                         </Card>
                                     </Grid>
-                                    <Grid item xs>
+                                    <Grid xs>
                                         <Card variant="outlined">
-                                            <CardHeader title={powerGroup.PowerMaxConsumed+ " MW"} subheader="Power max. Consumed"></CardHeader>
+                                            {/* <CardHeader title={powerGroup.PowerMaxConsumed+ " MW"} subheader="Power max. Consumed"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.PowerMaxConsumed} MW
+                                                </Typography>
                                         </Card>
                                     </Grid>
                                 </Grid>
 
                                 <Grid container sx={{marginTop: "30px"}}>
-                                    <Grid item xs>
-                                        <Typography color="text.secondary" variant="h6" >Battery</Typography>
+                                    <Grid xs>
+                                        <Typography level="h6" >Battery</Typography>
                                     </Grid>
-                                    <Grid item>
-                                        {powerGroup.BatteryCapacity === 0 && powerGroup.BatteryTimeFull === "00:00:00" ? <Chip icon={<BsCloudSlash size={'20px'}/> } sx={{paddingLeft: '6px'}} label="No Battery connected"></Chip> : <Chip icon={<BsBatteryHalf size={'20px'}/>} sx={{paddingLeft: '6px', color: 'white'}} color="success" label="Battery connected"></Chip>}
+                                    <Grid>
+                                        {powerGroup.BatteryCapacity === 0 && powerGroup.BatteryTimeFull === "00:00:00" ? <Chip startDecorator={<BsCloudSlash size={'20px'}/> } sx={{paddingLeft: '6px'}} >No Battery connected</Chip> : <Chip startDecorator={<BsBatteryHalf size={'20px'}/>} sx={{paddingLeft: '6px', color: 'white'}} color="success">Battery connected</Chip>}
                                     </Grid>
                                 </Grid>
                                 { powerGroup.BatteryCapacity === 0 && powerGroup.BatteryTimeFull === "00:00:00" ? 
@@ -127,28 +155,41 @@ export const PowerMain:React.FC = (props) => {
                                     </>
                                 :
                                     <Grid container spacing={2} sx={{marginTop: "20px"}}>
-                                        <Grid item xs>
+                                        <Grid xs>
                                             <Card variant="outlined">
-                                                <CardHeader title={powerGroup.BatteryCapacity+ " MW"} subheader="Battery Capacity"></CardHeader>
+                                                {/* <CardHeader title={powerGroup.BatteryCapacity+ " MW"} subheader="Battery Capacity"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.BatteryCapacity} MW
+                                                </Typography>
                                             </Card>
                                         </Grid>
-                                        <Grid item xs>
+                                        <Grid xs>
                                             <Card variant="outlined">
-                                                <CardHeader title={powerGroup.BatteryPercent+ " %"} subheader="Battery Filled Percent"></CardHeader>
+                                                {/* <CardHeader title={powerGroup.BatteryPercent+ " %"} subheader="Battery Filled Percent"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.BatteryPercent} %
+                                                </Typography>
                                             </Card>
                                         </Grid>
-                                        <Grid item xs>
+                                        <Grid xs>
                                             <Card variant="outlined">
-                                                <CardHeader title={powerGroup.BatteryDifferential+ " MW"} subheader="Battery Differential"></CardHeader>
+                                                {/* <CardHeader title={powerGroup.BatteryDifferential+ " MW"} subheader="Battery Differential"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.BatteryDifferential} MW
+                                                </Typography>
                                             </Card>
                                         </Grid>
-                                        <Grid item xs>
+                                        <Grid xs>
                                             <Card variant="outlined">
-                                                <CardHeader title={powerGroup.BatteryTimeFull} subheader="Battery Full At Time"></CardHeader>
+                                                {/* <CardHeader title={powerGroup.BatteryTimeFull} subheader="Battery Full At Time"></CardHeader> */}
+                                                <Typography>
+                                                    {powerGroup.BatteryTimeFull}
+                                                </Typography>
                                             </Card>
                                         </Grid>
                                     </Grid>}
-                            </Paper>
+                                </CardContent>
+                            </Card>
                         )
                     })}
                 </>

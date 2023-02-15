@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, LinearProgress, Typography } from "@mui/material";
+import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, LinearProgress, Typography } from "@mui/joy";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { GiCargoCrate, GiDeliveryDrone } from "react-icons/gi";
@@ -18,7 +18,7 @@ export const Drones:React.FC = (props) => {
             const data = response.data;
             console.log(data);
             
-            const _data = JSON.parse(data);
+            // const _data = JSON.parse(data);
         //     data.push({
         //         "ID":"0",
         //         "VehicleType":"Drone",
@@ -57,13 +57,13 @@ export const Drones:React.FC = (props) => {
     return(
         <Container sx={{paddingTop:'50px'}}>
             <Grid container display={'flex'} alignItems={'center'}>
-                <Grid item xs>
-                    <Typography variant="h2" fontWeight={600}>
+                <Grid xs>
+                    <Typography level="h2" fontWeight={600}>
                     Drones
                     </Typography>
                 </Grid>
-                <Grid item>
-                    <IconButton size="large">
+                <Grid>
+                    <IconButton size="lg">
                         <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
                     </IconButton> 
                 </Grid>
@@ -75,7 +75,7 @@ export const Drones:React.FC = (props) => {
                     {drones.map((drone:any, index:number)=>{
                         return(
                             <Grid container spacing={2} sx={{marginY: '30px'}} display={'flex'} alignItems={'center'}>
-                                <Grid item xs={3}>
+                                <Grid xs={3}>
                                     <Card sx={{position: 'relative'}}>
                                         <CardContent>
                                             <GiCargoCrate size="36px"/>
@@ -84,18 +84,18 @@ export const Drones:React.FC = (props) => {
                                             <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Departure</Typography>
 
                                             <Grid container display={'flex'} alignItems={'center'} sx={{marginBottom: '10px'}}>
-                                                <Grid item xs>
+                                                <Grid  xs>
                                                     <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Current State</Typography> 
                                                 </Grid>
-                                                <Grid item>
+                                                <Grid>
                                                 
                                                 </Grid>
                                             </Grid>                                           
                                             <Grid container>
-                                                <Grid item xs>
+                                                <Grid xs>
                                                     <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
                                                 </Grid>
-                                                <Grid item>
+                                                <Grid>
                                                     {/* {tStation_PrevNext[index][0].location.x}
                                                     {tStation_PrevNext[index][0].location.y}
                                                     {tStation_PrevNext[index][0].location.z}
@@ -111,24 +111,24 @@ export const Drones:React.FC = (props) => {
                                 </Grid>
 
 
-                                <Grid item xs={1}>
+                                <Grid xs={1}>
                                 </Grid>
 
 
-                                <Grid item xs={4}>
+                                <Grid xs={4}>
                                     <Card sx={{position:'relative'}}>
                                         <CardContent>
                                         <Grid container spacing={2} sx={{marginBottom: '10px'}}>
-                                            <Grid item>
+                                            <Grid>
                                                 <GiDeliveryDrone size="36px"/>
                                             </Grid>
-                                            <Grid item xs>
+                                            <Grid xs>
                                                 <Box sx={{position: 'relative'}}>
                                                     <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                        <Grid item xs>
-                                                            <Typography variant="h6">{drone.VehicleType}</Typography>
+                                                        <Grid xs>
+                                                            <Typography level="h6">{drone.VehicleType}</Typography>
                                                         </Grid>
-                                                        <Grid item>
+                                                        <Grid>
                                                             {/* {drone.Derailed === false ? 
                                                                 <Chip label="No Problems" color="success" size="small" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}></Chip>
                                                             :
@@ -136,11 +136,11 @@ export const Drones:React.FC = (props) => {
                                                             } */}
                                                         </Grid>
 
-                                                        <Grid item>
+                                                        <Grid>
                                                             {drone.CurrentFlyingMode === "DFM_Travel" ? 
-                                                                <Chip label="Travelling" color="info" size="small" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}></Chip>
+                                                                <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Travelling</Chip>
                                                             :
-                                                                <Chip label="Stopped" color="default" size="small" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}></Chip>
+                                                                <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Stopped</Chip>
                                                             }
                                                         </Grid>
                                                     </Grid>
@@ -149,32 +149,32 @@ export const Drones:React.FC = (props) => {
                                         </Grid>
 
                                         <Grid container spacing={2} display={'flex'} alignItems={'flex-end'}>
-                                            <Grid item xs>
+                                            <Grid xs>
                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Next To</Typography>
                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{drone.CurrentDestination}</Typography>
                                             </Grid>
-                                            <Grid item xs>
+                                            <Grid xs>
                                                 <Grid container sx={{marginBottom: '10px'}}>
-                                                    <Grid item xs>
+                                                    <Grid xs>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                     </Grid>
-                                                    <Grid item>
+                                                    <Grid>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseFloat(drone.FlyingSpeed) <0 ? (parseInt(drone.FlyingSpeed)*-1): parseInt(drone.FlyingSpeed)} km/h</Typography>
                                                     </Grid>
                                                 </Grid>
                                                 <Grid container sx={{marginBottom: '10px'}}>
-                                                    <Grid item xs>
+                                                    <Grid xs>
                                                         {/* <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Throttle</Typography> */}
                                                     </Grid>
-                                                    <Grid item>
+                                                    <Grid>
                                                         {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(drone.ThrottlePercent)} %</Typography> */}
                                                     </Grid>
                                                 </Grid>
                                                 <Grid container>
-                                                    <Grid item xs>
+                                                    <Grid xs>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Power</Typography>
                                                     </Grid>
-                                                    <Grid item>
+                                                    <Grid>
                                                         {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(drone.PowerConsumed)} MW</Typography> */}
                                                     </Grid>
                                                 </Grid>
@@ -185,10 +185,10 @@ export const Drones:React.FC = (props) => {
                                     </Card>
                                 </Grid>
 
-                                <Grid item xs={1}>
+                                <Grid xs={1}>
                                 </Grid>
 
-                                <Grid item xs={3}>
+                                <Grid xs={3}>
                                     <Card sx={{position: 'relative'}}>
                                         <CardContent>
                                             <GiCargoCrate size="36px"/>
@@ -197,18 +197,18 @@ export const Drones:React.FC = (props) => {
                                             <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Destination</Typography>
 
                                             <Grid container display={'flex'} alignItems={'center'} sx={{marginBottom: '10px'}}>
-                                                <Grid item xs>
+                                                <Grid xs>
                                                     <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Status</Typography> 
                                                 </Grid>
-                                                <Grid item>
+                                                <Grid>
                                                     
                                                 </Grid>
                                             </Grid>                                       
                                             <Grid container>
-                                                <Grid item xs>
+                                                <Grid xs>
                                                     <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
                                                 </Grid>
-                                                <Grid item>
+                                                <Grid>
 
                                                     {/* {right} m */}
                                                 </Grid>
