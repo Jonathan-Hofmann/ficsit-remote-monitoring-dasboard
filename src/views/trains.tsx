@@ -26,7 +26,7 @@ export const Trains:React.FC = (props) => {
             
             setTimeout(() => {
                 loadData();
-            }, 1000);
+            }, 100);
         }
     };
 
@@ -238,7 +238,7 @@ export const Trains:React.FC = (props) => {
                                                 </Grid>
                                             </Grid>
                                         </Grid>
-                                        <LinearProgress color="info" variant="soft" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} />
+                                        <LinearProgress color="info" determinate variant="soft" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} />
                                         </CardContent>
                                     </Card>
                                 </Grid>
