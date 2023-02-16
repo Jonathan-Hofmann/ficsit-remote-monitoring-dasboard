@@ -130,7 +130,8 @@ export const Drones:React.FC = (props) => {
                                     
                                         <Card sx={{position: 'relative', marginBottom: '20px', height: '110px', paddingBottom: '0px !important'}}>
                                             <CardContent>
-                                                <BsLink45Deg size="28px"/>
+                                                {/* <BsLink45Deg size="28px"/> */}
+                                                <img src="./assets/Buildings/IconDesc_DronePort_256.png" alt="image" style={{height: '35px', width: '35px'}}></img>
                                                 <Typography level="h6" sx={{marginTop: '10px'}}>{drone.HomeStation}</Typography>
                                                 
                                                 <Typography level="body2" sx={{ color: 'rgba(255,255,255,0.5)'}}>Home Port</Typography>
@@ -150,7 +151,8 @@ export const Drones:React.FC = (props) => {
                                     {drStation_PrevNext[index][1] ? 
                                         <Card sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}}>
                                             <CardContent>
-                                                <BsLink45Deg size="28px"/>
+                                                {/* <BsLink45Deg size="28px"/> */}
+                                                <img src="./assets/Buildings/IconDesc_DronePort_256.png" alt="image" style={{height: '35px', width: '35px'}}></img>
                                                 <Typography level="h6" sx={{marginTop: '10px'}}>{drone.CurrentDestination === "" ? "N/A" : drone.CurrentDestination}</Typography>
                                                 
                                                 <Typography level="body2" sx={{color: 'rgba(255,255,255,0.5)'}}>Linked Port</Typography>
@@ -175,7 +177,8 @@ export const Drones:React.FC = (props) => {
                                         <CardContent>
                                         <Grid container spacing={2} sx={{marginBottom: '10px'}}>
                                             <Grid>
-                                                <GiDeliveryDrone size="36px"/>
+                                                {/* <GiDeliveryDrone size="36px"/> */}
+                                                <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '70px'}}></img>
                                             </Grid>
                                             <Grid xs>
                                                 <Box sx={{position: 'relative'}}>
