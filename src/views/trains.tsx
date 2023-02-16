@@ -206,12 +206,6 @@ export const Trains:React.FC = (props) => {
 
                                         <Grid container spacing={2} display={'flex'} alignItems={'flex-end'}>
                                             <Grid xs>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.5)', marginBottom: '10px'}}>Next To</Typography>
-                                                {tStation_PrevNext[index].length > 0 && <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{train.TrainStation}</Typography>}
-                                                {tStation_PrevNext[index].length === 0 && <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>No Timetable connected</Typography>}
-                                                
-                                            </Grid>
-                                            <Grid xs>
                                                 <Grid container sx={{marginBottom: '0px'}}>
                                                     <Grid xs>
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
