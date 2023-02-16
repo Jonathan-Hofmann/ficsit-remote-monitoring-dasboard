@@ -1,9 +1,10 @@
 import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress } from "@mui/joy";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {BsExclamationCircle, BsX, BsArrowRightShort} from 'react-icons/bs';
 import { GiCargoCrate } from "react-icons/gi";
 import { TbTrain } from "react-icons/tb";
 import axios from 'axios';
+import { SettingsContext } from "../context/Settings";
 
 
 export const Trains:React.FC = (props) => {
@@ -12,7 +13,9 @@ export const Trains:React.FC = (props) => {
     const [trains, setTrains] = useState<undefined | any>(undefined);
     const [trainstaions, setTrainstations] = useState<undefined | any>(undefined);
 
-    const [tStation_PrevNext, setTStation_PrevNext] = useState<undefined|any[]>(undefined)
+    const [tStation_PrevNext, setTStation_PrevNext] = useState<undefined|any[]>(undefined);
+
+    const settings = useContext(SettingsContext);
 
     const loadData = async () => {
         if (doLoadData === true) {
@@ -26,7 +29,7 @@ export const Trains:React.FC = (props) => {
             
             setTimeout(() => {
                 loadData();
-            }, 100);
+            }, settings.msInterval);
         }
     };
 

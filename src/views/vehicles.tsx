@@ -1,14 +1,17 @@
 import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress } from "@mui/joy";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {BsExclamationCircle, BsX, BsArrowRightShort} from 'react-icons/bs';
 import { GiCargoCrate, GiF1Car, GiMineTruck } from "react-icons/gi";
 import axios from 'axios';
+import { SettingsContext } from "../context/Settings";
 
 
 export const Vehicles:React.FC = (props) => {
     
     const [doLoadData, setLoadData] = useState(true);
     const [vehicles, setVehicles] = useState<undefined | any>(undefined);
+
+    const settings = useContext(SettingsContext);
 
     const loadData = async () => {
         if (doLoadData === true) {
@@ -19,7 +22,7 @@ export const Vehicles:React.FC = (props) => {
 
             setTimeout(() => {
                 loadData();
-            }, 1000);
+            }, settings.msInterval);
         }
     };
     
@@ -29,16 +32,16 @@ export const Vehicles:React.FC = (props) => {
 
     return(
         <Container sx={{paddingTop:'50px'}}>
-            <Grid container display={'flex'} alignItems={'center'}>
+            <Grid container display={'flex'} alignItems={'center'} marginBottom={'20px'}>
                 <Grid xs>
-                    <Typography level="h2" fontWeight={600}>
+                    <Typography level="h2" fontWeight={600} >
                     Manual Vehicles
                     </Typography>
                 </Grid>
                 <Grid>
-                    <IconButton size="lg">
+                    {/* <IconButton size="lg">
                         <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                    </IconButton> 
+                    </IconButton>  */}
                 </Grid>
             </Grid>
 
@@ -92,7 +95,7 @@ export const Vehicles:React.FC = (props) => {
                                                                                 
                                                 <Grid container spacing={2} >
                                                     <Grid xs>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container>
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                             </Grid>
@@ -100,7 +103,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container>
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Gear</Typography>
                                                             </Grid>
@@ -108,7 +111,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.CurrentGear)}</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container>
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
                                                             </Grid>
@@ -116,7 +119,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.EngineRPM)} RPM</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container>
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
                                                             </Grid>
@@ -144,9 +147,9 @@ export const Vehicles:React.FC = (props) => {
                         })}
                     </Grid> 
                     {/* Show all vehicles that are in autopilot */}
-                        <Typography level="h2" fontWeight={600}>
-                            Autopiloted Vehicles
-                        </Typography>
+                    <Typography level="h2" fontWeight={600} marginTop={'40px'} marginBottom={'20px'}>
+                        Autopiloted Vehicles
+                    </Typography>
                     {vehicles.map((vehicle:any, index:number)=>{
                         if(vehicle.AutoPilot === false){
                             // Mode Manual -> show
@@ -194,7 +197,7 @@ export const Vehicles:React.FC = (props) => {
     
                                             <Grid container spacing={2} display={'flex'} alignItems={'flex-end'}>
                                                 <Grid xs>
-                                                    <Grid container sx={{marginBottom:"10px"}}>
+                                                    <Grid container>
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Path Name</Typography>
                                                             </Grid>
@@ -202,7 +205,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{vehicle.PathName}</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container >
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                             </Grid>
@@ -210,7 +213,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container >
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Gear</Typography>
                                                             </Grid>
@@ -218,7 +221,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.CurrentGear)}</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container >
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
                                                             </Grid>
@@ -226,7 +229,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.EngineRPM)} RPM</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{marginBottom:"10px"}}>
+                                                        <Grid container >
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
                                                             </Grid>
@@ -234,7 +237,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.FuelInventory)}</Typography>
                                                             </Grid>
                                                         </Grid>
-                                                        <Grid container sx={{}}>
+                                                        <Grid container >
                                                             <Grid xs>
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
                                                             </Grid>
