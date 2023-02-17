@@ -4,7 +4,7 @@ import axios from "axios";
 import { SettingsContext } from "../context/Settings";
 import { factoryRefs } from "../constants/buildings";
 import { itemRefs } from "../constants/items";
-import PlotFigure from "./test";
+import PlotFigure from "./plotWrapper";
 // @ts-ignore
 import * as Plot from "@observablehq/plot";
 // import { data } from "../constants/test-data";
