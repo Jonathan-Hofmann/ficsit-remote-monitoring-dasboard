@@ -6,6 +6,7 @@ import axios from 'axios';
 import { SettingsContext } from "../context/Settings";
 
 import { Link } from "react-router-dom";
+import { Skeleton } from "@mui/material";
 
 
 export const Vehicles:React.FC = (props) => {
@@ -20,7 +21,7 @@ export const Vehicles:React.FC = (props) => {
 
             const response = await axios.get("http://127.0.0.1:8080/getVehicles");
             setVehicles(response.data);
-            console.log(response.data);
+            // console.log(response.data);
 
             setTimeout(() => {
                 loadData();
@@ -335,11 +336,273 @@ export const Vehicles:React.FC = (props) => {
         
                 </>
             :
-            <CircularProgress/>
-                }
-           </Container> 
+                <>
+                    <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
+                        <Grid xs={3}>
+                            <Card  variant="outlined" sx={{}}>
+                                <CardContent>                                                                                
+                                    <Grid container spacing={4} sx={{paddingX: 0}} >
+                                        <Grid>
+                                            {/* {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
+                                            {vehicle.VehicleType === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
+                                            {vehicle.VehicleType === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  } */}
+                                            <Skeleton variant="circular" height="50px" width="50px"/>
+                                        </Grid>
 
-           
-        )
+                                        <Grid xs>
+                                            <Box sx={{marginBottom: '10px'}}>
+                                                <Skeleton variant="rounded" height="20px" width="70px"/>
+                                            </Box>  
+                                            {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.ForwardSpeed)} km/h</Typography> */}
+                                            <Skeleton width="50px"/>
+                                            
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={3}>
+                            <Card  variant="outlined" sx={{}}>
+                                <CardContent>                                                                                
+                                    <Grid container spacing={4} sx={{paddingX: 0}} >
+                                        <Grid>
+                                            {/* {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
+                                            {vehicle.VehicleType === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
+                                            {vehicle.VehicleType === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  } */}
+                                            <Skeleton variant="circular" height="50px" width="50px"/>
+                                        </Grid>
+
+                                        <Grid xs>
+                                            <Box sx={{marginBottom: '10px'}}>
+                                                <Skeleton variant="rounded" height="20px" width="70px"/>
+                                            </Box>  
+                                            {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.ForwardSpeed)} km/h</Typography> */}
+                                            <Skeleton width="50px"/>
+                                            
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid> 
+
+                    <Typography level="h2" fontWeight={600} marginTop={'40px'} marginBottom={'20px'}>Manual Vehicles</Typography>
+                    
+                    <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
+                        <Grid xs={4}>
+                            <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
+                                <CardContent>
+                                    <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                                        <Skeleton variant="circular" height="100px" width="100px"/>
+                                        <Box sx={{position: 'relative'}}>
+                                            <Grid container spacing={1} display={'flex'} alignItems={'center'}>
+                                                <Grid>
+                                                    <Skeleton variant="rounded" height="20px" width="70px"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton variant="rounded" height="20px" width="90px"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                        <Skeleton width="50px"/>
+                                    </Stack>
+
+
+                                                                    
+                                    <Grid container spacing={2} sx={{paddingX: 0}} >
+                                        <Grid xs>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="120px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Gear</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="100px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="80px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="110px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="50px"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={4}>
+                            <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
+                                <CardContent>
+                                    <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                                        <Skeleton variant="circular" height="100px" width="100px"/>
+                                        <Box sx={{position: 'relative'}}>
+                                            <Grid container spacing={1} display={'flex'} alignItems={'center'}>
+                                                <Grid>
+                                                    <Skeleton variant="rounded" height="20px" width="70px"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton variant="rounded" height="20px" width="90px"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                        <Skeleton width="50px"/>
+                                    </Stack>
+
+
+                                                                    
+                                    <Grid container spacing={2} sx={{paddingX: 0}} >
+                                        <Grid xs>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="120px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Gear</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="100px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="80px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="110px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="50px"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid> 
+
+                    <Typography level="h2" fontWeight={600} marginTop={'40px'} marginBottom={'20px'}>
+                        Autopiloted Vehicles
+                    </Typography>
+
+                    <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
+                        <Grid xs={4}>
+                            <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
+                                <CardContent>
+                                    <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
+                                        <Skeleton variant="circular" height="100px" width="100px"/>
+                                        <Box sx={{position: 'relative'}}>
+                                            <Grid container spacing={1} display={'flex'} alignItems={'center'}>
+                                                <Grid>
+                                                    <Skeleton variant="rounded" height="20px" width="70px"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton variant="rounded" height="20px" width="90px"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                        <Skeleton width="50px"/>
+                                    </Stack>
+
+
+                                                                    
+                                    <Grid container spacing={2} sx={{paddingX: 0}} >
+                                        <Grid xs>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="120px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Gear</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="100px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="80px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="110px"/>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Skeleton width="50px"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid> 
+                </>
+            }
+        </Container> 
+
+        
+    )
         
 }
