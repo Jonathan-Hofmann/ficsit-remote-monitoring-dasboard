@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress } from "@mui/joy";
+import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress, Stack } from "@mui/joy";
 import React, { useContext, useEffect, useState } from "react";
 import {BsExclamationCircle, BsX, BsArrowRightShort} from 'react-icons/bs';
 import { GiCargoCrate } from "react-icons/gi";
@@ -92,18 +92,23 @@ export const Trains:React.FC = (props) => {
 
     return(
         <Container sx={{paddingTop:'50px'}}>
-            <Grid container display={'flex'} alignItems={'center'}>
-                <Grid xs>
-                    <Typography level="h2" fontWeight={600}>
-                    Trains
-                    </Typography>
-                </Grid>
-                <Grid>
-                    {/* <IconButton size="sm">
-                        <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                    </IconButton>  */}
-                </Grid>
-            </Grid>
+            
+            <Card variant="outlined" sx={{marginBottom: '30px'}}>
+                <CardContent>
+                    <Grid container display={'flex'} alignItems={'center'}>
+                        <Grid xs>
+                            <Typography level="h2" marginBottom={"5px"} fontWeight={600}>
+                            Trains
+                            </Typography>
+                        </Grid>
+                        <Grid>
+                            {/* <IconButton size="sm">
+                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
+                            </IconButton>  */}
+                        </Grid>
+                    </Grid>
+                </CardContent>
+            </Card>
 
             {trains && tStation_PrevNext ? 
                 <>
@@ -127,14 +132,17 @@ export const Trains:React.FC = (props) => {
                         return(
                             <Grid container spacing={2} sx={{marginY: '30px'}} display={'flex'} alignItems={'center'}>
                                 <Grid xs={3}>
-                                    <Card sx={{position: 'relative'}}>
+                                    <Card variant="outlined" sx={{position: 'relative'}}>
                                         {tStation_PrevNext[index].length > 0 ? 
                                             <CardContent>
                                                 {/* <GiCargoCrate size="36px"/> */}
-                                                <img src="./assets/Buildings/IconDesc_DockingStation_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>
-                                                <Typography level="h6" sx={{marginY: '10px'}}>{tStation_PrevNext[index][0].StationName}</Typography>
-                                                
-                                                <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Departure</Typography>
+
+                                                <Stack alignItems={"center"}>
+                                                    <img src="./assets/Buildings/IconDesc_DockingStation_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>
+                                                    <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][0].StationName}</Typography>
+                                                    <Typography level="body3" sx={{ marginBottom: '20px'}}>Departure Station</Typography>
+                                                </Stack>  
+
 
                                                 <Grid container display={'flex'} alignItems={'center'}>
                                                     <Grid xs>
@@ -148,7 +156,7 @@ export const Trains:React.FC = (props) => {
                                                 </Grid>                                           
                                                 <Grid container>
                                                     <Grid xs>
-                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance to train</Typography> 
                                                     </Grid>
                                                     <Grid>
                                                         {/* {tStation_PrevNext[index][0].location.x}
@@ -176,65 +184,52 @@ export const Trains:React.FC = (props) => {
 
 
                                 <Grid xs={4}>
-                                    <Card sx={{position:'relative', overflow: 'hidden'}}>
+                                    <Card variant="outlined" sx={{position:'relative', overflow: 'hidden'}}>
                                         <CardContent>
-                                            <Grid container spacing={2} sx={{marginBottom: '10px'}}>
-                                                <Grid>
-                                                    {/* <TbTrain size="36px"/> */}
-                                                    <img src="./assets/Vehicles/Locomotive_256.png" alt="image" style={{height: '70px'}}></img>
-                                                </Grid>
-                                                <Grid xs>
-                                                    <Box sx={{position: 'relative'}}>
-                                                        <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                            <Grid xs>
-                                                                <Typography level="h6">{train.TrainName}</Typography>
-                                                            </Grid>
-                                                            <Grid>
-                                                                {train.Derailed === false ? 
-                                                                    <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>No Problems</Chip>
-                                                                :
-                                                                    <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Derailed</Chip>
-                                                                }
-                                                            </Grid>
+                                            <Stack alignItems={"center"}>
+                                                <img src="./assets/Vehicles/Locomotive_256.png" alt="image" style={{height: '80px', width: '80px'}}></img>
+                                                <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{train.TrainName}</Typography>
+                                                <Grid container sx={{marginBottom: '15px'}}>
+                                                    <Grid>
+                                                        {train.Derailed === false ? 
+                                                            <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>No Problems</Chip>
+                                                        :
+                                                            <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Derailed</Chip>
+                                                        }
+                                                    </Grid>
 
-                                                            <Grid>
-                                                                {train.Status === "TS_SelfDriving" ? 
-                                                                    <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
-                                                                :
-                                                                    <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
-                                                                }
-                                                            </Grid>
-                                                        </Grid>
-                                                    </Box>
+                                                    <Grid>
+                                                        {train.Status === "TS_SelfDriving" ? 
+                                                            <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
+                                                        :
+                                                            <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
+                                                        }
+                                                    </Grid>
+                                                </Grid>
+                                            </Stack>  
+
+                                            <Grid container >
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseFloat(train.ForwardSpeed) <0 ? (parseInt(train.ForwardSpeed)*-1): parseInt(train.ForwardSpeed)} km/h</Typography>
                                                 </Grid>
                                             </Grid>
-
-                                            <Grid container spacing={2} display={'flex'} alignItems={'flex-end'}>
+                                            <Grid container>
                                                 <Grid xs>
-                                                    <Grid container >
-                                                        <Grid xs>
-                                                            <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
-                                                        </Grid>
-                                                        <Grid>
-                                                            <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseFloat(train.ForwardSpeed) <0 ? (parseInt(train.ForwardSpeed)*-1): parseInt(train.ForwardSpeed)} km/h</Typography>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid container>
-                                                        <Grid xs>
-                                                            <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Throttle</Typography>
-                                                        </Grid>
-                                                        <Grid>
-                                                            <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.ThrottlePercent)} %</Typography>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid container>
-                                                        <Grid xs>
-                                                            <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Power</Typography>
-                                                        </Grid>
-                                                        <Grid>
-                                                            <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.PowerConsumed)} MW</Typography>
-                                                        </Grid>
-                                                    </Grid>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Throttle</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.ThrottlePercent)} %</Typography>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Power</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.PowerConsumed)} MW</Typography>
                                                 </Grid>
                                             </Grid>
                                             <LinearProgress color="primary" determinate variant="soft" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} />
@@ -246,13 +241,15 @@ export const Trains:React.FC = (props) => {
                                 </Grid>
 
                                 <Grid xs={3}>
-                                    <Card sx={{position: 'relative'}}>
+                                    <Card variant="outlined" sx={{position: 'relative'}}>
                                         {tStation_PrevNext[index].length > 0 ? 
                                             <CardContent>
-                                                <img src="./assets/Buildings/IconDesc_DockingStation_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>
-                                                <Typography level="h6" sx={{marginY: '10px'}}>{tStation_PrevNext[index][1].StationName}</Typography>
-                                                
-                                                <Typography sx={{position: 'absolute', top: '20px', right: '20px', color: 'rgba(255,255,255,0.5)'}}>Destination</Typography>
+
+                                                <Stack alignItems={"center"}>
+                                                    <img src="./assets/Buildings/IconDesc_DockingStation_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>
+                                                    <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][1].StationName}</Typography>
+                                                    <Typography level="body3" sx={{ marginBottom: '20px'}}>Destination Station</Typography>
+                                                </Stack>  
 
                                                 <Grid container display={'flex'} alignItems={'center'}>
                                                     <Grid xs>
@@ -266,7 +263,7 @@ export const Trains:React.FC = (props) => {
                                                 </Grid>                                       
                                                 <Grid container>
                                                     <Grid xs>
-                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance</Typography> 
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance to train</Typography> 
                                                     </Grid>
                                                     <Grid>
 

@@ -1,6 +1,6 @@
-import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress, Stack } from "@mui/joy";
+import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress, Stack, Tooltip } from "@mui/joy";
 import React, { useContext, useEffect, useState } from "react";
-import {BsExclamationCircle, BsX, BsArrowRightShort, BsXCircle} from 'react-icons/bs';
+import {BsExclamationCircle, BsX, BsArrowRightShort, BsXCircle, BsQuestionCircle} from 'react-icons/bs';
 import { GiCargoCrate, GiF1Car, GiMineTruck } from "react-icons/gi";
 import axios from 'axios';
 import { SettingsContext } from "../context/Settings";
@@ -59,36 +59,11 @@ export const Vehicles:React.FC = (props) => {
                         {vehicles.map((vehicle:any, index:number)=>{
                             return ( 
                                 <Grid xs={3}>
-                                    <a href={"#"+index}>
-                                        <Card  variant="outlined" sx={{position:'relative', paddingBottom: 0, '&:hover': {
+                                    <a href={"#"+index} style={{textDecoration: 'none'}}>
+                                        <Card  variant="outlined" sx={{position:'relative', paddingY: 0, '&:hover': {
                                             borderColor: 'var(--joy-palette-neutral-700)'
                                         }, cursor: 'pointer'}}>
-                                            <CardContent>
-                                                {/* <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-                                                    
-                                                    <Box sx={{position: 'relative'}}>
-                                                        <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                            <Grid>
-                                                                {vehicle.Airborne === false ? 
-                                                                    <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>No Problems</Chip>
-                                                                :
-                                                                    <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Airborne</Chip>
-                                                                }               
-                                                            </Grid>
-                                                            <Grid>
-                                                            {vehicle.AutoPilot === false ? 
-                                                                    <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
-                                                                :
-                                                                    <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
-                                                                }
-                                                            </Grid>
-                                                        </Grid>
-                                                    </Box>
-                                                    <Typography marginLeft={'5px'} level="body2">VehicleID: #{vehicle.ID}</Typography>
-                                                </Stack> */}
-
-
-                                                                                
+                                            <CardContent>                                                                                
                                                 <Grid container spacing={4} sx={{paddingX: 0}} >
                                                     <Grid>
                                                         {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
@@ -108,7 +83,6 @@ export const Vehicles:React.FC = (props) => {
                                                         
                                                     </Grid>
                                                 </Grid>
-                                            {/* <LinearProgress color="info" variant="determinate" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} /> */}
                                             </CardContent>
                                         </Card>
                                     </a>
@@ -131,7 +105,7 @@ export const Vehicles:React.FC = (props) => {
                                 return ( 
                                     <Grid xs={4}>
                                         <div id={index.toString()}></div>
-                                        <Card sx={{position:'relative'}}>
+                                        <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
                                             <CardContent>
                                                 <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
                                                     {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
@@ -250,7 +224,7 @@ export const Vehicles:React.FC = (props) => {
                                 return ( 
                                     <Grid xs={4}>
                                         <div id={index.toString()}></div>
-                                        <Card sx={{position:'relative'}}>
+                                        <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
                                             <CardContent>
                                                 <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
                                                     {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
@@ -286,7 +260,10 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
+                                                                <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
+                                                                    {vehicle.ForwardSpeed === 0 && parseInt(vehicle.EngineRPM) > 0 && <Tooltip title="If the vehicle is too far away from player the speed cannot be read."><IconButton sx={{marginLeft: '10px'}} size="sm" color="neutral" variant="plain"><BsQuestionCircle/></IconButton></Tooltip>}
+                                                                </Box>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container>

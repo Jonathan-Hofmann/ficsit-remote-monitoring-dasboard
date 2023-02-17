@@ -11,6 +11,7 @@ import SearchAppBar from "./topBar";
 import { Vehicles } from "../views/vehicles";
 import { SocketTestSite } from "../views/testingSocket";
 import { FactorysSwitch } from "../views/production";
+import { DetailedFactoryView } from "../views/factoryView";
 
 export const MainWrapper:React.FC = (props) => {
     return(
@@ -20,6 +21,7 @@ export const MainWrapper:React.FC = (props) => {
                 <Route path="/" element={<Start />} />
                 <Route path="/power" element={<PowerMain />} />
                 <Route path="/production" element={<FactorysSwitch />} />
+                <Route path="/factory" element={<DetailedFactoryView />} />
                 <Route path="/building" element={<Building />} />
                 <Route path="/drones" element={<Drones />} />
                 <Route path="/trains" element={<Trains />} />

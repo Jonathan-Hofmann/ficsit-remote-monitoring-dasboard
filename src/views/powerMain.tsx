@@ -46,8 +46,25 @@ export const PowerMain:React.FC = (props) => {
     }
 
     return(
-        <Container>
-            <Typography level="h3" sx={{marginTop: '30px', marginBottom: '30px'}}>All Power</Typography>
+        <Container sx={{paddingTop: '50px'}}>
+
+            <Card variant="outlined" sx={{marginBottom: '30px'}}>
+                <CardContent>
+                    <Grid container display={'flex'} alignItems={'center'}>
+                        <Grid xs>
+                            <Typography level="h2" marginBottom={"5px"} fontWeight={600}>
+                                All Power
+                            </Typography>
+                        </Grid>
+                        <Grid>
+                            {/* <IconButton size="lg">
+                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
+                            </IconButton>  */}
+                        </Grid>
+                    </Grid>
+                </CardContent>
+            </Card>
+
             <Grid container spacing={2} sx={{marginBottom: '30px'}}>
                 <Grid xs>
                     <Card>

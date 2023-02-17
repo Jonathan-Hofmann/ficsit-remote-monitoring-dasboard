@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, LinearProgress, Typography } from "@mui/joy";
+import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, LinearProgress, Stack, Typography } from "@mui/joy";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { GiCargoCrate, GiDeliveryDrone } from "react-icons/gi";
@@ -90,18 +90,24 @@ export const Drones:React.FC = (props) => {
 
     return(
         <Container sx={{paddingTop:'50px'}}>
-            <Grid container display={'flex'} alignItems={'center'}>
-                <Grid xs>
-                    <Typography level="h2" fontWeight={600}>
-                    Drones
-                    </Typography>
-                </Grid>
-                <Grid>
-                    <IconButton size="lg">
-                        <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                    </IconButton> 
-                </Grid>
-            </Grid>
+            
+
+            <Card variant="outlined" sx={{marginBottom: '30px'}}>
+                <CardContent>
+                    <Grid container display={'flex'} alignItems={'center'}>
+                        <Grid xs>
+                            <Typography marginBottom={"5px"} level="h2" fontWeight={600}>
+                            Drones
+                            </Typography>
+                        </Grid>
+                        <Grid>
+                            {/* <IconButton size="lg">
+                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
+                            </IconButton>  */}
+                        </Grid>
+                    </Grid>
+                </CardContent>
+            </Card>
             
     
             {drones && drStation_PrevNext && drStation_PrevNext.length>0 ? 
@@ -113,7 +119,7 @@ export const Drones:React.FC = (props) => {
                     let bottom = 0;
                     let totalLength = 0;
 
-                    if(drStation_PrevNext[index].length > 0){
+                    if(drStation_PrevNext[index].length > 0 && drStation_PrevNext[index][0] && drStation_PrevNext[index][1]){
                         top = Math.floor(Math.pow((Math.pow(((drStation_PrevNext[index][0].location.x)-(drone.location.x)), 2))+(Math.pow(((drStation_PrevNext[index][0].location.y)-(drone.location.y)), 2)), 0.5)/100);
                         bottom = Math.floor(Math.pow((Math.pow(((drStation_PrevNext[index][1].location.x)-(drone.location.x)), 2))+(Math.pow(((drStation_PrevNext[index][1].location.y)-(drone.location.y)), 2)), 0.5)/100);
 
@@ -122,160 +128,252 @@ export const Drones:React.FC = (props) => {
                         percentDone = top/totalLength*100;
                     }
 
-                        return(
-                            <Grid container spacing={2} sx={{marginBottom: '30px', height: '300px'}} display={'flex'} alignItems={'center'}>
-
-                                <Grid xs={3} sx={{height: '240px'}}>
-                                    {drStation_PrevNext[index][0] ? 
-                                    
-                                        <Card sx={{position: 'relative', marginBottom: '20px', height: '110px', paddingBottom: '0px !important'}}>
-                                            <CardContent>
-                                                {/* <BsLink45Deg size="28px"/> */}
-                                                <img src="./assets/Buildings/IconDesc_DronePort_256.png" alt="image" style={{height: '35px', width: '35px'}}></img>
-                                                <Typography level="h6" sx={{marginTop: '10px'}}>{drone.HomeStation}</Typography>
-                                                
-                                                <Typography level="body2" sx={{ color: 'rgba(255,255,255,0.5)'}}>Home Port</Typography>
-
-                                                <Box sx={{position: 'absolute', top: '20px', right: '20px'}}>
-                                                    {drStation_PrevNext[index][0].DroneStatus === "EDS_EN_ROUTE" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>En Route</Chip>  }
-                                                    {drStation_PrevNext[index][0].DroneStatus === "EDS_TAKEOFF" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
-                                                    {drStation_PrevNext[index][0].DroneStatus === "EDS_DOCKING" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docking</Chip>  }
-                                                    {drStation_PrevNext[index][0].DroneStatus === "EDS_NOT_ENOUGH_BATTERIES" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Batteries Empty</Chip>  }
-                                                </Box>           
-                                            </CardContent>
-                                        </Card>
-                                    :   
-                                        <></>
-                                    }
-
-                                    {drStation_PrevNext[index][1] ? 
-                                        <Card sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}}>
-                                            <CardContent>
-                                                {/* <BsLink45Deg size="28px"/> */}
-                                                <img src="./assets/Buildings/IconDesc_DronePort_256.png" alt="image" style={{height: '35px', width: '35px'}}></img>
-                                                <Typography level="h6" sx={{marginTop: '10px'}}>{drone.CurrentDestination === "" ? "N/A" : drone.CurrentDestination}</Typography>
-                                                
-                                                <Typography level="body2" sx={{color: 'rgba(255,255,255,0.5)'}}>Linked Port</Typography>
-
-                                                <Box sx={{position: 'absolute', top: '20px', right: '20px'}}>
-                                                    {drStation_PrevNext[index][1].DroneStatus === "EDS_EN_ROUTE" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>En Route</Chip>  }
-                                                    {drStation_PrevNext[index][1].DroneStatus === "EDS_TAKEOFF" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
-                                                    {drStation_PrevNext[index][1].DroneStatus === "EDS_DOCKING" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docking</Chip>  }
-                                                    {drStation_PrevNext[index][1].DroneStatus === "EDS_NOT_ENOUGH_BATTERIES" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Batteries Empty</Chip>  }
-                                                </Box>      
-
-                                            </CardContent>
-                                        </Card>
-                        
-                                    :
-                                        <></>
-                                    }
-                                </Grid>
+                        if(drStation_PrevNext[index][0] && drStation_PrevNext[index][1]){
+                            return(
+                                <Grid container spacing={2} sx={{marginBottom: '30px', height: '300px'}} display={'flex'} alignItems={'center'}>
     
-                                <Grid xs={3} sx={{height: '240px', position: 'relative'}}>
-                                    <Card sx={{position:'relative', height: '240px' }}>
-                                        <CardContent>
-                                        <Grid container spacing={2} sx={{marginBottom: '10px'}}>
-                                            <Grid>
-                                                {/* <GiDeliveryDrone size="36px"/> */}
-                                                <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '70px'}}></img>
+                                    <Grid xs={3} sx={{height: '240px'}}>
+                                        {drStation_PrevNext[index][0] ? 
+                                        
+                                            <Card variant="outlined" sx={{position: 'relative', marginBottom: '20px', height: '110px', paddingBottom: '0px !important'}}>
+                                                <CardContent>
+                                                    {/* <BsLink45Deg size="28px"/> */}
+                                                    <img src="./assets/Buildings/IconDesc_DronePort_256.png" alt="image" style={{height: '35px', width: '35px'}}></img>
+                                                    <Typography level="h6" sx={{marginTop: '10px'}}>{drone.HomeStation}</Typography>
+                                                    
+                                                    <Typography level="body2" sx={{ color: 'rgba(255,255,255,0.5)'}}>Home Port</Typography>
+    
+                                                    <Box sx={{position: 'absolute', top: '20px', right: '20px'}}>
+                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_EN_ROUTE" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>En Route</Chip>  }
+                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_TAKEOFF" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
+                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_DOCKING" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docking</Chip>  }
+                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_NOT_ENOUGH_BATTERIES" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Batteries Empty</Chip>  }
+                                                    </Box>           
+                                                </CardContent>
+                                            </Card>
+                                        :   
+                                            <></>
+                                        }
+    
+                                        {drStation_PrevNext[index][1] ? 
+                                            <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}}>
+                                                <CardContent>
+                                                    {/* <BsLink45Deg size="28px"/> */}
+                                                    <img src="./assets/Buildings/IconDesc_DronePort_256.png" alt="image" style={{height: '35px', width: '35px'}}></img>
+                                                    <Typography level="h6" sx={{marginTop: '10px'}}>{drone.CurrentDestination === "" ? "N/A" : drone.CurrentDestination}</Typography>
+                                                    
+                                                    <Typography level="body2" sx={{color: 'rgba(255,255,255,0.5)'}}>Linked Port</Typography>
+    
+                                                    <Box sx={{position: 'absolute', top: '20px', right: '20px'}}>
+                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_EN_ROUTE" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>En Route</Chip>  }
+                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_TAKEOFF" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
+                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_DOCKING" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docking</Chip>  }
+                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_NOT_ENOUGH_BATTERIES" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Batteries Empty</Chip>  }
+                                                    </Box>      
+    
+                                                </CardContent>
+                                            </Card>
+                            
+                                        :
+                                            <></>
+                                        }
+                                    </Grid>
+        
+                                    <Grid xs={3} sx={{height: '240px', position: 'relative'}}>
+                                        <Card variant="outlined" sx={{position:'relative', height: '255px' , paddingTop:0}}>
+                                            <CardContent>
+                                            {/* <Grid container spacing={2} sx={{marginBottom: '10px'}}>
+                                                <Grid>
+                                                    
+                                                </Grid>
+                                                <Grid xs>
+                                                    <Box sx={{position: 'relative'}}>
+                                                        <Grid container spacing={1} display={'flex'} alignItems={'center'}>
+                                                            <Grid xs>
+                                                                <Typography level="h6">{drone.VehicleType} #{drone.ID}</Typography>
+                                                            </Grid>
+                                                            <Grid>
+                                                            </Grid>
+    
+                                                            <Grid>
+                                                                </Grid>
+                                                        </Grid>
+                                                    </Box>
+                                                </Grid>
+                                            </Grid> */}
+                                            <Stack alignItems={'center'} sx={{marginBottom: '15px'}}>
+                                                <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '100px'}}></img>
+                                                {drone.CurrentFlyingMode === "DFM_Flying" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                {drone.CurrentFlyingMode === "DFM_Travel" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                {drone.CurrentFlyingMode === "DFM_None" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Pending ...</Chip>  }
+                                            </Stack>
+    
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Next To</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{drone.CurrentDestination}</Typography>
+                                                </Grid>
                                             </Grid>
-                                            <Grid xs>
-                                                <Box sx={{position: 'relative'}}>
-                                                    <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                        <Grid xs>
-                                                            <Typography level="h6">{drone.VehicleType} #{drone.ID}</Typography>
-                                                        </Grid>
-                                                        <Grid>
-                                                            {/* {drone.Derailed === false ? 
-                                                                <Chip label="No Problems" color="success" size="small" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}></Chip>
-                                                            :
-                                                                <Chip label="Derailed" color="error" size="small" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}></Chip>
-                                                            } */}
-                                                        </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseFloat(drone.FlyingSpeed) <0 ? (parseInt(drone.FlyingSpeed)*-1): parseInt(drone.FlyingSpeed)} Knots</Typography>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid container>
+                                                <Grid xs>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(drone.location.z) / 1000} m</Typography>
+                                                </Grid>
+                                            </Grid>    
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                    <Grid xs={6} sx={{height: '240px'}}>
+                                        <Grid container sx={{height: '110px', marginBottom: '40px'}}>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
+                                                    <CardContent>
+                                                        <BsClockHistory size="25px" color={'rgba(255,255,255,0.5)'}/>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].AvgRndTrip}</Typography>
+                                                        <Typography level="body2">Avg. Round Trip Time</Typography>
+                                                    </CardContent>
+                                                </Card>
+                                            </Grid>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
+                                                    <CardContent>
+                                                        <BsClockHistory size="25px" color={'rgba(255,255,255,0.5)'}/>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].LatestRndTrip}</Typography>
+                                                        <Typography level="body2">Last Round Trip Time</Typography>
+                                                    </CardContent>
+                                                </Card>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid container sx={{height: '110px'}}>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
+                                                    <CardContent>
+                                                        <BsBatteryHalf size="25px" color={'rgba(255,255,255,0.5)'}/>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstBatteryRate}</Typography>
+                                                        <Typography level="body2">Estimated Battery Rate</Typography>
+                                                    </CardContent>
+                                                </Card>
+                                            </Grid>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
+                                                    <CardContent>
+                                                        <BsBox size="25px" color={'rgba(255,255,255,0.5)'}/>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstTransRate}</Typography>
+                                                        <Typography level="body2">Estimated Transfer Rate</Typography>
+                                                    </CardContent>
+                                                </Card>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                        
+                                </Grid>
+                            )
+                        } else {
+                            return(
+                                <Grid container spacing={2} sx={{marginBottom: '30px', height: '300px'}} display={'flex'} alignItems={'center'}>
+    
+                                    <Grid xs={3} sx={{height: '240px'}}>
 
-                                                        <Grid>
-                                                            {drone.CurrentFlyingMode === "DFM_Flying" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
-                                                            {drone.CurrentFlyingMode === "DFM_Travel" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
-                                                            {drone.CurrentFlyingMode === "DFM_None" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Pending ...</Chip>  }
-                                                        </Grid>
+                                        <Card variant="outlined" sx={{position: 'relative', marginBottom: '20px', height: '110px', paddingBottom: '0px !important', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                                            <CardContent>
+                                                <CircularProgress/>          
+                                            </CardContent>
+                                        </Card>
+
+                                        <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                                            <CardContent>
+                                                <CircularProgress/>          
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+        
+                                    <Grid xs={3} sx={{height: '240px', position: 'relative'}}>
+                                        <Card variant="outlined" sx={{position:'relative', height: '255px' , paddingTop:0}}>
+                                            <CardContent>
+                                                <Stack alignItems={'center'} sx={{marginBottom: '15px'}}>
+                                                    <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '100px'}}></img>
+                                                    {drone.CurrentFlyingMode === "DFM_Flying" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                    {drone.CurrentFlyingMode === "DFM_Travel" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                    {drone.CurrentFlyingMode === "DFM_None" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Pending ...</Chip>  }
+                                                </Stack>
+
+                                                <Grid container>
+                                                    <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Next To</Typography>
                                                     </Grid>
-                                                </Box>
+                                                    <Grid>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{drone.CurrentDestination}</Typography>
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid container>
+                                                    <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseFloat(drone.FlyingSpeed) <0 ? (parseInt(drone.FlyingSpeed)*-1): parseInt(drone.FlyingSpeed)} Knots</Typography>
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid container>
+                                                    <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(drone.location.z) / 1000} m</Typography>
+                                                    </Grid>
+                                                </Grid>    
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                    <Grid xs={6} sx={{height: '240px'}}>
+                                        <Grid container sx={{height: '110px', marginBottom: '40px'}}>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                                                    <CardContent>
+                                                        <CircularProgress/>          
+                                                    </CardContent>
+                                                </Card>
+                                            </Grid>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                                                    <CardContent>
+                                                        <CircularProgress/>          
+                                                    </CardContent>
+                                                </Card>
                                             </Grid>
                                         </Grid>
-
-                                        <Grid container>
-                                            <Grid xs>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Next To</Typography>
+                                        <Grid container sx={{height: '110px'}}>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                                                    <CardContent>
+                                                        <CircularProgress/>          
+                                                    </CardContent>
+                                                </Card>
                                             </Grid>
-                                            <Grid>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{drone.CurrentDestination}</Typography>
+                                            <Grid xs={6} sx={{paddingTop: 0}}>
+                                                <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                                                    <CardContent>
+                                                        <CircularProgress/>          
+                                                    </CardContent>
+                                                </Card>
                                             </Grid>
                                         </Grid>
-                                        <Grid container>
-                                            <Grid xs>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
-                                            </Grid>
-                                            <Grid>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseFloat(drone.FlyingSpeed) <0 ? (parseInt(drone.FlyingSpeed)*-1): parseInt(drone.FlyingSpeed)} Knots</Typography>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid container>
-                                            <Grid xs>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
-                                            </Grid>
-                                            <Grid>
-                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(drone.location.z) / 1000} m</Typography>
-                                            </Grid>
-                                        </Grid>    
-                                        </CardContent>
-                                    </Card>
+                                    </Grid>
+                                        
                                 </Grid>
-                            <Grid xs={6} sx={{height: '240px'}}>
-                                <Grid container sx={{height: '110px', marginBottom: '40px'}}>
-                                    <Grid xs={6} sx={{paddingTop: 0}}>
-                                        <Card sx={{height: '110px', paddingBottom: '0px !important'}}>
-                                            <CardContent>
-                                                <BsClockHistory size="25px"/>
-                                                <Typography level="h4">{drStation_PrevNext[index][0].AvgRndTrip}</Typography>
-                                                <Typography>Avg. Round Trip Time</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-                                    <Grid xs={6} sx={{paddingTop: 0}}>
-                                        <Card sx={{height: '110px', paddingBottom: '0px !important'}}>
-                                            <CardContent>
-                                                <BsClockHistory size="25px"/>
-                                                <Typography level="h4">{drStation_PrevNext[index][0].LatestRndTrip}</Typography>
-                                                <Typography>Last Round Trip Time</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-                                </Grid>
-                                <Grid container sx={{height: '110px'}}>
-                                    <Grid xs={6} sx={{paddingTop: 0}}>
-                                        <Card sx={{height: '110px', paddingBottom: '0px !important'}}>
-                                            <CardContent>
-                                                <BsBatteryHalf size="25px"/>
-                                                <Typography level="h4">{drStation_PrevNext[index][0].EstBatteryRate}</Typography>
-                                                <Typography>Estimated Battery Rate</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-                                    <Grid xs={6} sx={{paddingTop: 0}}>
-                                        <Card sx={{height: '110px', paddingBottom: '0px !important'}}>
-                                            <CardContent>
-                                                <BsBox size="25px"/>
-                                                <Typography level="h4">{drStation_PrevNext[index][0].EstTransRate}</Typography>
-                                                <Typography>Estimated Transfer Rate</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                                    
-                            </Grid>
-                        )
+                            )
+                        }
                     })}
                 </>
             :
