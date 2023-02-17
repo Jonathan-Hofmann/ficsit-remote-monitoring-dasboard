@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { BsSearch } from 'react-icons/bs';
-import { Button, Stack, Grid, IconButton,Box } from '@mui/joy';
+import { Button, Stack, Grid, IconButton,Box, Tooltip } from '@mui/joy';
 import { Link } from 'react-router-dom';
 import { GiCargoCrate, GiDeliveryDrone, GiFactory, GiMineTruck, GiPowerGenerator } from 'react-icons/gi';
 import { TbTrain } from 'react-icons/tb';
@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 export const Sidebar = () => {
 
-  const [isFullsize, setIsFullsize] = useState(true);
+  const [isFullsize, setIsFullsize] = useState(false);
 
   return (
     <>
@@ -78,43 +78,57 @@ export const Sidebar = () => {
           bottom: '0px',
           Left: '0px',
           backgroundColor: 'var(--joy-palette-background-surface)',
-          padding: '5px'
+          padding: '15px'
         }}>
           <Stack spacing={2} alignItems={'center'}>
-            <IconButton onClick={()=>{setIsFullsize(true)}} color="neutral" variant='plain'>
-              <BsList/>
-            </IconButton>
+            <Tooltip placement='right' title="Expand Menu">
+              <IconButton onClick={()=>{setIsFullsize(true)}} color="neutral" variant='plain'>
+                <BsList/>
+              </IconButton>
+            </Tooltip>
     
-            <Link style={{textDecoration: 'none'}} to="/power">
-              <IconButton variant='plain'>
-                <GiPowerGenerator/>
-              </IconButton>
-            </Link>
-            <Link style={{textDecoration: 'none'}} to="/production">
-              <IconButton variant='plain'>
-                <GiFactory/>
-              </IconButton>
-            </Link>
-            <Link style={{textDecoration: 'none'}} to="/drones">
-              <IconButton variant='plain'>
-                <GiDeliveryDrone/>
-              </IconButton>
-            </Link>
-            <Link style={{textDecoration: 'none'}} to="/trains">
-              <IconButton variant='plain'>
-                <TbTrain/>
-              </IconButton>
-            </Link>
-            <Link style={{textDecoration: 'none'}} to="/vehicles">
-              <IconButton variant='plain' >
-                <GiMineTruck/>
-              </IconButton>
-            </Link>
-            <Link style={{textDecoration: 'none'}} to="/storageView">
-              <IconButton variant='plain'>
-                <GiCargoCrate/>
-              </IconButton>
-            </Link>
+            <Tooltip placement='right' title="Power Grids">
+              <Link style={{textDecoration: 'none'}} to="/power">
+                <IconButton variant='plain'>
+                  <GiPowerGenerator/>
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip placement='right' title="Alle Fabriken">
+              <Link style={{textDecoration: 'none'}} to="/production">
+                <IconButton variant='plain'>
+                  <GiFactory/>
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip placement='right' title="Drones">
+              <Link style={{textDecoration: 'none'}} to="/drones">
+                <IconButton variant='plain'>
+                  <GiDeliveryDrone/>
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip placement='right' title="Trains">
+              <Link style={{textDecoration: 'none'}} to="/trains">
+                <IconButton variant='plain'>
+                  <TbTrain/>
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip placement='right' title="Vehicles">
+              <Link style={{textDecoration: 'none'}} to="/vehicles">
+                <IconButton variant='plain' >
+                  <GiMineTruck/>
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip placement='right' title="Storage View">
+              <Link style={{textDecoration: 'none'}} to="/storageView">
+                <IconButton variant='plain'>
+                  <GiCargoCrate/>
+                </IconButton>
+              </Link>
+            </Tooltip>
           </Stack>
         </Box>
       }
