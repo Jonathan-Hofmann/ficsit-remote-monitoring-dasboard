@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, Chip, CircularProgress, Container, Divider, Grid, Stack, Typography } from "@mui/joy"
+import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom"
@@ -126,7 +127,101 @@ export const DetailedFactoryView:React.FC = (props) => {
                     </Grid>
                 </>
             :
-                <CircularProgress/>
+            <Grid container spacing={3}>
+                <Grid xs={4}>
+                    <Card variant={"outlined"}>
+                        <CardContent>
+                            <Stack alignItems={"center"}>
+                                
+                                
+                                <Skeleton variant="circular" sx={{marginTop: '10px'}} width={'100px'} height={'100px'}></Skeleton>  
+
+                                <Skeleton variant="rounded" sx={{ marginTop: '20px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+
+                            </Stack>  
+                            
+                            <Box>
+                                <Grid container spacing={0} sx={{padding:0, marginBottom: '15px', marginTop: '20px'}}>
+                                    <Grid xs>
+                                        <Typography>PRODUCTION</Typography>
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={'80px'}/>
+                                    </Grid>
+                                </Grid>
+                                <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
+                                {/* <Skeleton variant={'rounded'} sx={{width: '100%', marginTop: '10px'}} height={'140px'}/> */}
+
+                                <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
+                                <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
+
+                            </Box>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid xs={4}>
+                    <Card variant={"outlined"}>
+                        <CardContent>
+                            <Stack alignItems={"center"}>
+                                
+                                
+                                <Skeleton variant="circular" sx={{marginTop: '10px'}} width={'100px'} height={'100px'}></Skeleton>  
+
+                                <Skeleton variant="rounded" sx={{ marginTop: '20px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+
+                            </Stack>  
+                            
+                            <Box>
+                                <Grid container spacing={0} sx={{padding:0, marginBottom: '15px', marginTop: '20px'}}>
+                                    <Grid xs>
+                                        <Typography>PRODUCTION</Typography>
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={'80px'}/>
+                                    </Grid>
+                                </Grid>
+                                <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
+                                {/* <Skeleton variant={'rounded'} sx={{width: '100%', marginTop: '10px'}} height={'140px'}/> */}
+
+                                <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
+                                <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
+
+                            </Box>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid xs={4}>
+                    <Card variant={"outlined"}>
+                        <CardContent>
+                            <Stack alignItems={"center"}>
+                                
+                                
+                                <Skeleton variant="circular" sx={{marginTop: '10px'}} width={'100px'} height={'100px'}></Skeleton>  
+
+                                <Skeleton variant="rounded" sx={{ marginTop: '20px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+
+                            </Stack>  
+                            
+                            <Box>
+                                <Grid container spacing={0} sx={{padding:0, marginBottom: '15px', marginTop: '20px'}}>
+                                    <Grid xs>
+                                        <Typography>PRODUCTION</Typography>
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={'80px'}/>
+                                    </Grid>
+                                </Grid>
+                                <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
+                                {/* <Skeleton variant={'rounded'} sx={{width: '100%', marginTop: '10px'}} height={'140px'}/> */}
+
+                                <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
+                                <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
+
+                            </Box>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
             }
         </Container>
     )

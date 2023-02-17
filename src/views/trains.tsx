@@ -5,6 +5,7 @@ import { GiCargoCrate } from "react-icons/gi";
 import { TbTrain } from "react-icons/tb";
 import axios from 'axios';
 import { SettingsContext } from "../context/Settings";
+import { Skeleton } from "@mui/material";
 
 
 export const Trains:React.FC = (props) => {
@@ -285,7 +286,125 @@ export const Trains:React.FC = (props) => {
                     })}
                 </>
             :
-                <CircularProgress/>
+                <Grid container spacing={2} sx={{marginY: '30px'}} display={'flex'} alignItems={'center'}>
+                    <Grid xs={3}>
+                        <Card variant="outlined" sx={{position: 'relative'}}>
+                            <CardContent>
+
+                                <Stack alignItems={"center"}>
+                                    <Skeleton variant="circular" width={"70px"} height={"70px"} sx={{marginTop: '10px'}}/>
+                                    <Skeleton variant="rounded" width={"120px"} height={"30px"} sx={{marginY: '10px'}}/>
+                                    <Skeleton width={"80px"}/>
+                                </Stack>  
+
+                                <Grid container display={'flex'} alignItems={'center'}>
+                                    <Grid xs>
+                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Status</Typography> 
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={"60px"}/>
+                                    </Grid>
+                                </Grid>                                       
+                                <Grid container>
+                                    <Grid xs>
+                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance to train</Typography> 
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={"40px"}/>
+                                    </Grid>
+                                </Grid>
+
+                            </CardContent>
+                        </Card>
+                    </Grid>
+
+
+                    <Grid xs={1}>
+                    </Grid>
+
+
+                    <Grid xs={4}>
+                        <Card variant="outlined" sx={{position:'relative', overflow: 'hidden'}}>
+                            <CardContent>
+                                <Stack alignItems={"center"}>
+                                    {/* <img src="./assets/Vehicles/Locomotive_256.png" alt="image" style={{height: '80px', width: '80px'}}></img> */}
+                                    <Skeleton variant="circular" width={"80px"} height={"80px"} sx={{marginTop: '10px'}}/>
+                                    {/* <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{train.TrainName}</Typography> */}
+                                    <Grid container sx={{marginBottom: '15px', marginTop: '10px'}}>
+                                        <Grid>
+                                            <Skeleton width={"60px"}/>
+                                        </Grid>
+
+                                        <Grid>
+                                            <Skeleton width={"75px"}/>
+                                        </Grid>
+                                    </Grid>
+                                </Stack>  
+
+                                <Grid container >
+                                    <Grid xs>
+                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={"70px"}/>
+                                    </Grid>
+                                </Grid>
+                                <Grid container>
+                                    <Grid xs>
+                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Throttle</Typography>
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={"80px"}/>
+                                    </Grid>
+                                </Grid>
+                                <Grid container>
+                                    <Grid xs>
+                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Power</Typography>
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={"50px"}/>
+                                    </Grid>
+                                </Grid>
+                                {/* <LinearProgress color="primary" determinate variant="soft" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} /> */}
+                            </CardContent>
+                        </Card>
+                    </Grid>
+
+                    <Grid xs={1}>
+                    </Grid>
+
+                    <Grid xs={3}>
+                        <Card variant="outlined" sx={{position: 'relative'}}>
+                            <CardContent>
+
+                                <Stack alignItems={"center"}>
+                                    <Skeleton variant="circular" width={"70px"} height={"70px"} sx={{marginTop: '10px'}}/>
+                                    <Skeleton variant="rounded" width={"120px"} height={"30px"} sx={{marginY: '10px'}}/>
+                                    <Skeleton width={"80px"}/>
+                                </Stack>  
+
+                                <Grid container display={'flex'} alignItems={'center'}>
+                                    <Grid xs>
+                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Status</Typography> 
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={"60px"}/>
+                                    </Grid>
+                                </Grid>                                       
+                                <Grid container>
+                                    <Grid xs>
+                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Distance to train</Typography> 
+                                    </Grid>
+                                    <Grid>
+                                        <Skeleton width={"40px"}/>
+                                    </Grid>
+                                </Grid>
+
+                            </CardContent>
+                        </Card>
+                    </Grid>
+
+                </Grid>
             }
 
         </Container>

@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { GiCargoCrate, GiDeliveryDrone } from "react-icons/gi";
 import { BsBatteryHalf, BsBox, BsClockHistory, BsLink45Deg } from "react-icons/bs";
 import { SettingsContext } from "../context/Settings";
+import { Skeleton } from "@mui/material";
 
 export const Drones:React.FC = (props) => {
     
@@ -377,7 +378,123 @@ export const Drones:React.FC = (props) => {
                     })}
                 </>
             :
-                <CircularProgress/>
+                <>
+                    <Grid container spacing={2} sx={{marginBottom: '30px', height: '300px', opacity: 0.5}} >
+    
+                        <Grid xs={3} sx={{height: '240px'}}>
+
+                            <Card variant="outlined" sx={{position: 'relative', marginBottom: '20px', height: '110px', paddingBottom: '0px !important'}} >
+                                <CardContent>
+                                    <Skeleton variant="circular" sx={{}} width={'35px'} height={'35px'}></Skeleton>  
+
+                                    <Skeleton variant="rounded" sx={{ marginTop: '10px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+                                    
+                                     <Skeleton width={'80px'}></Skeleton>    
+                                </CardContent>
+                            </Card>
+
+                            <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}} >
+                                <CardContent>
+                                <Skeleton variant="circular" sx={{}} width={'35px'} height={'35px'}></Skeleton>  
+
+                                <Skeleton variant="rounded" sx={{ marginTop: '10px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+
+                                <Skeleton width={'80px'}></Skeleton>   
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
+                        <Grid xs={3} sx={{height: '240px', position: 'relative'}}>
+                            <Card variant="outlined" sx={{position:'relative', height: '255px' , paddingTop:0}}>
+                                <CardContent>
+                                    <Stack alignItems={'center'} sx={{marginBottom: '5px'}}>
+                                        {/* <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '100px'}}></img> */}
+                                        
+                                        <Skeleton variant="circular" sx={{marginTop: '20px', marginBottom: '10px'}} width={'80px'} height={'80px'}></Skeleton>  
+
+                                        <Skeleton width={'80px'}></Skeleton>  
+                                    </Stack>
+
+                                    <Grid container>
+                                        <Grid xs>
+                                            <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Next To</Typography>
+                                        </Grid>
+                                        <Grid>
+                                     <Skeleton width={'100px'}></Skeleton>  
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container>
+                                        <Grid xs>
+                                            <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
+                                        </Grid>
+                                        <Grid>
+                                            <Skeleton width={'60px'}></Skeleton>  
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container>
+                                        <Grid xs>
+                                            <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
+                                        </Grid>
+                                        <Grid>
+                                            <Skeleton width={'50px'}></Skeleton>  
+                                        </Grid>
+                                    </Grid>    
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={6} sx={{height: '240px'}}>
+                            <Grid container sx={{height: '110px', marginBottom: '40px'}}>
+                                <Grid xs={6} sx={{paddingTop: 0}}>
+                                    <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}} >
+                                        <CardContent>
+                                            <Skeleton variant="circular" sx={{}} width={'35px'} height={'35px'}></Skeleton>  
+
+                                            <Skeleton variant="rounded" sx={{ marginTop: '10px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+                                            
+                                            <Skeleton width={'80px'}></Skeleton>           
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid xs={6} sx={{paddingTop: 0}}>
+                                    <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}} >
+                                        <CardContent>
+                                            <Skeleton variant="circular" sx={{}} width={'35px'} height={'35px'}></Skeleton>  
+
+                                            <Skeleton variant="rounded" sx={{ marginTop: '10px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+                                            
+                                            <Skeleton width={'80px'}></Skeleton>           
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            </Grid>
+                            <Grid container sx={{height: '110px'}}>
+                                <Grid xs={6} sx={{paddingTop: 0}}>
+                                    <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}} >
+                                        <CardContent>
+                                            <Skeleton variant="circular" sx={{}} width={'35px'} height={'35px'}></Skeleton>  
+
+                                            <Skeleton variant="rounded" sx={{ marginTop: '10px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+                                            
+                                            <Skeleton width={'80px'}></Skeleton>           
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid xs={6} sx={{paddingTop: 0}}>
+                                    <Card variant="outlined" sx={{position: 'relative', height: '110px', paddingBottom: '0px !important'}} >
+                                        <CardContent>
+                                            <Skeleton variant="circular" sx={{}} width={'35px'} height={'35px'}></Skeleton>  
+
+                                            <Skeleton variant="rounded" sx={{ marginTop: '10px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton>  
+                                            
+                                            <Skeleton width={'80px'}></Skeleton>           
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                            
+                    </Grid>
+                </>
             }
         </Container>
     )
