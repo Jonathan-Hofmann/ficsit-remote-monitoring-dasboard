@@ -2,12 +2,19 @@ import { Box, Card, CardContent, Chip, CircularProgress, Container, Divider, Gri
 import { useEffect, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom"
+import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
 
 
 const factoryRefs:{[key:string]:any} = {
     'Smeltery': {
         image: 'Buildings/SmelterMk1_256.png'
+    },
+    'Constructor': {
+        image: 'Buildings/ConstructorMk1_256.png'
+    },
+    'Assembler': {
+        image: 'Buildings/AssemblerMk1_256.png'
     }
 }
 
@@ -35,6 +42,72 @@ const itemRefs:{[key:string]:any} = {
     },
     'Copper Ingot': {
         image: 'Items/IconDesc_CopperIngot_256.png'
+    },
+    'Concrete': {
+        image: 'Items/IconDesc_Concrete_256.png'
+    },
+    'Limestone': {
+        image: 'Items/Stone_256.png'
+    },
+    'Iron Rod': {
+        image: 'Items/IconDesc_IronRods_256.png'
+    },
+    'Screw': {
+        image: 'Items/IconDesc_IronScrews_256.png'
+    },
+    'Iron Plate': {
+        image: 'Items/IconDesc_IronPlates_256.png'
+    },
+    'Copper Sheet': {
+        image: 'Items/IconDesc_CopperSheet_256.png'
+    },
+    'Wire': {
+        image: 'Items/IconDesc_Wire_256.png'
+    },
+    'Cable': {
+        image: 'Items/IconDesc_Cables_256.png'
+    },
+    'Steel Beam': {
+        image: 'Items/IconDesc_SteelBeam_256.png'
+    },
+    'Steel Ingot': {
+        image: 'Items/IconDesc_SteelIngot_256.png'
+    },
+    'Steel Pipe': {
+        image: 'Items/IconDesc_SteelPipe_256.png'
+    },
+    'Rotor': {
+        image: 'Items/IconDesc_Rotor_256.png'
+    },
+    'Reinforced Iron Plate': {
+        image: 'Items/IconDesc_ReinforcedIronPlates_256.png'
+    },
+    'Smart Plating': {
+        image: 'Items/IconDesc_SpelevatorPart_1_256.png'
+    },
+    'Modular Frame': {
+        image: 'Items/IconDesc_ModularFrame_256.png'
+    },
+    'Heavy Modular Frame': {
+        image: 'Items/IconDesc_ModularFrameHeavy_256.png'
+    },
+    'Heavy Oil Residue': {
+        image: 'Items/LiquidOil_Pipe_256.png'
+    },
+    'Polymer Resin': {
+        image: 'Items/IconDesc_PolymerResin_256.png'
+    },
+    'Water': {
+        image: 'Items/LiquidWater_Pipe_256.png'
+    },
+    'Fabric': {
+        image: 'Items/IconDesc_Fabric_256.png'
+    },
+    'Fuel': {
+        image: 'Items/IconDesc_LiquidFuel_Pipe_256.png'
+    },
+    'Crude Oil': {
+        image: 'Items/LiquidOil_Pipe_256.png'
     }
 }
 
@@ -58,6 +131,9 @@ export const DetailedFactoryView:React.FC = (props) => {
 
     useEffect(()=>{
         if(factoryEndpoint)loadData(factoryEndpoint);
+        return(()=>{
+            clearInterval(intervalVar);
+        })
     }, [factoryEndpoint])
 
     return(
@@ -135,49 +211,7 @@ export const DetailedFactoryView:React.FC = (props) => {
                                                     <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
                                                     {_factory.ingredients.map((product:any)=>{
                                                         return(
-                                                            <Card variant="outlined" sx={{padding: '3px'}}>
-                                                                <CardContent>
-                                                                    <Grid spacing={2} container>
-                                                                        <Grid>
-                                                                            <img src={"/assets/"+itemRefs[product.Name]?.image ?? null} alt="image" style={{height: '30px', width: '30px'}}></img>
-                                                                        </Grid>
-                                                                        <Grid xs>
-                                                                            <Grid spacing={0} container sx={{paddingTop:0}}>
-                                                                                <Grid xs>
-                                                                                    <Typography level="body2">Current Consume</Typography>
-                                                                                </Grid>
-                                                                                <Grid>
-                                                                                    {product.CurrentConsumed}
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                            <Grid spacing={0} container sx={{paddingTop:0}}>
-                                                                                <Grid xs>
-                                                                                    <Typography level="body2">Max. Consume</Typography>
-                                                                                </Grid>
-                                                                                <Grid>
-                                                                                    {product.MaxConsumed}
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                            <Grid spacing={0} container sx={{paddingTop:0}}>
-                                                                                <Grid xs>
-                                                                                    <Typography level="body2">Efficency Consume</Typography>
-                                                                                </Grid>
-                                                                                <Grid>
-                                                                                    {Math.floor(product.ConsPercent)} %
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                            <Grid spacing={0} container sx={{paddingY:0}}>
-                                                                                <Grid xs>
-                                                                                    <Typography level="body2">Input Inventory</Typography>
-                                                                                </Grid>
-                                                                                <Grid>
-                                                                                    {product.Inventory}
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </CardContent>
-                                                            </Card>
+                                                            <IngredientCard product={product} itemRefs={itemRefs}/>
                                                         )
                                                     })}
 

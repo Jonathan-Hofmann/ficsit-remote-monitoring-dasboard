@@ -1,9 +1,9 @@
 import { Card, CardContent, Grid, Typography } from "@mui/joy";
 import React from "react";
 
-export const ProductionCard:React.FC<{product:any, itemRefs:any}> = (props) => {
+export const IngredientCard:React.FC<{product:any, itemRefs:any}> = (props) => {
     return(
-        <Card variant="outlined" sx={{padding: '3px', borderColor: Math.floor(props.product.ProdPercent) === 0 ? "var(--joy-palette-error-main)": "var(--joy-palette-neutral-outlinedBorder)"}}>
+        <Card variant="outlined" sx={{padding: '3px'}}>
             <CardContent>
                 <Grid spacing={2} container>
                     <Grid>
@@ -12,34 +12,34 @@ export const ProductionCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                     <Grid xs>
                         <Grid spacing={0} container sx={{paddingTop:0}}>
                             <Grid xs>
-                                <Typography level="body2">Current Production</Typography>
+                                <Typography level="body2">Current Consume</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{props.product.CurrentProd}</Typography>
+                                {props.product.CurrentConsumed}
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingTop:0}}>
                             <Grid xs>
-                                <Typography level="body2">Max. Production</Typography>
+                                <Typography level="body2">Max. Consume</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{props.product.MaxProd}</Typography>
+                                {props.product.MaxConsumed}
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingTop:0}}>
                             <Grid xs>
-                                <Typography level="body2">Efficency Production</Typography>
+                                <Typography level="body2">Efficency Consume</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{Math.floor(props.product.ProdPercent)} %</Typography>
+                                {Math.floor(props.product.ConsPercent)} %
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingY:0}}>
                             <Grid xs>
-                                <Typography level="body2">Output Inventory</Typography>
+                                <Typography level="body2">Input Inventory</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{props.product.Inventory}</Typography>
+                                {props.product.Inventory}
                             </Grid>
                         </Grid>
                     </Grid>
