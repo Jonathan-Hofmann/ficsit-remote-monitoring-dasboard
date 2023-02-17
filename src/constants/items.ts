@@ -245,9 +245,9 @@ export const itemRefs:{[key:string]:any} = {
     'Magnetic Field Generator': {
         image: 'Items/IconDesc_MagneticFieldGenerator_256.png'
     },
-    // 'Portable Miner': {
-    //     image: 'Items/IconDesc_MagneticFieldGenerator_256.png'
-    // },
+    'Portable Miner': {
+        image: 'Tools/PortableMiner_256.png'
+    },
     'Iron Rebar': {
         image: 'Items/IconDesc_Rebar_256.png'
     },

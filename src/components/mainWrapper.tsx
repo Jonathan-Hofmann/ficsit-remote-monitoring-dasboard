@@ -8,6 +8,7 @@ import { PowerMain } from "../views/powerMain";
 import { Factorys } from "../views/productionMain";
 import { Start } from "../views/start";
 import SearchAppBar from "./topBar";
+import {Sidebar} from "./sidebar";
 import { Vehicles } from "../views/vehicles";
 import { SocketTestSite } from "../views/testingSocket";
 import { FactorysSwitch } from "../views/production";
@@ -17,7 +18,7 @@ import { StorageView } from "../views/storageView";
 export const MainWrapper:React.FC = (props) => {
     return(
         <>
-            <SearchAppBar/>
+            <Sidebar/>
             <Routes>
                 <Route path="/" element={<Start />} />
                 <Route path="/power" element={<PowerMain />} />
