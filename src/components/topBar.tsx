@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import { BsSearch } from 'react-icons/bs';
 import { Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { GiDeliveryDrone, GiFactory, GiMineTruck, GiPowerGenerator } from 'react-icons/gi';
+import { GiCargoCrate, GiDeliveryDrone, GiFactory, GiMineTruck, GiPowerGenerator } from 'react-icons/gi';
 import { TbTrain } from 'react-icons/tb';
 
 const Search = styled('div')(({ theme }) => ({
@@ -101,6 +101,11 @@ export default function SearchAppBar() {
               <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/vehicles">
                 <Button startIcon={<GiMineTruck/>}>
                   Vehicles
+                </Button>
+              </Link>
+              <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/storageView">
+                <Button startIcon={<GiCargoCrate/>}>
+                  Storage View
                 </Button>
               </Link>
           </Stack>
