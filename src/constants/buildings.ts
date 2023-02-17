@@ -19,5 +19,8 @@ export const factoryRefs:{[key:string]:any} = {
     },
     'Blender': {
         image: 'Buildings/IconDesc_Blender_256.png'
+    },
+    'Awesome Sink': {
+        image: 'Buildings/ResourceSink_256.png'
     }
 }

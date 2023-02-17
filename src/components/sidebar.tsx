@@ -14,11 +14,12 @@ export const Sidebar = () => {
 
   return (
     <>
+    <Box sx={{width: '180px', position: 'relative'}}></Box>
       {isFullsize ? 
         <Box sx={{
           width: '180px',
           height: '100vh',
-          position: 'fixed',
+          position: 'sticky',
           top: '0px',
           bottom: '0px',
           Left: '0px',
@@ -67,6 +68,11 @@ export const Sidebar = () => {
                 Storage View
               </Button>
             </Link>
+            <Link style={{textDecoration: 'none', marginRight:'10px'}} to="/awesomeSink">
+              <Button fullWidth variant='soft' startDecorator={<GiCargoCrate/>}>
+                Awesome Sink
+              </Button>
+            </Link>
           </Stack>
         </Box>
       :
@@ -94,7 +100,7 @@ export const Sidebar = () => {
                 </IconButton>
               </Link>
             </Tooltip>
-            <Tooltip placement='right' title="Alle Fabriken">
+            <Tooltip placement='right' title="All Factories">
               <Link style={{textDecoration: 'none'}} to="/production">
                 <IconButton variant='plain'>
                   <GiFactory/>
