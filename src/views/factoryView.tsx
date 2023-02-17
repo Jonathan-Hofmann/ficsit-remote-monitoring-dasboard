@@ -4,112 +4,13 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom"
 import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
+import { factoryRefs } from "../constants/buildings";
+import { itemRefs } from "../constants/items";
 
 
-const factoryRefs:{[key:string]:any} = {
-    'Smeltery': {
-        image: 'Buildings/SmelterMk1_256.png'
-    },
-    'Constructor': {
-        image: 'Buildings/ConstructorMk1_256.png'
-    },
-    'Assembler': {
-        image: 'Buildings/AssemblerMk1_256.png'
-    }
-}
 
-const itemRefs:{[key:string]:any} = {
-    'Iron Ore': {
-        image: 'Items/IconDesc_iron_new_256.png'
-    },
-    'Copper Ore': {
-        image: 'Items/IconDesc_copper_new_256.png'
-    },
-    'Caterium Ore': {
-        image: 'Items/IconDesc_CateriumOre_256.png'
-    },
-    'Aluminum Scrap': {
-        image: 'Items/IconDesc_AluminiumScrap_256.png'
-    },
-    'Iron Ingot': {
-        image: 'Items/IconDesc_IronIngot_256.png'
-    },
-    'Caterium Ingot': {
-        image: 'Items/IconDesc_CateriumIngot_256.png'
-    },
-    'Aluminum Ingot': {
-        image: 'Items/IconDesc_AluminiumIngot_256.png'
-    },
-    'Copper Ingot': {
-        image: 'Items/IconDesc_CopperIngot_256.png'
-    },
-    'Concrete': {
-        image: 'Items/IconDesc_Concrete_256.png'
-    },
-    'Limestone': {
-        image: 'Items/Stone_256.png'
-    },
-    'Iron Rod': {
-        image: 'Items/IconDesc_IronRods_256.png'
-    },
-    'Screw': {
-        image: 'Items/IconDesc_IronScrews_256.png'
-    },
-    'Iron Plate': {
-        image: 'Items/IconDesc_IronPlates_256.png'
-    },
-    'Copper Sheet': {
-        image: 'Items/IconDesc_CopperSheet_256.png'
-    },
-    'Wire': {
-        image: 'Items/IconDesc_Wire_256.png'
-    },
-    'Cable': {
-        image: 'Items/IconDesc_Cables_256.png'
-    },
-    'Steel Beam': {
-        image: 'Items/IconDesc_SteelBeam_256.png'
-    },
-    'Steel Ingot': {
-        image: 'Items/IconDesc_SteelIngot_256.png'
-    },
-    'Steel Pipe': {
-        image: 'Items/IconDesc_SteelPipe_256.png'
-    },
-    'Rotor': {
-        image: 'Items/IconDesc_Rotor_256.png'
-    },
-    'Reinforced Iron Plate': {
-        image: 'Items/IconDesc_ReinforcedIronPlates_256.png'
-    },
-    'Smart Plating': {
-        image: 'Items/IconDesc_SpelevatorPart_1_256.png'
-    },
-    'Modular Frame': {
-        image: 'Items/IconDesc_ModularFrame_256.png'
-    },
-    'Heavy Modular Frame': {
-        image: 'Items/IconDesc_ModularFrameHeavy_256.png'
-    },
-    'Heavy Oil Residue': {
-        image: 'Items/LiquidOil_Pipe_256.png'
-    },
-    'Polymer Resin': {
-        image: 'Items/IconDesc_PolymerResin_256.png'
-    },
-    'Water': {
-        image: 'Items/LiquidWater_Pipe_256.png'
-    },
-    'Fabric': {
-        image: 'Items/IconDesc_Fabric_256.png'
-    },
-    'Fuel': {
-        image: 'Items/IconDesc_LiquidFuel_Pipe_256.png'
-    },
-    'Crude Oil': {
-        image: 'Items/LiquidOil_Pipe_256.png'
-    }
-}
+
+
 
 export const DetailedFactoryView:React.FC = (props) => {
     const [params] = useSearchParams();
