@@ -1,4 +1,5 @@
 import { Card, Chip, CircularProgress, Container, Divider, Grid, Typography, CardContent, Box } from "@mui/joy"
+import { Skeleton } from "@mui/material";
 import { useTheme } from "@mui/system";
 import { useEffect, useState } from "react";
 import { BsBattery, BsBatteryHalf, BsCheck, BsCheck2, BsCloudSlash, BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
@@ -253,7 +254,73 @@ export const PowerMain:React.FC = (props) => {
                     })}
                 </>
             : 
-                <CircularProgress/>
+                <>
+                    <Card sx={{marginBottom: '30px', padding: '20px'}}>
+                        <CardContent>
+                            <Grid container sx={{marginBottom: '20px'}}>
+                                <Grid xs>
+                                    <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                        <Skeleton width={'80px'} />
+                                    </Box>
+                                </Grid>
+                                <Grid>
+                                    <Skeleton width={'120px'} />
+                                </Grid>
+                            </Grid>
+                            <Grid container spacing={2}>
+                                <Grid xs>
+                                    <Card variant="outlined">
+                                        <Typography level="h6">
+                                            <Skeleton width={'110px'} />
+                                        </Typography>
+                                        <Typography marginTop={'10px'} level="body2">
+                                            Power Capacity
+                                        </Typography>
+                                    </Card>
+                                </Grid>
+                                <Grid xs>
+                                    <Card variant="outlined">
+                                        <Typography level="h6">
+                                            <Skeleton width={'80px'} />
+                                        </Typography>
+                                        <Typography marginTop={'10px'} level="body2">
+                                            Power Production
+                                        </Typography>
+                                    </Card>
+                                </Grid>
+                                <Grid xs>
+                                    <Card variant="outlined">
+                                        <Typography level="h6">
+                                            <Skeleton width={'90px'} />
+                                        </Typography>
+                                        <Typography marginTop={'10px'} level="body2">
+                                            Current consumption
+                                        </Typography>
+                                    </Card>
+                                </Grid>
+                                <Grid xs>
+                                    <Card variant="outlined">
+                                        <Typography level="h6">
+                                            <Skeleton width={'80px'} />
+                                        </Typography>
+                                        <Typography marginTop={'10px'} level="body2">
+                                            Max. Consumed
+                                        </Typography>
+                                    </Card>
+                                </Grid>
+                            </Grid>
+
+                            <Grid container sx={{marginTop: "30px"}}>
+                                <Grid xs>
+                                    <Typography level="h6" >Battery</Typography>
+                                </Grid>
+                                <Grid>
+                                    <Skeleton width={'80px'} />
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                </>
             }
         </Container>
     )

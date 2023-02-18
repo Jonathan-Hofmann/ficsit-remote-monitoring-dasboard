@@ -337,7 +337,7 @@ export const Vehicles:React.FC = (props) => {
                 </>
             :
                 <>
-                    <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
+                    <Grid container spacing={3} sx={{marginBottomY: '30px', opacity: 0.5}} display={'flex'} alignItems={'center'}>
                         <Grid xs={3}>
                             <Card  variant="outlined" sx={{}}>
                                 <CardContent>                                                                                
@@ -388,7 +388,7 @@ export const Vehicles:React.FC = (props) => {
 
                     <Typography level="h2" fontWeight={600} marginTop={'40px'} marginBottom={'20px'}>Manual Vehicles</Typography>
                     
-                    <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
+                    <Grid container spacing={3} sx={{marginBottomY: '30px', opacity: 0.5}} display={'flex'} alignItems={'center'}>
                         <Grid xs={4}>
                             <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
                                 <CardContent>
@@ -529,7 +529,7 @@ export const Vehicles:React.FC = (props) => {
                         Autopiloted Vehicles
                     </Typography>
 
-                    <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
+                    <Grid container spacing={3} sx={{marginBottomY: '30px', opacity: 0.5}} display={'flex'} alignItems={'center'}>
                         <Grid xs={4}>
                             <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
                                 <CardContent>

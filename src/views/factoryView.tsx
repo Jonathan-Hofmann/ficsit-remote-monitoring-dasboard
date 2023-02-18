@@ -127,7 +127,7 @@ export const DetailedFactoryView:React.FC = (props) => {
                     </Grid>
                 </>
             :
-            <Grid container spacing={3}>
+            <Grid container spacing={3} sx={{opacity: 0.5}}>
                 <Grid xs={4}>
                     <Card variant={"outlined"}>
                         <CardContent>

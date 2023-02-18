@@ -286,7 +286,7 @@ export const Trains:React.FC = (props) => {
                     })}
                 </>
             :
-                <Grid container spacing={2} sx={{marginY: '30px'}} display={'flex'} alignItems={'center'}>
+                <Grid container spacing={2} sx={{marginY: '30px', opacity: 0.5}} display={'flex'} alignItems={'center'}>
                     <Grid xs={3}>
                         <Card variant="outlined" sx={{position: 'relative'}}>
                             <CardContent>
