@@ -14,8 +14,9 @@ import { SocketTestSite } from "../views/testingSocket";
 import { FactorysSwitch } from "../views/production";
 import { DetailedFactoryView } from "../views/factoryView";
 import { StorageView } from "../views/storageView";
-import { AwesomeSink } from "../views/awesomeSink";
+import { AwesomeSink } from "./awesomeSink";
 import { Grid } from "@mui/joy";
+import { Settings } from "../views/settings";
 
 export const MainWrapper:React.FC = (props) => {
     return(
@@ -29,6 +30,7 @@ export const MainWrapper:React.FC = (props) => {
                         <Routes>
                             <Route path="/" element={<Start />} />
                             <Route path="/power" element={<PowerMain />} />
+                            <Route path="/settings" element={<Settings />} />
                             <Route path="/production" element={<FactorysSwitch />} />
                             <Route path="/factory" element={<DetailedFactoryView />} />
                             <Route path="/building" element={<Building />} />

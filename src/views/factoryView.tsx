@@ -154,7 +154,6 @@ export const DetailedFactoryView:React.FC = (props) => {
 
                                 <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
                                 <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
-
                             </Box>
                         </CardContent>
                     </Card>

@@ -71,7 +71,7 @@ export const PowerMain:React.FC = (props) => {
                     <Card>
                         {/* <CardHeader title={allCapacity+ " MW"} subheader="Total Power Capacity"></CardHeader> */}
                         <Typography level="h3">
-                            {allCapacity} MW
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allCapacity} MW</>}
                         </Typography>
                         <Typography>
                             Total Power Capacity
@@ -82,7 +82,7 @@ export const PowerMain:React.FC = (props) => {
                     <Card>
                         {/* <CardHeader title={allProduction+ " MW"} subheader="Total Power Production"></CardHeader> */}
                         <Typography level="h3">
-                            {allProduction} MW
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allProduction} MW</>}
                         </Typography>
                         <Typography>
                             Total Production
@@ -93,7 +93,7 @@ export const PowerMain:React.FC = (props) => {
                     <Card>
                         {/* <CardHeader title={allBatteryCapacity+ " MW"} subheader="Total Battery Capacity"></CardHeader> */}
                         <Typography level="h3">
-                            {allBatteryCapacity} MW
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allBatteryCapacity} MW</>}
                         </Typography>
                         <Typography>
                             Battery Capacity
@@ -101,26 +101,32 @@ export const PowerMain:React.FC = (props) => {
                     </Card>
                 </Grid>
                 <Grid xs>
-                    {fuseBroken === false ? 
-                        <Card sx={{backgroundColor: theme.palette.success.main}}>
-                            {/* <CardHeader title="All Good" subheader="Fuse Status"></CardHeader> */}
-                            <Typography level="h3">
-                                No Problems
-                            </Typography>
-                            <Typography>
-                                Current Status
-                            </Typography>
-                        </Card>
+                    { !power ? 
+                        <Skeleton sx={{marginBottom: '8px', width: '100%', borderRadius: '10px'}} variant="rounded" height={'93px'} />
                     :
-                        <Card sx={{backgroundColor: theme.palette.error.main}}>
-                            {/* <CardHeader title="Broken!" subheader="Fuse Status"></CardHeader> */}
-                            <Typography level="h3">
-                                Broken!
-                            </Typography>
-                            <Typography>
-                                Current Status
-                            </Typography>
-                        </Card>
+                        <>
+                            {fuseBroken === false ? 
+                                <Card sx={{backgroundColor: theme.palette.success.main}}>
+                                    {/* <CardHeader title="All Good" subheader="Fuse Status"></CardHeader> */}
+                                    <Typography level="h3">
+                                        No Problems
+                                    </Typography>
+                                    <Typography>
+                                        Current Status
+                                    </Typography>
+                                </Card>
+                            :
+                                <Card sx={{backgroundColor: theme.palette.error.main}}>
+                                    {/* <CardHeader title="Broken!" subheader="Fuse Status"></CardHeader> */}
+                                    <Typography level="h3">
+                                        Broken!
+                                    </Typography>
+                                    <Typography>
+                                        Current Status
+                                    </Typography>
+                                </Card>
+                            }
+                        </>
                     }
                 </Grid>
             </Grid>
@@ -255,7 +261,7 @@ export const PowerMain:React.FC = (props) => {
                 </>
             : 
                 <>
-                    <Card sx={{marginBottom: '30px', padding: '20px'}}>
+                    <Card sx={{marginBottom: '30px', padding: '20px', opacity: 0.5}}>
                         <CardContent>
                             <Grid container sx={{marginBottom: '20px'}}>
                                 <Grid xs>

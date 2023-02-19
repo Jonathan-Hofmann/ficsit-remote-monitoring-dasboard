@@ -81,7 +81,7 @@ export const Sidebar = () => {
             </Link>
 
             
-            <Link style={{textDecoration: 'none', marginTop: '50px'}} to="/">
+            <Link style={{textDecoration: 'none', marginTop: '50px'}} to="/settings">
               <Button fullWidth color='neutral' variant='soft' sx={{display: 'flex', justifyContent: 'flex-start'}} startDecorator={<BsGearFill/>}>
                 Settings
               </Button>
@@ -107,7 +107,7 @@ export const Sidebar = () => {
             </Tooltip>
     
             <Tooltip placement='right' title="Overview">
-              <Link style={{textDecoration: 'none'}} to="/power">
+              <Link style={{textDecoration: 'none'}} to="/">
                 <IconButton size="lg" color='neutral' variant='plain'>
                   <BsGridFill/>
                 </IconButton>
@@ -159,7 +159,7 @@ export const Sidebar = () => {
             <Divider/>
 
             <Tooltip placement='right' title="Settings">
-              <Link style={{textDecoration: 'none'}} to="/">
+              <Link style={{textDecoration: 'none'}} to="/settings">
                 <IconButton size="lg" color='neutral' variant='plain'>
                   <BsGearFill/>
                 </IconButton>
@@ -169,11 +169,5 @@ export const Sidebar = () => {
         </Box>
       }
     </>
-
-
-    /**
-     * 
-     * 
-     */
   );
 }
