@@ -74,11 +74,6 @@ export const Sidebar = () => {
                 Storage View
               </Button>
             </Link>
-            <Link style={{textDecoration: 'none'}} to="/awesomeSink">
-              <Button fullWidth color='neutral' variant='soft' sx={{display: 'flex', justifyContent: 'flex-start'}} startDecorator={<FaBoxes/>}>
-                Awesome Sink
-              </Button>
-            </Link>
 
             
             <Link style={{textDecoration: 'none', marginTop: '50px'}} to="/settings">
