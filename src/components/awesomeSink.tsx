@@ -16,25 +16,10 @@ export const AwesomeSink:React.FC = (props) => {
     const [sinks, setSink] = useState<undefined | any>(undefined);
     const [sinks2, setSink2] = useState<undefined | any>(undefined);
 
-    const [data, setData] = useState(undefined)
-
+    const [data, setData] = useState<undefined | any>(undefined)
     const settings = useContext(SettingsContext);
 
     const loadData = async () => {
-        if (doLoadData === true) {
-
-            const response = await axios.get("http://127.0.0.1:8080/getResourceSink");
-            const response2 = await axios.get("http://127.0.0.1:8080/getExplorationSink");
-            setSink(response.data);
-            setSink2(response2.data);
-            //console.log(response.data);
-
-            setTimeout(() => {
-                loadData();
-            }, settings.msInterval);
-        }
-    };
-    const loadWorldInventory = async () => {
         if (doLoadData === true) {
 
             const response = await axios.get("http://127.0.0.1:8080/getResourceSink");

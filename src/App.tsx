@@ -12,6 +12,7 @@ import { ModeToggle } from './components/toggle';
 import { ThemeWrapper } from './components/themeWrapper';
 import { SettingsProvider } from './context/Settings';
 import { ToggleTheme } from './components/toggleTheme';
+import './App.css';
 
 
 function App() {
