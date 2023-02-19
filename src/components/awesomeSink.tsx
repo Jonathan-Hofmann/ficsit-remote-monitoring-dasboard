@@ -157,7 +157,7 @@ export const AwesomeSink:React.FC = (props) => {
                 </>
             :
                 <>
-                    <Card variant="outlined" sx={{marginBottom: '20px'}}>
+                    <Card variant="outlined" sx={{marginBottom: '20px', opacity: 0.5}}>
                         <CardContent>
                             <Box>
                                 <Stack >
@@ -181,7 +181,7 @@ export const AwesomeSink:React.FC = (props) => {
                     </Card>
 
 
-                    <Grid container padding={0}>
+                    <Grid container padding={0} sx={{opacity: 0.5}}>
                         <Grid xs={4}>
                             <Card variant="outlined">
                                 <CardContent>

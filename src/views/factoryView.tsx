@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, Chip, CircularProgress, Container, Divider, Grid, Stack, Typography } from "@mui/joy"
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
-import { BsArrowRightShort } from "react-icons/bs";
+import { BsArrowRightShort, BsExclamationTriangleFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom"
 import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
@@ -66,6 +66,23 @@ export const DetailedFactoryView:React.FC = (props) => {
                                 <Grid xs={4}>
                                     <Card variant={"outlined"}>
                                         <CardContent>
+                                            <Grid padding={0} container>
+                                                <Grid xs>
+                                                    {_factory.IsProducing === true ?
+                                                        <Chip size="sm" color="success" variant="soft">Producing ...</Chip>
+                                                    :
+                                                        <Chip size="sm" color="danger" variant="soft" startDecorator={<BsExclamationTriangleFill style={{marginRight: '5px'}}/>}>Problems detected</Chip>
+                                                    }
+                                                    
+                                                </Grid>
+                                                <Grid>
+                                                    {_factory.IsConfigured === true ?
+                                                        <Chip size="sm" color="neutral" variant="soft">Configured</Chip>
+                                                    :
+                                                        <Chip size="sm" color="danger" variant="soft">NOT CONFIGURED</Chip>
+                                                    }
+                                                </Grid>
+                                            </Grid>
                                             <Stack alignItems={"center"}>
                                                 <img src={"/assets/"+factoryRefs[factory as string]?.image ?? null} alt="image" style={{height: '100px', width: '100px',marginTop: '10px'}}></img>
                                                 {/* <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][0].StationName}</Typography>
@@ -73,7 +90,7 @@ export const DetailedFactoryView:React.FC = (props) => {
                                                 {/* <Typography level="h2" marginBottom={"5px"} fontWeight={600}>
                                                     {factoryRefs[factory as string]?.image ?? null}
                                                 </Typography> */}
-                                                {_factory.IsConfigured === true ?
+                                                {_factory.IsConfigured === true &&
                                                     <Box>
                                                         <Grid spacing={0} container sx={{marginTop: '10px'}}>
                                                             <Grid>
@@ -87,8 +104,6 @@ export const DetailedFactoryView:React.FC = (props) => {
                                                             </Grid>
                                                         </Grid>
                                                     </Box>
-                                                :
-                                                    <Chip color="danger" variant="soft" sx={{marginTop: '20px'}}>NOT CONFIGURED</Chip>
                                                 }
                                             </Stack>  
                                             {_factory.IsConfigured === true &&
@@ -193,7 +208,6 @@ export const DetailedFactoryView:React.FC = (props) => {
                     <Card variant={"outlined"}>
                         <CardContent>
                             <Stack alignItems={"center"}>
-                                
                                 
                                 <Skeleton variant="circular" sx={{marginTop: '10px'}} width={'100px'} height={'100px'}></Skeleton>  
 

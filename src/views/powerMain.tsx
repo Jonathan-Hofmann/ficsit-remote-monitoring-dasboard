@@ -136,7 +136,7 @@ export const PowerMain:React.FC = (props) => {
                 <>
                     {power.map((powerGroup:any, index:number) => {
                         return(
-                            <Card sx={{marginBottom: '30px', padding: '20px', backgroundColor: powerGroup.FuseTriggered === true ? 'var(--joy-palette-danger-solidBg)' : 'var(--joy-palette-background-surface)'}}>
+                            <Card variant="outlined" sx={{marginBottom: '30px', padding: '20px', backgroundColor: powerGroup.FuseTriggered === true ? 'var(--joy-palette-danger-solidBg)' : 'var(--joy-palette-background-surface)'}}>
                                 <CardContent>
                                 <Grid container sx={{marginBottom: '20px'}}>
                                     <Grid xs>
@@ -146,7 +146,7 @@ export const PowerMain:React.FC = (props) => {
                                         </Box>
                                     </Grid>
                                     <Grid>
-                                        {powerGroup.FuseTriggered === true ? <Chip startDecorator={<BsExclamationTriangleFill size={'17px'}/> } sx={{paddingLeft: '6px'}} color="danger" >FUSE BROKEN</Chip> : <Chip startDecorator={<BsCheck size={'22px'}/> } sx={{paddingLeft: '6px', color: 'white'}} color="success">Fuse: All Good</Chip>}
+                                        {powerGroup.FuseTriggered === true ? <Chip variant="soft" startDecorator={<BsExclamationTriangleFill size={'17px'}/> } sx={{paddingLeft: '6px'}} color="danger" >FUSE BROKEN</Chip> : <Chip variant="soft" startDecorator={<BsCheck size={'22px'}/> } sx={{paddingLeft: '6px'}} color="success">Fuse: All Good</Chip>}
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={2}>
@@ -201,7 +201,7 @@ export const PowerMain:React.FC = (props) => {
                                         <Typography level="h6" >Battery</Typography>
                                     </Grid>
                                     <Grid>
-                                        {powerGroup.BatteryCapacity === 0 && powerGroup.BatteryTimeFull === "00:00:00" ? <Chip startDecorator={<BsCloudSlash size={'20px'}/> } sx={{paddingLeft: '6px'}} >No Battery connected</Chip> : <Chip startDecorator={<BsBatteryHalf size={'20px'}/>} sx={{paddingLeft: '6px', color: 'white'}} color="success">Battery connected</Chip>}
+                                        {powerGroup.BatteryCapacity === 0 && powerGroup.BatteryTimeFull === "00:00:00" ? <Chip startDecorator={<BsCloudSlash size={'20px'}/> } sx={{paddingLeft: '6px'}} variant="soft" >No Battery connected</Chip> : <Chip startDecorator={<BsBatteryHalf size={'20px'}/>} sx={{paddingLeft: '6px', color: 'white'}} variant="soft" color="success">Battery connected</Chip>}
                                     </Grid>
                                 </Grid>
                                 { powerGroup.BatteryCapacity === 0 && powerGroup.BatteryTimeFull === "00:00:00" ? 

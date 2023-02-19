@@ -1,5 +1,6 @@
 import { Autocomplete, CardContent, Container, FormLabel, Grid, Input, Modal, ModalClose, ModalDialog } from "@mui/joy";
 import { Box, Button, FormControl, Card, TextField, Typography } from "@mui/joy";
+import { Skeleton } from "@mui/material";
 import axios from "axios";
 import { truncateSync } from "fs";
 import React, { useContext, useEffect, useState } from "react";
@@ -52,14 +53,14 @@ export const Start:React.FC = (props) => {
                 <Grid xs={6}>
                     {itemSelection ?
                     <>
-                        <Modal open={editItemSelection} >
+                        <Modal open={editItemSelection} onClose={()=>{setEditItemSelection(false)}}>
                             <ModalDialog sx={{maxWidth: '450px'}}>
                                 <ModalClose/>
-                                <Typography level="h5">Edit Important Items List</Typography>
+                                <Typography level="h5">Edit Favorite Items List</Typography>
             
-                                <Autocomplete sx={{marginY: '15px'}} onChange={(e, v)=>{setTmpItemSelection(v)}} multiple defaultValue={tmp_itemSelection} options={Object.keys(itemRefs)}></Autocomplete>
+                                <Autocomplete sx={{marginY: '20px'}} onChange={(e, v)=>{setTmpItemSelection(v)}} multiple defaultValue={tmp_itemSelection} options={Object.keys(itemRefs)}></Autocomplete>
             
-                                <Button fullWidth onClick={()=>{setItemSelection(tmp_itemSelection); setEditItemSelection(false)}}>
+                                <Button sx={{marginBottom: '15px'}} fullWidth onClick={()=>{setItemSelection(tmp_itemSelection); setEditItemSelection(false)}}>
                                     Save changes
                                 </Button>
                                 <Button color="neutral" variant="plain" fullWidth onClick={()=>{setEditItemSelection(false)}}>
@@ -72,14 +73,14 @@ export const Start:React.FC = (props) => {
                                 <Grid container padding={0}>
                                     <Grid xs>
                                         <Typography level="h5">
-                                            Important Items
+                                            {itemSelection.length} Favorite Items
                                         </Typography>
                                         <Typography my={'5px'} startDecorator={<BsExclamationCircle/>} level="body2">Only shows stored and available items.</Typography>
                                         <Typography startDecorator={<BsExclamationTriangleFill/>} level="body2">Players Inventory is not taken into account.</Typography>
                                     </Grid>
                                     <Grid>
                                         <Button onClick={()=>{ setTmpItemSelection(itemSelection); setEditItemSelection(true)}} variant="outlined" color="neutral" size="sm">
-                                            Edit List
+                                            Edit Favorites
                                         </Button>
                                     </Grid>
                                 </Grid>
@@ -108,7 +109,48 @@ export const Start:React.FC = (props) => {
                                     })}
                                 </Grid>
                             :
-                                <></>
+                                <Grid container paddingY={0} px={0} spacing={2} sx={{opacity: 0.5}}>
+                                    <Grid xs={4}>
+                                        <Card variant="outlined" sx={{height: '100%', padding: 0}}>
+                                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px'}}>
+                                                <Skeleton variant="circular" sx={{}} width={'70px'} height={'70px'}></Skeleton>  
+
+                                                <Skeleton variant="rounded" sx={{ marginTop: '20px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton> 
+                                                <Skeleton width={"60px"}></Skeleton>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                    <Grid xs={4}>
+                                        <Card variant="outlined" sx={{height: '100%', padding: 0}}>
+                                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px'}}>
+                                                <Skeleton variant="circular" sx={{}} width={'70px'} height={'70px'}></Skeleton>  
+
+                                                <Skeleton variant="rounded" sx={{ marginTop: '20px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton> 
+                                                <Skeleton width={"60px"}></Skeleton>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                    <Grid xs={4}>
+                                        <Card variant="outlined" sx={{height: '100%', padding: 0}}>
+                                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px'}}>
+                                                <Skeleton variant="circular" sx={{}} width={'70px'} height={'70px'}></Skeleton>  
+
+                                                <Skeleton variant="rounded" sx={{ marginTop: '20px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton> 
+                                                <Skeleton width={"60px"}></Skeleton>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                    <Grid xs={4}>
+                                        <Card variant="outlined" sx={{height: '100%', padding: 0}}>
+                                            <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px'}}>
+                                                <Skeleton variant="circular" sx={{}} width={'70px'} height={'70px'}></Skeleton>  
+
+                                                <Skeleton variant="rounded" sx={{ marginTop: '20px', marginBottom: '10px'}} width={'120px'} height={'20px'}></Skeleton> 
+                                                <Skeleton width={"60px"}></Skeleton>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                </Grid>
                             }
                         </>}
                     </>

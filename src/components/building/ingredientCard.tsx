@@ -3,7 +3,7 @@ import React from "react";
 
 export const IngredientCard:React.FC<{product:any, itemRefs:any}> = (props) => {
     return(
-        <Card variant="outlined" sx={{padding: '3px'}}>
+        <Card variant="outlined" sx={{padding: '3px', borderColor: Math.floor(props.product.Inventory) === 0 ? "var(--joy-palette-error-main)": "var(--joy-palette-neutral-outlinedBorder)", borderWidth: Math.floor(props.product.Inventory) === 0 ? "3px": "1px"}}>
             <CardContent>
                 <Grid spacing={2} container>
                     <Grid>
@@ -34,7 +34,7 @@ export const IngredientCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 {Math.floor(props.product.ConsPercent)} %
                             </Grid>
                         </Grid>
-                        <Grid spacing={0} container sx={{paddingY:0}}>
+                        <Grid spacing={0} container  sx={{color: Math.floor(props.product.Inventory) === 0 ? "var(--joy-palette-error-main)": "var(--joy-palette-text-main)", paddingY:0}}>
                             <Grid xs>
                                 <Typography level="body2">Input Inventory</Typography>
                             </Grid>

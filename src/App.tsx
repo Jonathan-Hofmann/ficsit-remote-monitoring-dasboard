@@ -13,6 +13,7 @@ import { ThemeWrapper } from './components/themeWrapper';
 import { SettingsProvider } from './context/Settings';
 import { ToggleTheme } from './components/toggleTheme';
 import './App.css';
+import { ConnectionCheckerProvider } from './context/connectionChecker';
 
 
 function App() {

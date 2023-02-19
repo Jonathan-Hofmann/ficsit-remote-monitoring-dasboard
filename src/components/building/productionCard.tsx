@@ -3,7 +3,7 @@ import React from "react";
 
 export const ProductionCard:React.FC<{product:any, itemRefs:any}> = (props) => {
     return(
-        <Card variant="outlined" sx={{padding: '3px', borderColor: Math.floor(props.product.ProdPercent) === 0 ? "var(--joy-palette-error-main)": "var(--joy-palette-neutral-outlinedBorder)"}}>
+        <Card variant="outlined" sx={{padding: '3px', borderColor: Math.floor(props.product.Inventory) > 50 ? "var(--joy-palette-warning-main)": "var(--joy-palette-neutral-outlinedBorder)", borderWidth: Math.floor(props.product.Inventory) > 50 ? "3px": "1px"}}>
             <CardContent>
                 <Grid spacing={2} container>
                     <Grid>
@@ -39,7 +39,7 @@ export const ProductionCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 <Typography level="body2">Output Inventory</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{props.product.Inventory}</Typography>
+                                <Typography sx={{color: Math.floor(props.product.Inventory) > 50 ? "var(--joy-palette-warning-main)": "var(--joy-palette-text-main)"}}>{props.product.Inventory}</Typography>
                             </Grid>
                         </Grid>
                     </Grid>

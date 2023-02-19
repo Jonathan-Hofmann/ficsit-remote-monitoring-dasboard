@@ -17,6 +17,7 @@ import { StorageView } from "../views/storageView";
 import { AwesomeSink } from "./awesomeSink";
 import { Grid } from "@mui/joy";
 import { Settings } from "../views/settings";
+import { ConnectionCheckerProvider } from "../context/connectionChecker";
 
 export const MainWrapper:React.FC = (props) => {
     return(
@@ -27,20 +28,22 @@ export const MainWrapper:React.FC = (props) => {
                 </Grid>
                 <Grid xs sx={{height: '100%'}}>
                     <Box>
-                        <Routes>
-                            <Route path="/" element={<Start />} />
-                            <Route path="/power" element={<PowerMain />} />
-                            <Route path="/settings" element={<Settings />} />
-                            <Route path="/production" element={<FactorysSwitch />} />
-                            <Route path="/factory" element={<DetailedFactoryView />} />
-                            <Route path="/building" element={<Building />} />
-                            <Route path="/drones" element={<Drones />} />
-                            <Route path="/trains" element={<Trains />} />
-                            <Route path="/vehicles" element={<Vehicles />} />
-                            <Route path="/storageView" element={<StorageView />} />
-                            <Route path="/awesomeSink" element={<AwesomeSink />} />
-                            <Route path="/test" element={<SocketTestSite />} />
-                        </Routes>
+                        <ConnectionCheckerProvider>
+                            <Routes>
+                                <Route path="/" element={<Start />} />
+                                <Route path="/power" element={<PowerMain />} />
+                                <Route path="/settings" element={<Settings />} />
+                                <Route path="/production" element={<FactorysSwitch />} />
+                                <Route path="/factory" element={<DetailedFactoryView />} />
+                                <Route path="/building" element={<Building />} />
+                                <Route path="/drones" element={<Drones />} />
+                                <Route path="/trains" element={<Trains />} />
+                                <Route path="/vehicles" element={<Vehicles />} />
+                                <Route path="/storageView" element={<StorageView />} />
+                                <Route path="/awesomeSink" element={<AwesomeSink />} />
+                                <Route path="/test" element={<SocketTestSite />} />
+                            </Routes>
+                        </ConnectionCheckerProvider>
                     </Box>
                 </Grid>
             </Grid>
