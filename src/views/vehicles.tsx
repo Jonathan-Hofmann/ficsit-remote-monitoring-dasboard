@@ -1,7 +1,6 @@
 import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconButton, Typography, LinearProgress, Stack, Tooltip } from "@mui/joy";
 import React, { useContext, useEffect, useState } from "react";
 import {BsExclamationCircle, BsX, BsArrowRightShort, BsXCircle, BsQuestionCircle} from 'react-icons/bs';
-import { GiCargoCrate, GiF1Car, GiMineTruck } from "react-icons/gi";
 import axios from 'axios';
 import { SettingsContext } from "../context/Settings";
 
@@ -42,11 +41,6 @@ export const Vehicles:React.FC = (props) => {
                             <Typography level="h2" fontWeight={600} >
                                 All Vehicles
                             </Typography>
-                        </Grid>
-                        <Grid>
-                            {/* <IconButton size="lg">
-                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                            </IconButton>  */}
                         </Grid>
                     </Grid>
                 </CardContent>

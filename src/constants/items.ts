@@ -325,9 +325,14 @@ export const itemRefs:{[key:string]:any} = {
     },
     'Non-fissile Uranium': {
         image: 'Items/IconDesc_NonFissileUranium_256.png'
-    }
-    ,
+    },
     'FICSIT Coupon': {
         image: 'Items/IconDesc_Ficsit_Coupon_256.png'
+    },
+    'Alclad Aluminum Sheet': {
+        image: 'Items/IconDesc_AluminiumSheet_256.png'
+    },
+    'Power Shard': {
+        image: 'Items/PowerShard_256.png'
     }
 }
