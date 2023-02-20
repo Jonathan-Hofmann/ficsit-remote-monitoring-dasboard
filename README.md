@@ -1,6 +1,11 @@
+
+![my_image](./docs/assets/header_image.png)
+
 # Ficsit Remote Monitoring Dashboard [ FRMD ]
-![my_image](./docs/assets/features.png)
-A nicely designed Dashboard for the Ficsit Remote Monitoring Mod. 
+## A nicely designed Dashboard for the Ficsit Remote Monitoring Mod. 
+
+<br/>
+<br/>
 
 ## Prequisites
 You need to have the Ficsit Remote Monitoring mod by DarthPorisius installed and running.
@@ -16,3 +21,16 @@ For running FRMD locally, you will need to have NodeJS 16.0+ installed on your s
 
 1. Pull this Repository and open it with the terminal
 2. Install all dependencies with `npm install`
+
+<div style="display: flex; flexDirection: row;">
+<div style="max-width: 45%;">
+
+![my_image](./docs/assets/features.png)
+
+</div>
+<div style="max-width: 45%;">
+
+![my_image](./docs/assets/features.png)
+
+</div>
+</div>
