@@ -5,14 +5,18 @@ import axios from "axios";
 import { createContext, useEffect, useMemo, useCallback, useState } from "react";
 import { BsCheckCircleFill, BsExclamationTriangleFill, BsFileRichtext, BsFileRuled, BsHammer, BsInfoCircle, BsInfoCircleFill, BsRecordCircle, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "../views/settings";
 
 
 export type Info = {
-    msInterval: number
+    msInterval: number,
+    checkConnectionToFRM: Function
 }
 
 export const defaultValues: Info = {
-    msInterval: 1000
+    msInterval: 1000,
+    checkConnectionToFRM: ()=>{}
 }
 
 
@@ -22,13 +26,15 @@ export const ConnectionCheckerProvider:React.FC<any> = (props) => {
     const [showAlert, setShowAlert] = useState(false);
     let timeout:NodeJS.Timeout;
 
+    // const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
     
     const [msInterval, setMsInterval] = useState(1000);
     const [loop, setLooping] = useState(true);
 
     const checkConnectionToFRM = async () => {
+        clearTimeout(timeout);
 
-        axios.get("http://localhost:8080/getDoggo").then(()=>{
+        axios.get("http://"+JSON.parse(localStorage.getItem("rmd_settings") ?? JSON.stringify(defaultSettingsData)).ip+":"+JSON.parse(localStorage.getItem("rmd_settings") ?? JSON.stringify(defaultSettingsData)).port+"/getDoggo").then(()=>{
             console.log("[ConnectionChecker] Got data")
             setShowAlert(false);
         }).catch(()=>{
@@ -39,7 +45,7 @@ export const ConnectionCheckerProvider:React.FC<any> = (props) => {
             if(loop){
                 checkConnectionToFRM();
             }
-        }, 5000);
+        }, 3000);
 
     }
 
@@ -49,7 +55,8 @@ export const ConnectionCheckerProvider:React.FC<any> = (props) => {
     }, [])
 
     const state = useMemo(() => ({
-        msInterval: msInterval
+        msInterval: msInterval,
+        checkConnectionToFRM: checkConnectionToFRM
     }), [msInterval]);
 
     return(

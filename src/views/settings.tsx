@@ -9,8 +9,9 @@ import {
     Select,
     Typography,
 } from "@mui/joy";
-import React from "react";
+import React, { useContext } from "react";
 import { BsExclamationCircle } from "react-icons/bs";
+import { ConnectionCheckerContext } from "../context/connectionChecker";
 import { useLocalStorage } from "../hooks/localStorage";
 
 
@@ -57,6 +58,9 @@ export const Settings: React.FC = (props) => {
                             <Input
                                 sx={{ marginTop: "15px" }}
                                 value={settings.port}
+                                onChange={(e) => {
+                                    setSettings({ ...settings, ["port"]: e.target.value });
+                                }}
                                 startDecorator={"http://"+settings.ip+":"}
                                 placeholder="8080"
                             />

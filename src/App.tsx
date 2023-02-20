@@ -18,15 +18,7 @@ import { ConnectionCheckerProvider } from './context/connectionChecker';
 
 function App() {
   
-
   return (
-    // <ThemeProvider theme={darkTheme}>
-    //   <CssBaseline enableColorScheme />
-      
-    // </ThemeProvider>
-    // <CssVarsProvider theme={theme}>
-    //   <ModeToggle/>
-    // </CssVarsProvider>
     <ThemeWrapper>
       <ToggleTheme>
         <BrowserRouter>
