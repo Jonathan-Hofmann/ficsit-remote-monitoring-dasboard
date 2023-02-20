@@ -9,6 +9,7 @@ import { AwesomeSink } from "../components/awesomeSink";
 import { itemRefs } from "../constants/items";
 import { SettingsContext } from "../context/Settings";
 import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "./settings";
 
 export const Start:React.FC = (props) => {
     const [port, setPort] = useState(8080);
@@ -21,18 +22,18 @@ export const Start:React.FC = (props) => {
 
     // const [itemSelection, setItemSelection] = useState<undefined | string[]>([]);
     const [tmp_itemSelection, setTmpItemSelection] = useState<undefined | string[]>(undefined);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
-    const settings = useContext(SettingsContext);
     
     const loadWorldInventory = async () => {
         if (doLoadData === true) {
 
-            const response = await axios.get("http://127.0.0.1:8080/getWorldInv");
+            const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getWorldInv");
             setWorldInv(response.data);
             // console.log(response.data);
             setTimeout(() => {
                 loadWorldInventory();
-            }, settings.msInterval);
+            }, settings.interval);
         }
     };
 

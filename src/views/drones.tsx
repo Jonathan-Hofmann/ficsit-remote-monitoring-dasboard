@@ -5,6 +5,8 @@ import { GiCargoCrate, GiDeliveryDrone } from "react-icons/gi";
 import { BsBatteryHalf, BsBox, BsClockHistory, BsLink45Deg } from "react-icons/bs";
 import { SettingsContext } from "../context/Settings";
 import { Skeleton } from "@mui/material";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "./settings";
 
 export const Drones:React.FC = (props) => {
     
@@ -14,13 +16,15 @@ export const Drones:React.FC = (props) => {
    
     const [drStation_PrevNext, setDrStation_PrevNext] = useState<undefined|any[]>(undefined);
 
-    const settings = useContext(SettingsContext);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+
+    // const settings = useContext(SettingsContext);
 
     const loadData = async () => {
         if (doLoadData === true) {
 
-            const response = await axios.get("http://127.0.0.1:8080/getDrone");
-            const response_station = await axios.get("http://127.0.0.1:8080/getDroneStation");
+            const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getDrone");
+            const response_station = await axios.get("http://"+settings.ip+":"+settings.port+"/getDroneStation");
             
             const data = response.data;
             const data_station = response_station.data;
@@ -32,7 +36,7 @@ export const Drones:React.FC = (props) => {
             
             setTimeout(() => {
                 loadData();
-            }, settings.msInterval);
+            }, settings.interval);
         }
     };
 

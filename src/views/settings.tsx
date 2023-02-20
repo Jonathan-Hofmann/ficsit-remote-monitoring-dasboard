@@ -13,12 +13,15 @@ import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/localStorage";
 
+
+export const defaultSettingsData = {
+    ip: "localhost",
+    port: "8080",
+    interval: 1000
+};
+
 export const Settings: React.FC = (props) => {
-    const [settings, setSettings] = useLocalStorage("rmd_settings", {
-        ip: "localhost",
-        port: "8080",
-        interval: 1000
-    });
+    const [settings, setSettings] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     return (
         <Container>

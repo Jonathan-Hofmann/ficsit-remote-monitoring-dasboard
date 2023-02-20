@@ -6,14 +6,15 @@ import { SettingsContext } from "../context/Settings";
 
 import { Link } from "react-router-dom";
 import { Skeleton } from "@mui/material";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "./settings";
 
 
 export const Vehicles:React.FC = (props) => {
     
     const [doLoadData, setLoadData] = useState(true);
     const [vehicles, setVehicles] = useState<undefined | any>(undefined);
-
-    const settings = useContext(SettingsContext);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     const loadData = async () => {
         if (doLoadData === true) {
@@ -24,7 +25,7 @@ export const Vehicles:React.FC = (props) => {
 
             setTimeout(() => {
                 loadData();
-            }, settings.msInterval);
+            }, settings.interval);
         }
     };
     

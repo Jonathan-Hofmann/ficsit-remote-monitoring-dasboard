@@ -7,28 +7,26 @@ import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
 import { factoryRefs } from "../constants/buildings";
 import { itemRefs } from "../constants/items";
-
-
-
-
-
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "./settings";
 
 export const DetailedFactoryView:React.FC = (props) => {
     const [params] = useSearchParams();
     const factory = params.get("factory");
     const factoryEndpoint = params.get("endpoint");
     const [FactoryData, setFactoryData] = useState<undefined | any>(undefined);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
     
     let intervalVar:any;
 
     const loadData = async (endpoint:string) => {
         intervalVar = setInterval( async ()=>{
-            const response = await fetch("http://127.0.0.1:8080/"+endpoint);
+            const response = await fetch("http://"+settings.ip+":"+settings.port+"/"+endpoint);
             const data = await response.text();
             const getPower = JSON.parse(data);
             console.info(getPower);
             setFactoryData(getPower);
-        }, 1000)
+        }, settings.interval)
     };
 
     useEffect(()=>{

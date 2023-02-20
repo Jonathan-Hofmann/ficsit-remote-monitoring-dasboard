@@ -3,10 +3,13 @@ import { Skeleton } from "@mui/material";
 import { useTheme } from "@mui/system";
 import { useEffect, useState } from "react";
 import { BsBattery, BsBatteryHalf, BsCheck, BsCheck2, BsCloudSlash, BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "./settings";
 
 export const PowerMain:React.FC = (props) => {
     const [doLoadData, setLoadData] = useState(true);
     const [power, setPower] = useState<undefined | any>(undefined);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     const theme = useTheme();
 
@@ -14,12 +17,12 @@ export const PowerMain:React.FC = (props) => {
 
     const loadData = async () => {
         intervalVar = setInterval( async ()=>{
-            const response = await fetch("http://127.0.0.1:8080/getPower");
+            const response = await fetch("http://"+settings.ip+":"+settings.port+"/getPower");
             const data = await response.text();
             const getPower = JSON.parse(data);
             console.info(getPower);
             setPower(getPower);
-        }, 1000)
+        }, settings.interval)
     };
 
     useEffect(()=>{

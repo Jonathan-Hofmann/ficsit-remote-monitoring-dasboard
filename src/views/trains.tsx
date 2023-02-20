@@ -6,6 +6,8 @@ import { TbTrain } from "react-icons/tb";
 import axios from 'axios';
 import { SettingsContext } from "../context/Settings";
 import { Skeleton } from "@mui/material";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "./settings";
 
 
 export const Trains:React.FC = (props) => {
@@ -15,14 +17,13 @@ export const Trains:React.FC = (props) => {
     const [trainstaions, setTrainstations] = useState<undefined | any>(undefined);
 
     const [tStation_PrevNext, setTStation_PrevNext] = useState<undefined|any[]>(undefined);
-
-    const settings = useContext(SettingsContext);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     const loadData = async () => {
         if (doLoadData === true) {
 
-            const response = await axios.get("http://127.0.0.1:8080/getTrains");
-            const response_trainstaions = await axios.get("http://127.0.0.1:8080/getTrainStation");
+            const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getTrains");
+            const response_trainstaions = await axios.get("http://"+settings.ip+":"+settings.port+"/getTrainStation");
 
             // // console.info(trainsData);
             setTrains(response.data);
@@ -30,7 +31,7 @@ export const Trains:React.FC = (props) => {
             
             setTimeout(() => {
                 loadData();
-            }, settings.msInterval);
+            }, settings.interval);
         }
     };
 

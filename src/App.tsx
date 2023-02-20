@@ -29,11 +29,9 @@ function App() {
     // </CssVarsProvider>
     <ThemeWrapper>
       <ToggleTheme>
-        <SettingsProvider>
-          <BrowserRouter>
-            <MainWrapper/>
-          </BrowserRouter>
-        </SettingsProvider>
+        <BrowserRouter>
+          <MainWrapper/>
+        </BrowserRouter>
       </ToggleTheme>
     </ThemeWrapper>
   );

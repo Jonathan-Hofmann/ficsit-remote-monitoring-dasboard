@@ -7,6 +7,8 @@ import { itemRefs } from "../constants/items";
 import { toolRefs } from "../constants/tools";
 import { factoryRefs } from "../constants/buildings";
 import { Skeleton } from "@mui/material";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "./settings";
 
 export const StorageView: React.FC = (props) => {
 
@@ -14,14 +16,13 @@ export const StorageView: React.FC = (props) => {
     const [worldInv, setWorldInv] = useState<undefined | any>(undefined);
     const [prodStats, setProdStats] = useState<undefined | any>(undefined);
     const [items, setItems] = useState<undefined | any>(undefined);
-
-    const settings = useContext(SettingsContext);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     const loadData = async () => {
         if (doLoadData === true) {
 
-            const response = await axios.get("http://127.0.0.1:8080/getWorldInv");
-            const response_extra = await axios.get("http://127.0.0.1:8080/getProdStats");
+            const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getWorldInv");
+            const response_extra = await axios.get("http://"+settings.ip+":"+settings.port+"/getProdStats");
 
 
             //console.info(response.data);
@@ -30,7 +31,7 @@ export const StorageView: React.FC = (props) => {
 
             setTimeout(() => {
                 loadData();
-            }, settings.msInterval);
+            }, settings.interval);
         }
     };
 

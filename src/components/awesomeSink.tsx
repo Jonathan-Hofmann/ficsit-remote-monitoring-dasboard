@@ -8,6 +8,8 @@ import PlotFigure from "../views/plotWrapper";
 // @ts-ignore
 import * as Plot from "@observablehq/plot";
 import { Skeleton } from "@mui/material";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "../views/settings";
 // import { data } from "../constants/test-data";
 
 export const AwesomeSink:React.FC = (props) => {
@@ -17,20 +19,20 @@ export const AwesomeSink:React.FC = (props) => {
     const [sinks2, setSink2] = useState<undefined | any>(undefined);
 
     const [data, setData] = useState<undefined | any>(undefined)
-    const settings = useContext(SettingsContext);
+    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     const loadData = async () => {
         if (doLoadData === true) {
 
-            const response = await axios.get("http://127.0.0.1:8080/getResourceSink");
-            const response2 = await axios.get("http://127.0.0.1:8080/getExplorationSink");
+            const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getResourceSink");
+            const response2 = await axios.get("http://"+settings.ip+":"+settings.port+"/getExplorationSink");
             setSink(response.data);
             setSink2(response2.data);
             //console.log(response.data);
 
             setTimeout(() => {
                 loadData();
-            }, settings.msInterval);
+            }, settings.interval);
         }
     };
 
