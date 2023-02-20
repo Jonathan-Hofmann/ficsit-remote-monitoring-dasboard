@@ -18,6 +18,7 @@ import { AwesomeSink } from "./awesomeSink";
 import { Grid } from "@mui/joy";
 import { Settings } from "../views/settings";
 import { ConnectionCheckerProvider } from "../context/connectionChecker";
+import { Footer } from "./footer";
 
 export const MainWrapper:React.FC = (props) => {
     return(
@@ -44,6 +45,7 @@ export const MainWrapper:React.FC = (props) => {
                                 <Route path="/test" element={<SocketTestSite />} />
                             </Routes>
                         </ConnectionCheckerProvider>
+                        <Footer/>
                     </Box>
                 </Grid>
             </Grid>
