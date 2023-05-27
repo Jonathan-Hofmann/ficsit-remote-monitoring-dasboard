@@ -19,6 +19,7 @@ import { Grid } from "@mui/joy";
 import { Settings } from "../views/settings";
 import { ConnectionCheckerProvider } from "../context/connectionChecker";
 import { Footer } from "./footer";
+import Map_Comp from "../views/map";
 
 export const MainWrapper:React.FC = (props) => {
     return(
@@ -36,6 +37,7 @@ export const MainWrapper:React.FC = (props) => {
                                 <Route path="/settings" element={<Settings />} />
                                 <Route path="/production" element={<FactorysSwitch />} />
                                 <Route path="/factory" element={<DetailedFactoryView />} />
+                                <Route path="/map" element={<Map_Comp />} />
                                 <Route path="/building" element={<Building />} />
                                 <Route path="/drones" element={<Drones />} />
                                 <Route path="/trains" element={<Trains />} />
