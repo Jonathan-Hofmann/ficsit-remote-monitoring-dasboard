@@ -14,7 +14,7 @@ import { defaultSettingsData } from "./settings";
 export const Start:React.FC = (props) => {
     const [port, setPort] = useState(8080);
     const [doLoadData, setLoadData] = useState(true);
-    const [itemSelection, setItemSelection] = useLocalStorage('srmd_ItemList', []);
+    const [itemSelection, setItemSelection] = useLocalStorage('srmd_ItemList', ["Concrete", "Iron Ingot", "Copper Ingot", "Coal"]);
 
     const [worldInv, setWorldInv] = useState<undefined | any>(undefined);
     

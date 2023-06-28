@@ -106,7 +106,7 @@ export const Building:React.FC = (props) => {
                 </Grid>
                 <Grid item xs>
                     <Card>
-                        <CardHeader title={(parseInt(b.ManuSpeed)*100)+ " %"} subheader="Overclocking Speed"></CardHeader>
+                        <CardHeader title={(parseFloat(b.ManuSpeed)*100) + " %"} subheader="Overclocking Speed"></CardHeader>
                     </Card>
                 </Grid>
                 <Grid item xs>

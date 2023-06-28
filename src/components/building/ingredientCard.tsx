@@ -15,7 +15,7 @@ export const IngredientCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 <Typography level="body2">Current Consume</Typography>
                             </Grid>
                             <Grid>
-                                {props.product.CurrentConsumed}
+                                {props.product.CurrentConsumed.toFixed(2)}
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingTop:0}}>
@@ -23,7 +23,7 @@ export const IngredientCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 <Typography level="body2">Max. Consume</Typography>
                             </Grid>
                             <Grid>
-                                {props.product.MaxConsumed}
+                                {props.product.MaxConsumed.toFixed(2)}
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingTop:0}}>
@@ -31,7 +31,7 @@ export const IngredientCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 <Typography level="body2">Efficency Consume</Typography>
                             </Grid>
                             <Grid>
-                                {Math.floor(props.product.ConsPercent)} %
+                                {Math.floor(props.product.ConsPercent.toFixed(2))} %
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container  sx={{color: Math.floor(props.product.Inventory) === 0 ? "var(--joy-palette-error-main)": "var(--joy-palette-text-main)", paddingY:0}}>

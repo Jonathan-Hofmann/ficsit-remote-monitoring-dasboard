@@ -113,7 +113,7 @@ export const DetailedFactoryView:React.FC = (props) => {
                                                         <Grid>
                                                             <Box sx={{display: 'flex', flexDirection: 'row'}}>
                                                                 <img src={"/assets/Icon/Overclocking_Icon.png"} alt="image" style={{height: '22px', width: '22px'}}></img>
-                                                                <Typography marginLeft={'10px'}>{_factory.ManuSpeed} %</Typography>
+                                                                <Typography marginLeft={'10px'}>{_factory.ManuSpeed.toFixed(2)} %</Typography>
                                                             </Box>
                                                         </Grid>
                                                     </Grid>

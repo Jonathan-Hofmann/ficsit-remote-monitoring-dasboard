@@ -74,7 +74,7 @@ export const PowerMain:React.FC = (props) => {
                     <Card>
                         {/* <CardHeader title={allCapacity+ " MW"} subheader="Total Power Capacity"></CardHeader> */}
                         <Typography level="h3">
-                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allCapacity} MW</>}
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allCapacity)} MW</>}
                         </Typography>
                         <Typography>
                             Total Power Capacity
@@ -85,7 +85,7 @@ export const PowerMain:React.FC = (props) => {
                     <Card>
                         {/* <CardHeader title={allProduction+ " MW"} subheader="Total Power Production"></CardHeader> */}
                         <Typography level="h3">
-                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allProduction} MW</>}
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allProduction)} MW</>}
                         </Typography>
                         <Typography>
                             Total Production
@@ -96,7 +96,9 @@ export const PowerMain:React.FC = (props) => {
                     <Card>
                         {/* <CardHeader title={allBatteryCapacity+ " MW"} subheader="Total Battery Capacity"></CardHeader> */}
                         <Typography level="h3">
-                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allBatteryCapacity} MW</>}
+                            {/* {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allBatteryCapacity.toFixed(2)} MW</>} */}
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allBatteryCapacity)} MW</>}
+
                         </Typography>
                         <Typography>
                             Battery Capacity
@@ -157,7 +159,7 @@ export const PowerMain:React.FC = (props) => {
                                         <Card variant="outlined">
                                             {/* <CardHeader title={powerGroup.PowerCapacity+ " MW"} subheader="Power Capacity"></CardHeader> */}
                                             <Typography level="h6">
-                                                {powerGroup.PowerCapacity} MW
+                                                {new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(powerGroup.PowerCapacity)} MW
                                             </Typography>
                                             <Typography level="body2">
                                                 Power Capacity
@@ -168,7 +170,7 @@ export const PowerMain:React.FC = (props) => {
                                         <Card variant="outlined" sx={{backgroundColor: powerGroup.PowerProduction === 0 ? 'var(--joy-palette-danger-solidBg)' : 'var(--joy-palette-background-surface)'}}>
                                             {/* <CardHeader title={powerGroup.PowerProduction+ " MW"} subheader="Power Production"></CardHeader> */}
                                             <Typography level="h6">
-                                                {powerGroup.PowerProduction} MW
+                                                {new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(powerGroup.PowerProduction)} MW
                                             </Typography>
                                             <Typography level="body2">
                                                 Power Production
@@ -179,7 +181,7 @@ export const PowerMain:React.FC = (props) => {
                                         <Card variant="outlined">
                                             {/* <CardHeader title={powerGroup.PowerConsumed+ " MW"} subheader="Power Consumed"></CardHeader> */}
                                             <Typography level="h6">
-                                                {powerGroup.PowerConsumed} MW
+                                                {new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(powerGroup.PowerConsumed)} MW
                                             </Typography>
                                             <Typography level="body2">
                                                 Current consumption
@@ -190,7 +192,7 @@ export const PowerMain:React.FC = (props) => {
                                         <Card variant="outlined">
                                             {/* <CardHeader title={powerGroup.PowerMaxConsumed+ " MW"} subheader="Power max. Consumed"></CardHeader> */}
                                             <Typography level="h6">
-                                                {powerGroup.PowerMaxConsumed} MW
+                                                {new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(powerGroup.PowerMaxConsumed)} MW
                                             </Typography>
                                             <Typography level="body2">
                                                 Max. Consumed

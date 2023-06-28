@@ -230,12 +230,12 @@ export const Drones:React.FC = (props) => {
                                                 </Grid>
                                             </Grid>
                                             <Grid container>
-                                                <Grid xs>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
-                                                </Grid>
-                                                <Grid>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(drone.location.z) / 1000} m</Typography>
-                                                </Grid>
+                                            <Grid xs>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(drone.location.z / 1000).toFixed(2)} m</Typography>
+                                                    </Grid>
                                             </Grid>    
                                             </CardContent>
                                         </Card>
@@ -266,7 +266,7 @@ export const Drones:React.FC = (props) => {
                                                 <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
                                                     <CardContent>
                                                         <BsBatteryHalf size="25px" color={'rgba(255,255,255,0.5)'}/>
-                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstBatteryRate}</Typography>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstBatteryRate.toFixed(2)}</Typography>
                                                         <Typography level="body2">Estimated Battery Rate</Typography>
                                                     </CardContent>
                                                 </Card>
@@ -275,7 +275,7 @@ export const Drones:React.FC = (props) => {
                                                 <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
                                                     <CardContent>
                                                         <BsBox size="25px" color={'rgba(255,255,255,0.5)'}/>
-                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstTransRate}</Typography>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstTransRate.toFixed(2)}</Typography>
                                                         <Typography level="body2">Estimated Transfer Rate</Typography>
                                                     </CardContent>
                                                 </Card>
@@ -335,7 +335,7 @@ export const Drones:React.FC = (props) => {
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
                                                     </Grid>
                                                     <Grid>
-                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(drone.location.z) / 1000} m</Typography>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(drone.location.z / 1000).toFixed(2)} m</Typography>
                                                     </Grid>
                                                 </Grid>    
                                             </CardContent>

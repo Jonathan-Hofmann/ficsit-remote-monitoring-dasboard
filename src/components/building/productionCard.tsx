@@ -15,7 +15,7 @@ export const ProductionCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 <Typography level="body2">Current Production</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{props.product.CurrentProd}</Typography>
+                                <Typography>{props.product.CurrentProd.toFixed(2)}</Typography>
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingTop:0}}>
@@ -23,7 +23,7 @@ export const ProductionCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 <Typography level="body2">Max. Production</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{props.product.MaxProd}</Typography>
+                                <Typography>{props.product.MaxProd.toFixed(2)}</Typography>
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingTop:0}}>
@@ -31,7 +31,7 @@ export const ProductionCard:React.FC<{product:any, itemRefs:any}> = (props) => {
                                 <Typography level="body2">Efficency Production</Typography>
                             </Grid>
                             <Grid>
-                                <Typography>{Math.floor(props.product.ProdPercent)} %</Typography>
+                                <Typography>{Math.floor(props.product.ProdPercent.toFixed(2))} %</Typography>
                             </Grid>
                         </Grid>
                         <Grid spacing={0} container sx={{paddingY:0}}>
