@@ -1,3 +1,9 @@
+## ⚠ Information
+
+Hey there! I and Arfla currently don't have much free-time due to work and our private lifes to work on this project. That is why there hasn't been any updates in the last year. We will continue developing this dashboard when we have time again. Until now feel free to fork this project or enhance this project thru pull-requests. 
+
+---
+
 # Ficsit Remote Monitoring Dashboard [ FRMD ]
 ![my_image](./docs/assets/header_image.png)
 
