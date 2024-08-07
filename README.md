@@ -1,44 +1,36 @@
-## ⚠ Information
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Hey there! I and Arfla currently don't have much free-time due to work and our private lifes to work on this project. That is why there hasn't been any updates in the last year. We will continue developing this dashboard when we have time again. Until now feel free to fork this project or enhance this project thru pull-requests. 
+## Getting Started
 
----
+First, run the development server:
 
-# Ficsit Remote Monitoring Dashboard [ FRMD ]
-![my_image](./docs/assets/header_image.png)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-<!-- ## A nicely designed Dashboard for the Ficsit Remote Monitoring Mod.  -->
-<!-- 
-<br/>
-<br/> -->
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# How to use FRMD 
-## Prequisites
-You need to have the [Ficsit Remote Monitoring mod](https://ficsit.app/mod/FicsitRemoteMonitoring) by @porisius installed and running.
-### Starting Ficsit Remote Monitoring in Satisfactory
-To start the base-mod open the chat (with `ENTER`) and type in `/frmweb start`.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Using Ficsit Remote Monitoring Dashboard
-Once the base mod is started, you can access our dashboard via https://ficsit-rmd.vercel.app/ or alternatively access the mod-included page at http://localhost:8080/. 
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Viewing the Dashboard via https://ficsit-rmd.vercel.app/
-1. Start Satisfactory and run `/frmweb start` in the chat
-2. Open https://ficsit-rmd.vercel.app/ in a webbrowser.
-2. Now you can see the data flying into the dashboard.
+## Learn More
 
-## Starting the Dashboard locally
-### Prequisites
-For running FRMD locally, you will need to have NodeJS 16.0+ installed on your system.
+To learn more about Next.js, take a look at the following resources:
 
-1. Pull this Repository and open it with f.ex. Visual Studio Code
-2. Install all dependencies with `npm install` via a terminal
-2. Start the Webserver with `npm start`
-3. Access the Dashboard via http://localhost:3000/
-4. Load into a savefile from Satisfactory and run `/frmweb start` in the chat. 
-5. Now you can see the data flying into the dashboard.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-# Gallery
-![my_image](./docs/assets/Frame%201592.png)
+## Deploy on Vercel
 
-![my_image](./docs/assets/Frame%201593.png)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
