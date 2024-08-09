@@ -16,7 +16,7 @@ export class SubManager {
     private port = "8080"
     private protocol = "http"
 
-    private INTERVAL_MS = 1000;
+    private INTERVAL_MS = 2000;
 
 
     constructor(){

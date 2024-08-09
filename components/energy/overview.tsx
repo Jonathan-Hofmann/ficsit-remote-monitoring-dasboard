@@ -1,9 +1,11 @@
 import { useEffect, useMemo } from "react"
 import { Card, CardContent } from "../ui/card"
 import { Separator } from "../ui/separator"
-import { EnergyConsumptionWidget } from "../widgets/smallCardWithChart"
+import { EnergyConsumptionWidget } from "../widgets/smallCardWithChartSmart"
 import { SubManager } from "@/class/subManager"
-import { SmallCardWithCompareChart } from "../widgets/smallCardWithChart2"
+import { AreaChartCompare2Vals } from "../widgets/areaChartCompare2Vals"
+import { TotalStatistics } from "../widgets/totalStatistics"
+import { CircuitWrapper } from "../widgets/circuitsWrapper"
 
 export const EnergyOverview = () => {
 
@@ -20,17 +22,16 @@ export const EnergyOverview = () => {
     return(
         <div className="container py-8">
             <div>
-                <h1 className="text-3xl font-semibold">Energy Panel</h1>
+                <h1 className="text-4xl font-semibold">Energy Panel</h1>
             </div>
 
             <Separator className="my-4"/>
 
-            <div className="grid grid-cols-5 gap-4">
-                <EnergyConsumptionWidget SFRM={subManager} command={"getPower"} dataKey={"PowerConsumed"} description={"Consumed Power"} numberSuffix={"MW"} index={0}/>
-                <EnergyConsumptionWidget SFRM={subManager} command={"getPower"} dataKey={"PowerCapacity"} description={"Current Capacity"} numberSuffix={"MW"} index={0}/>
-                <EnergyConsumptionWidget SFRM={subManager} command={"getPower"} dataKey={"PowerMaxConsumed"} description={"Maximum Capacity"} numberSuffix={"MW"} index={0}/>
-                <SmallCardWithCompareChart SFRM={subManager} command={"getPower"} dataKey1={"PowerConsumed"} dataKey2={"PowerCapacity"} index={0}/>
+            <div className="grid grid-cols-5 gap-4 mb-4">
+                <TotalStatistics SFRM={subManager}/>
             </div>
+
+            <CircuitWrapper SFRM={subManager}/>
         </div>
     )
 }
