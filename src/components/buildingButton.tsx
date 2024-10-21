@@ -1,54 +1,36 @@
-import { Card, CardContent, Grid, Typography } from "@mui/joy";
+import {Card, CardContent, Grid, Stack, Typography} from "@mui/joy";
 import React from "react";
+import {Link} from "react-router-dom";
+import {fullRefs} from '../constants/refs';
 
-export const IngredientCard:React.FC<{product:any, fullRefs:any}> = (props) => {
-    let exists = false
-    if(props.fullRefs[props.product.Name]!=null){
-        exists = true
+export const BuildingButton:React.FC<{factory:any, page:any}> = (props) => {
+    let link = "/"+props.page+"/?"+props.page+"="+props.factory+"&endpoint=get"
+    if(props.page === 'generator'){
+        link = link + props.factory.split(' ')[0].split('-')[0] + 'Generator'
+    } else {
+        if(props.factory === 'Quantum Encoder') {
+            link = link + props.factory.split(' ')[1]
+        } else {
+            link = link + props.factory.split(' ')[0]
+        }
     }
+
     return(
-        <Card variant="outlined" sx={{padding: '3px', borderColor: Math.floor(props.product.Amount) === 0 ? "var(--joy-palette-error-main)": "var(--joy-palette-neutral-outlinedBorder)", borderWidth: Math.floor(props.product.Inventory) === 0 ? "3px": "1px"}}>
-            <CardContent>
-                <Grid spacing={2} container>
-                    <Grid>
-                        <img src={exists ? "/assets/"+props.fullRefs[props.product.Name].category+"/"+props.product.Name+".png" : undefined} alt={props.product.Name} style={{height: '30px', width: '30px'}}></img>
-                    </Grid>
-                    <Grid xs>
-                        <Grid spacing={0} container sx={{paddingTop:0}}>
-                            <Grid xs>
-                                <Typography level="body2">Current Consumed</Typography>
-                            </Grid>
-                            <Grid>
-                                <Typography>{(exists ? (props.fullRefs[props.product.Name].type === 'l' ? Math.round(props.product.CurrentConsumed / 10) / 100 + ' m³' : props.product.CurrentConsumed.toFixed(2)) : props.product.CurrentConsumed.toFixed(2))+'/min'}</Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid spacing={0} container sx={{paddingTop:0}}>
-                            <Grid xs>
-                                <Typography level="body2">Max Consumed</Typography>
-                            </Grid>
-                            <Grid>
-                                <Typography>{(exists ? (props.fullRefs[props.product.Name].type === 'l' ? Math.round(props.product.MaxConsumed / 10) / 100 + ' m³' : props.product.MaxConsumed.toFixed(2)) : props.product.MaxConsumed.toFixed(2))+'/min'}</Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid spacing={0} container sx={{paddingTop:0}}>
-                            <Grid xs>
-                                <Typography level="body2">Efficency Consume</Typography>
-                            </Grid>
-                            <Grid>
-                                <Typography>{props.product.ConsPercent.toFixed(2)} %</Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid spacing={0} container  sx={{color: Math.floor(props.product.Amount) === 0 ? "var(--joy-palette-error-main)": "var(--joy-palette-text-main)", paddingY:0}}>
-                            <Grid xs>
-                                <Typography level="body2">Input Inventory</Typography>
-                            </Grid>
-                            <Grid>
-                                {exists ? (props.fullRefs[props.product.Name].type === 'l' ? Math.round(props.product.Amount / 10) / 100 + ' m³' : props.product.Amount) : props.product.Amount}
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </CardContent>
-        </Card>
+        <Grid xs={4}>
+            <Link to={link} style={{textDecoration: 'none'}}>
+                <Card variant="outlined" sx={{'&:hover': {
+                    borderColor: 'var(--joy-palette-neutral-700)'
+                }, cursor: 'pointer'}}>
+                    <CardContent>
+                        <Stack alignItems={'center'}>
+                            <img src={"./assets/"+fullRefs[props.factory]?.category+"/"+props.factory+".png"} alt={props.factory} style={{height: '70px', width: '70px'}}></img>
+                            <Typography level="h5">
+                                {"Open "+props.factory+" Panel"}
+                            </Typography>
+                        </Stack>
+                    </CardContent>
+                </Card>
+            </Link>
+        </Grid>
     )
 } 

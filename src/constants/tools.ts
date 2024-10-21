@@ -20,7 +20,7 @@ export const toolRefs:{[key:string]:any} = {
     'Xenobasher': {
         image: 'Tools/ShockBaton_256.png'
     },
-    'Berry': {
+    'Paleberry': {
         image: 'Tools/IconDesc_Berry_256.png'
     },
     'Boombox': {
@@ -38,7 +38,7 @@ export const toolRefs:{[key:string]:any} = {
     'HatcherPart': {
         image: 'Tools/IconDesc_HatcherPart_256.png'
     },
-    'Hub Parts': {
+    'HUB Parts': {
         image: 'Tools/IconDesc_HubParts_256.png'
     },
     'Hazmat Suit': {
@@ -56,8 +56,8 @@ export const toolRefs:{[key:string]:any} = {
     'Stinger Parts': {
         image: 'Tools/IconDesc_StingerPart_256.png'
     },
-    'Xeno Zapper': {
-        image: 'Tools/IconDesc_XenoZapper_256.png'
+    'Xeno-Zapper': {
+        image: 'Tools/Xeno-Zapper.png'
     },
     'Zipline': {
         image: 'Tools/IconDesc_Zipline_256.png'
@@ -68,7 +68,7 @@ export const toolRefs:{[key:string]:any} = {
     'Jetpack': {
         image: 'Tools/Jetpack_256.png'
     },
-    'Nut': {
+    'Beryl Nut': {
         image: 'Tools/Nut_256_New.png'
     },
     'Object Scanner': {
@@ -83,10 +83,10 @@ export const toolRefs:{[key:string]:any} = {
     'Rifle': {
         image: 'Tools/RifleMk1_256.png'
     },
-    'WIP1': {
+    'Somersloop': {
         image: 'Tools/Wat_1_256.png'
     },
-    'WIP2': {
+    'Mercer Sphere': {
         image: 'Tools/Wat_2_256.png'
     }
 

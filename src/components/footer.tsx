@@ -9,7 +9,7 @@ return(
             <Grid container>
                 <Grid xs>
                     <Typography level="body2">
-                        Created with lots of ☕ by <Link style={{color:"var(--joy-palette-primary-main)", textDecoration:'none'}} target="_blank" to="https://github.com/Jonathan-Hofmann">Jonathan</Link> and <Link style={{color:"var(--joy-palette-primary-main)", textDecoration:'none'}} target="_blank" to="https://github.com/arfla">Arfla</Link>.
+                        Created with lots of ☕ by <Link style={{color:"var(--joy-palette-primary-main)", textDecoration:'none'}} target="_blank" to="https://github.com/Jonathan-Hofmann">Jonathan</Link>, <Link style={{color:"var(--joy-palette-primary-main)", textDecoration:'none'}} target="_blank" to="https://github.com/arfla">Arfla</Link> & <Link style={{color:"var(--joy-palette-primary-main)", textDecoration:'none'}} target="_blank" to="https://github.com/tomatoSauc">Tomas</Link>.
                     </Typography>
                 </Grid>
                 <Grid xs>

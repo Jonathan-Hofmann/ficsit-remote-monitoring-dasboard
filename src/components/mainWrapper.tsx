@@ -19,6 +19,7 @@ import { Grid } from "@mui/joy";
 import { Settings } from "../views/settings";
 import { ConnectionCheckerProvider } from "../context/connectionChecker";
 import { Footer } from "./footer";
+import {DetailedGeneratorView} from "../views/generatorView";
 
 export const MainWrapper:React.FC = (props) => {
     return(
@@ -33,6 +34,7 @@ export const MainWrapper:React.FC = (props) => {
                             <Routes>
                                 <Route path="/" element={<Start />} />
                                 <Route path="/power" element={<PowerMain />} />
+                                <Route path="/generator" element={<DetailedGeneratorView/>}/>
                                 <Route path="/settings" element={<Settings />} />
                                 <Route path="/production" element={<FactorysSwitch />} />
                                 <Route path="/factory" element={<DetailedFactoryView />} />

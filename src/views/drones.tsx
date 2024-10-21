@@ -29,7 +29,7 @@ export const Drones:React.FC = (props) => {
             const data = response.data;
             const data_station = response_station.data;
 
-            console.log(data);
+            // console.log(data);
 
             setDrones(data);
             setDronestations(data_station);
@@ -67,10 +67,10 @@ export const Drones:React.FC = (props) => {
 
             for (let index = 0; index < droneStaions.length; index++) {
                 const station = droneStaions[index];
-                if(station.HomeStation === homeBase){
+                if(station.Name === homeBase){
                     homeIndex = index;
                 }
-                if(station.CurrentDestination === destination){
+                if(station.Name === destination){
                     destIndex= index;
                 }
             }
@@ -79,8 +79,7 @@ export const Drones:React.FC = (props) => {
 
             // tmp.push([timetable[foundIndex]]);
         }
-        
-        console.log(tmp);
+
         setDrStation_PrevNext(tmp);
     };
 
@@ -149,10 +148,10 @@ export const Drones:React.FC = (props) => {
                                                     <Typography level="body2" sx={{ color: 'rgba(255,255,255,0.5)'}}>Home Port</Typography>
     
                                                     <Box sx={{position: 'absolute', top: '20px', right: '20px'}}>
-                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_EN_ROUTE" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>En Route</Chip>  }
-                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_TAKEOFF" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
-                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_DOCKING" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docking</Chip>  }
-                                                        {drStation_PrevNext[index][0].DroneStatus === "EDS_NOT_ENOUGH_BATTERIES" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Batteries Empty</Chip>  }
+                                                        {drStation_PrevNext[index][0].DroneStatus === "No Drones" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>No drones</Chip>  }
+                                                        {drStation_PrevNext[index][0].DroneStatus === "Cannot Unload" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Inventory Full</Chip>  }
+                                                        {drStation_PrevNext[index][0].DroneStatus === "Docked" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docked</Chip>  }
+                                                        {drStation_PrevNext[index][0].DroneStatus === "Takeoff" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
                                                     </Box>           
                                                 </CardContent>
                                             </Card>
@@ -170,10 +169,10 @@ export const Drones:React.FC = (props) => {
                                                     <Typography level="body2" sx={{color: 'rgba(255,255,255,0.5)'}}>Linked Port</Typography>
     
                                                     <Box sx={{position: 'absolute', top: '20px', right: '20px'}}>
-                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_EN_ROUTE" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>En Route</Chip>  }
-                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_TAKEOFF" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
-                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_DOCKING" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docking</Chip>  }
-                                                        {drStation_PrevNext[index][1].DroneStatus === "EDS_NOT_ENOUGH_BATTERIES" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Batteries Empty</Chip>  }
+                                                        {drStation_PrevNext[index][1].DroneStatus === "No Drones" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>No drones</Chip>  }
+                                                        {drStation_PrevNext[index][1].DroneStatus === "Cannot Unload" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Inventory Full</Chip>  }
+                                                        {drStation_PrevNext[index][1].DroneStatus === "Docked" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Docked</Chip>  }
+                                                        {drStation_PrevNext[index][1].DroneStatus === "Takeoff" &&  <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Takeoff</Chip>  }
                                                     </Box>      
     
                                                 </CardContent>
@@ -208,9 +207,9 @@ export const Drones:React.FC = (props) => {
                                             </Grid> */}
                                             <Stack alignItems={'center'} sx={{marginBottom: '15px'}}>
                                                 <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '100px'}}></img>
-                                                {drone.CurrentFlyingMode === "DFM_Flying" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
-                                                {drone.CurrentFlyingMode === "DFM_Travel" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
-                                                {drone.CurrentFlyingMode === "DFM_None" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Pending ...</Chip>  }
+                                                {drone.CurrentFlyingMode === "Flying" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                {drone.CurrentFlyingMode === "Travel" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                {drone.CurrentFlyingMode === "None" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Pending ...</Chip>  }
                                             </Stack>
     
                                             <Grid container>
@@ -234,7 +233,7 @@ export const Drones:React.FC = (props) => {
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
                                                     </Grid>
                                                     <Grid>
-                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(drone.location.z / 1000).toFixed(2)} m</Typography>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(drone.location.z / 100  + 18).toFixed(2)} m</Typography>
                                                     </Grid>
                                             </Grid>    
                                             </CardContent>
@@ -266,7 +265,7 @@ export const Drones:React.FC = (props) => {
                                                 <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
                                                     <CardContent>
                                                         <BsBatteryHalf size="25px" color={'rgba(255,255,255,0.5)'}/>
-                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstBatteryRate.toFixed(2)}</Typography>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstBatteryRate.toFixed(2)} / min</Typography>
                                                         <Typography level="body2">Estimated Battery Rate</Typography>
                                                     </CardContent>
                                                 </Card>
@@ -275,8 +274,8 @@ export const Drones:React.FC = (props) => {
                                                 <Card variant="outlined" sx={{height: '110px', paddingBottom: '0px !important'}}>
                                                     <CardContent>
                                                         <BsBox size="25px" color={'rgba(255,255,255,0.5)'}/>
-                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstTransRate.toFixed(2)}</Typography>
-                                                        <Typography level="body2">Estimated Transfer Rate</Typography>
+                                                        <Typography level="h4" marginTop={'10px'}>{drStation_PrevNext[index][0].EstTransRate.toFixed(2)} stacks</Typography>
+                                                        <Typography level="body2">Estimated Transfer Rate (per minute)</Typography>
                                                     </CardContent>
                                                 </Card>
                                             </Grid>
@@ -309,9 +308,9 @@ export const Drones:React.FC = (props) => {
                                             <CardContent>
                                                 <Stack alignItems={'center'} sx={{marginBottom: '15px'}}>
                                                     <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '100px'}}></img>
-                                                    {drone.CurrentFlyingMode === "DFM_Flying" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
-                                                    {drone.CurrentFlyingMode === "DFM_Travel" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
-                                                    {drone.CurrentFlyingMode === "DFM_None" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Pending ...</Chip>  }
+                                                    {drone.CurrentFlyingMode === "Flying" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                    {drone.CurrentFlyingMode === "Travel" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Flying</Chip>  }
+                                                    {drone.CurrentFlyingMode === "None" &&  <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Pending ...</Chip>  }
                                                 </Stack>
 
                                                 <Grid container>
@@ -335,7 +334,7 @@ export const Drones:React.FC = (props) => {
                                                         <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Height (Sealevel)</Typography>
                                                     </Grid>
                                                     <Grid>
-                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(drone.location.z / 1000).toFixed(2)} m</Typography>
+                                                        <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{(drone.location.z / 100 + 18).toFixed(2)} m</Typography>
                                                     </Grid>
                                                 </Grid>    
                                             </CardContent>

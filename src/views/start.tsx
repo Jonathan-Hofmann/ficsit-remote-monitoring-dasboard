@@ -1,19 +1,16 @@
-import { Autocomplete, CardContent, Container, FormLabel, Grid, Input, Modal, ModalClose, ModalDialog } from "@mui/joy";
-import { Box, Button, FormControl, Card, TextField, Typography } from "@mui/joy";
+import { Autocomplete, CardContent, Container, Grid, Modal, ModalClose, ModalDialog } from "@mui/joy";
+import { Button, Card, Typography } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import axios from "axios";
-import { truncateSync } from "fs";
-import React, { useContext, useEffect, useState } from "react";
-import { BsArrowRight, BsArrowRightCircle, BsArrowRightCircleFill, BsArrowRightShort, BsExclamationCircle, BsExclamationTriangle, BsExclamationTriangleFill } from "react-icons/bs";
+import React, { useEffect, useState } from "react";
+import { BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 import { AwesomeSink } from "../components/awesomeSink";
-import { itemRefs } from "../constants/items";
-import { SettingsContext } from "../context/Settings";
+import { fullRefs } from "../constants/refs";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
-export const Start:React.FC = (props) => {
-    const [port, setPort] = useState(8080);
-    const [doLoadData, setLoadData] = useState(true);
+export const Start:React.FC = () => {
+    const [doLoadData] = useState(true);
     const [itemSelection, setItemSelection] = useLocalStorage('srmd_ItemList', ["Concrete", "Iron Ingot", "Copper Ingot", "Coal"]);
 
     const [worldInv, setWorldInv] = useState<undefined | any>(undefined);
@@ -22,11 +19,11 @@ export const Start:React.FC = (props) => {
 
     // const [itemSelection, setItemSelection] = useState<undefined | string[]>([]);
     const [tmp_itemSelection, setTmpItemSelection] = useState<undefined | string[]>(undefined);
-    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+    const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     
     const loadWorldInventory = async () => {
-        if (doLoadData === true) {
+        if (doLoadData) {
 
             const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getWorldInv");
             setWorldInv(response.data);
@@ -37,18 +34,19 @@ export const Start:React.FC = (props) => {
         }
     };
 
-    useEffect(()=>{
-        console.log(itemSelection)
-    }, [itemSelection])
+    // useEffect(()=>{
+    //    console.log(itemSelection)
+    // }, [itemSelection])
 
     useEffect(()=>{
+        // noinspection JSIgnoredPromiseFromCall
         loadWorldInventory();
-    }, [])
+    })
     return(
         <Container sx={{paddingTop: '50px'}}>
             
             <Typography marginBottom={'10px'} level="h1">Welcome Pioneer!</Typography>
-            <Typography marginBottom={'50px'} level="h5" color="neutral" fontWeight={400}>Satisfactory Remote Monitoring Dashboard Version 0.1</Typography>
+            <Typography marginBottom={'50px'} level="h5" color="neutral" fontWeight={400}>Satisfactory Remote Monitoring Dashboard Version 1.0</Typography>
             
             <Grid spacing={3} container sx={{height: '100%', position: 'relative'}}>
                 <Grid xs={6}>
@@ -59,7 +57,7 @@ export const Start:React.FC = (props) => {
                                 <ModalClose/>
                                 <Typography level="h5">Edit Favorite Items List</Typography>
             
-                                <Autocomplete sx={{marginY: '20px'}} onChange={(e, v)=>{setTmpItemSelection(v)}} multiple defaultValue={tmp_itemSelection} options={Object.keys(itemRefs)}></Autocomplete>
+                                <Autocomplete sx={{marginY: '20px'}} onChange={(_e, v)=>{setTmpItemSelection(v)}} multiple defaultValue={tmp_itemSelection} options={Object.keys(fullRefs)}></Autocomplete>
             
                                 <Button sx={{marginBottom: '15px'}} fullWidth onClick={()=>{setItemSelection(tmp_itemSelection); setEditItemSelection(false)}}>
                                     Save changes
@@ -97,15 +95,15 @@ export const Start:React.FC = (props) => {
                                                 <Grid xs={4}>
                                                     <Card variant="outlined" sx={{height: '100%', padding: 0}}>
                                                         <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px'}}>
-                                                            <img src={"./assets/"+itemRefs[item.Name]?.image ?? null} alt="image" style={{height: '70px', width: '70px'}}></img>
+                                                            <img src={"./assets/"+fullRefs[item.Name]?.category+'/'+item.Name+'.png' ?? null} alt="" style={{height: '70px', width: '70px'}}></img>
                                                             <Typography marginBottom={'5px'} textAlign="center">{item.Name}</Typography>
-                                                            <Typography level="body2">{item.Count} Items</Typography>
+                                                            <Typography level="body2">{item.Amount} Items</Typography>
                                                         </CardContent>
                                                     </Card>
                                                 </Grid>
                                             )
                                         } else {
-                                            <></>
+                                            return(null)
                                         }
                                     })}
                                 </Grid>

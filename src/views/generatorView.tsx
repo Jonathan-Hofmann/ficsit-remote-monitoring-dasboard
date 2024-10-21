@@ -10,11 +10,11 @@ import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 import axios from 'axios';
 
-export const DetailedFactoryView:React.FC = () => {
+export const DetailedGeneratorView:React.FC = () => {
     const [params] = useSearchParams();
-    const factory = params.get("factory");
-    const factoryEndpoint = params.get("endpoint");
-    const [FactoryData, setFactoryData] = useState<undefined | any>(undefined);
+    const generator = params.get("generator");
+    const generatorEndpoint = params.get("endpoint");
+    const [GeneratorData, setGeneratorData] = useState<undefined | any>(undefined);
     const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
     let intervalVar:any;
 
@@ -22,15 +22,15 @@ export const DetailedFactoryView:React.FC = () => {
         intervalVar = setInterval( async ()=>{
             const response = await axios.get("http://"+settings.ip+":"+settings.port+"/"+endpoint);
             if (response.data[0]) {
-                setFactoryData(response.data);
+                setGeneratorData(response.data);
             } else {
-                setFactoryData([]);
+                setGeneratorData([]);
             }
         }, settings.interval)
     };
 
     useEffect(()=>{
-        if(factoryEndpoint)loadData(factoryEndpoint);
+        if(generatorEndpoint)loadData(generatorEndpoint);
         return(()=>{
             clearInterval(intervalVar);
         })
@@ -51,7 +51,7 @@ export const DetailedFactoryView:React.FC = () => {
                     <Grid container display={'flex'} alignItems={'center'}>
                         <Grid xs>
                             <Typography level="h2" marginBottom={"5px"} fontWeight={600}>
-                                {factory}
+                                {generator}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -59,17 +59,17 @@ export const DetailedFactoryView:React.FC = () => {
             </Card>
                                     
 
-            {FactoryData ?
+            {GeneratorData ?
                 <>
                     <Grid container spacing={3}>
-                        {FactoryData.map((_factory:any, index:any)=>{
+                        {GeneratorData.map((_generator:any, index:any)=>{
                             return(
                                 <Grid xs={4} key={index}>
                                     <Card variant={"outlined"}>
                                         <CardContent>
                                             <Grid padding={0} container>
                                                 <Grid xs>
-                                                    {_factory.IsProducing === true ?
+                                                    {_generator.IsFullSpeed === true ?
                                                         <Chip size="sm" color="success" variant="soft">Producing ...</Chip>
                                                     :
                                                         <Chip size="sm" color="danger" variant="soft" startDecorator={<BsExclamationTriangleFill style={{marginRight: '5px'}}/>}>Problems detected</Chip>
@@ -77,64 +77,28 @@ export const DetailedFactoryView:React.FC = () => {
                                                     
                                                 </Grid>
                                                 <Grid>
-                                                    {_factory.IsConfigured === true ?
-                                                        <Chip size="sm" color="neutral" variant="soft">Configured</Chip>
+                                                    {_generator.CanStart === true ?
+                                                        <Chip size="sm" color="neutral" variant="soft">Can Start</Chip>
                                                     :
-                                                        <Chip size="sm" color="danger" variant="soft">Not Configured</Chip>
+                                                        <Chip size="sm" color="danger" variant="soft">Cannot Start!</Chip>
                                                     }
                                                 </Grid>
                                             </Grid>
                                             <Stack alignItems={"center"}>
-                                                <img src={getImage(_factory.Name)} alt='' style={{height: '100px', width: '100px',marginTop: '10px'}}></img>
-                                                <Typography sx={{marginTop:'5px'}}>{_factory.Recipe}</Typography>
-                                                {_factory.IsConfigured === true &&
-                                                    <Box>
-                                                        <Grid spacing={0} container sx={{marginTop: '5px'}}>
-                                                            <Grid>
-                                                                {_factory.ingredients.map((ingredient:any, index:any) =>
-                                                                    <img key={index} src={getImage(ingredient.Name) ?? null} alt={ingredient.Name} style={{height: '40px', width: '40px'}} ></img>
-                                                                )}
-                                                            </Grid>
-                                                            <Grid>
-                                                                <BsArrowRightShort size={'36px'}/>
-                                                            </Grid>
-                                                            <Grid>
-                                                                {_factory.production.map((product:any, index:any) =>
-                                                                    <img key={index} src={getImage(product.Name) ?? null} alt={product.Name} style={{height: '40px', width: '40px'}}></img>
-                                                                )}
-                                                            </Grid>
-                                                        </Grid>
-                                                    </Box>
-                                                }
-                                            </Stack>  
-                                            {_factory.IsConfigured === true &&
-                                                <Box>
-                                                    <Grid container spacing={0} sx={{padding:0, marginBottom: '15px'}}>
-                                                        <Grid xs>
-                                                            <Typography>Ingredients</Typography>
-                                                        </Grid>
-                                                        <Grid>
-                                                            <Box sx={{display: 'flex', flexDirection: 'row'}}>
-                                                                <img src={"/assets/Icon/Overclocking_Icon.png"} alt='' style={{height: '22px', width: '22px'}}></img>
-                                                                <Typography marginLeft={'10px'}>{(_factory.ManuSpeed).toFixed(2)} %</Typography>
-                                                            </Box>
-                                                        </Grid>
+                                                <img src={getImage(_generator.Name)} alt='' style={{height: '100px', width: '100px',marginTop: '10px'}}></img>
+                                            </Stack>
+                                            <Box>
+                                                <Grid container spacing={0} sx={{padding:0, marginBottom: '15px'}}>
+                                                    <Grid xs>
+                                                        <Typography>Current Power Production:</Typography>
                                                     </Grid>
-                                                    {_factory.ingredients.map((product:any, index:any)=>{
-                                                        return(
-                                                            <IngredientCard key={index} product={product} fullRefs={fullRefs}/>
-                                                        )
-                                                    })}
-
-                                                    <Typography marginBottom={'15px'} marginTop={'30px'}>Products</Typography>
-                                                    {_factory.production.map((product:any, index:any)=>{
-                                                        return(
-                                                            <ProductionCard key={index} product={product} fullRefs={fullRefs}/>
-                                                        )
-                                                    })}
-
-                                                </Box>
-                                            }
+                                                    <Grid>
+                                                        <Box sx={{display: 'flex', flexDirection: 'row'}}>
+                                                            <Typography marginLeft={'10px'}>{_generator.DynamicProdCapacity.toFixed(2)} MW</Typography>
+                                                        </Box>
+                                                    </Grid>
+                                                </Grid>
+                                            </Box>
                                         </CardContent>
                                     </Card>
                                 </Grid>

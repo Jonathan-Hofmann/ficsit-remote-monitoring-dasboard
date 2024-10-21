@@ -1,15 +1,16 @@
-import { Card, Chip, CircularProgress, Container, Divider, Grid, Typography, CardContent, Box } from "@mui/joy"
+import { Card, Chip, Container, Divider, Grid, Typography, CardContent, Box } from "@mui/joy"
 import { Skeleton } from "@mui/material";
 import { useTheme } from "@mui/system";
 import { useEffect, useState } from "react";
-import { BsBattery, BsBatteryHalf, BsCheck, BsCheck2, BsCloudSlash, BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
+import { BsBatteryHalf, BsCheck, BsCloudSlash, BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
+import { BuildingButton } from "../components/buildingButton";
 
-export const PowerMain:React.FC = (props) => {
-    const [doLoadData, setLoadData] = useState(true);
+export const PowerMain:React.FC = () => {
     const [power, setPower] = useState<undefined | any>(undefined);
-    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+    const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
+    const generators = ['Biomass Burner', 'Coal-Powered Generator', 'Fuel-Powered Generator', 'Geothermal Generator', 'Nuclear Power Plant']
 
     const theme = useTheme();
 
@@ -20,7 +21,7 @@ export const PowerMain:React.FC = (props) => {
             const response = await fetch("http://"+settings.ip+":"+settings.port+"/getPower");
             const data = await response.text();
             const getPower = JSON.parse(data);
-            console.info(getPower);
+            // console.info(getPower);
             setPower(getPower);
         }, settings.interval)
     };
@@ -29,10 +30,9 @@ export const PowerMain:React.FC = (props) => {
         loadData();
 
         return function cleanup() {
-            console.error("CLEANUP!");
             clearInterval(intervalVar);
         };
-    }, [])
+    })
 
     let allCapacity = 0;
     let allProduction = 0;
@@ -43,7 +43,7 @@ export const PowerMain:React.FC = (props) => {
             allCapacity = allCapacity + element.PowerCapacity;
             allProduction = allProduction + element.PowerProduction;
             allBatteryCapacity = allBatteryCapacity + element.BatteryCapacity;
-            if (fuseBroken === false && element.FuseTriggered === true) {
+            if (!fuseBroken && element.FuseTriggered) {
                 fuseBroken = true;
             }
         });
@@ -68,13 +68,34 @@ export const PowerMain:React.FC = (props) => {
                     </Grid>
                 </CardContent>
             </Card>
-
+            <Card variant="outlined" sx={{marginBottom: '30px'}}>
+                <CardContent>
+                    <Card variant="outlined" sx={{marginBottom: '30px'}}>
+                        <CardContent>
+                            <Grid container display={'flex'} alignItems={'center'}>
+                                <Grid xs>
+                                    <Typography level="h3" marginBottom={"5px"} fontWeight={600}>
+                                        Power Generators
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                    <Grid container spacing={2}>
+                        {generators.map((generator:any, index:any) => {
+                            return(
+                                <BuildingButton page="generator" factory={generator} key={index}/>
+                            )
+                        })}
+                    </Grid>
+                </CardContent>
+            </Card>
             <Grid container spacing={2} sx={{marginBottom: '30px'}}>
                 <Grid xs>
                     <Card>
                         {/* <CardHeader title={allCapacity+ " MW"} subheader="Total Power Capacity"></CardHeader> */}
                         <Typography level="h3">
-                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allCapacity)} MW</>}
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-GB', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allCapacity)} MW</>}
                         </Typography>
                         <Typography>
                             Total Power Capacity
@@ -85,7 +106,7 @@ export const PowerMain:React.FC = (props) => {
                     <Card>
                         {/* <CardHeader title={allProduction+ " MW"} subheader="Total Power Production"></CardHeader> */}
                         <Typography level="h3">
-                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allProduction)} MW</>}
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-GB', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allProduction)} MW</>}
                         </Typography>
                         <Typography>
                             Total Production
@@ -97,7 +118,7 @@ export const PowerMain:React.FC = (props) => {
                         {/* <CardHeader title={allBatteryCapacity+ " MW"} subheader="Total Battery Capacity"></CardHeader> */}
                         <Typography level="h3">
                             {/* {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{allBatteryCapacity.toFixed(2)} MW</>} */}
-                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allBatteryCapacity)} MW</>}
+                            {!power ? <Skeleton sx={{marginBottom: '8px'}} variant="rounded" height={'30px'} width={'80px'} /> : <>{new Intl.NumberFormat('en-US', {style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(allBatteryCapacity)} MWh</>}
 
                         </Typography>
                         <Typography>
@@ -110,7 +131,7 @@ export const PowerMain:React.FC = (props) => {
                         <Skeleton sx={{marginBottom: '8px', width: '100%', borderRadius: '10px'}} variant="rounded" height={'93px'} />
                     :
                         <>
-                            {fuseBroken === false ? 
+                            {!fuseBroken ?
                                 <Card sx={{backgroundColor: theme.palette.success.main}}>
                                     {/* <CardHeader title="All Good" subheader="Fuse Status"></CardHeader> */}
                                     <Typography level="h3">
@@ -218,7 +239,7 @@ export const PowerMain:React.FC = (props) => {
                                             <Card variant="outlined">
                                                 {/* <CardHeader title={powerGroup.BatteryCapacity+ " MW"} subheader="Battery Capacity"></CardHeader> */}
                                                 <Typography>
-                                                    {powerGroup.BatteryCapacity} MW
+                                                    {powerGroup.BatteryCapacity} MWh
                                                 </Typography>
                                                 <Typography level="body2">
                                                     Battery Capacity
@@ -229,7 +250,7 @@ export const PowerMain:React.FC = (props) => {
                                             <Card variant="outlined">
                                                 {/* <CardHeader title={powerGroup.BatteryPercent+ " %"} subheader="Battery Filled Percent"></CardHeader> */}
                                                 <Typography>
-                                                    {powerGroup.BatteryPercent} %
+                                                    {Math.round(powerGroup.BatteryPercent * 100) / 100} %
                                                 </Typography>
                                                 <Typography level="body2">
                                                     Battery Filled Percent
@@ -240,7 +261,7 @@ export const PowerMain:React.FC = (props) => {
                                             <Card variant="outlined">
                                                 {/* <CardHeader title={powerGroup.BatteryDifferential+ " MW"} subheader="Battery Differential"></CardHeader> */}
                                                 <Typography>
-                                                    {powerGroup.BatteryDifferential} MW
+                                                    {Math.round(powerGroup.BatteryDifferential * 100) / 100} MW
                                                 </Typography>
                                                 <Typography level="body2">
                                                     Battery Differential
@@ -251,10 +272,10 @@ export const PowerMain:React.FC = (props) => {
                                             <Card variant="outlined">
                                                 {/* <CardHeader title={powerGroup.BatteryTimeFull} subheader="Battery Full At Time"></CardHeader> */}
                                                 <Typography>
-                                                    {powerGroup.BatteryTimeFull}
+                                                    {powerGroup.BatteryTimeEmpty !== "00:00:00" ? powerGroup.BatteryTimeEmpty : powerGroup.BatteryTimeFull}
                                                 </Typography>
                                                 <Typography level="body2">
-                                                    Battery Full At Time
+                                                    {powerGroup.BatteryTimeEmpty !== "00:00:00" ? "Battery Empty At Time" : "Battery Full At Time"}
                                                 </Typography>
                                             </Card>
                                         </Grid>
