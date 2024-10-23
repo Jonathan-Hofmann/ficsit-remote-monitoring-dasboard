@@ -20,7 +20,7 @@ export const Trains:React.FC = (props) => {
     const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     const loadData = async () => {
-        if (doLoadData === true) {
+        if (doLoadData) {
 
             const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getTrains");
             const response_trainstaions = await axios.get("http://"+settings.ip+":"+settings.port+"/getTrainStation");
@@ -53,7 +53,7 @@ export const Trains:React.FC = (props) => {
 
                 for (let index = 0; index < trainstaions.length; index++) {
                     const station = trainstaions[index];
-                    if(station.StationName === timetable[foundIndex].StationName){
+                    if(station.Name === timetable[foundIndex].StationName){
                         tmp.push([station]);
                     }
                 }
@@ -61,11 +61,11 @@ export const Trains:React.FC = (props) => {
                 for (let index = 0; index < trainstaions.length; index++) {
                     const station = trainstaions[index];
                     if(foundIndex === 0){
-                        if(station.StationName === timetable[timetable.length-1].StationName){
+                        if(station.Name === timetable[timetable.length-1].StationName){
                             tmp[tmp.length-1].unshift(station);
                         }
                     } else {
-                        if(station.StationName === timetable[foundIndex-1].StationName){
+                        if(station.Name === timetable[foundIndex-1].StationName){
                             tmp[tmp.length-1].unshift(station);
                         }
                     }
@@ -76,21 +76,22 @@ export const Trains:React.FC = (props) => {
             }
 
             // tmp.push([timetable[foundIndex]]);
-            console.log(tmp);
             setTStation_PrevNext(tmp);
             
 
         }
     };
 
+
+    useEffect(()=>{
+        loadData();
+    }, [])
+
     useEffect(()=>{
         if(trains && trains.length > 0) handlePrepareTStationsForUI(trains);
         // console.log(trains);
     }, [trains]);
 
-    useEffect(()=>{
-        loadData();
-    }, [])
 
     return(
         <Container sx={{paddingTop:'50px'}}>
@@ -112,7 +113,7 @@ export const Trains:React.FC = (props) => {
                 </CardContent>
             </Card>
 
-            {trains && tStation_PrevNext ? 
+            {trains && tStation_PrevNext ?
                 <>
                     {trains.map((train:any, index:number)=>{
 
@@ -120,7 +121,6 @@ export const Trains:React.FC = (props) => {
                         let left = 0;
                         let right = 0;
                         let totalLength = 0;
-
                         if(tStation_PrevNext[index].length > 0){
                             left = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][0].location.x)-(train.location.x)), 2))+(Math.pow(((tStation_PrevNext[index][0].location.y)-(train.location.y)), 2)), 0.5)/100);
                             right = Math.floor(Math.pow((Math.pow(((tStation_PrevNext[index][1].location.x)-(train.location.x)), 2))+(Math.pow(((tStation_PrevNext[index][1].location.y)-(train.location.y)), 2)), 0.5)/100);
@@ -135,13 +135,13 @@ export const Trains:React.FC = (props) => {
                             <Grid container spacing={2} sx={{marginY: '30px'}} display={'flex'} alignItems={'center'}>
                                 <Grid xs={3}>
                                     <Card variant="outlined" sx={{position: 'relative'}}>
-                                        {tStation_PrevNext[index].length > 0 ? 
+                                        {tStation_PrevNext[index].length > 0 ?
                                             <CardContent>
                                                 {/* <GiCargoCrate size="36px"/> */}
 
                                                 <Stack alignItems={"center"}>
-                                                    <img src="./assets/Buildings/IconDesc_DockingStation_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>
-                                                    <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][0].StationName}</Typography>
+                                                    <img src="./assets/Buildings/Train Station.png" alt="image" style={{height: '70px', width: '70px'}}></img>
+                                                    <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][0].Name}</Typography>
                                                     <Typography level="body3" sx={{ marginBottom: '20px'}}>Departure Station</Typography>
                                                 </Stack>  
 
@@ -190,10 +190,10 @@ export const Trains:React.FC = (props) => {
                                         <CardContent>
                                             <Stack alignItems={"center"}>
                                                 <img src="./assets/Vehicles/Locomotive_256.png" alt="image" style={{height: '80px', width: '80px'}}></img>
-                                                <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{train.TrainName}</Typography>
+                                                <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{train.Name}</Typography>
                                                 <Grid container sx={{marginBottom: '15px'}}>
                                                     <Grid>
-                                                        {train.Derailed === false ? 
+                                                        {!train.Derailed ?
                                                             <Chip color="success" size="sm" variant="outlined" sx={{backgroundColor: "rgba(33, 150, 83, 0.1)", borderColor: "rgba(33, 150, 83, 0.1)"}}>No Problems</Chip>
                                                         :
                                                             <Chip color="danger" size="sm" variant="outlined" sx={{backgroundColor: "rgba(235, 87, 87, 0.12)", borderColor: "rgba(235, 87, 87, 0.12)"}}>Derailed</Chip>
@@ -201,7 +201,7 @@ export const Trains:React.FC = (props) => {
                                                     </Grid>
 
                                                     <Grid>
-                                                        {train.Status === "TS_SelfDriving" ? 
+                                                        {train.Status === "Self-Driving" ?
                                                             <Chip color="info" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
                                                         :
                                                             <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
@@ -223,7 +223,7 @@ export const Trains:React.FC = (props) => {
                                                     <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Throttle</Typography>
                                                 </Grid>
                                                 <Grid>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.ThrottlePercent)} %</Typography>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{train.ThrottlePercent.toFixed(2)} %</Typography>
                                                 </Grid>
                                             </Grid>
                                             <Grid container>
@@ -231,7 +231,7 @@ export const Trains:React.FC = (props) => {
                                                     <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Power</Typography>
                                                 </Grid>
                                                 <Grid>
-                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(train.PowerConsumed)} MW</Typography>
+                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{train.PowerConsumed} MW</Typography>
                                                 </Grid>
                                             </Grid>
                                             <LinearProgress color="primary" determinate variant="soft" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} />
@@ -248,8 +248,8 @@ export const Trains:React.FC = (props) => {
                                             <CardContent>
 
                                                 <Stack alignItems={"center"}>
-                                                    <img src="./assets/Buildings/IconDesc_DockingStation_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>
-                                                    <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][1].StationName}</Typography>
+                                                    <img src="./assets/Buildings/Train Station.png" alt="image" style={{height: '70px', width: '70px'}}></img>
+                                                    <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][1].Name}</Typography>
                                                     <Typography level="body3" sx={{ marginBottom: '20px'}}>Destination Station</Typography>
                                                 </Stack>  
 

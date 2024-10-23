@@ -1,31 +1,31 @@
-import { Box, Card, CardContent, Chip, CircularProgress, Container, Divider, Grid, Stack, Typography } from "@mui/joy"
+import { Box, Card, CardContent, Chip, Container, Grid, Stack, Typography } from "@mui/joy"
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { BsArrowRightShort, BsExclamationTriangleFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom"
 import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
-import { factoryRefs } from "../constants/buildings";
-import { itemRefs } from "../constants/items";
+import { fullRefs } from "../constants/refs";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
+import axios from 'axios';
 
-export const DetailedFactoryView:React.FC = (props) => {
+export const DetailedFactoryView:React.FC = () => {
     const [params] = useSearchParams();
     const factory = params.get("factory");
     const factoryEndpoint = params.get("endpoint");
     const [FactoryData, setFactoryData] = useState<undefined | any>(undefined);
-    const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
-    
+    const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
     let intervalVar:any;
 
     const loadData = async (endpoint:string) => {
         intervalVar = setInterval( async ()=>{
-            const response = await fetch("http://"+settings.ip+":"+settings.port+"/"+endpoint);
-            const data = await response.text();
-            const getPower = JSON.parse(data);
-            console.info(getPower);
-            setFactoryData(getPower);
+            const response = await axios.get("http://"+settings.ip+":"+settings.port+"/"+endpoint);
+            if (response.data[0]) {
+                setFactoryData(response.data);
+            } else {
+                setFactoryData([]);
+            }
         }, settings.interval)
     };
 
@@ -34,7 +34,15 @@ export const DetailedFactoryView:React.FC = (props) => {
         return(()=>{
             clearInterval(intervalVar);
         })
-    }, [factoryEndpoint])
+    })
+
+    function getImage(item : any): any {
+            let value = null
+            if(fullRefs[item] != null){
+                value = "/assets/"+fullRefs[item].category+"/"+item+".png"
+            }
+            return value
+    }
 
     return(
         <Container sx={{paddingTop: '50px'}}>
@@ -46,22 +54,17 @@ export const DetailedFactoryView:React.FC = (props) => {
                                 {factory}
                             </Typography>
                         </Grid>
-                        <Grid>
-                            {/* <IconButton size="sm">
-                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                            </IconButton>  */}
-                        </Grid>
                     </Grid>
                 </CardContent>
             </Card>
                                     
 
-            {FactoryData ? 
+            {FactoryData ?
                 <>
                     <Grid container spacing={3}>
-                        {FactoryData.map((_factory:any)=>{
+                        {FactoryData.map((_factory:any, index:any)=>{
                             return(
-                                <Grid xs={4}>
+                                <Grid xs={4} key={index}>
                                     <Card variant={"outlined"}>
                                         <CardContent>
                                             <Grid padding={0} container>
@@ -77,56 +80,56 @@ export const DetailedFactoryView:React.FC = (props) => {
                                                     {_factory.IsConfigured === true ?
                                                         <Chip size="sm" color="neutral" variant="soft">Configured</Chip>
                                                     :
-                                                        <Chip size="sm" color="danger" variant="soft">NOT CONFIGURED</Chip>
+                                                        <Chip size="sm" color="danger" variant="soft">Not Configured</Chip>
                                                     }
                                                 </Grid>
                                             </Grid>
                                             <Stack alignItems={"center"}>
-                                                <img src={"/assets/"+factoryRefs[factory as string]?.image ?? null} alt="image" style={{height: '100px', width: '100px',marginTop: '10px'}}></img>
-                                                {/* <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{tStation_PrevNext[index][0].StationName}</Typography>
-                                                <Typography level="body3" sx={{ marginBottom: '20px'}}>Departure Station</Typography> */}
-                                                {/* <Typography level="h2" marginBottom={"5px"} fontWeight={600}>
-                                                    {factoryRefs[factory as string]?.image ?? null}
-                                                </Typography> */}
+                                                <img src={getImage(_factory.Name)} alt='' style={{height: '100px', width: '100px',marginTop: '10px'}}></img>
+                                                <Typography sx={{marginTop:'5px'}}>{_factory.Recipe}</Typography>
                                                 {_factory.IsConfigured === true &&
                                                     <Box>
-                                                        <Grid spacing={0} container sx={{marginTop: '10px'}}>
+                                                        <Grid spacing={0} container sx={{marginTop: '5px'}}>
                                                             <Grid>
-                                                                <img src={"/assets/"+itemRefs[_factory.ingredients[0].Name]?.image ?? null} alt="image" style={{height: '40px', width: '40px'}}></img>
+                                                                {_factory.ingredients.map((ingredient:any, index:any) =>
+                                                                    <img key={index} src={getImage(ingredient.Name) ?? null} alt={ingredient.Name} style={{height: '40px', width: '40px'}} ></img>
+                                                                )}
                                                             </Grid>
                                                             <Grid>
                                                                 <BsArrowRightShort size={'36px'}/>
                                                             </Grid>
                                                             <Grid>
-                                                                <img src={"/assets/"+itemRefs[_factory.production[0].Name]?.image ?? null} alt="image" style={{height: '40px', width: '40px'}}></img>
+                                                                {_factory.production.map((product:any, index:any) =>
+                                                                    <img key={index} src={getImage(product.Name) ?? null} alt={product.Name} style={{height: '40px', width: '40px'}}></img>
+                                                                )}
                                                             </Grid>
                                                         </Grid>
                                                     </Box>
                                                 }
                                             </Stack>  
-                                            {_factory.IsConfigured === true &&
+                                            {_factory.IsConfigured &&
                                                 <Box>
                                                     <Grid container spacing={0} sx={{padding:0, marginBottom: '15px'}}>
                                                         <Grid xs>
-                                                            <Typography>PRODUCTION</Typography>
+                                                            <Typography>Ingredients</Typography>
                                                         </Grid>
                                                         <Grid>
                                                             <Box sx={{display: 'flex', flexDirection: 'row'}}>
-                                                                <img src={"/assets/Icon/Overclocking_Icon.png"} alt="image" style={{height: '22px', width: '22px'}}></img>
-                                                                <Typography marginLeft={'10px'}>{_factory.ManuSpeed.toFixed(2)} %</Typography>
+                                                                <img src={"/assets/Icon/Overclocking_Icon.png"} alt='' style={{height: '22px', width: '22px'}}></img>
+                                                                <Typography marginLeft={'10px'}>{(_factory.ManuSpeed).toFixed(2)} %</Typography>
                                                             </Box>
                                                         </Grid>
                                                     </Grid>
-                                                    {_factory.production.map((product:any)=>{
-                                                        return(
-                                                            <ProductionCard product={product} itemRefs={itemRefs}/>
+                                                    {_factory.ingredients.map((product: any, index: any) => {
+                                                        return (
+                                                            <IngredientCard key={index} product={product} fullRefs={fullRefs}/>
                                                         )
                                                     })}
 
-                                                    <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
-                                                    {_factory.ingredients.map((product:any)=>{
+                                                    <Typography marginBottom={'15px'} marginTop={'30px'}>Products</Typography>
+                                                    {_factory.production.map((product:any, index:any)=>{
                                                         return(
-                                                            <IngredientCard product={product} itemRefs={itemRefs}/>
+                                                            <ProductionCard key={index} product={product} fullRefs={fullRefs}/>
                                                         )
                                                     })}
 
@@ -163,7 +166,6 @@ export const DetailedFactoryView:React.FC = (props) => {
                                     </Grid>
                                 </Grid>
                                 <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
-                                {/* <Skeleton variant={'rounded'} sx={{width: '100%', marginTop: '10px'}} height={'140px'}/> */}
 
                                 <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
                                 <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
@@ -193,7 +195,6 @@ export const DetailedFactoryView:React.FC = (props) => {
                                     </Grid>
                                 </Grid>
                                 <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
-                                {/* <Skeleton variant={'rounded'} sx={{width: '100%', marginTop: '10px'}} height={'140px'}/> */}
 
                                 <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
                                 <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
@@ -223,7 +224,6 @@ export const DetailedFactoryView:React.FC = (props) => {
                                     </Grid>
                                 </Grid>
                                 <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>
-                                {/* <Skeleton variant={'rounded'} sx={{width: '100%', marginTop: '10px'}} height={'140px'}/> */}
 
                                 <Typography marginBottom={'15px'} marginTop={'30px'}>INGREDIENTS</Typography>
                                 <Skeleton variant={'rounded'} sx={{width: '100%'}} height={'140px'}/>

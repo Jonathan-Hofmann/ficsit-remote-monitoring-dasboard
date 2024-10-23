@@ -2,8 +2,7 @@ import { Box, Card, CardContent, Chip, CircularProgress, Container, Grid, IconBu
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { SettingsContext } from "../context/Settings";
-import { factoryRefs } from "../constants/buildings";
-import { itemRefs } from "../constants/items";
+import {fullRefs} from "../constants/refs";
 import PlotFigure from "../views/plotWrapper";
 // @ts-ignore
 import * as Plot from "@observablehq/plot";
@@ -36,9 +35,20 @@ export const AwesomeSink:React.FC = (props) => {
         }
     };
 
+    const updateData = async () => {
+        const temp = [];
+        if (sinks) {
+            for (let index = 0; index < sinks[0].GraphPoints.length; index++) {
+                const value = sinks[0].GraphPoints[index];
+                temp.push({Index: index, value: value})
+            }
+        }
+        setData(temp)
+   };
+
     useEffect(()=>{
-        if(sinks2) setData(sinks2[0].GraphPoints);
-    }, [sinks2])
+        updateData()
+;    }, [sinks])
     
     useEffect(()=>{
         loadData();
@@ -76,11 +86,10 @@ export const AwesomeSink:React.FC = (props) => {
                                 <Stack >
                                     <Grid container spacing={2} padding={0} >
                                         <Grid xs>
-                                            <img src={"./assets/"+factoryRefs["Awesome Sink"].image} alt="image" style={{height: '70px', width: '70px'}}></img>
-                                            <Typography level="h6" marginY={'15px'}>{sinks2[0].Name}</Typography>
+                                            <img src={"./assets/"+fullRefs["AWESOME Sink"].category+"/AWESOME Sink.png"} alt="image" style={{height: '70px', width: '70px'}}></img>
                                         </Grid>
                                         <Grid display={'flex'} alignItems={'flex-end'} flexDirection="column">
-                                            <Typography level="h4">{new Intl.NumberFormat('de-DE', { style: 'decimal'}).format(sinks2[0].TotalPoints)}</Typography>
+                                            <Typography level="h4">{new Intl.NumberFormat('en-US', { style: 'decimal'}).format(sinks[0].TotalPoints)}</Typography>
                                             <Typography level="body2">Total Points</Typography>
                                         </Grid>
                                     </Grid>
@@ -120,7 +129,7 @@ export const AwesomeSink:React.FC = (props) => {
                                                     // title: (d:any) => `AAPL \n High: ${d.High}` // \n makes a new line
                                                 }),
 
-                                                Plot.text(data, {x: "Index", y: "value", text: (d:any) => `${new Intl.NumberFormat('de-DE', { style: 'decimal'}).format(d.value)}`, dy: 20})
+                                                Plot.text(data, {x: "Index", y: "value", text: (d:any) => `${new Intl.NumberFormat('en-US', { style: 'decimal'}).format(d.value)}`, dy: 20})
                                             ]
                                         }}></PlotFigure>
                                     </Box>
@@ -134,7 +143,7 @@ export const AwesomeSink:React.FC = (props) => {
                         <Grid xs={4}>
                             <Card variant="outlined">
                                 <CardContent>
-                                    <Typography level="h5">{new Intl.NumberFormat('de-DE', { style: 'decimal'}).format(sinks2[0].PointsToCoupon)}</Typography>
+                                    <Typography level="h5">{new Intl.NumberFormat('en-US', { style: 'decimal'}).format(sinks[0].PointsToCoupon)}</Typography>
                                     <Typography level="body2">Next Coupon in</Typography>
                                 </CardContent>
                             </Card>
@@ -142,7 +151,7 @@ export const AwesomeSink:React.FC = (props) => {
                         <Grid xs={4}>
                             <Card variant="outlined">
                                 <CardContent>
-                                    <Typography level="h5">{new Intl.NumberFormat('de-DE', { style: 'decimal'}).format(sinks2[0].Percent)} %</Typography>
+                                    <Typography level="h5">{new Intl.NumberFormat('en-US', { style: 'decimal'}).format(sinks[0].Percent)} %</Typography>
                                     <Typography level="body2">Next Coupon (%)</Typography>
                                 </CardContent>
                             </Card>
@@ -150,7 +159,7 @@ export const AwesomeSink:React.FC = (props) => {
                         <Grid xs={4}>
                             <Card variant="outlined">
                                 <CardContent>
-                                    <Typography level="h5">{new Intl.NumberFormat('de-DE', { style: 'decimal'}).format(sinks2[0].NumCoupon)}</Typography>
+                                    <Typography level="h5">{new Intl.NumberFormat('en-US', { style: 'decimal'}).format(sinks[0].NumCoupon)}</Typography>
                                     <Typography level="body2">Total Coupon(s)</Typography>
                                 </CardContent>
                             </Card>

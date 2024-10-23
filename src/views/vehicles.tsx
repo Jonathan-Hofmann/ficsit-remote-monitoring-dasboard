@@ -17,11 +17,20 @@ export const Vehicles:React.FC = (props) => {
     const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
     const loadData = async () => {
-        if (doLoadData === true) {
+        if (doLoadData) {
 
             const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getVehicles");
-            setVehicles(response.data);
-            // console.log(response.data);
+          
+            const temp = [];
+            for (let index = 0; index < response.data.length; index++) {
+                const value = response.data[index];
+                if (!value.Fuel[0]) {
+                    value.Fuel = [{Name: "N/A", Amount: 0}]
+                }
+                temp.push(value)
+            }
+            setVehicles(temp);
+
 
             setTimeout(() => {
                 loadData();
@@ -62,14 +71,14 @@ export const Vehicles:React.FC = (props) => {
                                             <CardContent>                                                                                
                                                 <Grid container spacing={4} sx={{paddingX: 0}} >
                                                     <Grid>
-                                                        {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
-                                                        {vehicle.VehicleType === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
-                                                        {vehicle.VehicleType === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
+                                                        {vehicle.Name === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
+                                                        {vehicle.Name === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
+                                                        {vehicle.Name === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
                                                     </Grid>
 
                                                     <Grid xs>
                                                         <Box sx={{marginBottom: '10px'}}>
-                                                            {vehicle.AutoPilot === false ? 
+                                                            {vehicle.Autopilot === false ?
                                                                 <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
                                                             :
                                                                 <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
@@ -93,7 +102,7 @@ export const Vehicles:React.FC = (props) => {
                     
                     <Grid container spacing={3} sx={{marginBottomY: '30px'}} display={'flex'} alignItems={'center'}>
                         {vehicles.map((vehicle:any, index:number)=>{
-                            if(vehicle.AutoPilot != false){
+                            if(vehicle.Autopilot != false){
                                 // Mode Manual -> show
                                 return(<></>)
                             } else {
@@ -104,9 +113,9 @@ export const Vehicles:React.FC = (props) => {
                                         <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
                                             <CardContent>
                                                 <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-                                                    {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
-                                                    {vehicle.VehicleType === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
-                                                    {vehicle.VehicleType === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
+                                                    {vehicle.Name === "Explorer" &&  <img src="../assets/Vehicles/Explorer_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
+                                                    {vehicle.Name === "Truck" &&  <img src="../assets/Vehicles/Truck_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
+                                                    {vehicle.Name === "Tractor" &&  <img src="../assets/Vehicles/Tractor_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
                                                     <Box sx={{position: 'relative'}}>
                                                         <Grid container spacing={1} display={'flex'} alignItems={'center'}>
                                                             <Grid>
@@ -117,10 +126,10 @@ export const Vehicles:React.FC = (props) => {
                                                                 }               
                                                             </Grid>
                                                             <Grid>
-                                                            {vehicle.AutoPilot === false ? 
-                                                                    <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
-                                                                :
+                                                            {vehicle.Autopilot === true ?
                                                                     <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
+                                                                :
+                                                                    <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
                                                                 }
                                                             </Grid>
                                                         </Grid>
@@ -137,7 +146,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Speed</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
+                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)/30} km/h</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container>
@@ -153,15 +162,15 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.EngineRPM)} RPM</Typography>
+                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{Math.max(0, parseInt(vehicle.EngineRPM))} RPM</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container>
                                                             <Grid xs>
-                                                                <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
+                                                                <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Amount</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.FuelInventory)}</Typography>
+                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.Fuel[0].Amount)}</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container>
@@ -169,31 +178,8 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                {vehicle.FuelType === "Alien Carapace" &&  <img src="./assets/Items/IconDesc_AlienCarapace_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Alien Organs" &&  <img src="./assets/Items/IconDesc_AlienOrgans_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Battery" &&  <img src="./assets/Items/IconDesc_Battery_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Biomass" &&  <img src="./assets/Items/IconDesc_Biomass_Final_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Coal" &&  <img src="./assets/Items/IconDesc_CoalOre_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Color Cartridge" &&  <img src="./assets/Items/IconDesc_ColorCartridge_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Compacted Coal" &&  <img src="./assets/Items/IconDesc_CompactedCoal_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Fabric" &&  <img src="./assets/Items/IconDesc_Fabric_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Flower Petals" &&  <img src="./assets/Items/FlowerPetals_Final_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Fuel" &&  <img src="./assets/Items/IconDesc_LiquidFuel_Pipe_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Leaves" &&  <img src="./assets/Items/IconDesc_Leaves_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Liquid Biofuel" &&  <img src="./assets/Items/IconDesc_LiquidBiofuel_Pipe_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Mycelia" &&  <img src="./assets/Items/IconDesc_Mycelia_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Fuel" &&  <img src="./assets/Items/IconDesc_Fuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Heavy Oil Residue" &&  <img src="./assets/Items/OilResidue_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Liquid Biofuel" &&  <img src="./assets/Items/IconDesc_LiquidBiofuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Oil" &&  <img src="./assets/Items/Oil_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Turbofuel" &&  <img src="./assets/Items/IconDesc_TurboFuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Petroleum Coke" &&  <img src="./assets/Items/IconDesc_PetroleumCoke_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Plutonium Fuel Rod" &&  <img src="./assets/Items/IconDesc_PlutoniumFuelRod_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Solid Biofuel" &&  <img src="./assets/Items/IconDesc_SolidBiofuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Turbofuel" &&  <img src="./assets/Items/IconDesc_LiquidTurboFuel_Pipe_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Uranium Fuel Rod" &&  <img src="./assets/Items/IconDesc_NuclearFuelRod_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Wood" &&  <img src="./assets/Items/IconDesc_Wood_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "N/A" &&  <BsXCircle color="red" size={'25px'}/>  }
+                                                                {vehicle.Fuel[0].Name !== "N/A" &&  <img src={"./assets/Items/"+vehicle.Fuel[0].Name+".png"} alt="image" style={{height: '30px', width: '30px'}}></img>  }
+                                                                {vehicle.Fuel[0].Name === "N/A" &&  <BsXCircle color="red" size={'25px'}/>  }
                                                             </Grid>
                                                         </Grid>
                                                     </Grid>
@@ -213,7 +199,7 @@ export const Vehicles:React.FC = (props) => {
                     </Typography>
                     <Grid container spacing={3}>
                         {vehicles.map((vehicle:any, index:number)=>{
-                            if(vehicle.AutoPilot === false){
+                            if(vehicle.Autopilot === false){
                                 // Mode Manual -> show
                                 return(<></>)
                             } else {
@@ -223,9 +209,9 @@ export const Vehicles:React.FC = (props) => {
                                         <Card sx={{position:'relative', paddingBottom: 0}} variant="outlined">
                                             <CardContent>
                                                 <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-                                                    {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
-                                                    {vehicle.VehicleType === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
-                                                    {vehicle.VehicleType === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
+                                                    {vehicle.Name === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
+                                                    {vehicle.Name === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
+                                                    {vehicle.Name === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '100px', width: '100px'}}></img>  }
                                                     <Box sx={{position: 'relative'}}>
                                                         <Grid container spacing={1} display={'flex'} alignItems={'center'}>
                                                             <Grid>
@@ -236,7 +222,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 }               
                                                             </Grid>
                                                             <Grid>
-                                                            {vehicle.AutoPilot === false ? 
+                                                            {vehicle.Autopilot === false ?
                                                                     <Chip color="primary" size="sm" variant="outlined" sx={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(255, 255, 255, 0.1)"}}>Manual</Chip>
                                                                 :
                                                                     <Chip color="neutral" size="sm" variant="outlined" sx={{backgroundColor: "rgba(47, 128, 237, 0.1)", borderColor: "rgba(47, 128, 237, 0.1)"}}>Autopilot</Chip>
@@ -257,8 +243,8 @@ export const Vehicles:React.FC = (props) => {
                                                             </Grid>
                                                             <Grid>
                                                                 <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)} km/h</Typography>
-                                                                    {vehicle.ForwardSpeed === 0 && parseInt(vehicle.EngineRPM) > 0 && <Tooltip title="If the vehicle is too far away from player the speed cannot be read."><IconButton sx={{marginLeft: '10px'}} size="sm" color="neutral" variant="plain"><BsQuestionCircle/></IconButton></Tooltip>}
+                                                                    <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.ForwardSpeed)/30} km/h</Typography>
+                                                                    {vehicle.ForwardSpeed === 0 && Math.max(0, parseInt(vehicle.EngineRPM)) > 0 && <Tooltip title="If the vehicle is too far away from player the speed cannot be read."><IconButton sx={{marginLeft: '10px'}} size="sm" color="neutral" variant="plain"><BsQuestionCircle/></IconButton></Tooltip>}
                                                                 </Box>
                                                             </Grid>
                                                         </Grid>
@@ -275,7 +261,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Engine RPM</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.EngineRPM)} RPM</Typography>
+                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{Math.max(0, parseInt(vehicle.EngineRPM))} RPM</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container>
@@ -283,7 +269,7 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Inventory</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.FuelInventory)}</Typography>
+                                                                <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>{parseInt(vehicle.Fuel[0].Amount)}</Typography>
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container>
@@ -291,31 +277,8 @@ export const Vehicles:React.FC = (props) => {
                                                                 <Typography sx={{color: 'rgba(255,255,255,0.5)'}}>Fuel Type</Typography>
                                                             </Grid>
                                                             <Grid>
-                                                                {vehicle.FuelType === "Alien Carapace" &&  <img src="./assets/Items/IconDesc_AlienCarapace_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Alien Organs" &&  <img src="./assets/Items/IconDesc_AlienOrgans_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Battery" &&  <img src="./assets/Items/IconDesc_Battery_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Biomass" &&  <img src="./assets/Items/IconDesc_Biomass_Final_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Coal" &&  <img src="./assets/Items/IconDesc_CoalOre_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Color Cartridge" &&  <img src="./assets/Items/IconDesc_ColorCartridge_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Compacted Coal" &&  <img src="./assets/Items/IconDesc_CompactedCoal_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Fabric" &&  <img src="./assets/Items/IconDesc_Fabric_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Flower Petals" &&  <img src="./assets/Items/FlowerPetals_Final_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Fuel" &&  <img src="./assets/Items/IconDesc_LiquidFuel_Pipe_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Leaves" &&  <img src="./assets/Items/IconDesc_Leaves_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Liquid Biofuel" &&  <img src="./assets/Items/IconDesc_LiquidBiofuel_Pipe_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Mycelia" &&  <img src="./assets/Items/IconDesc_Mycelia_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Fuel" &&  <img src="./assets/Items/IconDesc_Fuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Heavy Oil Residue" &&  <img src="./assets/Items/OilResidue_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Liquid Biofuel" &&  <img src="./assets/Items/IconDesc_LiquidBiofuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Oil" &&  <img src="./assets/Items/Oil_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Packaged Turbofuel" &&  <img src="./assets/Items/IconDesc_TurboFuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Petroleum Coke" &&  <img src="./assets/Items/IconDesc_PetroleumCoke_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Plutonium Fuel Rod" &&  <img src="./assets/Items/IconDesc_PlutoniumFuelRod_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Solid Biofuel" &&  <img src="./assets/Items/IconDesc_SolidBiofuel_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Turbofuel" &&  <img src="./assets/Items/IconDesc_LiquidTurboFuel_Pipe_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Uranium Fuel Rod" &&  <img src="./assets/Items/IconDesc_NuclearFuelRod_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "Wood" &&  <img src="./assets/Items/IconDesc_Wood_256.png" alt="image" style={{height: '30px', width: '30px'}}></img>  }
-                                                                {vehicle.FuelType === "N/A" &&  <BsXCircle color="red" size={'25px'}/>  }
+                                                                {vehicle.Fuel[0].Name !== "N/A" &&  <img src={"./assets/Items/"+vehicle.Fuel[0].Name+".png"} alt="image" style={{height: '30px', width: '30px'}}></img>  }
+                                                                {vehicle.Fuel[0].Name === "N/A" &&  <BsXCircle color="red" size={'25px'}/>  }
                                                             </Grid>
                                                         </Grid>
                                                     </Grid>

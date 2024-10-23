@@ -22,5 +22,8 @@ export const factoryRefs:{[key:string]:any} = {
     },
     'Awesome Sink': {
         image: 'Buildings/ResourceSink_256.png'
-    }
+    },
+    'Particle Accelerator': {
+        image: 'Buildings/IconDesc_Particle Accelerator_256.png'
+    },
 }
