@@ -1,16 +1,13 @@
 ## ⚠ Information
 
-Even though the original authors of FRMD don't have that much time to further develop the dashboard I decided to take it into my own hands and develop it a bit further... Some features don't work as intended due to mod issues, but otherwise it should work mostly
+The original authors of FRMD don't have that much time (at the moment) to further develop this dashboard.
+
+So feel free to contribute to this project and enhance the features! Just make a pull request when you have something ready!
 
 ---
 
 # Ficsit Remote Monitoring Dashboard [ FRMD ]
 ![my_image](./docs/assets/header_image.png)
-
-<!-- ## A nicely designed Dashboard for the Ficsit Remote Monitoring Mod.  -->
-<!-- 
-<br/>
-<br/> -->
 
 # How to use FRMD 
 ## Prequisites
@@ -37,6 +34,12 @@ For running FRMD locally, you will need to have NodeJS 16.0+ installed on your s
 4. Load into a savefile from Satisfactory and run `/frmweb start` in the chat. 
 5. Now you can see the data flying into the dashboard.
 
+# Contributors
+Thanks to all Contributors!
+- Jonathan-Hofmann (Original Author)
+- arfla (Original Author)
+- tomatosauc (Active Contributor)
+- LouisForaux (Active Contributor)
 
 # Gallery
 ![my_image](./docs/assets/Frame%201592.png)
