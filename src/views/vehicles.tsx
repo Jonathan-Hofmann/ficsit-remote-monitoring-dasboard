@@ -20,6 +20,7 @@ export const Vehicles:React.FC = (props) => {
         if (doLoadData) {
 
             const response = await axios.get("http://"+settings.ip+":"+settings.port+"/getVehicles");
+          
             const temp = [];
             for (let index = 0; index < response.data.length; index++) {
                 const value = response.data[index];
@@ -29,6 +30,7 @@ export const Vehicles:React.FC = (props) => {
                 temp.push(value)
             }
             setVehicles(temp);
+
 
             setTimeout(() => {
                 loadData();
