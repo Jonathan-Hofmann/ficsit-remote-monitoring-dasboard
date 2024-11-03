@@ -1,6 +1,8 @@
-import React, { FC, useEffect, useRef } from "react";
 // @ts-ignore
 import * as Plot from "@observablehq/plot";
+import type { FC } from "react";
+import React, { useEffect, useRef } from "react";
+
 import { addTooltips } from "../components/tooltips";
 
 export type Props = {
@@ -22,7 +24,12 @@ const PlotFigure: FC<Props> = ({ options }) => {
     }
   }, [ref, options]);
 
-  return <div style={{backgroundColor: 'transparent'}} ref={ref} />;
+  return (
+    <div
+      style={{ backgroundColor: "transparent" }}
+      ref={ref}
+    />
+  );
 };
 
 export default PlotFigure;

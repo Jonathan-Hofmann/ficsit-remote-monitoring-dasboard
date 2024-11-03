@@ -1,17 +1,12 @@
 import { useColorScheme } from "@mui/joy";
 import { useEffect } from "react";
 
-export const ToggleTheme:React.FC<any> = (props) => {
-    
-    const {setMode} = useColorScheme();
+export const ToggleTheme: React.FC<any> = (props) => {
+  const { setMode } = useColorScheme();
 
-    useEffect(()=>{
-        setMode("dark");
-    }, [])
+  useEffect(() => {
+    setMode("dark");
+  }, []);
 
-    return(
-        <>
-            {props.children}
-        </>
-    )
-}
+  return <>{props.children}</>;
+};

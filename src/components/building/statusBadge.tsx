@@ -1,3 +1,1 @@
-export const getStatusBadge = () => {
-    
-}
+export const getStatusBadge = () => {};
