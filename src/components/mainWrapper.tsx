@@ -51,10 +51,6 @@ export const MainWrapper: React.FC = (props) => {
                 element={<DetailedGeneratorView />}
               />
               <Route
-                path="/settings"
-                element={<Settings />}
-              />
-              <Route
                 path="/production"
                 element={<FactorysSwitch />}
               />
@@ -89,6 +85,10 @@ export const MainWrapper: React.FC = (props) => {
               <Route
                 path="/test"
                 element={<SocketTestSite />}
+              />
+              <Route
+                path="/settings"
+                element={<Settings />}
               />
             </Routes>
           </ConnectionCheckerProvider>

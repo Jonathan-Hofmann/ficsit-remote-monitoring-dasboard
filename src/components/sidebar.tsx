@@ -36,6 +36,7 @@ export const Sidebar = () => {
   const [isFullsize, setIsFullsize] = useState(false);
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {isFullsize ? (
         <Box
@@ -100,6 +101,20 @@ export const Sidebar = () => {
                 Power Screen
               </Button>
             </Link>
+            {/* <Link
+              style={{ textDecoration: "none" }}
+              to="/generator"
+            >
+              <Button
+                fullWidth
+                color="neutral"
+                variant="soft"
+                sx={{ display: "flex", justifyContent: "flex-start" }}
+                startDecorator={<GiFactory />}
+              >
+                Generator
+              </Button>
+            </Link> */}
             <Link
               style={{ textDecoration: "none" }}
               to="/production"
@@ -114,6 +129,34 @@ export const Sidebar = () => {
                 Production
               </Button>
             </Link>
+            {/* <Link
+              style={{ textDecoration: "none" }}
+              to="/factory"
+            >
+              <Button
+                fullWidth
+                color="neutral"
+                variant="soft"
+                sx={{ display: "flex", justifyContent: "flex-start" }}
+                startDecorator={<GiFactory />}
+              >
+                Factory
+              </Button>
+            </Link>
+            <Link
+              style={{ textDecoration: "none" }}
+              to="/building"
+            >
+              <Button
+                fullWidth
+                color="neutral"
+                variant="soft"
+                sx={{ display: "flex", justifyContent: "flex-start" }}
+                startDecorator={<GiFactory />}
+              >
+                Building
+              </Button>
+            </Link> */}
             <Link
               style={{ textDecoration: "none" }}
               to="/drones"
@@ -170,7 +213,34 @@ export const Sidebar = () => {
                 Storage View
               </Button>
             </Link>
-
+            {/* <Link
+              style={{ textDecoration: "none", marginTop: "50px" }}
+              to="/awesomeSink"
+            >
+              <Button
+                fullWidth
+                color="neutral"
+                variant="soft"
+                sx={{ display: "flex", justifyContent: "flex-start" }}
+                startDecorator={<BsGearFill />}
+              >
+                Awesome Sink
+              </Button>
+            </Link>
+            <Link
+              style={{ textDecoration: "none", marginTop: "50px" }}
+              to="/test"
+            >
+              <Button
+                fullWidth
+                color="neutral"
+                variant="soft"
+                sx={{ display: "flex", justifyContent: "flex-start" }}
+                startDecorator={<BsGearFill />}
+              >
+                test
+              </Button>
+            </Link> */}
             <Link
               style={{ textDecoration: "none", marginTop: "50px" }}
               to="/settings"
@@ -254,6 +324,23 @@ export const Sidebar = () => {
                 </IconButton>
               </Link>
             </Tooltip>
+            {/* <Tooltip
+              placement="right"
+              title="Generator"
+            >
+              <Link
+                style={{ textDecoration: "none" }}
+                to="/generator"
+              >
+                <IconButton
+                  size="lg"
+                  color="neutral"
+                  variant="plain"
+                >
+                  <GiFactory />
+                </IconButton>
+              </Link>
+            </Tooltip> */}
             <Tooltip
               placement="right"
               title="All Factories"
@@ -271,6 +358,40 @@ export const Sidebar = () => {
                 </IconButton>
               </Link>
             </Tooltip>
+            {/* <Tooltip
+              placement="right"
+              title="Factory"
+            >
+              <Link
+                style={{ textDecoration: "none" }}
+                to="/factory"
+              >
+                <IconButton
+                  size="lg"
+                  color="neutral"
+                  variant="plain"
+                >
+                  <GiFactory />
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip
+              placement="right"
+              title="Building"
+            >
+              <Link
+                style={{ textDecoration: "none" }}
+                to="/building"
+              >
+                <IconButton
+                  size="lg"
+                  color="neutral"
+                  variant="plain"
+                >
+                  <GiFactory />
+                </IconButton>
+              </Link>
+            </Tooltip> */}
             <Tooltip
               placement="right"
               title="Drones"
@@ -339,6 +460,40 @@ export const Sidebar = () => {
                 </IconButton>
               </Link>
             </Tooltip>
+            {/* <Tooltip
+              placement="right"
+              title="Awesome Sink"
+            >
+              <Link
+                style={{ textDecoration: "none" }}
+                to="/awesomeSink"
+              >
+                <IconButton
+                  size="lg"
+                  color="neutral"
+                  variant="plain"
+                >
+                  <FaBoxes />
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip
+              placement="right"
+              title="test"
+            >
+              <Link
+                style={{ textDecoration: "none" }}
+                to="/test"
+              >
+                <IconButton
+                  size="lg"
+                  color="neutral"
+                  variant="plain"
+                >
+                  <FaBoxes />
+                </IconButton>
+              </Link>
+            </Tooltip> */}
 
             <Divider />
 
