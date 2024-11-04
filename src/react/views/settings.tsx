@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 
-import { useLocalStorage } from "../hooks/localStorage";
+import { useLocalStorage } from "../../hooks/localStorage";
 
 export const defaultSettingsData = {
   ip: "localhost",

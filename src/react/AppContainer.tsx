@@ -4,23 +4,23 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { ConnectionCheckerProvider } from "../context/connectionChecker";
-import { Building } from "../views/building";
-import { Drones } from "../views/drones";
-import { DetailedFactoryView } from "../views/factoryView";
-import { DetailedGeneratorView } from "../views/generatorView";
-import { PowerMain } from "../views/powerMain";
-import { FactorysSwitch } from "../views/production";
-import { Settings } from "../views/settings";
-import { Start } from "../views/start";
-import { StorageView } from "../views/storageView";
-import { SocketTestSite } from "../views/testingSocket";
-import { Trains } from "../views/trains";
-import { Vehicles } from "../views/vehicles";
-import { AwesomeSink } from "./awesomeSink";
-import { Footer } from "./footer";
-import { Sidebar } from "./sidebar";
+import { AwesomeSink } from "./components/awesomeSink";
+import { Footer } from "./components/footer";
+import { Sidebar } from "./components/sidebar";
+import { Building } from "./views/building";
+import { Drones } from "./views/drones";
+import { DetailedFactoryView } from "./views/factoryView";
+import { DetailedGeneratorView } from "./views/generatorView";
+import { PowerMain } from "./views/powerMain";
+import { FactorysSwitch } from "./views/production";
+import { Settings } from "./views/settings";
+import { Start } from "./views/start";
+import { StorageView } from "./views/storageView";
+import { SocketTestSite } from "./views/testingSocket";
+import { Trains } from "./views/trains";
+import { Vehicles } from "./views/vehicles";
 
-export const MainWrapper: React.FC = () => {
+export const AppContainer: React.FC = () => {
   return (
     <Grid
       container

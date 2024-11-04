@@ -14,7 +14,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 
-import { useLocalStorage } from "../hooks/localStorage";
+import { useLocalStorage } from "../../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
 export const Drones: React.FC = () => {

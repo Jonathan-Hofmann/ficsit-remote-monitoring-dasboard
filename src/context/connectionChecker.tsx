@@ -4,8 +4,8 @@ import axios from "axios";
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 
+import { defaultSettingsData } from "../react/views/settings";
 import type { ConnectionCheckerContextDefaultValues } from "../types/connectionCheckerContextDefaultValues";
-import { defaultSettingsData } from "../views/settings";
 
 const defaultValues: ConnectionCheckerContextDefaultValues = {
   msInterval: 1000,

@@ -2,7 +2,7 @@ import { Card, CardContent, Grid, Stack, Typography } from "@mui/joy";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { fullRefs } from "../constants/refs";
+import { fullRefs } from "../../constants/refs";
 
 type Props = {
   factory: any;

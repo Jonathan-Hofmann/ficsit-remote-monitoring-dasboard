@@ -10,9 +10,9 @@ import {
 import { useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
 
-import { FactoryTypeCol } from "../production/col_type";
-import { useLocalStorage } from "../../hooks/localStorage";
-import { defaultSettingsData } from "../../views/settings";
+import { FactoryTypeCol } from "../react/components/production/col_type";
+import { useLocalStorage } from "../hooks/localStorage";
+import { defaultSettingsData } from "../react/views/settings";
 
 export const Factorys: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);

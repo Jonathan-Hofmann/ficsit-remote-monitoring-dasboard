@@ -19,8 +19,8 @@ import {
   BsExclamationTriangleFill,
 } from "react-icons/bs";
 
+import { useLocalStorage } from "../../hooks/localStorage";
 import { BuildingButton } from "../components/buildingButton";
-import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
 export const PowerMain: React.FC = () => {

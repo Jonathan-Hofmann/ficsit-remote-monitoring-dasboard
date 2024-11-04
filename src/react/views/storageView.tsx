@@ -6,8 +6,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
-import { fullRefs } from "../constants/refs";
-import { useLocalStorage } from "../hooks/localStorage";
+import { fullRefs } from "../../constants/refs";
+import { useLocalStorage } from "../../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
 export const StorageView: React.FC = () => {

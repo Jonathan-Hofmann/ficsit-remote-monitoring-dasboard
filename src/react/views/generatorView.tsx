@@ -14,8 +14,8 @@ import React, { useEffect, useState } from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
 
-import { fullRefs } from "../constants/refs";
-import { useLocalStorage } from "../hooks/localStorage";
+import { fullRefs } from "../../constants/refs";
+import { useLocalStorage } from "../../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
 export const DetailedGeneratorView: React.FC = () => {
