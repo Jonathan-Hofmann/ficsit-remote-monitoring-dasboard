@@ -47,12 +47,12 @@ import { Link } from "react-router-dom";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "../views/settings";
 
-export type Info = {
+type Info = {
   msInterval: number;
   checkConnectionToFRM: Function;
 };
 
-export const defaultValues: Info = {
+const defaultValues: Info = {
   msInterval: 1000,
   checkConnectionToFRM: () => {},
 };

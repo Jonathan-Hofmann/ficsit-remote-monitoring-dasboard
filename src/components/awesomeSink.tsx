@@ -21,7 +21,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { fullRefs } from "../constants/refs";
 import { SettingsContext } from "../context/Settings";
 import { useLocalStorage } from "../hooks/localStorage";
-import PlotFigure from "../views/plotWrapper";
+import { PlotFigure } from "../views/plotWrapper";
 import { defaultSettingsData } from "../views/settings";
 // import { data } from "../constants/test-data";
 

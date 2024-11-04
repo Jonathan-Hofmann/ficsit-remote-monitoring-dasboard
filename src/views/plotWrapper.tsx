@@ -5,11 +5,11 @@ import React, { useEffect, useRef } from "react";
 
 import { addTooltips } from "../components/tooltips";
 
-export type Props = {
+type Props = {
   options: any;
 };
 
-const PlotFigure: FC<Props> = ({ options }) => {
+export const PlotFigure: FC<Props> = ({ options }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,5 +31,3 @@ const PlotFigure: FC<Props> = ({ options }) => {
     />
   );
 };
-
-export default PlotFigure;

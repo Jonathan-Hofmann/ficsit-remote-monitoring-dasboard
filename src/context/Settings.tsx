@@ -39,17 +39,17 @@ import {
   BsSearch,
 } from "react-icons/bs";
 
-export type Info = {
+type Info = {
   msInterval: number;
 };
 
-export const defaultValues: Info = {
+const defaultValues: Info = {
   msInterval: 1000,
 };
 
 export const SettingsContext = createContext(defaultValues);
 
-export const SettingsProvider: React.FC<any> = (props) => {
+const SettingsProvider: React.FC<any> = (props) => {
   const [showSettings, setShowSettings] = useState(false);
 
   const [msInterval, setMsInterval] = useState(1000);
