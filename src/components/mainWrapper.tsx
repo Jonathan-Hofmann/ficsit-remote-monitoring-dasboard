@@ -1,5 +1,5 @@
 import { Grid } from "@mui/joy";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -10,7 +10,6 @@ import { DetailedFactoryView } from "../views/factoryView";
 import { DetailedGeneratorView } from "../views/generatorView";
 import { PowerMain } from "../views/powerMain";
 import { FactorysSwitch } from "../views/production";
-import { Factorys } from "../views/productionMain";
 import { Settings } from "../views/settings";
 import { Start } from "../views/start";
 import { StorageView } from "../views/storageView";
@@ -20,7 +19,6 @@ import { Vehicles } from "../views/vehicles";
 import { AwesomeSink } from "./awesomeSink";
 import { Footer } from "./footer";
 import { Sidebar } from "./sidebar";
-import SearchAppBar from "./topBar";
 
 export const MainWrapper: React.FC = (props) => {
   return (

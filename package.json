@@ -7,6 +7,7 @@
     "build": "react-scripts build",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
+    "check-types": "tsc --noEmit",
     "eject": "react-scripts eject"
   },
   "dependencies": {

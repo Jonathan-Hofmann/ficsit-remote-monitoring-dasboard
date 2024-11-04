@@ -1,6 +1,5 @@
 import {
   Card,
-  Chip,
   CircularProgress,
   Container,
   Divider,
@@ -10,15 +9,6 @@ import {
 } from "@mui/joy";
 import { useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import {
-  BsBattery,
-  BsBatteryHalf,
-  BsCheck,
-  BsCheck2,
-  BsCloudSlash,
-  BsExclamationTriangleFill,
-} from "react-icons/bs";
-import { factory } from "typescript";
 
 import { FactoryTypeCol } from "../components/production/col_type";
 import { useLocalStorage } from "../hooks/localStorage";

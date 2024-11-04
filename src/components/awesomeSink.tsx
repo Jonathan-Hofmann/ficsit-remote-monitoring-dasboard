@@ -1,25 +1,11 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Chip,
-  CircularProgress,
-  Container,
-  Grid,
-  IconButton,
-  LinearProgress,
-  Stack,
-  Tooltip,
-  Typography,
-} from "@mui/joy";
+import { Box, Card, CardContent, Grid, Stack, Typography } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 // @ts-ignore
 import * as Plot from "@observablehq/plot";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { fullRefs } from "../constants/refs";
-import { SettingsContext } from "../context/Settings";
 import { useLocalStorage } from "../hooks/localStorage";
 import { PlotFigure } from "../views/plotWrapper";
 import { defaultSettingsData } from "../views/settings";

@@ -1,50 +1,9 @@
-import {
-  Alert,
-  Button,
-  Chip,
-  Container,
-  Divider,
-  FormControl,
-  FormLabel,
-  Grid,
-  IconButton,
-  Input,
-  List,
-  ListDivider,
-  ListItem,
-  ListItemContent,
-  ListItemDecorator,
-  Modal,
-  ModalClose,
-  ModalDialog,
-  TextField,
-  Tooltip,
-  Typography,
-} from "@mui/joy";
-import { CircularProgress, Stack } from "@mui/material";
+import { Alert, Button, Container } from "@mui/joy";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import {
-  BsCheckCircleFill,
-  BsExclamationTriangleFill,
-  BsFileRichtext,
-  BsFileRuled,
-  BsHammer,
-  BsInfoCircle,
-  BsInfoCircleFill,
-  BsRecordCircle,
-  BsSearch,
-} from "react-icons/bs";
-import { Link } from "react-router-dom";
+import React, { createContext, useEffect, useMemo, useState } from "react";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
-import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "../views/settings";
 
 type Info = {

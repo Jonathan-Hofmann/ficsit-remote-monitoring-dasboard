@@ -1,24 +1,17 @@
 import {
-  Box,
   Card,
   CardHeader,
-  Chip,
   Container,
   Divider,
   Grid,
   IconButton,
   Paper,
-  Stack,
-  Step,
-  StepIcon,
-  StepLabel,
-  Stepper,
   Tooltip,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { BsCheck2, BsX, BsXCircle, BsXCircleFill } from "react-icons/bs";
+import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 
 export const Building: React.FC = (props) => {

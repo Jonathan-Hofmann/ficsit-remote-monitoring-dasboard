@@ -6,23 +6,14 @@ import {
   CircularProgress,
   Container,
   Grid,
-  IconButton,
-  LinearProgress,
   Stack,
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import {
-  BsBatteryHalf,
-  BsBox,
-  BsClockHistory,
-  BsLink45Deg,
-} from "react-icons/bs";
-import { GiCargoCrate, GiDeliveryDrone } from "react-icons/gi";
+import React, { useEffect, useState } from "react";
+import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 
-import { SettingsContext } from "../context/Settings";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 

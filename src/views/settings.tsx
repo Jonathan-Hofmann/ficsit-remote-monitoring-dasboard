@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   Container,
@@ -9,10 +8,9 @@ import {
   Select,
   Typography,
 } from "@mui/joy";
-import React, { useContext } from "react";
+import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 
-import { ConnectionCheckerContext } from "../context/connectionChecker";
 import { useLocalStorage } from "../hooks/localStorage";
 
 export const defaultSettingsData = {

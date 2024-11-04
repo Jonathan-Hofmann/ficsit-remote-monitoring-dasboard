@@ -11,11 +11,9 @@ import {
 import { Skeleton } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BsArrowRightShort, BsExclamationTriangleFill } from "react-icons/bs";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
 
-import { IngredientCard } from "../components/building/ingredientCard";
-import { ProductionCard } from "../components/building/productionCard";
 import { fullRefs } from "../constants/refs";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";

@@ -1,13 +1,11 @@
 import { Button, Stack } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import { alpha, styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { BsSearch } from "react-icons/bs";
 import {
   GiCargoCrate,
   GiDeliveryDrone,
@@ -60,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar(): React.FC {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar

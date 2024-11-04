@@ -1,24 +1,17 @@
 import {
-  Box,
   Card,
   CardContent,
   Chip,
-  CircularProgress,
   Container,
   Grid,
-  IconButton,
   LinearProgress,
   Stack,
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { BsArrowRightShort, BsExclamationCircle, BsX } from "react-icons/bs";
-import { GiCargoCrate } from "react-icons/gi";
-import { TbTrain } from "react-icons/tb";
+import React, { useEffect, useState } from "react";
 
-import { SettingsContext } from "../context/Settings";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 

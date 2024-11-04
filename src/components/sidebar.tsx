@@ -8,34 +8,23 @@ import {
   Tooltip,
   Typography,
 } from "@mui/joy";
-import { alpha, styled } from "@mui/material/styles";
 import React, { useState } from "react";
 import {
-  BsArrowBarLeft,
   BsGearFill,
   BsGridFill,
   BsLightningFill,
   BsList,
-  BsSearch,
-  BsTruck,
 } from "react-icons/bs";
 import { FaBoxes, FaTruck } from "react-icons/fa";
-import {
-  GiCargoCrate,
-  GiDeliveryDrone,
-  GiFactory,
-  GiMineTruck,
-  GiPowerGenerator,
-} from "react-icons/gi";
+import { GiFactory } from "react-icons/gi";
 import { MdTrain } from "react-icons/md";
-import { TbDrone, TbTrain } from "react-icons/tb";
+import { TbDrone } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
-export const Sidebar = () => {
+export const Sidebar: React.FC = () => {
   const [isFullsize, setIsFullsize] = useState(false);
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {isFullsize ? (
         <Box

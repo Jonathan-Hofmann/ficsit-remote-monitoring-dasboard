@@ -3,28 +3,18 @@ import {
   Card,
   CardContent,
   Chip,
-  CircularProgress,
   Container,
   Grid,
   IconButton,
-  LinearProgress,
   Stack,
   Tooltip,
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import {
-  BsArrowRightShort,
-  BsExclamationCircle,
-  BsQuestionCircle,
-  BsX,
-  BsXCircle,
-} from "react-icons/bs";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BsQuestionCircle, BsXCircle } from "react-icons/bs";
 
-import { SettingsContext } from "../context/Settings";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 

@@ -1,6 +1,5 @@
 // @ts-ignore
 import * as Plot from "@observablehq/plot";
-import type { FC } from "react";
 import React, { useEffect, useRef } from "react";
 
 import { addTooltips } from "../components/tooltips";
@@ -9,7 +8,7 @@ type Props = {
   options: any;
 };
 
-export const PlotFigure: FC<Props> = ({ options }) => {
+export const PlotFigure: React.FC<Props> = ({ options }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
