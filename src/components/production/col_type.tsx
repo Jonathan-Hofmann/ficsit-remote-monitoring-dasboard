@@ -8,7 +8,7 @@ type Props = {
   factorys: any[];
 };
 
-export const FactoryTypeCol: React.FC<Props> = (props) => {
+export const FactoryTypeCol: React.FC<Props> = ({ factorys }) => {
   return (
     <Grid
       xs={12}
@@ -25,10 +25,10 @@ export const FactoryTypeCol: React.FC<Props> = (props) => {
             sx={{ marginBottom: "15px" }}
           >
             <Grid xs>
-              <Typography level="h5">{props.factorys[0].building} </Typography>
+              <Typography level="h5">{factorys[0].building} </Typography>
             </Grid>
             <Grid>
-              <Typography>{props.factorys.length}</Typography>
+              <Typography>{factorys.length}</Typography>
             </Grid>
           </Grid>
           <Accordion
@@ -46,10 +46,10 @@ export const FactoryTypeCol: React.FC<Props> = (props) => {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>See all {props.factorys[0].building}s</Typography>
+              <Typography>See all {factorys[0].building}s</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: "0" }}>
-              {props.factorys.map((factory: any, i: number) => {
+              {factorys.map((factory: any, i: number) => {
                 return (
                   <Link
                     to="/building"

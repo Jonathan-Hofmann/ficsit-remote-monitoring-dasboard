@@ -20,7 +20,7 @@ import { AwesomeSink } from "./awesomeSink";
 import { Footer } from "./footer";
 import { Sidebar } from "./sidebar";
 
-export const MainWrapper: React.FC = (props) => {
+export const MainWrapper: React.FC = () => {
   return (
     <Grid
       container

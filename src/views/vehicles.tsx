@@ -18,7 +18,7 @@ import { BsQuestionCircle, BsXCircle } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
-export const Vehicles: React.FC = (props) => {
+export const Vehicles: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [vehicles, setVehicles] = useState<undefined | any>(undefined);
   const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);

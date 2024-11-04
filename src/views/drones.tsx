@@ -17,7 +17,7 @@ import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
-export const Drones: React.FC = (props) => {
+export const Drones: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [drones, setDrones] = useState<undefined | any[]>(undefined);
   const [droneStaions, setDronestations] = useState<undefined | any>(undefined);

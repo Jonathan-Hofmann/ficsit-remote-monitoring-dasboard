@@ -11,7 +11,7 @@ import { PlotFigure } from "../views/plotWrapper";
 import { defaultSettingsData } from "../views/settings";
 // import { data } from "../constants/test-data";
 
-export const AwesomeSink: React.FC = (props) => {
+export const AwesomeSink: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [sinks, setSink] = useState<undefined | any>(undefined);
   const [sinks2, setSink2] = useState<undefined | any>(undefined);

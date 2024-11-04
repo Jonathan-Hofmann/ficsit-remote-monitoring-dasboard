@@ -123,7 +123,11 @@ mergedTheme.unstable_sxConfig = {
   ...joySxConfig,
 };
 
-export const ThemeWrapper: React.FC<any> = (props) => {
+type Props = {
+  children: React.ReactElement;
+};
+
+export const ThemeWrapper: React.FC<Props> = ({ children }) => {
   return (
     <CssVarsProvider
       theme={mergedTheme}
@@ -131,7 +135,7 @@ export const ThemeWrapper: React.FC<any> = (props) => {
         muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)
       }
     >
-      {props.children}
+      {children}
     </CssVarsProvider>
   );
 };

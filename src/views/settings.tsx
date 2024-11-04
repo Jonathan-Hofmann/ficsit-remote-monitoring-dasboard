@@ -19,7 +19,7 @@ export const defaultSettingsData = {
   interval: 1000,
 };
 
-export const Settings: React.FC = (props) => {
+export const Settings: React.FC = () => {
   const [settings, setSettings] = useLocalStorage(
     "rmd_settings",
     defaultSettingsData,

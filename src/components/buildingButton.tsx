@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 
 import { fullRefs } from "../constants/refs";
 
-export const BuildingButton: React.FC<{ factory: any; page: any }> = (
-  props,
-) => {
-  let link = `/${props.page}/?${props.page}=${props.factory}&endpoint=get`;
-  if (props.page === "generator") {
-    link = `${link + props.factory.split(" ")[0].split("-")[0]}Generator`;
-  } else if (props.factory === "Quantum Encoder") {
-    link += props.factory.split(" ")[1];
+type Props = {
+  factory: any;
+  page: any;
+};
+
+export const BuildingButton: React.FC<Props> = ({ factory, page }) => {
+  let link = `/${page}/?${page}=${factory}&endpoint=get`;
+  if (page === "generator") {
+    link = `${link + factory.split(" ")[0].split("-")[0]}Generator`;
+  } else if (factory === "Quantum Encoder") {
+    link += factory.split(" ")[1];
   } else {
-    link += props.factory.split(" ")[0];
+    link += factory.split(" ")[0];
   }
 
   return (
@@ -34,15 +37,11 @@ export const BuildingButton: React.FC<{ factory: any; page: any }> = (
           <CardContent>
             <Stack alignItems="center">
               <img
-                src={`./assets/${fullRefs[props.factory]?.category}/${
-                  props.factory
-                }.png`}
-                alt={props.factory}
+                src={`./assets/${fullRefs[factory]?.category}/${factory}.png`}
+                alt={factory}
                 style={{ height: "70px", width: "70px" }}
               />
-              <Typography level="h5">
-                {`Open ${props.factory} Panel`}
-              </Typography>
+              <Typography level="h5">{`Open ${factory} Panel`}</Typography>
             </Stack>
           </CardContent>
         </Card>

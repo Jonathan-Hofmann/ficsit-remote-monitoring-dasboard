@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/joy";
 import React, { useEffect, useState } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
-export const SocketTestSite: React.FC = (props) => {
+export const SocketTestSite: React.FC = () => {
   const [socketUrl, setSocketUrl] = useState("ws://localhost:8081/");
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
   const [messageHistory, setMessageHistory] = useState<any[]>([]);

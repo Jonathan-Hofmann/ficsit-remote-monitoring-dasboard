@@ -27,7 +27,11 @@ const defaultValues: Info = {
 
 export const SettingsContext = createContext(defaultValues);
 
-const SettingsProvider: React.FC<any> = (props) => {
+type Props = {
+  children: React.ReactElement;
+};
+
+export const SettingsProvider: React.FC<Props> = ({ children }) => {
   const [showSettings, setShowSettings] = useState(false);
 
   const [msInterval, setMsInterval] = useState(1000);
@@ -101,7 +105,7 @@ const SettingsProvider: React.FC<any> = (props) => {
           Open Global Settings
         </Button>
       )}
-      {props.children}
+      {children}
     </SettingsContext.Provider>
   );
 };

@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 
-export const Building: React.FC = (props) => {
+export const Building: React.FC = () => {
   const { state } = useLocation();
   const b_tmp: any = state;
   const b: any = b_tmp.data;

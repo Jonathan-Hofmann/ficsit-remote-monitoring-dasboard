@@ -58,7 +58,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar(): React.FC {
+// TODO Keep but all this file is unused
+export const SearchAppBar: React.FC = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -144,4 +145,4 @@ export default function SearchAppBar(): React.FC {
       </AppBar>
     </Box>
   );
-}
+};

@@ -15,7 +15,7 @@ import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "./settings";
 
-export const Trains: React.FC = (props) => {
+export const Trains: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [trains, setTrains] = useState<undefined | any>(undefined);
   const [trainstaions, setTrainstations] = useState<undefined | any>(undefined);

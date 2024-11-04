@@ -18,7 +18,11 @@ const defaultValues: Info = {
 
 export const ConnectionCheckerContext = createContext(defaultValues);
 
-export const ConnectionCheckerProvider: React.FC<any> = (props) => {
+type Props = {
+  children: React.ReactElement;
+};
+
+export const ConnectionCheckerProvider: React.FC<Props> = ({ children }) => {
   const [showAlert, setShowAlert] = useState(false);
   let timeout: NodeJS.Timeout;
 
@@ -105,7 +109,7 @@ export const ConnectionCheckerProvider: React.FC<any> = (props) => {
           </Alert>
         </Container>
       )}
-      {props.children}
+      {children}
     </ConnectionCheckerContext.Provider>
   );
 };
