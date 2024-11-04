@@ -4,14 +4,10 @@ import axios from "axios";
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 
+import type { ConnectionCheckerContextDefaultValues } from "../types/connectionCheckerContextDefaultValues";
 import { defaultSettingsData } from "../views/settings";
 
-type Info = {
-  msInterval: number;
-  checkConnectionToFRM: Function;
-};
-
-const defaultValues: Info = {
+const defaultValues: ConnectionCheckerContextDefaultValues = {
   msInterval: 1000,
   checkConnectionToFRM: () => {},
 };

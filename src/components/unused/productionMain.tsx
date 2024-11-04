@@ -14,17 +14,6 @@ import { FactoryTypeCol } from "../production/col_type";
 import { useLocalStorage } from "../../hooks/localStorage";
 import { defaultSettingsData } from "../../views/settings";
 
-type FactoryData = {
-  constructor: any[];
-  assembler: any[];
-  blender: any[];
-  foundry: any[];
-  manufactor: any[];
-  particle: any[];
-  refinery: any[];
-  smelter: any[];
-};
-
 export const Factorys: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [factorys, setFactorys] = useState<undefined | any>(undefined);

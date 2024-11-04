@@ -16,12 +16,9 @@ import React, {
   useState,
 } from "react";
 import { BsHammer } from "react-icons/bs";
+import type { SettingsDefaultValues } from "./settingsDefaultValues";
 
-type Info = {
-  msInterval: number;
-};
-
-const defaultValues: Info = {
+const defaultValues: SettingsDefaultValues = {
   msInterval: 1000,
 };
 
