@@ -15,10 +15,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
 import { AwesomeSink } from "../components/awesomeSink";
-import { defaultSettingsData } from "./settings";
 
 export const Start: React.FC = () => {
   const [doLoadData] = useState(true);

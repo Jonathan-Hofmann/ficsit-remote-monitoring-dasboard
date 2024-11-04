@@ -15,8 +15,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsQuestionCircle, BsXCircle } from "react-icons/bs";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
-import { defaultSettingsData } from "./settings";
 
 export const Vehicles: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);

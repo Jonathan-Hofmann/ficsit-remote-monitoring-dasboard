@@ -19,9 +19,9 @@ import {
   BsExclamationTriangleFill,
 } from "react-icons/bs";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
 import { BuildingButton } from "../components/buildingButton";
-import { defaultSettingsData } from "./settings";
 
 export const PowerMain: React.FC = () => {
   const [power, setPower] = useState<undefined | any>(undefined);

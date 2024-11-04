@@ -12,8 +12,8 @@ import { Skeleton } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
-import { defaultSettingsData } from "./settings";
 
 export const Trains: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);

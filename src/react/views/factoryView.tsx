@@ -14,11 +14,11 @@ import React, { useEffect, useState } from "react";
 import { BsArrowRightShort, BsExclamationTriangleFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
 import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
-import { defaultSettingsData } from "./settings";
 
 export const DetailedFactoryView: React.FC = () => {
   const [params] = useSearchParams();

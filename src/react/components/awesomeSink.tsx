@@ -5,10 +5,10 @@ import * as Plot from "@observablehq/plot";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
 import { PlotFigure } from "../views/plotWrapper";
-import { defaultSettingsData } from "../views/settings";
 // import { data } from "../constants/test-data";
 
 export const AwesomeSink: React.FC = () => {

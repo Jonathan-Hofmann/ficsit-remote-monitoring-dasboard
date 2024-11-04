@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 
-import { defaultSettingsData } from "../react/views/settings";
+import { defaultSettingsData } from "../constants/defaultSettingsData";
 import type { ConnectionCheckerContextDefaultValues } from "../types/connectionCheckerContextDefaultValues";
 
 const defaultValues: ConnectionCheckerContextDefaultValues = {

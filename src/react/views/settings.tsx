@@ -11,13 +11,8 @@ import {
 import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
-
-export const defaultSettingsData = {
-  ip: "localhost",
-  port: "8080",
-  interval: 1000,
-};
 
 export const Settings: React.FC = () => {
   const [settings, setSettings] = useLocalStorage(
@@ -35,11 +30,6 @@ export const Settings: React.FC = () => {
           <Grid container>
             <Grid xs>
               <Typography level="h3">Settings</Typography>
-            </Grid>
-            <Grid>
-              {/* <Button onClick={()=>{}}>
-                                Save Settings
-                            </Button> */}
             </Grid>
           </Grid>
         </CardContent>

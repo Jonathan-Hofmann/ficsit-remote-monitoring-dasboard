@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 
 import { FactoryTypeCol } from "../react/components/production/col_type";
 import { useLocalStorage } from "../hooks/localStorage";
-import { defaultSettingsData } from "../react/views/settings";
+import { defaultSettingsData } from "../constants/defaultSettingsData";
 
 export const Factorys: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);

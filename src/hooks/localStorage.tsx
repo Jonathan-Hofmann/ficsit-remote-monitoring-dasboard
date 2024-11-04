@@ -1,11 +1,21 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
-export const useLocalStorage = (storageKey: string, fallbackState: any) => {
-  const [value, setValue] = React.useState(
-    JSON.parse(localStorage.getItem(storageKey)!) ?? fallbackState,
+import type { SettingsData } from "../types/settingsData";
+
+export const useLocalStorage = (
+  storageKey: string,
+  defaultSettings: SettingsData,
+) => {
+  const storedValue: string | null = localStorage.getItem(storageKey);
+  const parsedStoredValue: SettingsData | undefined = storedValue
+    ? (JSON.parse(storedValue) as SettingsData)
+    : undefined;
+
+  const [value, setValue] = useState<SettingsData>(
+    parsedStoredValue ?? defaultSettings,
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(value));
   }, [value, storageKey]);
 

@@ -14,17 +14,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 
+import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
-import { defaultSettingsData } from "./settings";
-
-export const Drones: React.FC = () => {
-  const [doLoadData, setLoadData] = useState(true);
-  const [drones, setDrones] = useState<undefined | any[]>(undefined);
-  const [droneStaions, setDronestations] = useState<undefined | any>(undefined);
-
-  const [drStation_PrevNext, setDrStation_PrevNext] = useState<
-    undefined | any[]
-  >(undefined);
 
   const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
 
