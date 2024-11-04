@@ -10,7 +10,7 @@ import {
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import { useTheme } from "@mui/system";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BsBatteryHalf,
   BsCheck,

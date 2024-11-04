@@ -1,4 +1,5 @@
 import { Box, Container, Divider, Grid, Typography } from "@mui/joy";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export const Footer: React.FC = (props) => {

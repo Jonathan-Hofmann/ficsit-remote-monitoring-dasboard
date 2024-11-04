@@ -10,6 +10,7 @@ import {
   shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
+import React from "react";
 
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
   // This is required to point to `var(--joy-*)` because we are using

@@ -6,7 +6,7 @@ import InputBase from "@mui/material/InputBase";
 import { alpha, styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import React from "react";
 import { BsSearch } from "react-icons/bs";
 import {
   GiCargoCrate,

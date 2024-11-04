@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/joy";
 import { useTheme } from "@mui/system";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BsBattery,
   BsBatteryHalf,

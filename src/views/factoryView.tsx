@@ -10,7 +10,7 @@ import {
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowRightShort, BsExclamationTriangleFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
 
