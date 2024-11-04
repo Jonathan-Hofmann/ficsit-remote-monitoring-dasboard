@@ -25,13 +25,13 @@ const defaultValues: Info = {
   msInterval: 1000,
 };
 
-export const SettingsContext = createContext(defaultValues);
+const SettingsContext = createContext(defaultValues);
 
 type Props = {
   children: React.ReactElement;
 };
 
-export const SettingsProvider: React.FC<Props> = ({ children }) => {
+const SettingsProvider: React.FC<Props> = ({ children }) => {
   const [showSettings, setShowSettings] = useState(false);
 
   const [msInterval, setMsInterval] = useState(1000);

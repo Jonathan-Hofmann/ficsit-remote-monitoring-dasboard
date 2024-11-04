@@ -1,4 +1,4 @@
-export const factoryRefs: Record<string, any> = {
+const factoryRefs: Record<string, any> = {
   "Smeltery": {
     image: "Buildings/SmelterMk1_256.png",
   },

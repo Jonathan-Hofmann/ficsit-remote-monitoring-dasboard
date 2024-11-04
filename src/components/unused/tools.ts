@@ -1,4 +1,4 @@
-export const toolRefs: Record<string, any> = {
+const toolRefs: Record<string, any> = {
   "Rebar Gun": {
     image: "Tools/RebarGun_256.png",
   },

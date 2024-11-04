@@ -16,6 +16,7 @@ const defaultValues: Info = {
   checkConnectionToFRM: () => {},
 };
 
+// TODO Unused
 export const ConnectionCheckerContext = createContext(defaultValues);
 
 type Props = {

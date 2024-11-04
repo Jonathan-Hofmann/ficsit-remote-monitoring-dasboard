@@ -10,9 +10,9 @@ import {
 import { useTheme } from "@mui/system";
 import React, { useEffect, useState } from "react";
 
-import { FactoryTypeCol } from "../components/production/col_type";
-import { useLocalStorage } from "../hooks/localStorage";
-import { defaultSettingsData } from "./settings";
+import { FactoryTypeCol } from "../production/col_type";
+import { useLocalStorage } from "../../hooks/localStorage";
+import { defaultSettingsData } from "../../views/settings";
 
 type FactoryData = {
   constructor: any[];

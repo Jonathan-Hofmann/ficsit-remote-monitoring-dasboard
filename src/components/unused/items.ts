@@ -1,4 +1,4 @@
-export const itemRefs: Record<string, any> = {
+const itemRefs: Record<string, any> = {
   "Iron Ore": {
     image: "Items/IconDesc_iron_new_256.png",
   },
