@@ -1,833 +1,836 @@
-export const fullRefs: Record<string, any> = {
-  "Adaptive Control Unit": {
+import { FullRefsEnum } from "../enums/fullRefs.enum";
+import type { FullRefs } from "../types/fullRefs";
+
+export const fullRefs: FullRefs = {
+  [FullRefsEnum.Adaptive_Control_Unit]: {
     type: "s",
     category: "Items",
   },
-  "AI Expansion Server": {
+  [FullRefsEnum.AI_Expansion_Server]: {
     category: "Items",
     type: "s",
   },
-  "AI Limiter": {
+  [FullRefsEnum.AI_Limiter]: {
     category: "Items",
     type: "s",
   },
-  "Alclad Aluminum Sheet": {
+  [FullRefsEnum.Alclad_Aluminum_Sheet]: {
     category: "Items",
     type: "s",
   },
-  "Alien DNA Capsule": {
+  [FullRefsEnum.Alien_DNA_Capsule]: {
     category: "Items",
     type: "s",
   },
-  "Alien Power Augmenter": {
+  [FullRefsEnum.Alien_Power_Augmenter]: {
     category: "Buildings",
     type: "s",
   },
-  "Alien Power Matrix": {
+  [FullRefsEnum.Alien_Power_Matrix]: {
     category: "Items",
     type: "s",
   },
-  "Alien Protein": {
+  [FullRefsEnum.Alien_Protein]: {
     category: "Items",
     type: "s",
   },
-  "Alumina Solution": {
+  [FullRefsEnum.Alumina_Solution]: {
     category: "Items",
     type: "l",
   },
-  "Aluminum Casing": {
+  [FullRefsEnum.Aluminum_Casing]: {
     category: "Items",
     type: "s",
   },
-  "Aluminum Ingot": {
+  [FullRefsEnum.Aluminum_Ingot]: {
     category: "Items",
     type: "s",
   },
-  "Aluminum Scrap": {
+  [FullRefsEnum.Aluminum_Scrap]: {
     category: "Items",
     type: "s",
   },
-  "Assembler": {
+  [FullRefsEnum.Assembler]: {
     category: "Buildings",
     type: "s",
   },
-  "Assembly Director System": {
+  [FullRefsEnum.Assembly_Director_System]: {
     category: "Items",
     type: "s",
   },
-  "Automated Wiring": {
+  [FullRefsEnum.Automated_Wiring]: {
     category: "Items",
     type: "s",
   },
-  "AWESOME Shop": {
+  [FullRefsEnum.AWESOME_Shop]: {
     category: "Buildings",
     type: "s",
   },
-  "AWESOME Sink": {
+  [FullRefsEnum.AWESOME_Sink]: {
     category: "Buildings",
     type: "s",
   },
-  "Bacon Agaric": {
+  [FullRefsEnum.Bacon_Agaric]: {
     category: "Items",
     type: "s",
   },
-  "Ballistic Warp Drive": {
+  [FullRefsEnum.Ballistic_Warp_Drive]: {
     category: "Items",
     type: "s",
   },
-  "Battery": {
+  [FullRefsEnum.Battery]: {
     category: "Items",
     type: "s",
   },
-  "Bauxite": {
+  [FullRefsEnum.Bauxite]: {
     category: "Items",
     type: "s",
   },
-  "Beryl Nut": {
+  [FullRefsEnum.Beryl_Nut]: {
     category: "Items",
     type: "s",
   },
-  "Biochemiccal Sculptor": {
+  [FullRefsEnum.Biochemiccal_Sculptor]: {
     category: "Items",
     type: "s",
   },
-  "Biomass": {
+  [FullRefsEnum.Biomass]: {
     category: "Items",
     type: "s",
   },
-  "Biomass Burner": {
+  [FullRefsEnum.Biomass_Burner]: {
     category: "Buildings",
     type: "s",
   },
-  "Black Powder": {
+  [FullRefsEnum.Black_Powder]: {
     category: "Items",
     type: "s",
   },
-  "Blade Runners": {
+  [FullRefsEnum.Blade_Runners]: {
     category: "Tools",
     type: "s",
   },
-  "Blender": {
+  [FullRefsEnum.Blender]: {
     category: "Buildings",
     type: "s",
   },
-  "Blue Power Slug": {
+  [FullRefsEnum.Blue_Power_Slug]: {
     category: "Items",
     type: "s",
   },
-  "Boombox": {
+  [FullRefsEnum.Boombox]: {
     category: "Tools",
     type: "s",
   },
-  "Cable": {
+  [FullRefsEnum.Cable]: {
     category: "Items",
     type: "s",
   },
-  "Caterium Ingot": {
+  [FullRefsEnum.Caterium_Ingot]: {
     category: "Items",
     type: "s",
   },
-  "Caterium Ore": {
+  [FullRefsEnum.Caterium_Ore]: {
     category: "Items",
     type: "s",
   },
-  "Chainsaw": {
+  [FullRefsEnum.Chainsaw]: {
     category: "Tools",
     type: "s",
   },
-  "Circuit Board": {
+  [FullRefsEnum.Circuit_Board]: {
     category: "Items",
     type: "s",
   },
-  "Cluster Nobelisk": {
+  [FullRefsEnum.Cluster_Nobelisk]: {
     category: "Tools",
     type: "s",
   },
-  "Coal": {
+  [FullRefsEnum.Coal]: {
     category: "Items",
     type: "s",
   },
-  "Coal-Powered Generator": {
+  [FullRefsEnum.Coal_Powered_Generator]: {
     category: "Buildings",
     type: "s",
   },
-  "Compacted Coal": {
+  [FullRefsEnum.Compacted_Coal]: {
     category: "Items",
     type: "s",
   },
-  "Computer": {
+  [FullRefsEnum.Computer]: {
     category: "Items",
     type: "s",
   },
-  "Concrete": {
+  [FullRefsEnum.Concrete]: {
     category: "Items",
     type: "s",
   },
-  "Constructor": {
+  [FullRefsEnum.Constructor]: {
     category: "Buildings",
     type: "s",
   },
-  "Converter": {
+  [FullRefsEnum.Converter]: {
     category: "Buildings",
     type: "b",
   },
-  "Cooling System": {
+  [FullRefsEnum.Cooling_System]: {
     category: "Items",
     type: "s",
   },
-  "Copper Ingot": {
+  [FullRefsEnum.Copper_Ingot]: {
     category: "Items",
     type: "s",
   },
-  "Copper Ore": {
+  [FullRefsEnum.Copper_Ore]: {
     category: "Items",
     type: "s",
   },
-  "Copper Powder": {
+  [FullRefsEnum.Copper_Powder]: {
     category: "Items",
     type: "s",
   },
-  "Copper Sheet": {
+  [FullRefsEnum.Copper_Sheet]: {
     category: "Items",
     type: "s",
   },
-  "Crafting Bench": {
+  [FullRefsEnum.Crafting_Bench]: {
     category: "Buildings",
     type: "s",
   },
-  "Crude Oil": {
+  [FullRefsEnum.Crude_Oil]: {
     category: "Items",
     type: "l",
   },
-  "Crystal Oscilator": {
+  [FullRefsEnum.Crystal_Oscilator]: {
     category: "Items",
     type: "s",
   },
-  "Cup": {
+  [FullRefsEnum.Cup]: {
     category: "Tools",
     type: "s",
   },
-  "Dark Matter Crystal": {
+  [FullRefsEnum.Dark_Matter_Crystal]: {
     category: "Items",
     type: "s",
   },
-  "Dark Matter Residue": {
+  [FullRefsEnum.Dark_Matter_Residue]: {
     category: "Items",
     type: "l",
   },
-  "Diamonds": {
+  [FullRefsEnum.Diamonds]: {
     category: "Items",
     type: "s",
   },
-  "Dissolved Silica": {
-    category: "Items",
-    type: "l",
-  },
-  "Electromagnetic Control Rod": {
-    category: "Items",
-    type: "s",
-  },
-  "'Employee of the Planet' Cup": {
-    category: "Tools",
-    type: "s",
-  },
-  "Empty Canister": {
-    category: "Items",
-    type: "s",
-  },
-  "Empty Fluid Tank": {
-    category: "Items",
-    type: "s",
-  },
-  "Encased Industrial Beam": {
-    category: "Items",
-    type: "s",
-  },
-  "Encased Plutonium Cell": {
-    category: "Items",
-    type: "s",
-  },
-  "Encased Uranium Cell": {
-    category: "Items",
-    type: "s",
-  },
-  "Equipment Workshop": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Excited Photonic Matter": {
+  [FullRefsEnum.Dissolved_Silica]: {
     category: "Items",
     type: "l",
   },
-  "Explosive Rebar": {
+  [FullRefsEnum.Electromagnetic_Control_Rod]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Employee_of_the_Planet_Cup]: {
     category: "Tools",
     type: "s",
   },
-  "Fabric": {
+  [FullRefsEnum.Empty_Canister]: {
     category: "Items",
     type: "s",
   },
-  "FICSIT Coupon": {
+  [FullRefsEnum.Empty_Fluid_Tank]: {
     category: "Items",
     type: "s",
   },
-  "Ficsite Ingot": {
+  [FullRefsEnum.Encased_Industrial_Beam]: {
     category: "Items",
     type: "s",
   },
-  "Ficsite Trigon": {
+  [FullRefsEnum.Encased_Plutonium_Cell]: {
     category: "Items",
     type: "s",
   },
-  "Ficsonium": {
+  [FullRefsEnum.Encased_Uranium_Cell]: {
     category: "Items",
     type: "s",
   },
-  "Ficsonium Fuel Rod": {
-    category: "Items",
-    type: "s",
-  },
-  "Foundry": {
+  [FullRefsEnum.Equipment_Workshop]: {
     category: "Buildings",
     type: "s",
   },
-  "Fuel": {
+  [FullRefsEnum.Excited_Photonic_Matter]: {
     category: "Items",
     type: "l",
   },
-  "Fuel-Powered Generator": {
+  [FullRefsEnum.Explosive_Rebar]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Fabric]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.FICSIT_Coupon]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Ficsite_Ingot]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Ficsite_Trigon]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Ficsonium]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Ficsonium_Fuel_Rod]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Foundry]: {
     category: "Buildings",
     type: "s",
   },
-  "Fused Modular Frame": {
-    category: "Items",
-    type: "s",
-  },
-  "Gas Mask": {
-    category: "Tools",
-    type: "s",
-  },
-  "Gas Filter": {
-    category: "Tools",
-    type: "s",
-  },
-  "Gas Nobelisk": {
-    category: "Tools",
-    type: "s",
-  },
-  "Geothermal Generator": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Hard Drive": {
-    category: "Items",
-    type: "s",
-  },
-  "Hatcher Remains": {
-    category: "Items",
-    type: "s",
-  },
-  "Hazmat Suit": {
-    category: "Tools",
-    type: "s",
-  },
-  "Heat Sink": {
-    category: "Items",
-    type: "s",
-  },
-  "Heavy Modular Frame": {
-    category: "Items",
-    type: "s",
-  },
-  "Heavy Oil Residue": {
+  [FullRefsEnum.Fuel]: {
     category: "Items",
     type: "l",
   },
-  "High-Speed Connector": {
+  [FullRefsEnum.Fuel_Powered_Generator]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Fused_Modular_Frame]: {
     category: "Items",
     type: "s",
   },
-  "Hog Remains": {
+  [FullRefsEnum.Gas_Mask]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Gas_Filter]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Gas_Nobelisk]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Geothermal_Generator]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Hard_Drive]: {
     category: "Items",
     type: "s",
   },
-  "HUB Parts": {
+  [FullRefsEnum.Hatcher_Remains]: {
     category: "Items",
     type: "s",
   },
-  "Homing Rifle Ammo": {
+  [FullRefsEnum.Hazmat_Suit]: {
     category: "Tools",
     type: "s",
   },
-  "Hoverpack": {
-    category: "Tools",
+  [FullRefsEnum.Heat_Sink]: {
+    category: "Items",
     type: "s",
   },
-  "Iodine-Infused Filter": {
-    category: "Tools",
+  [FullRefsEnum.Heavy_Modular_Frame]: {
+    category: "Items",
     type: "s",
   },
-  "Ionized Fuel": {
+  [FullRefsEnum.Heavy_Oil_Residue]: {
     category: "Items",
     type: "l",
   },
-  "Iron Ingot": {
+  [FullRefsEnum.High_Speed_Connector]: {
     category: "Items",
     type: "s",
   },
-  "Iron Ore": {
+  [FullRefsEnum.Hog_Remains]: {
     category: "Items",
     type: "s",
   },
-  "Iron Plate": {
+  [FullRefsEnum.HUB_Parts]: {
     category: "Items",
     type: "s",
   },
-  "Iron Rebar": {
+  [FullRefsEnum.Homing_Rifle_Ammo]: {
     category: "Tools",
     type: "s",
   },
-  "Iron Rod": {
-    category: "Items",
-    type: "s",
-  },
-  "Jetpack": {
+  [FullRefsEnum.Hoverpack]: {
     category: "Tools",
     type: "s",
   },
-  "Leaves": {
-    category: "Items",
+  [FullRefsEnum.Iodine_Infused_Filter]: {
+    category: "Tools",
     type: "s",
   },
-  "Limestone": {
-    category: "Items",
-    type: "s",
-  },
-  "Liquid Biofuel": {
+  [FullRefsEnum.Ionized_Fuel]: {
     category: "Items",
     type: "l",
   },
-  "Magnetic Field Generator": {
+  [FullRefsEnum.Iron_Ingot]: {
     category: "Items",
     type: "s",
   },
-  "Manufacturer": {
-    category: "Buildings",
+  [FullRefsEnum.Iron_Ore]: {
+    category: "Items",
     type: "s",
   },
-  "Medical Inhaler": {
+  [FullRefsEnum.Iron_Plate]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Iron_Rebar]: {
     category: "Tools",
     type: "s",
   },
-  "Mercer Sphere": {
+  [FullRefsEnum.Iron_Rod]: {
     category: "Items",
     type: "s",
   },
-  "Miner Mk.1": {
-    category: "Buildings",
+  [FullRefsEnum.Jetpack]: {
+    category: "Tools",
     type: "s",
   },
-  "Miner Mk.2": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Miner Mk.3": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Modular Engine": {
+  [FullRefsEnum.Leaves]: {
     category: "Items",
     type: "s",
   },
-  "Modular Frame": {
+  [FullRefsEnum.Limestone]: {
     category: "Items",
     type: "s",
   },
-  "Motor": {
-    category: "Items",
-    type: "s",
-  },
-  "Mycelia": {
-    category: "Items",
-    type: "s",
-  },
-  "Neural-Quantum Processor": {
-    category: "Items",
-    type: "s",
-  },
-  "Nitric Acid": {
+  [FullRefsEnum.Liquid_Biofuel]: {
     category: "Items",
     type: "l",
   },
-  "Nitrogen Gas": {
+  [FullRefsEnum.Magnetic_Field_Generator]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Manufacturer]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Medical_Inhaler]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Mercer_Sphere]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Miner_Mk1]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Miner_Mk2]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Miner_Mk3]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Modular_Engine]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Modular_Frame]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Motor]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Mycelia]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Neural_Quantum_Processor]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Nitric_Acid]: {
     category: "Items",
     type: "l",
   },
-  "Nobelisk": {
-    category: "Tools",
-    type: "s",
-  },
-  "Nobelisk Detonator": {
-    category: "Tools",
-    type: "s",
-  },
-  "Non-Fissile Uranium": {
-    category: "Items",
-    type: "s",
-  },
-  "Nuclear Pasta": {
-    category: "Items",
-    type: "s",
-  },
-  "Nuclear Power Plant": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Nuke Nobelisk": {
-    category: "Tools",
-    type: "s",
-  },
-  "Object Scanner": {
-    category: "Tools",
-    type: "s",
-  },
-  "Oil Extractor": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Packaged Alumina Solution": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Fuel": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Heavy Oil Residue": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Ionized Fuel": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Liquid Biofuel": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Nitric Acid": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Nitrogen Gas": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Oil": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Rocket Fuel": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Sulfuric Acid": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Turbofuel": {
-    category: "Items",
-    type: "s",
-  },
-  "Packaged Water": {
-    category: "Items",
-    type: "s",
-  },
-  "Packager": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Paleberry": {
-    category: "Items",
-    type: "s",
-  },
-  "Parachute": {
-    category: "Tools",
-    type: "s",
-  },
-  "Particle Accelerator": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Petroleum Coke": {
-    category: "Items",
-    type: "s",
-  },
-  "Plastic": {
-    category: "Items",
-    type: "s",
-  },
-  "Plutonium Fuel Rod": {
-    category: "Items",
-    type: "s",
-  },
-  "Plutonium Pellet": {
-    category: "Items",
-    type: "s",
-  },
-  "Plutonium Wase": {
-    category: "Items",
-    type: "s",
-  },
-  "Polymer Resin": {
-    category: "Items",
-    type: "s",
-  },
-  "Portable Miner": {
-    category: "Tools",
-    type: "s",
-  },
-  "Power Shard": {
-    category: "Items",
-    type: "s",
-  },
-  "Pressure Conversion Cube": {
-    category: "Items",
-    type: "s",
-  },
-  "Pulse Nobelisk": {
-    category: "Tools",
-    type: "s",
-  },
-  "Purple Power Slug": {
-    category: "Items",
-    type: "s",
-  },
-  "Quantum Encoder": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Quartz Crystal": {
-    category: "Items",
-    type: "s",
-  },
-  "Quickwire": {
-    category: "Items",
-    type: "s",
-  },
-  "Radio Control Unit": {
-    category: "Items",
-    type: "s",
-  },
-  "Raw Quartz": {
-    category: "Items",
-    type: "s",
-  },
-  "Reanimated SAM": {
-    category: "Items",
-    type: "s",
-  },
-  "Rebar Gun": {
-    category: "Tools",
-    type: "s",
-  },
-  "Refinery": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Reinforced Iron Plate": {
-    category: "Items",
-    type: "s",
-  },
-  "Resource Well Pressurizer": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Resource Well Extractor": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Rifle": {
-    category: "Tools",
-    type: "s",
-  },
-  "Rifle Ammo": {
-    category: "Tools",
-    type: "s",
-  },
-  "Rocket Fuel": {
+  [FullRefsEnum.Nitrogen_Gas]: {
     category: "Items",
     type: "l",
   },
-  "Rotor": {
-    category: "Items",
-    type: "s",
-  },
-  "Rubber": {
-    category: "Items",
-    type: "s",
-  },
-  "SAM": {
-    category: "Items",
-    type: "s",
-  },
-  "SAM Fluctuator": {
-    category: "Items",
-    type: "s",
-  },
-  "Screw": {
-    category: "Items",
-    type: "s",
-  },
-  "Shatter Rebar": {
+  [FullRefsEnum.Nobelisk]: {
     category: "Tools",
     type: "s",
   },
-  "Silica": {
-    category: "Items",
-    type: "s",
-  },
-  "Singularity Cell": {
-    category: "Items",
-    type: "s",
-  },
-  "Smart Plating": {
-    category: "Items",
-    type: "s",
-  },
-  "Smelter": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Smokeless Powder": {
-    category: "Items",
-    type: "s",
-  },
-  "Solid Biofuel": {
-    category: "Items",
-    type: "s",
-  },
-  "Somersloop": {
-    category: "Items",
-    type: "s",
-  },
-  "Space Elevator": {
-    category: "Buildings",
-    type: "s",
-  },
-  "Spitter Remains": {
-    category: "Items",
-    type: "s",
-  },
-  "Stator": {
-    category: "Items",
-    type: "s",
-  },
-  "Steel Beam": {
-    category: "Items",
-    type: "s",
-  },
-  "Steel Ingot": {
-    category: "Items",
-    type: "s",
-  },
-  "Steel Pipe": {
-    category: "Items",
-    type: "s",
-  },
-  "Stinger Remains": {
-    category: "Items",
-    type: "s",
-  },
-  "Stun Rebar": {
+  [FullRefsEnum.Nobelisk_Detonator]: {
     category: "Tools",
     type: "s",
   },
-  "Sulfur": {
+  [FullRefsEnum.Non_Fissile_Uranium]: {
     category: "Items",
     type: "s",
   },
-  "Sulfuric Acid": {
+  [FullRefsEnum.Nuclear_Pasta]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Nuclear_Power_Plant]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Nuke_Nobelisk]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Object_Scanner]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Oil_Extractor]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Alumina_Solution]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Fuel]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Heavy_Oil_Residue]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Ionized_Fuel]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Liquid_Biofuel]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Nitric_Acid]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Nitrogen_Gas]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Oil]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Rocket_Fuel]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Sulfuric_Acid]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Turbofuel]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packaged_Water]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Packager]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Paleberry]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Parachute]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Particle_Accelerator]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Petroleum_Coke]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Plastic]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Plutonium_Fuel_Rod]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Plutonium_Pellet]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Plutonium_Wase]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Polymer_Resin]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Portable_Miner]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Power_Shard]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Pressure_Conversion_Cube]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Pulse_Nobelisk]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Purple_Power_Slug]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Quantum_Encoder]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Quartz_Crystal]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Quickwire]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Radio_Control_Unit]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Raw_Quartz]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Reanimated_SAM]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Rebar_Gun]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Refinery]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Reinforced_Iron_Plate]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Resource_Well_Pressurizer]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Resource_Well_Extractor]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Rifle]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Rifle_Ammo]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Rocket_Fuel]: {
     category: "Items",
     type: "l",
   },
-  "Supercomputer": {
+  [FullRefsEnum.Rotor]: {
     category: "Items",
     type: "s",
   },
-  "Superposition Oscillator": {
+  [FullRefsEnum.Rubber]: {
     category: "Items",
     type: "s",
   },
-  "Thermal Propulsion Rocket": {
+  [FullRefsEnum.SAM]: {
     category: "Items",
     type: "s",
   },
-  "Time Crystal": {
+  [FullRefsEnum.SAM_Fluctuator]: {
     category: "Items",
     type: "s",
   },
-  "Train Station": {
+  [FullRefsEnum.Screw]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Shatter_Rebar]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Silica]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Singularity_Cell]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Smart_Plating]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Smelter]: {
     category: "Buildings",
     type: "s",
   },
-  "Turbo Motor": {
+  [FullRefsEnum.Smokeless_Powder]: {
     category: "Items",
     type: "s",
   },
-  "Turbo Rifle Ammo": {
-    category: "Tools",
-    type: "s",
-  },
-  "Turbofuel": {
-    category: "Items",
-    type: "l",
-  },
-  "Uranium": {
+  [FullRefsEnum.Solid_Biofuel]: {
     category: "Items",
     type: "s",
   },
-  "Uranium Fuel Rod": {
+  [FullRefsEnum.Somersloop]: {
     category: "Items",
     type: "s",
   },
-  "Uranium Waste": {
-    category: "Items",
-    type: "s",
-  },
-  "Versatile Framework": {
-    category: "Items",
-    type: "s",
-  },
-  "Water": {
-    category: "Items",
-    type: "l",
-  },
-  "Water Extractor": {
+  [FullRefsEnum.Space_Elevator]: {
     category: "Buildings",
     type: "s",
   },
-  "Wire": {
+  [FullRefsEnum.Spitter_Remains]: {
     category: "Items",
     type: "s",
   },
-  "Wood": {
+  [FullRefsEnum.Stator]: {
     category: "Items",
     type: "s",
   },
-  "Xeno-Basher": {
+  [FullRefsEnum.Steel_Beam]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Steel_Ingot]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Steel_Pipe]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Stinger_Remains]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Stun_Rebar]: {
     category: "Tools",
     type: "s",
   },
-  "Xeno-Zapper": {
-    category: "Tools",
-    type: "s",
-  },
-  "Yellow Power Slug": {
+  [FullRefsEnum.Sulfur]: {
     category: "Items",
     type: "s",
   },
-  "Zipline": {
+  [FullRefsEnum.Sulfuric_Acid]: {
+    category: "Items",
+    type: "l",
+  },
+  [FullRefsEnum.Supercomputer]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Superposition_Oscillator]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Thermal_Propulsion_Rocket]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Time_Crystal]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Train_Station]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Turbo_Motor]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Turbo_Rifle_Ammo]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Turbofuel]: {
+    category: "Items",
+    type: "l",
+  },
+  [FullRefsEnum.Uranium]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Uranium_Fuel_Rod]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Uranium_Waste]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Versatile_Framework]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Water]: {
+    category: "Items",
+    type: "l",
+  },
+  [FullRefsEnum.Water_Extractor]: {
+    category: "Buildings",
+    type: "s",
+  },
+  [FullRefsEnum.Wire]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Wood]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Xeno_Basher]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Xeno_Zapper]: {
+    category: "Tools",
+    type: "s",
+  },
+  [FullRefsEnum.Yellow_Power_Slug]: {
+    category: "Items",
+    type: "s",
+  },
+  [FullRefsEnum.Zipline]: {
     category: "Tools",
     type: "s",
   },

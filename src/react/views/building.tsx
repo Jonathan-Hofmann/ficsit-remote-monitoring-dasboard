@@ -14,83 +14,33 @@ import React, { useEffect, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 
+import type { LocationState } from "../../types/locationState";
+import type { Theme } from "../../types/theme";
+
 export const Building: React.FC = () => {
-  const { state } = useLocation();
-  const b_tmp: any = state;
-  const b: any = b_tmp.data;
-  console.log(b);
+  const theme: Theme = useTheme();
+  const location: LocationState = useLocation();
+  const [, setStep] = useState(0);
 
-  let errorText = "";
-  const [step, setStep] = useState(0);
-  const steps = [
-    "Configure a Recipe",
-    "Start Producing",
-    " Lay Back and Relax",
-  ];
-
-  const theme = useTheme();
-
-  /**
-     * {
-    "building": "Constructor",
-    "location": {
-      "x": 246034.03125,
-      "y": -190829.25,
-      "z": 2271.178467,
-      "rotation": 270
-    },
-    "Recipe": "Concrete",
-    "production": [
-      {
-        "Name": "Concrete",
-        "CurrentProd": 9.9,
-        "MaxProd": 15.0,
-        "ProdPercent": "66.300003"
-      }
-    ],
-    "ingredients": [
-      {
-        "Name": "Limestone",
-        "CurrentConsumed": 29.799999,
-        "MaxConsumed": 45.0,
-        "ConsPercent": "66.300003"
-      }
-    ],
-    "ManuSpeed": 1.0,
-    "IsConfigured": true,
-    "IsProducing": true,
-    "IsPaused": false,
-    "CircuitID": 1
-  },
-     */
-
-  const isFailingStep = (step: number) => {
-    if (step === 0) {
-      if (b.IsConfigured === true) {
-        return false;
-      }
-      errorText = "Recipe not configured!";
-      return true;
-    }
-
-    if (step === 1) {
-      if (b.IsProducing === true) {
-        return false;
-      }
-      errorText = "Not able to produce... Check Power!";
-      return true;
-    }
-  };
+  const locationState = location.state;
+  const buildingsData = locationState?.data;
 
   useEffect(() => {
-    if (b.IsConfigured === false) {
-      setStep(0);
-    } else if (b.IsProducing === false && b.IsPaused === true) {
-      setStep(1);
-    } else {
-      setStep(2);
+    if (buildingsData) {
+      if (buildingsData.IsConfigured === false) {
+        setStep(0);
+      } else if (
+        buildingsData.IsProducing === false &&
+        buildingsData.IsPaused === true
+      ) {
+        setStep(1);
+      } else {
+        setStep(2);
+      }
     }
-  }, [state]);
+  }, [locationState, buildingsData]);
+
+  if (!buildingsData) return null;
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -107,7 +57,7 @@ export const Building: React.FC = () => {
             variant="h2"
             fontWeight={600}
           >
-            {b.building}
+            {buildingsData.building}
           </Typography>
         </Grid>
         <Grid item>
@@ -131,7 +81,7 @@ export const Building: React.FC = () => {
         >
           <Card>
             <CardHeader
-              title={b.Recipe}
+              title={buildingsData.Recipe}
               subheader="Currently Producing"
             />
           </Card>
@@ -142,7 +92,7 @@ export const Building: React.FC = () => {
         >
           <Card>
             <CardHeader
-              title={`${parseFloat(b.ManuSpeed) * 100} %`}
+              title={`${parseFloat(buildingsData.ManuSpeed) * 100} %`}
               subheader="Overclocking Speed"
             />
           </Card>
@@ -153,7 +103,7 @@ export const Building: React.FC = () => {
         >
           <Card>
             <CardHeader
-              title={b.CircuitID}
+              title={buildingsData.CircuitID}
               subheader="Power Circuit"
             />
           </Card>
@@ -163,9 +113,9 @@ export const Building: React.FC = () => {
             item
             xs
           >
-            {b.IsConfigured === true &&
-            b.IsProducing === true &&
-            b.IsPaused === false ? (
+            {buildingsData.IsConfigured === true &&
+            buildingsData.IsProducing === true &&
+            buildingsData.IsPaused === false ? (
               <Card sx={{ backgroundColor: theme.palette.success.main }}>
                 <CardHeader
                   title="No Problems"
@@ -184,33 +134,6 @@ export const Building: React.FC = () => {
         </Tooltip>
       </Grid>
 
-      {/* <Stack sx={{margin: '50px 0'}} display={'flex'} alignItems={'center'}>
-                <Box sx={{ width: '70%' }}>
-                    <Stepper alternativeLabel activeStep={step}>
-                        {steps.map((label, index) => {
-                            const labelProps: {
-                                optional?: React.ReactNode;
-                                error?: boolean;
-                            } = {};
-                            if (isFailingStep(index)) {
-                                labelProps.optional = (
-                                    <Typography variant="body2" sx={{fontSize:'12px', marginTop: '6px'}} textAlign={'center'} color="error">
-                                        {errorText}
-                                    </Typography>
-                                );
-                                labelProps.error = true;
-                            }
-
-                            return (
-                                <Step key={label}>
-                                    <StepLabel {...labelProps}><strong>{label}</strong></StepLabel>
-                                </Step>
-                            );
-                        })}
-                    </Stepper>
-                </Box>
-            </Stack> */}
-
       <Divider sx={{ marginBottom: "30px" }} />
 
       <Paper
@@ -226,14 +149,14 @@ export const Building: React.FC = () => {
               variant="h5"
               sx={{ marginBottom: "20px" }}
             >
-              {b.building} produces {b.Recipe}
+              {buildingsData.building} produces {buildingsData.Recipe}
             </Typography>
           </Grid>
           <Grid item>
             {/* {productionItem.FuseTriggered === true ? <Chip icon={<BsExclamationTriangleFill size={'17px'}/> } sx={{paddingLeft: '6px'}} color="error" label="FUSE BROKEN"></Chip> : <Chip icon={<BsCheck size={'22px'}/> } sx={{paddingLeft: '6px', color: 'white'}} color="success" label="Fuse: All Good"></Chip>} */}
           </Grid>
         </Grid>
-        {b.production.map((productionItem: any) => {
+        {buildingsData.production.map((productionItem) => {
           return (
             <Grid
               container
@@ -303,14 +226,14 @@ export const Building: React.FC = () => {
               variant="h5"
               sx={{ marginBottom: "20px" }}
             >
-              {b.building} needs Ingredients:
+              {buildingsData.building} needs Ingredients:
             </Typography>
           </Grid>
           <Grid item>
             {/* {productionItem.FuseTriggered === true ? <Chip icon={<BsExclamationTriangleFill size={'17px'}/> } sx={{paddingLeft: '6px'}} color="error" label="FUSE BROKEN"></Chip> : <Chip icon={<BsCheck size={'22px'}/> } sx={{paddingLeft: '6px', color: 'white'}} color="success" label="Fuse: All Good"></Chip>} */}
           </Grid>
         </Grid>
-        {b.ingredients.map((productionItem: any) => {
+        {buildingsData.ingredients.map((productionItem) => {
           return (
             <Grid
               container
