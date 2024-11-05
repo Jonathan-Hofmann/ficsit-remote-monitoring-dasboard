@@ -17,6 +17,7 @@ import { useSearchParams } from "react-router-dom";
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 
 export const DetailedGeneratorView: React.FC = () => {
   const [params] = useSearchParams();
@@ -25,20 +26,23 @@ export const DetailedGeneratorView: React.FC = () => {
   const [GeneratorData, setGeneratorData] = useState<undefined | any>(
     undefined,
   );
-  const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
   let intervalVar: any;
 
   const loadData = async (endpoint: string) => {
-    intervalVar = setInterval(async () => {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/${endpoint}`,
-      );
-      if (response.data[0]) {
-        setGeneratorData(response.data);
-      } else {
-        setGeneratorData([]);
-      }
-    }, settings.interval);
+    // intervalVar = setInterval(async () => {
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/${endpoint}`,
+    //   );
+    //   if (response.data[0]) {
+    //     setGeneratorData(response.data);
+    //   } else {
+    //     setGeneratorData([]);
+    //   }
+    // }, settings.interval);
   };
 
   useEffect(() => {

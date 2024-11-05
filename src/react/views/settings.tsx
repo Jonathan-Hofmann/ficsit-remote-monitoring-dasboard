@@ -13,12 +13,11 @@ import { BsExclamationCircle } from "react-icons/bs";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 
 export const Settings: React.FC = () => {
-  const [settings, setSettings] = useLocalStorage(
-    "rmd_settings",
-    defaultSettingsData,
-  );
+  const { value: settings, setValue: setSettings } =
+    useLocalStorage<SettingsData>("rmd_settings", defaultSettingsData);
 
   return (
     <Container>

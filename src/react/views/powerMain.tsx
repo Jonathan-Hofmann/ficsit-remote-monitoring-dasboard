@@ -21,11 +21,15 @@ import {
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 import { BuildingButton } from "../components/buildingButton";
 
 export const PowerMain: React.FC = () => {
   const [power, setPower] = useState<undefined | any>(undefined);
-  const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
   const generators = [
     "Biomass Burner",
     "Coal-Powered Generator",
@@ -39,14 +43,14 @@ export const PowerMain: React.FC = () => {
   let intervalVar: any;
 
   const loadData = async () => {
-    intervalVar = setInterval(async () => {
-      const response = await fetch(
-        `http://${settings.ip}:${settings.port}/getPower`,
-      );
-      const data = await response.text();
-      const getPower = JSON.parse(data);
-      // console.info(getPower);
-      setPower(getPower);
+    // intervalVar = setInterval(async () => {
+    //   const response = await fetch(
+    //     `http://${settings.ip}:${settings.port}/getPower`,
+    //   );
+    //   const data = await response.text();
+    //   const getPower = JSON.parse(data);
+    //   // console.info(getPower);
+    //   setPower(getPower);
     }, settings.interval);
   };
 

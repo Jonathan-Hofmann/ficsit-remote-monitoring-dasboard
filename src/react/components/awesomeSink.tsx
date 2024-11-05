@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 import { PlotFigure } from "../views/plotWrapper";
 // import { data } from "../constants/test-data";
 
@@ -17,24 +18,26 @@ export const AwesomeSink: React.FC = () => {
   const [sinks2, setSink2] = useState<undefined | any>(undefined);
 
   const [data, setData] = useState<undefined | any>(undefined);
-  const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
 
   const loadData = async () => {
-    if (doLoadData === true) {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/getResourceSink`,
-      );
-      const response2 = await axios.get(
-        `http://${settings.ip}:${settings.port}/getExplorationSink`,
-      );
-      setSink(response.data);
-      setSink2(response2.data);
-      // console.log(response.data);
-
-      setTimeout(() => {
-        loadData();
-      }, settings.interval);
-    }
+    // if (doLoadData === true) {
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getResourceSink`,
+    //   );
+    //   const response2 = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getExplorationSink`,
+    //   );
+    //   setSink(response.data);
+    //   setSink2(response2.data);
+    //   // console.log(response.data);
+    //   setTimeout(() => {
+    //     loadData();
+    //   }, settings.interval);
+    // }
   };
 
   const updateData = async () => {

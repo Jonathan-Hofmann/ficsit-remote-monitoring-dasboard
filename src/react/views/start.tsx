@@ -18,16 +18,14 @@ import { BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 import { AwesomeSink } from "../components/awesomeSink";
 
 export const Start: React.FC = () => {
   const [doLoadData] = useState(true);
-  const [itemSelection, setItemSelection] = useLocalStorage("srmd_ItemList", [
-    "Concrete",
-    "Iron Ingot",
-    "Copper Ingot",
-    "Coal",
-  ]);
+  const { value: itemSelection, setValue: setItemSelection } = useLocalStorage<
+    string[]
+  >("srmd_ItemList", ["Concrete", "Iron Ingot", "Copper Ingot", "Coal"]);
 
   const [worldInv, setWorldInv] = useState<undefined | any>(undefined);
 
@@ -37,19 +35,22 @@ export const Start: React.FC = () => {
   const [tmp_itemSelection, setTmpItemSelection] = useState<
     undefined | string[]
   >(undefined);
-  const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
 
   const loadWorldInventory = async () => {
-    if (doLoadData) {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/getWorldInv`,
-      );
-      setWorldInv(response.data);
-      // console.log(response.data);
-      setTimeout(() => {
-        loadWorldInventory();
-      }, settings.interval);
-    }
+    // if (doLoadData) {
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getWorldInv`,
+    //   );
+    //   setWorldInv(response.data);
+    //   // console.log(response.data);
+    //   setTimeout(() => {
+    //     loadWorldInventory();
+    //   }, settings.interval);
+    // }
   };
 
   // useEffect(()=>{

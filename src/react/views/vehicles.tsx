@@ -17,32 +17,36 @@ import { BsQuestionCircle, BsXCircle } from "react-icons/bs";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 
 export const Vehicles: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [vehicles, setVehicles] = useState<undefined | any>(undefined);
-  const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
 
   const loadData = async () => {
     if (doLoadData) {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/getVehicles`,
-      );
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getVehicles`,
+    //   );
 
-      const temp = [];
-      for (let index = 0; index < response.data.length; index++) {
-        const value = response.data[index];
-        if (!value.Fuel[0]) {
-          value.Fuel = [{ Name: "N/A", Amount: 0 }];
-        }
-        temp.push(value);
-      }
-      setVehicles(temp);
+    //   const temp = [];
+    //   for (let index = 0; index < response.data.length; index++) {
+    //     const value = response.data[index];
+    //     if (!value.Fuel[0]) {
+    //       value.Fuel = [{ Name: "N/A", Amount: 0 }];
+    //     }
+    //     temp.push(value);
+    //   }
+    //   setVehicles(temp);
 
-      setTimeout(() => {
-        loadData();
-      }, settings.interval);
-    }
+    //   setTimeout(() => {
+    //     loadData();
+    //   }, settings.interval);
+    // }
   };
 
   useEffect(() => {

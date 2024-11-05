@@ -17,6 +17,7 @@ import { useSearchParams } from "react-router-dom";
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
 
@@ -25,20 +26,23 @@ export const DetailedFactoryView: React.FC = () => {
   const factory = params.get("factory");
   const factoryEndpoint = params.get("endpoint");
   const [FactoryData, setFactoryData] = useState<undefined | any>(undefined);
-  const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
   let intervalVar: any;
 
   const loadData = async (endpoint: string) => {
-    intervalVar = setInterval(async () => {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/${endpoint}`,
-      );
-      if (response.data[0]) {
-        setFactoryData(response.data);
-      } else {
-        setFactoryData([]);
-      }
-    }, settings.interval);
+    // intervalVar = setInterval(async () => {
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/${endpoint}`,
+    //   );
+    //   if (response.data[0]) {
+    //     setFactoryData(response.data);
+    //   } else {
+    //     setFactoryData([]);
+    //   }
+    // }, settings.interval);
   };
 
   useEffect(() => {

@@ -14,6 +14,7 @@ import React, { useEffect, useState } from "react";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 
 export const Trains: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
@@ -23,25 +24,26 @@ export const Trains: React.FC = () => {
   const [tStation_PrevNext, setTStation_PrevNext] = useState<undefined | any[]>(
     undefined,
   );
-  const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
 
   const loadData = async () => {
-    if (doLoadData) {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/getTrains`,
-      );
-      const response_trainstaions = await axios.get(
-        `http://${settings.ip}:${settings.port}/getTrainStation`,
-      );
-
-      // // console.info(trainsData);
-      setTrains(response.data);
-      setTrainstations(response_trainstaions.data);
-
-      setTimeout(() => {
-        loadData();
-      }, settings.interval);
-    }
+    // if (doLoadData) {
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getTrains`,
+    //   );
+    //   const response_trainstaions = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getTrainStation`,
+    //   );
+    //   // // console.info(trainsData);
+    //   setTrains(response.data);
+    //   setTrainstations(response_trainstaions.data);
+    //   setTimeout(() => {
+    //     loadData();
+    //   }, settings.interval);
+    // }
   };
 
   const handlePrepareTStationsForUI = (trains_data: Record<string, any>[]) => {

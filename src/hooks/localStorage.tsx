@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 
-import type { SettingsData } from "../types/settingsData";
-
-export const useLocalStorage = (
-  storageKey: string,
-  defaultSettings: SettingsData,
-) => {
+export const useLocalStorage = <T,>(storageKey: string, defaultValue: T) => {
   const storedValue: string | null = localStorage.getItem(storageKey);
-  const parsedStoredValue: SettingsData | undefined = storedValue
-    ? (JSON.parse(storedValue) as SettingsData)
+  const parsedStoredValue = storedValue
+    ? (JSON.parse(storedValue) as T)
     : undefined;
 
-  const [value, setValue] = useState<SettingsData>(
-    parsedStoredValue ?? defaultSettings,
-  );
+  const [value, setValue] = useState<T>(parsedStoredValue ?? defaultValue);
 
   useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(value));
   }, [value, storageKey]);
 
-  return [value, setValue];
+  return {
+    value,
+    setValue,
+  };
 };

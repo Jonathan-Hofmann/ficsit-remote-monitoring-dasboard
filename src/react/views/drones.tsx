@@ -16,32 +16,33 @@ import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { useLocalStorage } from "../../hooks/localStorage";
+import { SettingsData } from "../../types/settingsData";
 
-  const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { settings } = useLocalStorage<SettingsData>("rmd_settings", defaultSettingsData);
 
   // const settings = useContext(SettingsContext);
 
   const loadData = async () => {
-    if (doLoadData === true) {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/getDrone`,
-      );
-      const response_station = await axios.get(
-        `http://${settings.ip}:${settings.port}/getDroneStation`,
-      );
+    // if (doLoadData === true) {
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getDrone`,
+    //   );
+    //   const response_station = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getDroneStation`,
+    //   );
 
-      const { data } = response;
-      const data_station = response_station.data;
+    //   const { data } = response;
+    //   const data_station = response_station.data;
 
-      // console.log(data);
+    //   // console.log(data);
 
-      setDrones(data);
-      setDronestations(data_station);
+    //   setDrones(data);
+    //   setDronestations(data_station);
 
-      setTimeout(() => {
-        loadData();
-      }, settings.interval);
-    }
+    //   setTimeout(() => {
+    //     loadData();
+    //   }, settings.interval);
+    // }
   };
 
   const handlePrepareTStationsForUI = (drones_data: Record<string, any>[]) => {

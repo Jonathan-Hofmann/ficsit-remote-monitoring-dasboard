@@ -5,10 +5,12 @@ import React, { createContext, useEffect, useMemo, useState } from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 
 import { defaultSettingsData } from "../constants/defaultSettingsData";
+import { useLocalStorage } from "../hooks/localStorage";
 import type { ConnectionCheckerContextDefaultValues } from "../types/connectionCheckerContextDefaultValues";
+import type { SettingsData } from "../types/settingsData";
 
 const defaultValues: ConnectionCheckerContextDefaultValues = {
-  msInterval: 1000,
+  msInterval: 3000,
   checkConnectionToFRM: () => {},
 };
 
@@ -23,41 +25,30 @@ export const ConnectionCheckerProvider: React.FC<Props> = ({ children }) => {
   const [showAlert, setShowAlert] = useState(false);
   let timeout: NodeJS.Timeout;
 
-  // const [settings, _] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
 
-  const [msInterval, setMsInterval] = useState(1000);
+  const [msInterval, setMsInterval] = useState(3000);
   const [loop, setLooping] = useState(true);
 
   const checkConnectionToFRM = async () => {
-    clearTimeout(timeout);
-
-    axios
-      .get(
-        `http://${
-          JSON.parse(
-            localStorage.getItem("rmd_settings") ??
-              JSON.stringify(defaultSettingsData),
-          ).ip
-        }:${
-          JSON.parse(
-            localStorage.getItem("rmd_settings") ??
-              JSON.stringify(defaultSettingsData),
-          ).port
-        }/getDoggo`,
-      )
-      .then(() => {
-        console.log("[ConnectionChecker] Got data");
-        setShowAlert(false);
-      })
-      .catch(() => {
-        setShowAlert(true);
-      });
-
-    timeout = setTimeout(() => {
-      if (loop) {
-        checkConnectionToFRM();
-      }
-    }, 3000);
+    // clearTimeout(timeout);
+    // axios
+    //   .get(`http://${settings.ip}:${settings.port}/getDoggo`)
+    //   .then(() => {
+    //     console.log("[ConnectionChecker] Got data");
+    //     setShowAlert(false);
+    //   })
+    //   .catch(() => {
+    //     setShowAlert(true);
+    //   });
+    // timeout = setTimeout(() => {
+    //   if (loop) {
+    //     checkConnectionToFRM();
+    //   }
+    // }, 3000);
   };
 
   useEffect(() => {

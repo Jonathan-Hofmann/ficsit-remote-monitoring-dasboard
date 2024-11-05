@@ -40,7 +40,7 @@ export const AppContainer: React.FC = () => {
                 path="/"
                 element={<Start />}
               />
-              <Route
+              {/* <Route
                 path="/power"
                 element={<PowerMain />}
               />
@@ -59,12 +59,12 @@ export const AppContainer: React.FC = () => {
               <Route
                 path="/building"
                 element={<Building />}
-              />
+              /> */}
               <Route
                 path="/drones"
                 element={<Drones />}
               />
-              <Route
+              {/* <Route
                 path="/trains"
                 element={<Trains />}
               />
@@ -87,7 +87,7 @@ export const AppContainer: React.FC = () => {
               <Route
                 path="/settings"
                 element={<Settings />}
-              />
+              /> */}
             </Routes>
           </ConnectionCheckerProvider>
           <Footer />

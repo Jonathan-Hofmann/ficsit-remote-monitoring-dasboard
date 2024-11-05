@@ -9,31 +9,33 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import { useLocalStorage } from "../../hooks/localStorage";
+import type { SettingsData } from "../../types/settingsData";
 
 export const StorageView: React.FC = () => {
   const [doLoadData] = useState(true);
   const [worldInv, setWorldInv] = useState<undefined | any>(undefined);
   const [prodStats, setProdStats] = useState<undefined | any>(undefined);
   const [items, setItems] = useState<undefined | any>(undefined);
-  const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
 
   const loadData = async () => {
-    if (doLoadData) {
-      const response = await axios.get(
-        `http://${settings.ip}:${settings.port}/getWorldInv`,
-      );
-      const response_extra = await axios.get(
-        `http://${settings.ip}:${settings.port}/getProdStats`,
-      );
-
-      // console.info(response);
-      setWorldInv(response.data);
-      setProdStats(response_extra.data);
-
-      setTimeout(() => {
-        loadData();
-      }, settings.interval);
-    }
+    // if (doLoadData) {
+    //   const response = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getWorldInv`,
+    //   );
+    //   const response_extra = await axios.get(
+    //     `http://${settings.ip}:${settings.port}/getProdStats`,
+    //   );
+    //   // console.info(response);
+    //   setWorldInv(response.data);
+    //   setProdStats(response_extra.data);
+    //   setTimeout(() => {
+    //     loadData();
+    //   }, settings.interval);
+    // }
   };
 
   const prepItems = async () => {

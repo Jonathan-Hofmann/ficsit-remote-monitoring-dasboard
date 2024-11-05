@@ -13,13 +13,17 @@ import React, { useEffect, useState } from "react";
 import { FactoryTypeCol } from "../react/components/production/col_type";
 import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "../constants/defaultSettingsData";
+import type { SettingsData } from "../types/settingsData";
 
 export const Factorys: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [factorys, setFactorys] = useState<undefined | any>(undefined);
   const [allFactorys, setAllFactorys] = useState<undefined | any>(undefined);
   const [loadingText, setLoadingText] = useState("Data is being loaded ...");
-  const [settings] = useLocalStorage("rmd_settings", defaultSettingsData);
+  const { value: settings } = useLocalStorage<SettingsData>(
+    "rmd_settings",
+    defaultSettingsData,
+  );
   const theme = useTheme();
 
   let intervalVar: any;
@@ -27,13 +31,13 @@ export const Factorys: React.FC = () => {
   const loadData = async () => {
     // setLoadingText("Data is being loaded ...");
     intervalVar = setInterval(async () => {
-      const response = await fetch(
-        `http://${settings.ip}:${settings.port}/getFactory`,
-      );
-      const data = await response.text();
-      const getPower = JSON.parse(data);
-      console.info(getPower);
-      setFactorys(getPower);
+      // const response = await fetch(
+      //   `http://${settings.ip}:${settings.port}/getFactory`,
+      // );
+      // const data = await response.text();
+      // const getPower = JSON.parse(data);
+      // console.info(getPower);
+      // setFactorys(getPower);
     }, 5000);
   };
 
