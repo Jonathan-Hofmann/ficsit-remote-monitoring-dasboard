@@ -121,4 +121,12 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    {
+      files: ["src/types/apis/dataTransferObject/**"],
+      rules: {
+        "import/no-unused-modules": "off",
+      },
+    },
+  ],
 };

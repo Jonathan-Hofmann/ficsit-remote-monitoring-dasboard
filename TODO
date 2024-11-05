@@ -1,0 +1,25 @@
+- Include all types from https://docs.ficsit.app/ficsitremotemonitoring/latest/json/Read/Read.html
+- Refacto all components
+- Refacto all types
+- Signal to FRM dev following errors :
+  - /getResourceGeyser don't work
+- Rename Start to Homepage
+- Handle unused folder/files
+
+
+== All pages/views to do ==
+  componentFile / Component - /route => State
+
+- start         / Start                 - /
+- powerMain     / PowerMain             - /power        =>
+- generatorView / DetailedGeneratorView - /generator    =>
+- production    / FactorysSwitch        - /production   =>
+- factoryView   / DetailedFactoryView   - /factory      =>
+- building      / Building              - /building     =>
+- drones        / Drones                - /drones       => Done, no refacto
+- trains        / Trains                - /trains       =>
+- vehicles      / Vehicles              - /vehicles     =>
+- storageView   / StorageView           - /storageView  =>
+- awesomeSink   / AwesomeSink           - /awesomeSink  =>
+- testingSocket / SocketTestSite        - /test         =>
+- settings      / Settings              - /settings     =>

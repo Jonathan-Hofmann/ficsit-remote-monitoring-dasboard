@@ -1,8 +1,10 @@
 import { Card, CardContent, Grid, Typography } from "@mui/joy";
 import React from "react";
 
+import type { IngredientCardProduct } from "../../../types/ingredientCardProduct";
+
 type Props = {
-  product: any;
+  product: IngredientCardProduct;
   fullRefs: any;
 };
 

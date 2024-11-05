@@ -16,6 +16,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
+import type { FullRefsEnum } from "../../enums/fullRefs.enum";
 import { useLocalStorage } from "../../hooks/localStorage";
 import type { SettingsData } from "../../types/settingsData";
 import { IngredientCard } from "../components/building/ingredientCard";
@@ -52,9 +53,9 @@ export const DetailedFactoryView: React.FC = () => {
     };
   });
 
-  function getImage(item: any): any {
+  function getImage(item: FullRefsEnum): string | null {
     let value = null;
-    if (fullRefs[item] != null) {
+    if (fullRefs[item]) {
       value = `/assets/${fullRefs[item].category}/${item}.png`;
     }
     return value;

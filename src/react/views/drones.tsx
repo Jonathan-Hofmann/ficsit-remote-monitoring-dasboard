@@ -10,90 +10,52 @@ import {
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 
-import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { useLocalStorage } from "../../hooks/localStorage";
-import { SettingsData } from "../../types/settingsData";
+import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import type { Drone } from "../../types/FRMApis/drone";
+import type { DroneStation } from "../../types/FRMApis/droneStation";
 
-  const { settings } = useLocalStorage<SettingsData>("rmd_settings", defaultSettingsData);
+type DroneStationStep = Record<
+  string,
+  { homeStation: DroneStation; destStation: DroneStation }
+>;
 
-  // const settings = useContext(SettingsContext);
+export const Drones: React.FC = () => {
+  const drones = useAutoRefetch<Drone[]>("getDrone");
+  const droneStations = useAutoRefetch<DroneStation[]>("getDroneStation");
+  const [droneStationStep, setDroneStationStep] = useState<DroneStationStep>();
 
-  const loadData = async () => {
-    // if (doLoadData === true) {
-    //   const response = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getDrone`,
-    //   );
-    //   const response_station = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getDroneStation`,
-    //   );
+  const handlePrepareTStationsForUI = useCallback(
+    (dronesData: Drone[]) => {
+      let temporaryStationStep: DroneStationStep = {};
+      dronesData.forEach((drone) => {
+        const homeStation = droneStations?.find(
+          (el) => el.Name === drone.HomeStation,
+        );
+        const destStation = droneStations?.find(
+          (el) => el.Name === drone.PairedStation,
+        );
 
-    //   const { data } = response;
-    //   const data_station = response_station.data;
-
-    //   // console.log(data);
-
-    //   setDrones(data);
-    //   setDronestations(data_station);
-
-    //   setTimeout(() => {
-    //     loadData();
-    //   }, settings.interval);
-    // }
-  };
-
-  const handlePrepareTStationsForUI = (drones_data: Record<string, any>[]) => {
-    const tmp: any[] = [];
-
-    // Alle Drohnen durch-iterieren
-
-    // Alle Drone Ports Durch-iterieren
-
-    // If Drone-Port = Drone-HomeBase
-    // -> Merken
-
-    // If Drone-Port = Drone CurrentDestination
-    // -> Merken
-
-    // tmpArray ein Objekt mit gefundenem Drohnen-Port#1 + Drohnen-Port#2 erweitern.
-
-    for (let i = 0; i < drones_data.length; i++) {
-      const drone = drones_data[i];
-
-      const homeBase = drone.HomeStation;
-      const destination = drone.PairedStation;
-      let homeIndex = 0;
-      let destIndex = 0;
-
-      for (let index = 0; index < droneStaions.length; index++) {
-        const station = droneStaions[index];
-        if (station.Name === homeBase) {
-          homeIndex = index;
+        if (homeStation && destStation) {
+          temporaryStationStep = {
+            ...temporaryStationStep,
+            [drone.ID]: {
+              homeStation,
+              destStation,
+            },
+          };
         }
-        if (station.Name === destination) {
-          destIndex = index;
-        }
-      }
-
-      tmp.push([droneStaions[homeIndex], droneStaions[destIndex]]);
-
-      // tmp.push([timetable[foundIndex]]);
-    }
-
-    setDrStation_PrevNext(tmp);
-  };
+      });
+      setDroneStationStep(temporaryStationStep);
+    },
+    [droneStations],
+  );
 
   useEffect(() => {
     if (drones && drones.length > 0) handlePrepareTStationsForUI(drones);
-    // console.log(trains);
-  }, [drones]);
-
-  useEffect(() => {
-    loadData();
-  }, []);
+  }, [drones, handlePrepareTStationsForUI]);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -116,62 +78,16 @@ import { SettingsData } from "../../types/settingsData";
                 Drones
               </Typography>
             </Grid>
-            <Grid>
-              {/* <IconButton size="lg">
-                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                            </IconButton>  */}
-            </Grid>
           </Grid>
         </CardContent>
       </Card>
 
-      {drones && drStation_PrevNext && drStation_PrevNext.length > 0 ? (
+      {drones && droneStationStep ? (
         <>
-          {drones.map((drone: any, index: number) => {
-            let percentDone = 0;
-            let top = 0;
-            let bottom = 0;
-            let totalLength = 0;
+          {drones.map((drone) => {
+            if (droneStationStep[drone.ID]) {
+              const { homeStation, destStation } = droneStationStep[drone.ID];
 
-            if (
-              drStation_PrevNext[index].length > 0 &&
-              drStation_PrevNext[index][0] &&
-              drStation_PrevNext[index][1]
-            ) {
-              top = Math.floor(
-                ((drStation_PrevNext[index][0].location.x - drone.location.x) **
-                  2 +
-                  (drStation_PrevNext[index][0].location.y -
-                    drone.location.y) **
-                    2) **
-                  0.5 /
-                  100,
-              );
-              bottom = Math.floor(
-                ((drStation_PrevNext[index][1].location.x - drone.location.x) **
-                  2 +
-                  (drStation_PrevNext[index][1].location.y -
-                    drone.location.y) **
-                    2) **
-                  0.5 /
-                  100,
-              );
-
-              totalLength = Math.floor(
-                ((drStation_PrevNext[index][0].location.x -
-                  drStation_PrevNext[index][1].location.x) **
-                  2 +
-                  (drStation_PrevNext[index][0].location.y -
-                    drStation_PrevNext[index][1].location.y) **
-                    2) **
-                  0.5 /
-                  100,
-              );
-
-              percentDone = (top / totalLength) * 100;
-            }
-
-            if (drStation_PrevNext[index][0] && drStation_PrevNext[index][1]) {
               return (
                 <Grid
                   container
@@ -179,12 +95,13 @@ import { SettingsData } from "../../types/settingsData";
                   sx={{ marginBottom: "30px", height: "300px" }}
                   display="flex"
                   alignItems="center"
+                  key={drone.ID}
                 >
                   <Grid
                     xs={3}
                     sx={{ height: "240px" }}
                   >
-                    {drStation_PrevNext[index][0] ? (
+                    {homeStation ? (
                       <Card
                         variant="outlined"
                         sx={{
@@ -198,7 +115,7 @@ import { SettingsData } from "../../types/settingsData";
                           {/* <BsLink45Deg size="28px"/> */}
                           <img
                             src="./assets/Buildings/IconDesc_DronePort_256.png"
-                            alt="image"
+                            alt="Satisfactory Drone Port illustration"
                             style={{ height: "35px", width: "35px" }}
                           />
                           <Typography
@@ -222,8 +139,7 @@ import { SettingsData } from "../../types/settingsData";
                               right: "20px",
                             }}
                           >
-                            {drStation_PrevNext[index][0].DroneStatus ===
-                              "No Drones" && (
+                            {homeStation.DroneStatus === "No Drones" && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -236,8 +152,7 @@ import { SettingsData } from "../../types/settingsData";
                                 No drones
                               </Chip>
                             )}
-                            {drStation_PrevNext[index][0].DroneStatus ===
-                              "Cannot Unload" && (
+                            {homeStation.DroneStatus === "Cannot Unload" && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -250,8 +165,7 @@ import { SettingsData } from "../../types/settingsData";
                                 Inventory Full
                               </Chip>
                             )}
-                            {drStation_PrevNext[index][0].DroneStatus ===
-                              "Docked" && (
+                            {homeStation.DroneStatus === "Docked" && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -264,8 +178,7 @@ import { SettingsData } from "../../types/settingsData";
                                 Docked
                               </Chip>
                             )}
-                            {drStation_PrevNext[index][0].DroneStatus ===
-                              "Takeoff" && (
+                            {homeStation.DroneStatus === "Takeoff" && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -281,11 +194,9 @@ import { SettingsData } from "../../types/settingsData";
                           </Box>
                         </CardContent>
                       </Card>
-                    ) : (
-                      <></>
-                    )}
+                    ) : null}
 
-                    {drStation_PrevNext[index][1] ? (
+                    {destStation ? (
                       <Card
                         variant="outlined"
                         sx={{
@@ -295,10 +206,9 @@ import { SettingsData } from "../../types/settingsData";
                         }}
                       >
                         <CardContent>
-                          {/* <BsLink45Deg size="28px"/> */}
                           <img
                             src="./assets/Buildings/IconDesc_DronePort_256.png"
-                            alt="image"
+                            alt="Satisfactory Drone Port illustration"
                             style={{ height: "35px", width: "35px" }}
                           />
                           <Typography
@@ -324,8 +234,7 @@ import { SettingsData } from "../../types/settingsData";
                               right: "20px",
                             }}
                           >
-                            {drStation_PrevNext[index][1].DroneStatus ===
-                              "No Drones" && (
+                            {destStation.DroneStatus === "No Drones" && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -338,8 +247,7 @@ import { SettingsData } from "../../types/settingsData";
                                 No drones
                               </Chip>
                             )}
-                            {drStation_PrevNext[index][1].DroneStatus ===
-                              "Cannot Unload" && (
+                            {destStation.DroneStatus === "Cannot Unload" && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -352,8 +260,7 @@ import { SettingsData } from "../../types/settingsData";
                                 Inventory Full
                               </Chip>
                             )}
-                            {drStation_PrevNext[index][1].DroneStatus ===
-                              "Docked" && (
+                            {destStation.DroneStatus === "Docked" && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -366,8 +273,7 @@ import { SettingsData } from "../../types/settingsData";
                                 Docked
                               </Chip>
                             )}
-                            {drStation_PrevNext[index][1].DroneStatus ===
-                              "Takeoff" && (
+                            {destStation.DroneStatus === "Takeoff" && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -383,9 +289,7 @@ import { SettingsData } from "../../types/settingsData";
                           </Box>
                         </CardContent>
                       </Card>
-                    ) : (
-                      <></>
-                    )}
+                    ) : null}
                   </Grid>
 
                   <Grid
@@ -401,32 +305,13 @@ import { SettingsData } from "../../types/settingsData";
                       }}
                     >
                       <CardContent>
-                        {/* <Grid container spacing={2} sx={{marginBottom: '10px'}}>
-                                                <Grid>
-                                                    
-                                                </Grid>
-                                                <Grid xs>
-                                                    <Box sx={{position: 'relative'}}>
-                                                        <Grid container spacing={1} display={'flex'} alignItems={'center'}>
-                                                            <Grid xs>
-                                                                <Typography level="h6">{drone.VehicleType} #{drone.ID}</Typography>
-                                                            </Grid>
-                                                            <Grid>
-                                                            </Grid>
-    
-                                                            <Grid>
-                                                                </Grid>
-                                                        </Grid>
-                                                    </Box>
-                                                </Grid>
-                                            </Grid> */}
                         <Stack
                           alignItems="center"
                           sx={{ marginBottom: "15px" }}
                         >
                           <img
                             src="./assets/Vehicles/IconDesc_Drone_256.png"
-                            alt="image"
+                            alt="Satisfactory Drone illustration"
                             style={{ height: "100px" }}
                           />
                           {drone.CurrentFlyingMode === "Flying" && (
@@ -490,9 +375,9 @@ import { SettingsData } from "../../types/settingsData";
                           </Grid>
                           <Grid>
                             <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                              {parseFloat(drone.FlyingSpeed) < 0
-                                ? parseInt(drone.FlyingSpeed) * -1
-                                : parseInt(drone.FlyingSpeed)}{" "}
+                              {drone.FlyingSpeed < 0
+                                ? drone.FlyingSpeed * -1
+                                : drone.FlyingSpeed}{" "}
                               Knots
                             </Typography>
                           </Grid>
@@ -540,7 +425,7 @@ import { SettingsData } from "../../types/settingsData";
                               level="h4"
                               marginTop="10px"
                             >
-                              {drStation_PrevNext[index][0].AvgRndTrip}
+                              {homeStation.AvgRndTrip}
                             </Typography>
                             <Typography level="body2">
                               Avg. Round Trip Time
@@ -568,7 +453,7 @@ import { SettingsData } from "../../types/settingsData";
                               level="h4"
                               marginTop="10px"
                             >
-                              {drStation_PrevNext[index][0].LatestRndTrip}
+                              {homeStation.LatestRndTrip}
                             </Typography>
                             <Typography level="body2">
                               Last Round Trip Time
@@ -601,9 +486,9 @@ import { SettingsData } from "../../types/settingsData";
                               level="h4"
                               marginTop="10px"
                             >
-                              {drStation_PrevNext[
-                                index
-                              ][0].EstBatteryRate.toFixed(2)}{" "}
+                              {homeStation.ActiveFuel.EstimatedFuelCostRate.toFixed(
+                                2,
+                              )}{" "}
                               / min
                             </Typography>
                             <Typography level="body2">
@@ -632,10 +517,7 @@ import { SettingsData } from "../../types/settingsData";
                               level="h4"
                               marginTop="10px"
                             >
-                              {drStation_PrevNext[
-                                index
-                              ][0].EstTransRate.toFixed(2)}{" "}
-                              stacks
+                              {homeStation.EstTotalTransRate.toFixed(2)} stacks
                             </Typography>
                             <Typography level="body2">
                               Estimated Transfer Rate (per minute)
@@ -713,7 +595,7 @@ import { SettingsData } from "../../types/settingsData";
                       >
                         <img
                           src="./assets/Vehicles/IconDesc_Drone_256.png"
-                          alt="image"
+                          alt="Satisfactory Drone illustration"
                           style={{ height: "100px" }}
                         />
                         {drone.CurrentFlyingMode === "Flying" && (
@@ -777,9 +659,9 @@ import { SettingsData } from "../../types/settingsData";
                         </Grid>
                         <Grid>
                           <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                            {parseFloat(drone.FlyingSpeed) < 0
-                              ? parseInt(drone.FlyingSpeed) * -1
-                              : parseInt(drone.FlyingSpeed)}{" "}
+                            {drone.FlyingSpeed < 0
+                              ? drone.FlyingSpeed * -1
+                              : drone.FlyingSpeed}{" "}
                             Knots
                           </Typography>
                         </Grid>

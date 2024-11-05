@@ -15,7 +15,7 @@ import { useLocalStorage } from "../hooks/localStorage";
 import { defaultSettingsData } from "../constants/defaultSettingsData";
 import type { SettingsData } from "../types/settingsData";
 
-export const Factorys: React.FC = () => {
+const Factorys: React.FC = () => {
   const [doLoadData, setLoadData] = useState(true);
   const [factorys, setFactorys] = useState<undefined | any>(undefined);
   const [allFactorys, setAllFactorys] = useState<undefined | any>(undefined);

@@ -14,8 +14,7 @@ const defaultValues: ConnectionCheckerContextDefaultValues = {
   checkConnectionToFRM: () => {},
 };
 
-// TODO Unused
-export const ConnectionCheckerContext = createContext(defaultValues);
+const ConnectionCheckerContext = createContext(defaultValues);
 
 type Props = {
   children: React.ReactElement;
