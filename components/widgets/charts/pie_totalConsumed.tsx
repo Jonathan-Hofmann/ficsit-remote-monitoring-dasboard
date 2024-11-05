@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/chart"
 import { useMemo } from "react"
 import { format } from "date-fns"
+import { BsExclamationTriangleFill } from "react-icons/bs"
+import { cn } from "@/lib/utils"
 
 const chartConfig = {
     visitors: {
@@ -66,7 +68,7 @@ export function EnergyPieConsumption({ data }: { data: any[] }) {
     return (
         <>
             <CardHeader className="items-center pb-0">
-                <CardTitle>Usage</CardTitle>
+                <CardTitle className={cn([Math.round(((stats.consumption / stats.capacity)*100)) > 80 ? " text-red-500" : "", "flex flex-row items-center gap-3"])}>{Math.round(((stats.consumption / stats.capacity)*100)) > 80 && <BsExclamationTriangleFill/>}Usage</CardTitle>
                 <CardDescription>All Circuits</CardDescription>
             </CardHeader>
             <ChartContainer
@@ -74,7 +76,7 @@ export function EnergyPieConsumption({ data }: { data: any[] }) {
                 className="mx-auto aspect-square max-h-[250px]"
                 >
                 <RadialBarChart
-                    data={data}
+                    data={[stats]}
                     startAngle={0}
                     endAngle={((stats.consumption / stats.capacity)*360)}
                     innerRadius={80}
@@ -87,7 +89,7 @@ export function EnergyPieConsumption({ data }: { data: any[] }) {
                         className="first:fill-muted last:fill-background"
                         polarRadius={[86, 74]}
                     />
-                    <RadialBar dataKey="PowerConsumed"  cornerRadius={10} />
+                    <RadialBar fill="hsl(var(--chart-1))" dataKey="consumption"  cornerRadius={10} />
                     <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
                         <Label
                             content={({ viewBox }) => {
@@ -102,7 +104,7 @@ export function EnergyPieConsumption({ data }: { data: any[] }) {
                                             <tspan
                                                 x={viewBox.cx}
                                                 y={viewBox.cy}
-                                                className="fill-foreground text-4xl font-bold"
+                                                className={cn(["text-4xl font-bold", Math.round(((stats.consumption / stats.capacity)*100)) > 80 ? " fill-red-500" : "fill-foreground "])}
                                             >
                                                 {Math.round(((stats.consumption / stats.capacity)*100)).toLocaleString()} %
                                             </tspan>

@@ -21,33 +21,40 @@ import {
 import { useMemo } from "react"
 import { format } from "date-fns"
 
-const chartConfig = {
-    visitors: {
-        label: "Capacity by ",
-    },
-    "0": {
-        label: "Circuit 0",
-        color: "hsl(var(--chart-1))"
-    },
-    "1": {
-        label: "Circuit 1",
-        color: "hsl(var(--chart-2))",
-    },
-    "2": {
-        label: "Circuit 2",
-        color: "hsl(var(--chart-3))",
-    },
-    "3": {
-        label: "Circuit 3",
-        color: "hsl(var(--chart-4))",
-    },
-    "4": {
-        label: "Circuit 4",
-        color: "hsl(var(--chart-5))",
-    },
-} satisfies ChartConfig
+
 
 export function PieCompontent1({ data }: { data: any[] }) {
+
+    const chartConfig = {
+        visitors: {
+            label: "Capacity by ",
+        },
+        "9": {
+            label: "Circuit 0",
+            color: "hsl(var(--chart-1))"
+        },
+        "0": {
+            label: "Circuit 0",
+            color: "hsl(var(--chart-1))"
+        },
+        "1": {
+            label: "Circuit 1",
+            color: "hsl(var(--chart-2))",
+        },
+        "2": {
+            label: "Circuit 2",
+            color: "hsl(var(--chart-3))",
+        },
+        "3": {
+            label: "Circuit 3",
+            color: "hsl(var(--chart-4))",
+        },
+        "4": {
+            label: "Circuit 4",
+            color: "hsl(var(--chart-5))",
+        },
+    } satisfies ChartConfig
+
     const totalCount = useMemo(() => {
         let t = 0;
 

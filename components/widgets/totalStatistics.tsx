@@ -50,7 +50,7 @@ export const TotalStatistics = ({ SFRM }: { SFRM: SubManager}) => {
         for (let i = 0; i < data.length; i++) {
             const circuit = data[i];
             if(generators[circuit.CircuitID]){
-                allProducingCircuits.push(circuit);
+                allProducingCircuits.push({...circuit, ...{["id"]:allProducingCircuits.length}});
             }
         }
 

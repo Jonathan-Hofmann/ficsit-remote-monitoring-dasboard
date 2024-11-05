@@ -27,39 +27,48 @@ export const EnergyCircuit = ({ circuit, index, className, generators }: { circu
                     <div className="px-2 py-1 bg-background group-hover:bg-zinc-100 group-hover:dark:bg-background dark:bg-zinc-900 rounded-md border">
                         <p className="text-muted-foreground group-hover:text-primary">ID: {circuit.CircuitID}</p>
                     </div>
-                    <div className="bg-background group-hover:bg-zinc-100 group-hover:dark:bg-background dark:bg-zinc-900 px-2 py-1 rounded-md border flex flex-row items-center">
-                        <p>{Math.round(circuit.PowerConsumed).toLocaleString()} <span className="text-sm text-muted-foreground">MW</span> </p>
-                        <Separator className="mx-2 h-4" orientation="vertical" />
-                        <p>{Math.round(circuit.PowerCapacity).toLocaleString()} <span className="text-sm text-muted-foreground">MW</span></p>
-                    </div>
-                    <div className="bg-background group-hover:bg-zinc-100 group-hover:dark:bg-background dark:bg-zinc-900 px-2 py-1 rounded-md border flex flex-row justify-start">
-                        <p><span className="text-sm text-muted-foreground">Max.</span> {Math.round(circuit.PowerMaxConsumed).toLocaleString()} <span className="text-sm text-muted-foreground">MW</span></p>
-                    </div>
-                    <div className={cn([" px-2 py-1 rounded-md border flex flex-row items-center gap-2 bg-background dark:bg-zinc-900 group-hover:bg-zinc-100 group-hover:dark:bg-background"])}>
-                        {circuit.FuseTriggered === true ?
-                            <>
-                                <BsExclamationTriangleFill className="text-orange-400" />
-                                <p className="text-sm font-semibold text-orange-400">Fuse broken!</p>
-                            </>
-                            :
-                            <>
-                                <BsCheckCircle />
-                                {/* <p className="text-sm text-muted-foreground">Working</p> */}
-                            </>
-                        }
-                    </div>
-                    <div className={cn([" px-2 py-1 rounded-md border flex flex-row items-center gap-2 bg-background dark:bg-zinc-900 group-hover:bg-zinc-100 group-hover:dark:bg-background"])}>
-                        {circuit.BatteryCapacity > 0 ?
-                            <>
-                                <BsBatteryCharging />
-                                <p className="text-sm">{Math.round(circuit.BatteryPercent).toLocaleString()} %</p>
-                            </>
-                            :
-                            <>
-                                <p className="text-sm text-muted-foreground">No Battery connected</p>
-                            </>
-                        }
-                    </div>
+                    {generators[circuit.CircuitID] ?
+                        <>
+                            <div className="bg-background group-hover:bg-zinc-100 group-hover:dark:bg-background dark:bg-zinc-900 px-2 py-1 rounded-md border flex flex-row items-center">
+                                <p>{Math.round(circuit.PowerConsumed).toLocaleString()} <span className="text-sm text-muted-foreground">MW</span> </p>
+                                <Separator className="mx-2 h-4" orientation="vertical" />
+                                <p>{Math.round(circuit.PowerCapacity).toLocaleString()} <span className="text-sm text-muted-foreground">MW</span></p>
+                            </div>
+                            <div className="bg-background group-hover:bg-zinc-100 group-hover:dark:bg-background dark:bg-zinc-900 px-2 py-1 rounded-md border flex flex-row justify-start">
+                                <p><span className="text-sm text-muted-foreground">Max.</span> {Math.round(circuit.PowerMaxConsumed).toLocaleString()} <span className="text-sm text-muted-foreground">MW</span></p>
+                            </div>
+                            <div className={cn([" px-2 py-1 rounded-md border flex flex-row items-center gap-2 bg-background dark:bg-zinc-900 group-hover:bg-zinc-100 group-hover:dark:bg-background"])}>
+                                {circuit.FuseTriggered === true ?
+                                    <>
+                                        <BsExclamationTriangleFill className="text-orange-400" />
+                                        <p className="text-sm font-semibold text-orange-400">Fuse broken!</p>
+                                    </>
+                                    :
+                                    <>
+                                        <BsCheckCircle />
+                                        {/* <p className="text-sm text-muted-foreground">Working</p> */}
+                                    </>
+                                }
+                            </div>
+                            <div className={cn([" px-2 py-1 rounded-md border flex flex-row items-center gap-2 bg-background dark:bg-zinc-900 group-hover:bg-zinc-100 group-hover:dark:bg-background"])}>
+                                {circuit.BatteryCapacity > 0 ?
+                                    <>
+                                        <BsBatteryCharging />
+                                        <p className="text-sm">{Math.round(circuit.BatteryPercent).toLocaleString()} %</p>
+                                    </>
+                                    :
+                                    <>
+                                        <p className="text-sm text-muted-foreground">No Battery connected</p>
+                                    </>
+                                }
+                            </div>
+                        </>
+                        :
+                        <>
+                            
+                        </>
+                    }
+
                     <div className={cn([" px-2 py-1 rounded-md border flex flex-row items-center gap-2 bg-background dark:bg-zinc-900 group-hover:bg-zinc-100 group-hover:dark:bg-background"])}>
                         {generators[circuit.CircuitID] ?
                             <>
