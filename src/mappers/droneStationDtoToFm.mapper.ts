@@ -1,13 +1,17 @@
+import { DroneStationStatusEnum } from "../enums/droneStationStatus.enum";
 import type { DroneStationDto } from "../types/apis/dataTransferObject/droneStationDto";
 import type { DroneStationFm } from "../types/apis/frontModel/droneStationFm";
-import { droneStationStatusDtoToFm } from "./droneStationStatusDtoToFm.mapper";
+import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
 
 export const droneStationDtoToFm = (
   dto: DroneStationDto[],
 ): DroneStationFm[] => {
   return dto.map((droneStationDto) => ({
     name: droneStationDto.Name,
-    droneStatus: droneStationStatusDtoToFm(droneStationDto.DroneStatus),
+    droneStatus: enumDtoToFmMapper(
+      droneStationDto.DroneStatus,
+      DroneStationStatusEnum,
+    ),
     totalTransportRateEstimation: droneStationDto.EstTotalTransRate,
     activeFuel: {
       fuelCostRateEstimation: droneStationDto.ActiveFuel.EstimatedFuelCostRate,
