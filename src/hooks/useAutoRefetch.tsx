@@ -1,31 +1,42 @@
 import { useEffect, useState } from "react";
 
 import { defaultSettingsData } from "../constants/defaultSettingsData";
+import { endPointDictionnaries } from "../dictionnaries/endPoint.dictionnary";
+import type { EndpointEnum } from "../enums/endpoint.enum";
 import { FetchMethodsEnum } from "../enums/fetchMethods.enum";
 import { fetcherHelper } from "../helpers/fetcher.helper";
+import type { MapperFunction } from "../types/endpoint";
 import type { FetchResponse } from "../types/fetchResponse";
 import type { SettingsData } from "../types/settingsData";
 import { useLocalStorage } from "./localStorage";
 
-export const useAutoRefetch = <T,>(endPoint: string) => {
+export const useAutoRefetch = <Dto, Fm>(
+  endPoint: EndpointEnum,
+): FetchResponse<Fm> => {
+  const mapper = endPointDictionnaries[endPoint] as MapperFunction<Dto, Fm>;
   const { value: settings } = useLocalStorage<SettingsData>(
     "rmd_settings",
     defaultSettingsData,
   );
-  const [responseState, setResponseState] = useState<FetchResponse<T>>();
+  const [responseState, setResponseState] = useState<FetchResponse<Fm>>({
+    status: "",
+    success: true,
+  });
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchData = async () => {
       if (isMounted) {
-        setResponseState(
-          await fetcherHelper<T>({
-            apiUrl: `http://${settings.ip}:${settings.port}`,
-            endPoint: `/${endPoint}`,
-            method: FetchMethodsEnum.GET,
-          }),
-        );
+        const response = await fetcherHelper<Dto>({
+          apiUrl: `http://${settings.ip}:${settings.port}`,
+          endPoint: `/${endPoint}`,
+          method: FetchMethodsEnum.GET,
+        });
+        setResponseState({
+          ...response,
+          data: response.data && mapper(response.data),
+        });
       }
     };
 
@@ -39,7 +50,7 @@ export const useAutoRefetch = <T,>(endPoint: string) => {
     return () => {
       isMounted = false;
     };
-  }, [endPoint, settings]);
+  }, [endPoint, mapper, settings]);
 
-  return responseState?.data;
+  return responseState;
 };

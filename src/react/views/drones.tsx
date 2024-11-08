@@ -13,35 +13,44 @@ import { Skeleton } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 
+import { DroneStationStatusEnum } from "../../enums/droneStationStatus.enum";
+import { EndpointEnum } from "../../enums/endpoint.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
-import type { Drone } from "../../types/FRMApis/drone";
-import type { DroneStation } from "../../types/FRMApis/droneStation";
+import type { DroneDto } from "../../types/apis/dataTransferObject/droneDto";
+import type { DroneStationDto } from "../../types/apis/dataTransferObject/droneStationDto";
+import type { DroneFm } from "../../types/apis/frontModel/droneFm";
+import type { DroneStationFm } from "../../types/apis/frontModel/droneStationFm";
 
 type DroneStationStep = Record<
   string,
-  { homeStation: DroneStation; destStation: DroneStation }
+  { homeStation: DroneStationFm; destStation: DroneStationFm }
 >;
 
 export const Drones: React.FC = () => {
-  const drones = useAutoRefetch<Drone[]>("getDrone");
-  const droneStations = useAutoRefetch<DroneStation[]>("getDroneStation");
+  const { data: drones } = useAutoRefetch<DroneDto[], DroneFm[]>(
+    EndpointEnum.DRONE,
+  );
+  const { data: droneStations } = useAutoRefetch<
+    DroneStationDto[],
+    DroneStationFm[]
+  >(EndpointEnum.DRONE_STATION);
   const [droneStationStep, setDroneStationStep] = useState<DroneStationStep>();
 
   const handlePrepareTStationsForUI = useCallback(
-    (dronesData: Drone[]) => {
+    (dronesData: DroneFm[]) => {
       let temporaryStationStep: DroneStationStep = {};
       dronesData.forEach((drone) => {
         const homeStation = droneStations?.find(
-          (el) => el.Name === drone.HomeStation,
+          (el) => el.name === drone.homeStation,
         );
         const destStation = droneStations?.find(
-          (el) => el.Name === drone.PairedStation,
+          (el) => el.name === drone.pairedStation,
         );
 
         if (homeStation && destStation) {
           temporaryStationStep = {
             ...temporaryStationStep,
-            [drone.ID]: {
+            [drone.id]: {
               homeStation,
               destStation,
             },
@@ -85,8 +94,8 @@ export const Drones: React.FC = () => {
       {drones && droneStationStep ? (
         <>
           {drones.map((drone) => {
-            if (droneStationStep[drone.ID]) {
-              const { homeStation, destStation } = droneStationStep[drone.ID];
+            if (droneStationStep[drone.id]) {
+              const { homeStation, destStation } = droneStationStep[drone.id];
 
               return (
                 <Grid
@@ -95,7 +104,7 @@ export const Drones: React.FC = () => {
                   sx={{ marginBottom: "30px", height: "300px" }}
                   display="flex"
                   alignItems="center"
-                  key={drone.ID}
+                  key={drone.id}
                 >
                   <Grid
                     xs={3}
@@ -122,7 +131,7 @@ export const Drones: React.FC = () => {
                             level="h6"
                             sx={{ marginTop: "10px" }}
                           >
-                            {drone.HomeStation}
+                            {drone.homeStation}
                           </Typography>
 
                           <Typography
@@ -139,7 +148,8 @@ export const Drones: React.FC = () => {
                               right: "20px",
                             }}
                           >
-                            {homeStation.DroneStatus === "No Drones" && (
+                            {homeStation.droneStatus ===
+                              DroneStationStatusEnum.No_Drones && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -152,7 +162,8 @@ export const Drones: React.FC = () => {
                                 No drones
                               </Chip>
                             )}
-                            {homeStation.DroneStatus === "Cannot Unload" && (
+                            {homeStation.droneStatus ===
+                              DroneStationStatusEnum.Cannot_Unload && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -165,7 +176,8 @@ export const Drones: React.FC = () => {
                                 Inventory Full
                               </Chip>
                             )}
-                            {homeStation.DroneStatus === "Docked" && (
+                            {homeStation.droneStatus ===
+                              DroneStationStatusEnum.Docked && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -178,7 +190,8 @@ export const Drones: React.FC = () => {
                                 Docked
                               </Chip>
                             )}
-                            {homeStation.DroneStatus === "Takeoff" && (
+                            {homeStation.droneStatus ===
+                              DroneStationStatusEnum.Takeoff && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -215,9 +228,9 @@ export const Drones: React.FC = () => {
                             level="h6"
                             sx={{ marginTop: "10px" }}
                           >
-                            {drone.CurrentDestination === ""
+                            {drone.currentDestination === ""
                               ? "N/A"
-                              : drone.CurrentDestination}
+                              : drone.currentDestination}
                           </Typography>
 
                           <Typography
@@ -234,7 +247,8 @@ export const Drones: React.FC = () => {
                               right: "20px",
                             }}
                           >
-                            {destStation.DroneStatus === "No Drones" && (
+                            {destStation.droneStatus ===
+                              DroneStationStatusEnum.No_Drones && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -247,7 +261,8 @@ export const Drones: React.FC = () => {
                                 No drones
                               </Chip>
                             )}
-                            {destStation.DroneStatus === "Cannot Unload" && (
+                            {destStation.droneStatus ===
+                              DroneStationStatusEnum.Cannot_Unload && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -260,7 +275,8 @@ export const Drones: React.FC = () => {
                                 Inventory Full
                               </Chip>
                             )}
-                            {destStation.DroneStatus === "Docked" && (
+                            {destStation.droneStatus ===
+                              DroneStationStatusEnum.Docked && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -273,7 +289,8 @@ export const Drones: React.FC = () => {
                                 Docked
                               </Chip>
                             )}
-                            {destStation.DroneStatus === "Takeoff" && (
+                            {destStation.droneStatus ===
+                              DroneStationStatusEnum.Takeoff && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -314,7 +331,7 @@ export const Drones: React.FC = () => {
                             alt="Satisfactory Drone illustration"
                             style={{ height: "100px" }}
                           />
-                          {drone.CurrentFlyingMode === "Flying" && (
+                          {drone.currentFlyingMode === "Flying" && (
                             <Chip
                               color="info"
                               size="sm"
@@ -327,7 +344,7 @@ export const Drones: React.FC = () => {
                               Flying
                             </Chip>
                           )}
-                          {drone.CurrentFlyingMode === "Travel" && (
+                          {drone.currentFlyingMode === "Travel" && (
                             <Chip
                               color="info"
                               size="sm"
@@ -340,7 +357,7 @@ export const Drones: React.FC = () => {
                               Flying
                             </Chip>
                           )}
-                          {drone.CurrentFlyingMode === "None" && (
+                          {drone.currentFlyingMode === "None" && (
                             <Chip
                               color="info"
                               size="sm"
@@ -363,7 +380,7 @@ export const Drones: React.FC = () => {
                           </Grid>
                           <Grid>
                             <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                              {drone.CurrentDestination}
+                              {drone.currentDestination}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -375,9 +392,9 @@ export const Drones: React.FC = () => {
                           </Grid>
                           <Grid>
                             <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                              {drone.FlyingSpeed < 0
-                                ? drone.FlyingSpeed * -1
-                                : drone.FlyingSpeed}{" "}
+                              {drone.flyingSpeed < 0
+                                ? drone.flyingSpeed * -1
+                                : drone.flyingSpeed}{" "}
                               Knots
                             </Typography>
                           </Grid>
@@ -425,7 +442,7 @@ export const Drones: React.FC = () => {
                               level="h4"
                               marginTop="10px"
                             >
-                              {homeStation.AvgRndTrip}
+                              {homeStation.averageRoundTrip}
                             </Typography>
                             <Typography level="body2">
                               Avg. Round Trip Time
@@ -453,7 +470,7 @@ export const Drones: React.FC = () => {
                               level="h4"
                               marginTop="10px"
                             >
-                              {homeStation.LatestRndTrip}
+                              {homeStation.latestRoundTrip}
                             </Typography>
                             <Typography level="body2">
                               Last Round Trip Time
@@ -486,7 +503,7 @@ export const Drones: React.FC = () => {
                               level="h4"
                               marginTop="10px"
                             >
-                              {homeStation.ActiveFuel.EstimatedFuelCostRate.toFixed(
+                              {homeStation.activeFuel.fuelCostRateEstimation.toFixed(
                                 2,
                               )}{" "}
                               / min
@@ -517,7 +534,10 @@ export const Drones: React.FC = () => {
                               level="h4"
                               marginTop="10px"
                             >
-                              {homeStation.EstTotalTransRate.toFixed(2)} stacks
+                              {homeStation.totalTransportRateEstimation.toFixed(
+                                2,
+                              )}{" "}
+                              stacks
                             </Typography>
                             <Typography level="body2">
                               Estimated Transfer Rate (per minute)
@@ -598,7 +618,7 @@ export const Drones: React.FC = () => {
                           alt="Satisfactory Drone illustration"
                           style={{ height: "100px" }}
                         />
-                        {drone.CurrentFlyingMode === "Flying" && (
+                        {drone.currentFlyingMode === "Flying" && (
                           <Chip
                             color="info"
                             size="sm"
@@ -611,7 +631,7 @@ export const Drones: React.FC = () => {
                             Flying
                           </Chip>
                         )}
-                        {drone.CurrentFlyingMode === "Travel" && (
+                        {drone.currentFlyingMode === "Travel" && (
                           <Chip
                             color="info"
                             size="sm"
@@ -624,7 +644,7 @@ export const Drones: React.FC = () => {
                             Flying
                           </Chip>
                         )}
-                        {drone.CurrentFlyingMode === "None" && (
+                        {drone.currentFlyingMode === "None" && (
                           <Chip
                             color="info"
                             size="sm"
@@ -647,7 +667,7 @@ export const Drones: React.FC = () => {
                         </Grid>
                         <Grid>
                           <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                            {drone.CurrentDestination}
+                            {drone.currentDestination}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -659,9 +679,9 @@ export const Drones: React.FC = () => {
                         </Grid>
                         <Grid>
                           <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                            {drone.FlyingSpeed < 0
-                              ? drone.FlyingSpeed * -1
-                              : drone.FlyingSpeed}{" "}
+                            {drone.flyingSpeed < 0
+                              ? drone.flyingSpeed * -1
+                              : drone.flyingSpeed}{" "}
                             Knots
                           </Typography>
                         </Grid>
