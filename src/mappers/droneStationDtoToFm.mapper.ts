@@ -3,7 +3,7 @@ import type { DroneStationDto } from "../types/apis/dataTransferObject/droneStat
 import type { DroneStationFm } from "../types/apis/frontModel/droneStationFm";
 import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
 
-export const droneStationDtoToFm = (
+export const droneStationDtoToFmMapper = (
   dto: DroneStationDto[],
 ): DroneStationFm[] => {
   return dto.map((droneStationDto) => ({

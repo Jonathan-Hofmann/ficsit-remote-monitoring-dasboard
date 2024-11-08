@@ -40,11 +40,11 @@ export const AppContainer: React.FC = () => {
                 path="/"
                 element={<Start />}
               />
-              {/* <Route
+              <Route
                 path="/power"
                 element={<PowerMain />}
               />
-              <Route
+              {/* <Route
                 path="/generator"
                 element={<DetailedGeneratorView />}
               />
