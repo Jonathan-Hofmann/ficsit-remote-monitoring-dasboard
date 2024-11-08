@@ -11,56 +11,30 @@ import {
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 
-import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
+import { EndpointEnum } from "../../enums/endpoint.enum";
 import { useLocalStorage } from "../../hooks/localStorage";
-import type { SettingsData } from "../../types/settingsData";
+import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import type { WorldInvDto } from "../../types/apis/dataTransferObject/worldInvDto";
+import type { WorldInvFm } from "../../types/apis/frontModel/worldInvFm";
 import { AwesomeSink } from "../components/awesomeSink";
 
 export const Start: React.FC = () => {
-  const [doLoadData] = useState(true);
   const { value: itemSelection, setValue: setItemSelection } = useLocalStorage<
     string[]
   >("srmd_ItemList", ["Concrete", "Iron Ingot", "Copper Ingot", "Coal"]);
 
-  const [worldInv, setWorldInv] = useState<undefined | any>(undefined);
+  const { data: worldInv } = useAutoRefetch<WorldInvDto[], WorldInvFm[]>(
+    EndpointEnum.WORLD_INV,
+  );
 
   const [editItemSelection, setEditItemSelection] = useState(false);
 
-  // const [itemSelection, setItemSelection] = useState<undefined | string[]>([]);
-  const [tmp_itemSelection, setTmpItemSelection] = useState<
-    undefined | string[]
-  >(undefined);
-  const { value: settings } = useLocalStorage<SettingsData>(
-    "rmd_settings",
-    defaultSettingsData,
-  );
+  const [tmpItemSelection, setTmpItemSelection] = useState<string[]>([]);
 
-  const loadWorldInventory = async () => {
-    // if (doLoadData) {
-    //   const response = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getWorldInv`,
-    //   );
-    //   setWorldInv(response.data);
-    //   // console.log(response.data);
-    //   setTimeout(() => {
-    //     loadWorldInventory();
-    //   }, settings.interval);
-    // }
-  };
-
-  // useEffect(()=>{
-  //    console.log(itemSelection)
-  // }, [itemSelection])
-
-  useEffect(() => {
-    // noinspection JSIgnoredPromiseFromCall
-    loadWorldInventory();
-  });
   return (
     <Container sx={{ paddingTop: "50px" }}>
       <Typography
@@ -84,7 +58,7 @@ export const Start: React.FC = () => {
         sx={{ height: "100%", position: "relative" }}
       >
         <Grid xs={6}>
-          {itemSelection ? (
+          {itemSelection && (
             <>
               <Modal
                 open={editItemSelection}
@@ -102,7 +76,7 @@ export const Start: React.FC = () => {
                       setTmpItemSelection(v);
                     }}
                     multiple
-                    defaultValue={tmp_itemSelection}
+                    defaultValue={tmpItemSelection}
                     options={Object.keys(fullRefs)}
                   />
 
@@ -110,7 +84,7 @@ export const Start: React.FC = () => {
                     sx={{ marginBottom: "15px" }}
                     fullWidth
                     onClick={() => {
-                      setItemSelection(tmp_itemSelection);
+                      setItemSelection(tmpItemSelection);
                       setEditItemSelection(false);
                     }}
                   >
@@ -181,8 +155,8 @@ export const Start: React.FC = () => {
                       px={0}
                       spacing={2}
                     >
-                      {worldInv.map((item: any) => {
-                        if (itemSelection.includes(item.Name)) {
+                      {worldInv.map((item) => {
+                        if (itemSelection.includes(item.name)) {
                           return (
                             <Grid xs={4}>
                               <Card
@@ -198,11 +172,9 @@ export const Start: React.FC = () => {
                                   }}
                                 >
                                   <img
-                                    src={
-                                      `./assets/${
-                                        fullRefs[item.Name]?.category
-                                      }/${item.Name}.png` ?? null
-                                    }
+                                    src={`./assets/${
+                                      fullRefs[item.name]?.category
+                                    }/${item.name}.png`}
                                     alt=""
                                     style={{ height: "70px", width: "70px" }}
                                   />
@@ -210,10 +182,10 @@ export const Start: React.FC = () => {
                                     marginBottom="5px"
                                     textAlign="center"
                                   >
-                                    {item.Name}
+                                    {item.name}
                                   </Typography>
                                   <Typography level="body2">
-                                    {item.Amount} Items
+                                    {item.amount} Items
                                   </Typography>
                                 </CardContent>
                               </Card>
@@ -356,8 +328,6 @@ export const Start: React.FC = () => {
                 </>
               )}
             </>
-          ) : (
-            <></>
           )}
         </Grid>
         <Grid xs={6}>
