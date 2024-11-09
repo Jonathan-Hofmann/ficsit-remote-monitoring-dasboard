@@ -147,7 +147,7 @@ export const Start: React.FC = () => {
               </Card>
               {itemSelection && (
                 <>
-                  {/* <Typography>{itemSelection.length}</Typography> */}
+                  <Typography>{itemSelection.length}</Typography>
                   {worldInv ? (
                     <Grid
                       container

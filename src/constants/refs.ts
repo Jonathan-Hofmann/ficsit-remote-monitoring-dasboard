@@ -355,6 +355,7 @@ export const fullRefs: FullRefs = {
     type: "s",
   },
   [FullRefsEnum.HUB_Parts]: {
+    // No longer part of the game
     category: "Items",
     type: "s",
   },

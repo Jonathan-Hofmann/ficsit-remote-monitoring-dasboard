@@ -5,6 +5,10 @@
   - /getResourceGeyser don't work
 - Rename Start to Homepage
 - Handle unused folder/files
+- Add more info to buildings and equipements
+- Verify Biomass generator
+- Rename GameRef to GameClassName GameItem or something like that
+- Verify Desc_Crystal_mk2_C and BP_Crystal_mk2_C (power slug classname)
 
 
 == All pages/views to do ==

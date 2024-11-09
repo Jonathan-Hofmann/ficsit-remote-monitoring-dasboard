@@ -1,7 +1,7 @@
-import type { FullRefsEnum } from "../../../enums/fullRefs.enum";
+import type { GameClassNamesEnum } from "../../../enums/gameClassNames.enum";
 
 export type WorldInvFm = {
-  name: FullRefsEnum;
-  className: string;
+  name: string;
+  className: GameClassNamesEnum;
   amount: number;
 };

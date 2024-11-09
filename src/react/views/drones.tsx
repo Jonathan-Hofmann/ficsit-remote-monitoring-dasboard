@@ -21,6 +21,7 @@ import type { DroneStationDto } from "../../types/apis/dataTransferObject/droneS
 import type { DroneFm } from "../../types/apis/frontModel/droneFm";
 import type { DroneStationFm } from "../../types/apis/frontModel/droneStationFm";
 
+// Type used only in this file but move it could be good
 type DroneStationStep = Record<
   string,
   { homeStation: DroneStationFm; destStation: DroneStationFm }

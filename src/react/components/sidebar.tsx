@@ -103,7 +103,7 @@ export const Sidebar: React.FC = () => {
                 Generator
               </Button>
             </Link> */}
-            <Link
+            {/* <Link
               style={{ textDecoration: "none" }}
               to="/production"
             >
@@ -116,7 +116,7 @@ export const Sidebar: React.FC = () => {
               >
                 Production
               </Button>
-            </Link>
+            </Link> */}
             {/* <Link
               style={{ textDecoration: "none" }}
               to="/factory"
@@ -130,8 +130,8 @@ export const Sidebar: React.FC = () => {
               >
                 Factory
               </Button>
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               style={{ textDecoration: "none" }}
               to="/building"
             >
@@ -159,7 +159,7 @@ export const Sidebar: React.FC = () => {
                 Drones
               </Button>
             </Link>
-            <Link
+            {/* <Link
               style={{ textDecoration: "none" }}
               to="/trains"
             >
@@ -172,8 +172,8 @@ export const Sidebar: React.FC = () => {
               >
                 Trains
               </Button>
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               style={{ textDecoration: "none" }}
               to="/vehicles"
             >
@@ -186,8 +186,8 @@ export const Sidebar: React.FC = () => {
               >
                 Vehicles
               </Button>
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               style={{ textDecoration: "none" }}
               to="/storageView"
             >
@@ -200,7 +200,7 @@ export const Sidebar: React.FC = () => {
               >
                 Storage View
               </Button>
-            </Link>
+            </Link> */}
             {/* <Link
               style={{ textDecoration: "none", marginTop: "50px" }}
               to="/awesomeSink"
@@ -229,7 +229,7 @@ export const Sidebar: React.FC = () => {
                 test
               </Button>
             </Link> */}
-            <Link
+            {/* <Link
               style={{ textDecoration: "none", marginTop: "50px" }}
               to="/settings"
             >
@@ -242,7 +242,7 @@ export const Sidebar: React.FC = () => {
               >
                 Settings
               </Button>
-            </Link>
+            </Link> */}
           </Stack>
         </Box>
       ) : (
@@ -329,7 +329,7 @@ export const Sidebar: React.FC = () => {
                 </IconButton>
               </Link>
             </Tooltip> */}
-            <Tooltip
+            {/* <Tooltip
               placement="right"
               title="All Factories"
             >
@@ -345,7 +345,7 @@ export const Sidebar: React.FC = () => {
                   <GiFactory />
                 </IconButton>
               </Link>
-            </Tooltip>
+            </Tooltip> */}
             {/* <Tooltip
               placement="right"
               title="Factory"
@@ -397,7 +397,7 @@ export const Sidebar: React.FC = () => {
                 </IconButton>
               </Link>
             </Tooltip>
-            <Tooltip
+            {/* <Tooltip
               placement="right"
               title="Trains"
             >
@@ -413,8 +413,8 @@ export const Sidebar: React.FC = () => {
                   <MdTrain />
                 </IconButton>
               </Link>
-            </Tooltip>
-            <Tooltip
+            </Tooltip> */}
+            {/* <Tooltip
               placement="right"
               title="Vehicles"
             >
@@ -430,8 +430,8 @@ export const Sidebar: React.FC = () => {
                   <FaTruck />
                 </IconButton>
               </Link>
-            </Tooltip>
-            <Tooltip
+            </Tooltip> */}
+            {/* <Tooltip
               placement="right"
               title="Storage View"
             >
@@ -447,7 +447,7 @@ export const Sidebar: React.FC = () => {
                   <FaBoxes />
                 </IconButton>
               </Link>
-            </Tooltip>
+            </Tooltip> */}
             {/* <Tooltip
               placement="right"
               title="Awesome Sink"
@@ -485,7 +485,7 @@ export const Sidebar: React.FC = () => {
 
             <Divider />
 
-            <Tooltip
+            {/* <Tooltip
               placement="right"
               title="Settings"
             >
@@ -501,7 +501,7 @@ export const Sidebar: React.FC = () => {
                   <BsGearFill />
                 </IconButton>
               </Link>
-            </Tooltip>
+            </Tooltip> */}
           </Stack>
         </Box>
       )}
