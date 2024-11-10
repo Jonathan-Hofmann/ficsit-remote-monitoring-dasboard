@@ -272,7 +272,7 @@ export enum GameClassNamesEnum {
   Desc_Portal_C = "Desc_Portal_C",
   Desc_PortalSatellite_C = "Desc_PortalSatellite_C",
 
-  // Transportation vehicles
+  // Vehicles
   Desc_Tractor_C = "Desc_Tractor_C",
   Desc_Truck_C = "Desc_Truck_C",
   Desc_CyberWagon_C = "Desc_CyberWagon_C",

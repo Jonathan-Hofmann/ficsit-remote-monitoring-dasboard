@@ -15,7 +15,7 @@ export enum GameItemsEnum {
   Uranium = "Uranium",
   Nitrogen_Gas = "Nitrogen_Gas",
   Packaged_Nitrogen_Gas = "Packaged_Nitrogen_Gas",
-  Sam = "Sam",
+  SAM = "SAM",
 
   // Flora and fauna items
   Leaves = "Leaves",
@@ -272,7 +272,7 @@ export enum GameItemsEnum {
   Main_Portal = "Main_Portal",
   Satellite_Portal = "Satellite_Portal",
 
-  // Transportation vehicles
+  // Vehicles
   Tractor = "Tractor",
   Truck = "Truck",
   Cyber_Wagon = "Cyber_Wagon",

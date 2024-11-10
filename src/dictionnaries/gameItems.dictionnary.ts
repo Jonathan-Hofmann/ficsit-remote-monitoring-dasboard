@@ -84,7 +84,7 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
     resourceType: GameResourcesTypeEnum.Solid,
   },
   [GameClassNamesEnum.Desc_SAM_C]: {
-    name: GameItemsEnum.Sam,
+    name: GameItemsEnum.SAM,
     category: GameItemsCategoryEnum.Resource,
     resourceType: GameResourcesTypeEnum.Solid,
   },
@@ -1147,51 +1147,42 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
 
-  // Transportation vehicles
+  // Vehicles
   [GameClassNamesEnum.Desc_Tractor_C]: {
     name: GameItemsEnum.Tractor,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_Truck_C]: {
     name: GameItemsEnum.Truck,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_CyberWagon_C]: {
     name: GameItemsEnum.Cyber_Wagon,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_Explorer_C]: {
     name: GameItemsEnum.Explorer,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_GolfCart_C]: {
     name: GameItemsEnum.FICSIT_Factory_Cart,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_GolfCartGold_C]: {
     name: GameItemsEnum.Golden_Factory_Cart,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_DroneTransport_C]: {
     name: GameItemsEnum.Drone,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_Locomotive_C]: {
     name: GameItemsEnum.Electric_Locomotive,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
   [GameClassNamesEnum.Desc_FreightWagon_C]: {
     name: GameItemsEnum.Freight_Car,
-    category: GameItemsCategoryEnum.Building,
-    buildingType: GameBuildingsTypeEnum.Vehicle,
+    category: GameItemsCategoryEnum.Vehicle,
   },
 
   // All others

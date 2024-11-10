@@ -3,4 +3,5 @@ export enum GameItemsCategoryEnum {
   Resource = "Resource",
   Equipment = "Equipment",
   Building = "Building",
+  Vehicle = "Vehicle",
 }
