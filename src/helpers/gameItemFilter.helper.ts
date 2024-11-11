@@ -1,8 +1,8 @@
 import { GameBuildingsTypeEnum } from "../enums/gameBuildingsType.enum";
 import type { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import { GameItemsCategoryEnum } from "../enums/gameItemsCategory.enum";
-import type { GameItems } from "../types/apis/gameItems/gameItems";
-import type { GameItemGeneratorBuilding } from "../types/apis/gameItems/generatorBuilding";
+import type { GameItems } from "../types/gameItems/gameItems";
+import type { GameItemGeneratorBuilding } from "../types/gameItems/generatorBuilding";
 import type { GameItemsDictionnary } from "../types/gameItemsDictionnary";
 
 type Args = {

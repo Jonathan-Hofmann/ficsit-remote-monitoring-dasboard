@@ -22,8 +22,8 @@ import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { GeneratorDto } from "../../types/apis/dataTransferObject/generatorsDto";
 import type { GeothermalGeneratorDto } from "../../types/apis/dataTransferObject/geothermalGeneratorDto";
 import type { GeneratorFm } from "../../types/apis/frontModel/generatorsFm";
-import type { GameItems } from "../../types/apis/gameItems/gameItems";
-import type { GameItemGeneratorBuilding } from "../../types/apis/gameItems/generatorBuilding";
+import type { GameItems } from "../../types/gameItems/gameItems";
+import type { GameItemGeneratorBuilding } from "../../types/gameItems/generatorBuilding";
 
 export const DetailedGeneratorView: React.FC = () => {
   const [params] = useSearchParams();

@@ -26,7 +26,7 @@ import { useLocalStorage } from "../../hooks/localStorage";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { WorldInvDto } from "../../types/apis/dataTransferObject/worldInvDto";
 import type { WorldInvFm } from "../../types/apis/frontModel/worldInvFm";
-import type { GameItems } from "../../types/apis/gameItems/gameItems";
+import type { GameItems } from "../../types/gameItems/gameItems";
 import { AwesomeSink } from "../components/awesomeSink";
 
 export const Start: React.FC = () => {
@@ -95,7 +95,7 @@ export const Start: React.FC = () => {
                     multiple
                     defaultValue={tmpItemSelection}
                     options={Object.values(gameResources)
-                      .map((it) => it.name)
+                      .map((it) => it.name as string)
                       .sort((a, b) => stringSorterHelper(a, b))}
                   />
 
