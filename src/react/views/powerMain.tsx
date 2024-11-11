@@ -21,10 +21,16 @@ import {
 } from "react-icons/bs";
 import { GiCargoCrate } from "react-icons/gi";
 
+import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
 import { EndpointEnum } from "../../enums/endpoint.enum";
+import { GameBuildingsTypeEnum } from "../../enums/gameBuildingsType.enum";
+import { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
+import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
+import { objectEntriesToArrayHelper } from "../../helpers/objectEntriesToArray.helper";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { PowerDto } from "../../types/apis/dataTransferObject/powerDto";
 import type { PowerFm } from "../../types/apis/frontModel/powerFm";
+import type { GameItems } from "../../types/gameItems";
 import type { Theme } from "../../types/theme";
 import { BuildingButton } from "../components/buildingButton";
 
@@ -33,13 +39,12 @@ export const PowerMain: React.FC = () => {
     EndpointEnum.POWER,
   );
 
-  const generators = [
-    "Biomass Burner",
-    "Coal-Powered Generator",
-    "Fuel-Powered Generator",
-    "Geothermal Generator",
-    "Nuclear Power Plant",
-  ];
+  const generators = objectEntriesToArrayHelper<GameItems>(
+    gameItemFilterHelper({
+      gameItemsDictionnary,
+      filter: GameBuildingsTypeEnum.Generator,
+    }),
+  );
 
   const theme: Theme = useTheme();
 
@@ -124,9 +129,10 @@ export const PowerMain: React.FC = () => {
             {generators.map((generator) => {
               return (
                 <BuildingButton
+                  key={generator.name}
                   page="generator"
-                  factory={generator}
-                  key={generator}
+                  factory={generator.name}
+                  assetsLocation={GameItemsCategoryEnum.Building}
                 />
               );
             })}

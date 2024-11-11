@@ -2,14 +2,19 @@ import { Card, CardContent, Grid, Stack, Typography } from "@mui/joy";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { fullRefs } from "../../constants/refs";
+import type { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
 
 type Props = {
-  factory: any;
-  page: any;
+  factory: string;
+  page: string;
+  assetsLocation: GameItemsCategoryEnum;
 };
 
-export const BuildingButton: React.FC<Props> = ({ factory, page }) => {
+export const BuildingButton: React.FC<Props> = ({
+  factory,
+  page,
+  assetsLocation,
+}) => {
   let link = `/${page}/?${page}=${factory}&endpoint=get`;
   if (page === "generator") {
     link = `${link + factory.split(" ")[0].split("-")[0]}Generator`;
@@ -37,7 +42,7 @@ export const BuildingButton: React.FC<Props> = ({ factory, page }) => {
           <CardContent>
             <Stack alignItems="center">
               <img
-                src={`./assets/${fullRefs[factory]?.category}/${factory}.png`}
+                src={`./assets/${assetsLocation}/${factory}.png`}
                 alt={factory}
                 style={{ height: "70px", width: "70px" }}
               />

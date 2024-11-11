@@ -5,7 +5,6 @@ import { GameItemsCategoryEnum } from "../enums/gameItemsCategory.enum";
 import { GameResourcesTypeEnum } from "../enums/gameResourcesType.enum";
 import type { GameItemsDictionnary } from "../types/gameItemsDictionnary";
 
-// eslint-disable-next-line import/no-unused-modules
 export const gameItemsDictionnary: GameItemsDictionnary = {
   // Raw resources items
   [GameClassNamesEnum.Desc_OreIron_C]: {

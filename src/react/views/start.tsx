@@ -14,12 +14,18 @@ import { Skeleton } from "@mui/material";
 import React, { useState } from "react";
 import { BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 
-import { fullRefs } from "../../constants/refs";
+import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
 import { EndpointEnum } from "../../enums/endpoint.enum";
+import type { GameClassNamesEnum } from "../../enums/gameClassNames.enum";
+import { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
+import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
+import { objectEntriesToObjectHelper } from "../../helpers/objectEntriesToObject.helper";
+import { stringSorterHelper } from "../../helpers/stringSorter.helper";
 import { useLocalStorage } from "../../hooks/localStorage";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { WorldInvDto } from "../../types/apis/dataTransferObject/worldInvDto";
 import type { WorldInvFm } from "../../types/apis/frontModel/worldInvFm";
+import type { GameItems } from "../../types/gameItems";
 import { AwesomeSink } from "../components/awesomeSink";
 
 export const Start: React.FC = () => {
@@ -34,6 +40,16 @@ export const Start: React.FC = () => {
   const [editItemSelection, setEditItemSelection] = useState(false);
 
   const [tmpItemSelection, setTmpItemSelection] = useState<string[]>([]);
+
+  const gameResources = objectEntriesToObjectHelper<
+    GameClassNamesEnum,
+    GameItems
+  >(
+    gameItemFilterHelper({
+      gameItemsDictionnary,
+      filter: GameItemsCategoryEnum.Resource,
+    }),
+  );
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -77,7 +93,9 @@ export const Start: React.FC = () => {
                     }}
                     multiple
                     defaultValue={tmpItemSelection}
-                    options={Object.keys(fullRefs)}
+                    options={Object.values(gameResources)
+                      .map((it) => it.name)
+                      .sort((a, b) => stringSorterHelper(a, b))}
                   />
 
                   <Button
@@ -158,7 +176,10 @@ export const Start: React.FC = () => {
                       {worldInv.map((item) => {
                         if (itemSelection.includes(item.name)) {
                           return (
-                            <Grid xs={4}>
+                            <Grid
+                              key={item.className}
+                              xs={4}
+                            >
                               <Card
                                 variant="outlined"
                                 sx={{ height: "100%", padding: 0 }}
@@ -173,7 +194,7 @@ export const Start: React.FC = () => {
                                 >
                                   <img
                                     src={`./assets/${
-                                      fullRefs[item.name]?.category
+                                      gameResources[item.className]?.category
                                     }/${item.name}.png`}
                                     alt=""
                                     style={{ height: "70px", width: "70px" }}

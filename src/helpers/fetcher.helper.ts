@@ -26,6 +26,12 @@ export const fetcherHelper = async <T>({
       success: response.ok,
       status: `${response.status} - ${response.statusText}`,
     };
+    if (response.status === 404)
+      // TODO Insert here unadapted requests
+      return {
+        success: false,
+        status: "Save don't able this request",
+      };
     if (!response.ok) return responseData;
     const data = (await response.json()) as T;
     return {
