@@ -892,139 +892,139 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
   },
 
   // Extractors buildings
-  [GameClassNamesEnum.Desc_MinerMk1_C]: {
+  [GameClassNamesEnum.Build_MinerMk1_C]: {
     name: GameItemsEnum.Miner_Mk_1,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Extractor,
   },
-  [GameClassNamesEnum.Desc_MinerMk2_C]: {
+  [GameClassNamesEnum.Build_MinerMk2_C]: {
     name: GameItemsEnum.Miner_Mk_2,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Extractor,
   },
-  [GameClassNamesEnum.Desc_MinerMk3_C]: {
+  [GameClassNamesEnum.Build_MinerMk3_C]: {
     name: GameItemsEnum.Miner_Mk_3,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Extractor,
   },
-  [GameClassNamesEnum.Desc_WaterPump_C]: {
+  [GameClassNamesEnum.Build_WaterPump_C]: {
     name: GameItemsEnum.Water_Extractor,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Extractor,
   },
-  [GameClassNamesEnum.Desc_OilPump_C]: {
+  [GameClassNamesEnum.Build_OilPump_C]: {
     name: GameItemsEnum.Oil_Extractor,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Extractor,
   },
-  [GameClassNamesEnum.Desc_FrackingSmasher_C]: {
+  [GameClassNamesEnum.Build_FrackingSmasher_C]: {
     name: GameItemsEnum.Resource_Well_Pressurizer,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Extractor,
   },
-  [GameClassNamesEnum.Desc_FrackingExtractor_C]: {
+  [GameClassNamesEnum.Build_FrackingExtractor_C]: {
     name: GameItemsEnum.Resource_Well_Extractor,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Extractor,
   },
 
   // Smelters buildings
-  [GameClassNamesEnum.Desc_SmelterMk1_C]: {
+  [GameClassNamesEnum.Build_SmelterMk1_C]: {
     name: GameItemsEnum.Smelter,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_FoundryMk1_C]: {
+  [GameClassNamesEnum.Build_FoundryMk1_C]: {
     name: GameItemsEnum.Foundry,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
 
   // Manufacturers buildings
-  [GameClassNamesEnum.Desc_ConstructorMk1_C]: {
+  [GameClassNamesEnum.Build_ConstructorMk1_C]: {
     name: GameItemsEnum.Constructor,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_AssemblerMk1_C]: {
+  [GameClassNamesEnum.Build_AssemblerMk1_C]: {
     name: GameItemsEnum.Assembler,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_ManufacturerMk1_C]: {
+  [GameClassNamesEnum.Build_ManufacturerMk1_C]: {
     name: GameItemsEnum.Manufacturer,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_Packager_C]: {
+  [GameClassNamesEnum.Build_Packager_C]: {
     name: GameItemsEnum.Packager,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_OilRefinery_C]: {
+  [GameClassNamesEnum.Build_OilRefinery_C]: {
     name: GameItemsEnum.Refinery,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_Blender_C]: {
+  [GameClassNamesEnum.Build_Blender_C]: {
     name: GameItemsEnum.Blender,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_HadronCollider_C]: {
+  [GameClassNamesEnum.Build_HadronCollider_C]: {
     name: GameItemsEnum.Particle_Accelerator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_QuantumEncoder_C]: {
+  [GameClassNamesEnum.Build_QuantumEncoder_C]: {
     name: GameItemsEnum.Quantum_Encoder,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
-  [GameClassNamesEnum.Desc_Converter_C]: {
+  [GameClassNamesEnum.Build_Converter_C]: {
     name: GameItemsEnum.Converter,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
   },
 
   // Generators buildings
-  [GameClassNamesEnum.Desc_GeneratorBiomass_Automated_C]: {
+  [GameClassNamesEnum.Build_GeneratorBiomass_Automated_C]: {
     name: GameItemsEnum.Biomass_Burner,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
     endpoint: EndpointEnum.BIOMASS_GENERATOR,
   },
-  [GameClassNamesEnum.Desc_GeneratorIntegratedBiomass_C]: {
+  [GameClassNamesEnum.Build_GeneratorIntegratedBiomass_C]: {
     name: GameItemsEnum.Hub_Integrated_Biomass_Burner,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
     endpoint: undefined,
   },
-  [GameClassNamesEnum.Desc_GeneratorCoal_C]: {
+  [GameClassNamesEnum.Build_GeneratorCoal_C]: {
     name: GameItemsEnum.Coal_Powered_Generator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
     endpoint: EndpointEnum.COAL_GENERATOR,
   },
-  [GameClassNamesEnum.Desc_GeneratorFuel_C]: {
+  [GameClassNamesEnum.Build_GeneratorFuel_C]: {
     name: GameItemsEnum.Fuel_Powered_Generator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
     endpoint: EndpointEnum.FUEL_GENERATOR,
   },
-  [GameClassNamesEnum.Desc_GeneratorGeoThermal_C]: {
+  [GameClassNamesEnum.Build_GeneratorGeoThermal_C]: {
     name: GameItemsEnum.Geothermal_Generator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
     endpoint: EndpointEnum.GEOTHERMAL_GENERATOR,
   },
-  [GameClassNamesEnum.Desc_GeneratorNuclear_C]: {
+  [GameClassNamesEnum.Build_GeneratorNuclear_C]: {
     name: GameItemsEnum.Nuclear_Power_Plant,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
     endpoint: EndpointEnum.NUCLEAR_GENERATOR,
   },
-  [GameClassNamesEnum.Desc_AlienPowerBuilding_C]: {
+  [GameClassNamesEnum.Build_AlienPowerBuilding_C]: {
     name: GameItemsEnum.Alien_Power_Augmenter,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
@@ -1032,123 +1032,123 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
   },
 
   // Specials buildings
-  [GameClassNamesEnum.Desc_TradingPost_C]: {
+  [GameClassNamesEnum.Build_TradingPost_C]: {
     name: GameItemsEnum.HUB,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_Mam_C]: {
+  [GameClassNamesEnum.Build_Mam_C]: {
     name: GameItemsEnum.MAM,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_SpaceElevator_C]: {
+  [GameClassNamesEnum.Build_SpaceElevator_C]: {
     name: GameItemsEnum.Space_Elevator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_ResourceSink_C]: {
+  [GameClassNamesEnum.Build_ResourceSink_C]: {
     name: GameItemsEnum.AWESOME_Sink,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_ResourceSinkShop_C]: {
+  [GameClassNamesEnum.Build_ResourceSinkShop_C]: {
     name: GameItemsEnum.AWESOME_Shop,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_BlueprintDesigner_C]: {
+  [GameClassNamesEnum.Build_BlueprintDesigner_C]: {
     name: GameItemsEnum.Blueprint_Designer_Mk_1,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_BlueprintDesigner_MK2_C]: {
+  [GameClassNamesEnum.Build_BlueprintDesigner_MK2_C]: {
     name: GameItemsEnum.Blueprint_Designer_Mk_2,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_BlueprintDesigner_MK3_C]: {
+  [GameClassNamesEnum.Build_BlueprintDesigner_MK3_C]: {
     name: GameItemsEnum.Blueprint_Designer_Mk_3,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_WorkBench_C]: {
+  [GameClassNamesEnum.Build_WorkBench_C]: {
     name: GameItemsEnum.Crafting_Bench,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
-  [GameClassNamesEnum.Desc_Workshop_C]: {
+  [GameClassNamesEnum.Build_Workshop_C]: {
     name: GameItemsEnum.Equipment_Workshop,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Special,
   },
 
   // Power buildings
-  [GameClassNamesEnum.Desc_PowerStorageMk1_C]: {
+  [GameClassNamesEnum.Build_PowerStorageMk1_C]: {
     name: GameItemsEnum.Power_Storage,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Power,
   },
 
   // Logistic buildings
-  [GameClassNamesEnum.Desc_PipelinePump_C]: {
+  [GameClassNamesEnum.Build_PipelinePump_C]: {
     name: GameItemsEnum.Pipeline_Pump_Mk_1,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Logistic,
   },
-  [GameClassNamesEnum.Desc_PipelinePumpMk2_C]: {
+  [GameClassNamesEnum.Build_PipelinePumpMk2_C]: {
     name: GameItemsEnum.Pipeline_Pump_Mk_2,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Logistic,
   },
 
   // Transportation buildings
-  [GameClassNamesEnum.Desc_TruckStation_C]: {
+  [GameClassNamesEnum.Build_TruckStation_C]: {
     name: GameItemsEnum.Truck_Station,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_DroneStation_C]: {
+  [GameClassNamesEnum.Build_DroneStation_C]: {
     name: GameItemsEnum.Drone_Port,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_TrainStation_C]: {
+  [GameClassNamesEnum.Build_TrainStation_C]: {
     name: GameItemsEnum.Train_Station,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_TrainDockingStation_C]: {
+  [GameClassNamesEnum.Build_TrainDockingStation_C]: {
     name: GameItemsEnum.Freight_Platform,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_TrainDockingStationLiquid_C]: {
+  [GameClassNamesEnum.Build_TrainDockingStationLiquid_C]: {
     name: GameItemsEnum.Fluid_Freight_Platform,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_PipeHyperStart_C]: {
+  [GameClassNamesEnum.Build_PipeHyperStart_C]: {
     name: GameItemsEnum.Hypertube_Entrance,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_JumpPadAdjustable_C]: {
+  [GameClassNamesEnum.Build_JumpPadAdjustable_C]: {
     name: GameItemsEnum.Jump_Pad,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_LandingPad_C]: {
+  [GameClassNamesEnum.Build_LandingPad_C]: {
     name: GameItemsEnum.U_Jelly_Landing_Pad,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_Portal_C]: {
+  [GameClassNamesEnum.Build_Portal_C]: {
     name: GameItemsEnum.Main_Portal,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,
   },
-  [GameClassNamesEnum.Desc_PortalSatellite_C]: {
+  [GameClassNamesEnum.Build_PortalSatellite_C]: {
     name: GameItemsEnum.Satellite_Portal,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Transportation,

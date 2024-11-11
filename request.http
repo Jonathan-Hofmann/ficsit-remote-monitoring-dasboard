@@ -2,6 +2,7 @@
 
 # Don't forget to start the server in satisfactory using : /frm http start
 
+// Simple endpoints
 ### Route GET /getAssembler
 GET {{baseUrl}}/getAssembler
 
@@ -86,7 +87,7 @@ GET {{baseUrl}}/getPaths
 ### Route GET /getPipes
 GET {{baseUrl}}/getPipes
 
-### Route GET /getPlayer
+### Route GET /getPlayer WORK EVERYTIME
 GET {{baseUrl}}/getPlayer
 
 ### Route GET /getPower
@@ -151,3 +152,17 @@ GET {{baseUrl}}/getTruckStation
 
 ### Route GET /getWorldInv
 GET {{baseUrl}}/getWorldInv
+
+
+// Grouped endpoints (warning: can slow down the game)
+### Route GET /getAll
+GET {{baseUrl}}/getAll
+
+### Route GET /getFactory
+GET {{baseUrl}}/getFactory
+
+### Route GET /getGenerators
+GET {{baseUrl}}/getGenerators
+
+### Route GET /getVehicles
+GET {{baseUrl}}/getVehicles

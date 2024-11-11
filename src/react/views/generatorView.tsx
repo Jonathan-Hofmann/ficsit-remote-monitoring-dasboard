@@ -22,10 +22,8 @@ import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { GeneratorDto } from "../../types/apis/dataTransferObject/generatorsDto";
 import type { GeothermalGeneratorDto } from "../../types/apis/dataTransferObject/geothermalGeneratorDto";
 import type { GeneratorFm } from "../../types/apis/frontModel/generatorsFm";
-import type {
-  GameItems,
-  GeneratorBuilding,
-} from "../../types/apis/gameItems/gameItems";
+import type { GameItems } from "../../types/apis/gameItems/gameItems";
+import type { GameItemGeneratorBuilding } from "../../types/apis/gameItems/generatorBuilding";
 
 export const DetailedGeneratorView: React.FC = () => {
   const [params] = useSearchParams();
@@ -42,7 +40,7 @@ export const DetailedGeneratorView: React.FC = () => {
     ? (
         generatorsList.find(
           (generator) => generator.name === currentGeneratorName,
-        ) as GeneratorBuilding
+        ) as GameItemGeneratorBuilding
       ).endpoint
     : undefined;
   if (!endpoint) redirect("/power");

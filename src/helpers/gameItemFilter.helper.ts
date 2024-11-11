@@ -2,6 +2,7 @@ import { GameBuildingsTypeEnum } from "../enums/gameBuildingsType.enum";
 import type { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import { GameItemsCategoryEnum } from "../enums/gameItemsCategory.enum";
 import type { GameItems } from "../types/apis/gameItems/gameItems";
+import type { GameItemGeneratorBuilding } from "../types/apis/gameItems/generatorBuilding";
 import type { GameItemsDictionnary } from "../types/gameItemsDictionnary";
 
 type Args = {
@@ -24,12 +25,14 @@ export const gameItemFilterHelper = ({
       );
     }
     case "generatorsWithEndpoint":
-      return filteredArray.filter(
-        ([, item]) =>
-          item.category === GameItemsCategoryEnum.Building &&
-          item.buildingType === GameBuildingsTypeEnum.Generator &&
-          !!item.endpoint,
-      );
+      return filteredArray.filter(([, item]) => {
+        const buildingItem = item as GameItemGeneratorBuilding;
+        return (
+          buildingItem.category === GameItemsCategoryEnum.Building &&
+          buildingItem.buildingType === GameBuildingsTypeEnum.Generator &&
+          !!buildingItem.endpoint
+        );
+      });
     default:
       return filteredArray;
   }
