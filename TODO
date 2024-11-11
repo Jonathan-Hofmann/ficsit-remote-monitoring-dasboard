@@ -12,6 +12,7 @@
 - Add handling for unfinished requests (for things the player does not yet have access to and therefore FRM cannot extract data from)
 - Add weebhook https://docs.ficsit.app/ficsitremotemonitoring/latest/webhook.html
 - Handle all comments and todo
+- Handle sidebar, footer and components layout size
 
 == All pages/views to do ==
   componentFile / Component - /route => State

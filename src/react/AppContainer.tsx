@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { ConnectionCheckerProvider } from "../context/connectionChecker";
+import { ConnectionChecker } from "./components/connectionChecker";
 // import { AwesomeSink } from "./components/awesomeSink";
 import { Footer } from "./components/footer";
 import { Sidebar } from "./components/sidebar";
@@ -34,7 +34,7 @@ export const AppContainer: React.FC = () => {
         sx={{ height: "100%" }}
       >
         <Box>
-          <ConnectionCheckerProvider>
+          <ConnectionChecker>
             <Routes>
               <Route
                 path="/"
@@ -89,7 +89,7 @@ export const AppContainer: React.FC = () => {
                 element={<Settings />}
               /> */}
             </Routes>
-          </ConnectionCheckerProvider>
+          </ConnectionChecker>
           <Footer />
         </Box>
       </Grid>
