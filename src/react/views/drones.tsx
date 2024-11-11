@@ -124,7 +124,7 @@ export const Drones: React.FC = () => {
                         <CardContent>
                           {/* <BsLink45Deg size="28px"/> */}
                           <img
-                            src="./assets/Buildings/IconDesc_DronePort_256.png"
+                            src="./assets/Building/Drone_Port.png"
                             alt="Satisfactory Drone Port illustration"
                             style={{ height: "35px", width: "35px" }}
                           />
@@ -221,7 +221,7 @@ export const Drones: React.FC = () => {
                       >
                         <CardContent>
                           <img
-                            src="./assets/Buildings/IconDesc_DronePort_256.png"
+                            src="./assets/Building/Drone_Port.png"
                             alt="Satisfactory Drone Port illustration"
                             style={{ height: "35px", width: "35px" }}
                           />
@@ -328,7 +328,7 @@ export const Drones: React.FC = () => {
                           sx={{ marginBottom: "15px" }}
                         >
                           <img
-                            src="./assets/Vehicles/IconDesc_Drone_256.png"
+                            src="./assets/Vehicle/Drone.png"
                             alt="Satisfactory Drone illustration"
                             style={{ height: "100px" }}
                           />
@@ -615,7 +615,7 @@ export const Drones: React.FC = () => {
                         sx={{ marginBottom: "15px" }}
                       >
                         <img
-                          src="./assets/Vehicles/IconDesc_Drone_256.png"
+                          src="./assets/Vehicle/Drone.png"
                           alt="Satisfactory Drone illustration"
                           style={{ height: "100px" }}
                         />
@@ -880,8 +880,11 @@ export const Drones: React.FC = () => {
                   alignItems="center"
                   sx={{ marginBottom: "5px" }}
                 >
-                  {/* <img src="./assets/Vehicles/IconDesc_Drone_256.png" alt="image" style={{height: '100px'}}></img> */}
-
+                  <img
+                    src="./assets/Vehicle/Drone.png"
+                    alt="Satisfactory Drone illustration"
+                    style={{ height: "100px" }}
+                  />
                   <Skeleton
                     variant="circular"
                     sx={{ marginTop: "20px", marginBottom: "10px" }}

@@ -211,7 +211,7 @@ export const DetailedFactoryView: React.FC = () => {
                           <Grid>
                             <Box sx={{ display: "flex", flexDirection: "row" }}>
                               <img
-                                src="/assets/Icon/Overclocking_Icon.png"
+                                src="./assets/Icon/Overclocking_Icon.png"
                                 alt=""
                                 style={{ height: "22px", width: "22px" }}
                               />

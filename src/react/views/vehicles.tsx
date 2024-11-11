@@ -29,24 +29,22 @@ export const Vehicles: React.FC = () => {
 
   const loadData = async () => {
     if (doLoadData) {
-    //   const response = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getVehicles`,
-    //   );
-
-    //   const temp = [];
-    //   for (let index = 0; index < response.data.length; index++) {
-    //     const value = response.data[index];
-    //     if (!value.Fuel[0]) {
-    //       value.Fuel = [{ Name: "N/A", Amount: 0 }];
-    //     }
-    //     temp.push(value);
-    //   }
-    //   setVehicles(temp);
-
-    //   setTimeout(() => {
-    //     loadData();
-    //   }, settings.interval);
-    // }
+      //   const response = await axios.get(
+      //     `http://${settings.ip}:${settings.port}/getVehicles`,
+      //   );
+      //   const temp = [];
+      //   for (let index = 0; index < response.data.length; index++) {
+      //     const value = response.data[index];
+      //     if (!value.Fuel[0]) {
+      //       value.Fuel = [{ Name: "N/A", Amount: 0 }];
+      //     }
+      //     temp.push(value);
+      //   }
+      //   setVehicles(temp);
+      //   setTimeout(() => {
+      //     loadData();
+      //   }, settings.interval);
+    }
   };
 
   useEffect(() => {
@@ -114,21 +112,21 @@ export const Vehicles: React.FC = () => {
                           <Grid>
                             {vehicle.Name === "Explorer" && (
                               <img
-                                src="./assets/Vehicles/Explorer_256.png"
+                                src="./assets/Vehicle/Explorer.png"
                                 alt="image"
                                 style={{ height: "70px", width: "70px" }}
                               />
                             )}
                             {vehicle.Name === "Truck" && (
                               <img
-                                src="./assets/Vehicles/Truck_256.png"
+                                src="./assets/Vehicle/Truck.png"
                                 alt="image"
                                 style={{ height: "70px", width: "70px" }}
                               />
                             )}
                             {vehicle.Name === "Tractor" && (
                               <img
-                                src="./assets/Vehicles/Tractor_256.png"
+                                src="./assets/Vehicle/Tractor.png"
                                 alt="image"
                                 style={{ height: "70px", width: "70px" }}
                               />
@@ -215,21 +213,21 @@ export const Vehicles: React.FC = () => {
                       >
                         {vehicle.Name === "Explorer" && (
                           <img
-                            src="../assets/Vehicles/Explorer_256.png"
+                            src="../assets/Vehicle/Explorer.png"
                             alt="image"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
                         {vehicle.Name === "Truck" && (
                           <img
-                            src="../assets/Vehicles/Truck_256.png"
+                            src="../assets/Vehicle/Truck.png"
                             alt="image"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
                         {vehicle.Name === "Tractor" && (
                           <img
-                            src="../assets/Vehicles/Tractor_256.png"
+                            src="../assets/Vehicle/Tractor.png"
                             alt="image"
                             style={{ height: "100px", width: "100px" }}
                           />
@@ -386,7 +384,7 @@ export const Vehicles: React.FC = () => {
                             <Grid>
                               {vehicle.Fuel[0].Name !== "N/A" && (
                                 <img
-                                  src={`./assets/Items/${
+                                  src={`./assets/Resource/${
                                     vehicle.Fuel[0].Name
                                   }.png`}
                                   alt="image"
@@ -444,21 +442,21 @@ export const Vehicles: React.FC = () => {
                       >
                         {vehicle.Name === "Explorer" && (
                           <img
-                            src="./assets/Vehicles/Explorer_256.png"
+                            src="./assets/Vehicle/Explorer.png"
                             alt="image"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
                         {vehicle.Name === "Truck" && (
                           <img
-                            src="./assets/Vehicles/Truck_256.png"
+                            src="./assets/Vehicle/Truck.png"
                             alt="image"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
                         {vehicle.Name === "Tractor" && (
                           <img
-                            src="./assets/Vehicles/Tractor_256.png"
+                            src="./assets/Vehicle/Tractor.png"
                             alt="image"
                             style={{ height: "100px", width: "100px" }}
                           />
@@ -637,7 +635,7 @@ export const Vehicles: React.FC = () => {
                             <Grid>
                               {vehicle.Fuel[0].Name !== "N/A" && (
                                 <img
-                                  src={`./assets/Items/${
+                                  src={`./assets/Resource/${
                                     vehicle.Fuel[0].Name
                                   }.png`}
                                   alt="image"
@@ -683,9 +681,27 @@ export const Vehicles: React.FC = () => {
                     sx={{ paddingX: 0 }}
                   >
                     <Grid>
-                      {/* {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
-                                            {vehicle.VehicleType === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
-                                            {vehicle.VehicleType === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  } */}
+                      {vehicle.VehicleType === "Explorer" && (
+                        <img
+                          src="./assets/Vehicle/Explorer.png"
+                          alt="image"
+                          style={{ height: "70px", width: "70px" }}
+                        />
+                      )}
+                      {vehicle.VehicleType === "Truck" && (
+                        <img
+                          src="./assets/Vehicle/Truck.png"
+                          alt="image"
+                          style={{ height: "70px", width: "70px" }}
+                        />
+                      )}
+                      {vehicle.VehicleType === "Tractor" && (
+                        <img
+                          src="./assets/Vehicle/Tractor.png"
+                          alt="image"
+                          style={{ height: "70px", width: "70px" }}
+                        />
+                      )}
                       <Skeleton
                         variant="circular"
                         height="50px"
@@ -720,9 +736,27 @@ export const Vehicles: React.FC = () => {
                     sx={{ paddingX: 0 }}
                   >
                     <Grid>
-                      {/* {vehicle.VehicleType === "Explorer" &&  <img src="./assets/Vehicles/Explorer_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
-                                            {vehicle.VehicleType === "Truck" &&  <img src="./assets/Vehicles/Truck_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  }
-                                            {vehicle.VehicleType === "Tractor" &&  <img src="./assets/Vehicles/Tractor_256.png" alt="image" style={{height: '70px', width: '70px'}}></img>  } */}
+                      {vehicle.VehicleType === "Explorer" && (
+                        <img
+                          src="./assets/Vehicle/Explorer.png"
+                          alt="image"
+                          style={{ height: "70px", width: "70px" }}
+                        />
+                      )}
+                      {vehicle.VehicleType === "Truck" && (
+                        <img
+                          src="./assets/Vehicle/Truck.png"
+                          alt="image"
+                          style={{ height: "70px", width: "70px" }}
+                        />
+                      )}
+                      {vehicle.VehicleType === "Tractor" && (
+                        <img
+                          src="./assets/Vehicle/Tractor.png"
+                          alt="image"
+                          style={{ height: "70px", width: "70px" }}
+                        />
+                      )}
                       <Skeleton
                         variant="circular"
                         height="50px"

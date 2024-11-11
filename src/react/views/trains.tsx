@@ -186,7 +186,7 @@ export const Trains: React.FC = () => {
 
                         <Stack alignItems="center">
                           <img
-                            src="./assets/Buildings/Train Station.png"
+                            src="./assets/Building/Train_Station.png"
                             alt="image"
                             style={{ height: "70px", width: "70px" }}
                           />
@@ -296,7 +296,7 @@ export const Trains: React.FC = () => {
                     <CardContent>
                       <Stack alignItems="center">
                         <img
-                          src="./assets/Vehicles/Locomotive_256.png"
+                          src="./assets/Vehicle/Electric_Locomotive.png.png"
                           alt="image"
                           style={{ height: "80px", width: "80px" }}
                         />
@@ -434,7 +434,7 @@ export const Trains: React.FC = () => {
                       <CardContent>
                         <Stack alignItems="center">
                           <img
-                            src="./assets/Buildings/Train Station.png"
+                            src="./assets/Building/Train_Station.png"
                             alt="image"
                             style={{ height: "70px", width: "70px" }}
                           />
@@ -596,14 +596,23 @@ export const Trains: React.FC = () => {
             >
               <CardContent>
                 <Stack alignItems="center">
-                  {/* <img src="./assets/Vehicles/Locomotive_256.png" alt="image" style={{height: '80px', width: '80px'}}></img> */}
+                  <img
+                    src="./assets/Vehicle/Electric_Locomotive.png"
+                    alt="image"
+                    style={{ height: "80px", width: "80px" }}
+                  />
                   <Skeleton
                     variant="circular"
                     width="80px"
                     height="80px"
                     sx={{ marginTop: "10px" }}
                   />
-                  {/* <Typography level="h6" sx={{marginBottom: '5px', marginTop: '10px'}}>{train.TrainName}</Typography> */}
+                  <Typography
+                    level="h6"
+                    sx={{ marginBottom: "5px", marginTop: "10px" }}
+                  >
+                    {train.TrainName}
+                  </Typography>
                   <Grid
                     container
                     sx={{ marginBottom: "15px", marginTop: "10px" }}

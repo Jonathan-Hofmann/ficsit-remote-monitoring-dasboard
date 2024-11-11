@@ -88,6 +88,20 @@ export const Footer: React.FC = () => {
                 Ficsit Remote Monitoring
               </Link>
             </Typography>
+            <Typography
+              textAlign="right"
+              level="body2"
+            >
+              Start mod with{" "}
+              <Typography
+                style={{
+                  color: "var(--joy-palette-primary-main)",
+                  textDecoration: "none",
+                }}
+              >
+                /frm http start
+              </Typography>
+            </Typography>
           </Grid>
         </Grid>
       </Container>
