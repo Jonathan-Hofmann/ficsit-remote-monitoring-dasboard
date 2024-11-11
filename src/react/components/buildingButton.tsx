@@ -2,27 +2,21 @@ import { Card, CardContent, Grid, Stack, Typography } from "@mui/joy";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import type { GameItemsEnum } from "../../enums/gameItems.enum";
 import type { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
 
 type Props = {
-  factory: string;
   page: string;
+  factory: GameItemsEnum;
   assetsLocation: GameItemsCategoryEnum;
 };
 
 export const BuildingButton: React.FC<Props> = ({
-  factory,
   page,
+  factory,
   assetsLocation,
 }) => {
-  let link = `/${page}/?${page}=${factory}&endpoint=get`;
-  if (page === "generator") {
-    link = `${link + factory.split(" ")[0].split("-")[0]}Generator`;
-  } else if (factory === "Quantum Encoder") {
-    link += factory.split(" ")[1];
-  } else {
-    link += factory.split(" ")[0];
-  }
+  const link = `/${page}/?${page}=${factory}`;
 
   return (
     <Grid xs={4}>

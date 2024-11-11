@@ -9,56 +9,48 @@ import {
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
-import { useSearchParams } from "react-router-dom";
+import { redirect, useSearchParams } from "react-router-dom";
 
-import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { fullRefs } from "../../constants/refs";
-import { useLocalStorage } from "../../hooks/localStorage";
-import type { SettingsData } from "../../types/settingsData";
+import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import type { GameItemsEnum } from "../../enums/gameItems.enum";
+import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
+import { getImageHelper } from "../../helpers/getImage.helper";
+import { objectEntriesToArrayHelper } from "../../helpers/objectEntriesToArray.helper";
+import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import type { GeneratorDto } from "../../types/apis/dataTransferObject/generatorsDto";
+import type { GeothermalGeneratorDto } from "../../types/apis/dataTransferObject/geothermalGeneratorDto";
+import type { GeneratorFm } from "../../types/apis/frontModel/generatorsFm";
+import type {
+  GameItems,
+  GeneratorBuilding,
+} from "../../types/apis/gameItems/gameItems";
 
 export const DetailedGeneratorView: React.FC = () => {
   const [params] = useSearchParams();
-  const generator = params.get("generator");
-  const generatorEndpoint = params.get("endpoint");
-  const [GeneratorData, setGeneratorData] = useState<undefined | any>(
-    undefined,
+  const currentGeneratorName = params.get("generator") as GameItemsEnum;
+
+  const generatorsList = objectEntriesToArrayHelper<GameItems>(
+    gameItemFilterHelper({
+      gameItemsDictionnary,
+      filter: "generatorsWithEndpoint",
+    }),
   );
-  const { value: settings } = useLocalStorage<SettingsData>(
-    "rmd_settings",
-    defaultSettingsData,
-  );
-  let intervalVar: any;
 
-  const loadData = async (endpoint: string) => {
-    // intervalVar = setInterval(async () => {
-    //   const response = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/${endpoint}`,
-    //   );
-    //   if (response.data[0]) {
-    //     setGeneratorData(response.data);
-    //   } else {
-    //     setGeneratorData([]);
-    //   }
-    // }, settings.interval);
-  };
+  const endpoint = currentGeneratorName
+    ? (
+        generatorsList.find(
+          (generator) => generator.name === currentGeneratorName,
+        ) as GeneratorBuilding
+      ).endpoint
+    : undefined;
+  if (!endpoint) redirect("/power");
 
-  useEffect(() => {
-    if (generatorEndpoint) loadData(generatorEndpoint);
-    return () => {
-      clearInterval(intervalVar);
-    };
-  });
-
-  function getImage(item: any): any {
-    let value = null;
-    if (fullRefs[item] != null) {
-      value = `/assets/${fullRefs[item].category}/${item}.png`;
-    }
-    return value;
-  }
+  const { data: generators } = useAutoRefetch<
+    GeneratorDto[] | GeothermalGeneratorDto[],
+    GeneratorFm[]
+  >(endpoint, !endpoint);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -78,23 +70,23 @@ export const DetailedGeneratorView: React.FC = () => {
                 marginBottom="5px"
                 fontWeight={600}
               >
-                {generator}
+                {currentGeneratorName}
               </Typography>
             </Grid>
           </Grid>
         </CardContent>
       </Card>
 
-      {GeneratorData ? (
+      {generators ? (
         <Grid
           container
           spacing={3}
         >
-          {GeneratorData.map((_generator: any, index: any) => {
+          {generators.map((generator) => {
             return (
               <Grid
                 xs={4}
-                key={index}
+                key={generator.id}
               >
                 <Card variant="outlined">
                   <CardContent>
@@ -103,7 +95,7 @@ export const DetailedGeneratorView: React.FC = () => {
                       container
                     >
                       <Grid xs>
-                        {_generator.IsFullSpeed === true ? (
+                        {generator.isFullSpeed ? (
                           <Chip
                             size="sm"
                             color="success"
@@ -127,7 +119,7 @@ export const DetailedGeneratorView: React.FC = () => {
                         )}
                       </Grid>
                       <Grid>
-                        {_generator.CanStart === true ? (
+                        {generator.isGeneratorCanStart ? (
                           <Chip
                             size="sm"
                             color="neutral"
@@ -148,7 +140,7 @@ export const DetailedGeneratorView: React.FC = () => {
                     </Grid>
                     <Stack alignItems="center">
                       <img
-                        src={getImage(_generator.Name)}
+                        src={getImageHelper(generator.className)}
                         alt=""
                         style={{
                           height: "100px",
@@ -169,7 +161,8 @@ export const DetailedGeneratorView: React.FC = () => {
                         <Grid>
                           <Box sx={{ display: "flex", flexDirection: "row" }}>
                             <Typography marginLeft="10px">
-                              {_generator.DynamicProdCapacity.toFixed(2)} MW
+                              {generator.dynamicProductionCapacity.toFixed(2)}{" "}
+                              MW
                             </Typography>
                           </Box>
                         </Grid>

@@ -41,7 +41,7 @@ export const PowerMain: React.FC = () => {
   const generators = objectEntriesToArrayHelper<GameItems>(
     gameItemFilterHelper({
       gameItemsDictionnary,
-      filter: GameBuildingsTypeEnum.Generator,
+      filter: "generatorsWithEndpoint",
     }),
   );
 

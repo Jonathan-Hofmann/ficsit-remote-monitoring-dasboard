@@ -16,7 +16,6 @@ import {
   BsList,
 } from "react-icons/bs";
 // import { FaBoxes, FaTruck } from "react-icons/fa";
-import { GiFactory } from "react-icons/gi";
 // import { MdTrain } from "react-icons/md";
 import { TbDrone } from "react-icons/tb";
 import { Link } from "react-router-dom";
@@ -86,20 +85,6 @@ export const Sidebar: React.FC = () => {
               startDecorator={<BsLightningFill />}
             >
               Power Screen
-            </Button>
-          </Link>
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/generator"
-          >
-            <Button
-              fullWidth
-              color="neutral"
-              variant="soft"
-              sx={{ display: "flex", justifyContent: "flex-start" }}
-              startDecorator={<GiFactory />}
-            >
-              Generator
             </Button>
           </Link>
           {/* <Link
@@ -310,23 +295,6 @@ export const Sidebar: React.FC = () => {
               variant="plain"
             >
               <BsLightningFill />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        <Tooltip
-          placement="right"
-          title="Generator"
-        >
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/generator"
-          >
-            <IconButton
-              size="lg"
-              color="neutral"
-              variant="plain"
-            >
-              <GiFactory />
             </IconButton>
           </Link>
         </Tooltip>

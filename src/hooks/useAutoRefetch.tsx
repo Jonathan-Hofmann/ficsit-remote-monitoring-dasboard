@@ -11,23 +11,27 @@ import type { SettingsData } from "../types/settingsData";
 import { useLocalStorage } from "./localStorage";
 
 export const useAutoRefetch = <Dto, Fm>(
-  endPoint: EndpointEnum,
+  endPoint?: EndpointEnum,
+  skip?: boolean,
 ): FetchResponse<Fm> => {
-  const mapper = endPointDictionnary[endPoint] as MapperFunction<Dto, Fm>;
+  const mapper = endPoint
+    ? (endPointDictionnary[endPoint] as MapperFunction<Dto, Fm>)
+    : undefined;
   const { value: settings } = useLocalStorage<SettingsData>(
     "rmd_settings",
     defaultSettingsData,
   );
+
   const [responseState, setResponseState] = useState<FetchResponse<Fm>>({
     status: "",
-    success: true,
+    success: false,
   });
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchData = async () => {
-      if (isMounted) {
+      if (isMounted && !skip && mapper) {
         const response = await fetcherHelper<Dto>({
           apiUrl: `http://${settings.ip}:${settings.port}`,
           endPoint: `/${endPoint}`,
@@ -50,7 +54,7 @@ export const useAutoRefetch = <Dto, Fm>(
     return () => {
       isMounted = false;
     };
-  }, [endPoint, mapper, settings]);
+  }, [endPoint, mapper, settings, skip]);
 
   return responseState;
 };

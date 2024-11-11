@@ -1,3 +1,4 @@
+// Grouped type from BiomassGeneratorDto ; CoalGeneratorDto ; FuelGeneratorDto ; NuclearGeneratorDto but not Geothermal wich have specifications
 type Location = {
   x: number;
   y: number;
@@ -40,7 +41,7 @@ type PowerInfo = {
   MaxPowerConsumed: number;
 };
 
-export type NuclearGeneratorDto = {
+export type GeneratorDto = {
   Name: string;
   ClassName: string;
   location: Location;
