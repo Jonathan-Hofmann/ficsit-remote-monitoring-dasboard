@@ -1,3 +1,4 @@
+import { EndpointEnum } from "../enums/endpoint.enum";
 import { GameBuildingsTypeEnum } from "../enums/gameBuildingsType.enum";
 import { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import { GameItemsEnum } from "../enums/gameItems.enum";
@@ -991,36 +992,43 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
     name: GameItemsEnum.Biomass_Burner,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
+    endpoint: EndpointEnum.BIOMASS_GENERATOR,
   },
   [GameClassNamesEnum.Desc_GeneratorIntegratedBiomass_C]: {
     name: GameItemsEnum.Hub_Integrated_Biomass_Burner,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
+    endpoint: undefined,
   },
   [GameClassNamesEnum.Desc_GeneratorCoal_C]: {
     name: GameItemsEnum.Coal_Powered_Generator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
+    endpoint: EndpointEnum.COAL_GENERATOR,
   },
   [GameClassNamesEnum.Desc_GeneratorFuel_C]: {
     name: GameItemsEnum.Fuel_Powered_Generator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
+    endpoint: EndpointEnum.FUEL_GENERATOR,
   },
   [GameClassNamesEnum.Desc_GeneratorGeoThermal_C]: {
     name: GameItemsEnum.Geothermal_Generator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
+    endpoint: EndpointEnum.GEOTHERMAL_GENERATOR,
   },
   [GameClassNamesEnum.Desc_GeneratorNuclear_C]: {
     name: GameItemsEnum.Nuclear_Power_Plant,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
+    endpoint: EndpointEnum.NUCLEAR_GENERATOR,
   },
   [GameClassNamesEnum.Desc_AlienPowerBuilding_C]: {
     name: GameItemsEnum.Alien_Power_Augmenter,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Generator,
+    endpoint: undefined,
   },
 
   // Specials buildings
