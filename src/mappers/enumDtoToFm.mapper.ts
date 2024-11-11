@@ -1,15 +1,18 @@
 export const enumDtoToFmMapper = <E extends object>(
   dto: string,
   enumType: E,
+  enumName: string,
 ): E[keyof E] => {
-  const enumKeys = Object.keys(enumType) as (keyof E)[];
-  const foundKeyIndex = enumKeys.findIndex((key) => key === dto);
+  const enumValues = Object.values(enumType) as (keyof E)[];
+  const foundKeyIndex = enumValues.findIndex(
+    (key) => key === dto.replaceAll(" ", "_"),
+  );
 
   if (foundKeyIndex !== -1) {
-    return enumType[enumKeys[foundKeyIndex]];
+    return enumType[enumValues[foundKeyIndex]];
   }
 
   throw new Error(
-    `Invalid dto name [${dto}]: can't found in enum ${enumType.constructor.name}`,
+    `Invalid dto name [${dto.replaceAll(" ", "_")}]: can't found in enum ${enumName}`,
   );
 };

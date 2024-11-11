@@ -12,6 +12,7 @@ export const droneDtoToFmMapper = (dto: DroneDto[]): DroneFm[] => {
     currentFlyingMode: enumDtoToFmMapper(
       droneDto.CurrentFlyingMode,
       DroneFlyingModeEnum,
+      "DroneFlyingModeEnum",
     ),
     flyingSpeed: droneDto.FlyingSpeed,
     location: {

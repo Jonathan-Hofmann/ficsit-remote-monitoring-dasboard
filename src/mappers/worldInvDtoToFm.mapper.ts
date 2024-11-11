@@ -7,9 +7,17 @@ import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
 export const worldInvDtoToFmMapper = (dto: WorldInvDto[]): WorldInvFm[] => {
   return dto.map((worldInv) => ({
     name: gameItemsDictionnary[
-      enumDtoToFmMapper(worldInv.ClassName, GameClassNamesEnum)
+      enumDtoToFmMapper(
+        worldInv.ClassName,
+        GameClassNamesEnum,
+        "GameClassNamesEnum",
+      )
     ].name,
-    className: enumDtoToFmMapper(worldInv.ClassName, GameClassNamesEnum),
+    className: enumDtoToFmMapper(
+      worldInv.ClassName,
+      GameClassNamesEnum,
+      "GameClassNamesEnum",
+    ),
     amount: worldInv.Amount,
   }));
 };

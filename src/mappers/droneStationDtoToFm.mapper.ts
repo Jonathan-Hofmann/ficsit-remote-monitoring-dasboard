@@ -11,6 +11,7 @@ export const droneStationDtoToFmMapper = (
     droneStatus: enumDtoToFmMapper(
       droneStationDto.DroneStatus,
       DroneStationStatusEnum,
+      "DroneStationStatusEnum",
     ),
     totalTransportRateEstimation: droneStationDto.EstTotalTransRate,
     activeFuel: {

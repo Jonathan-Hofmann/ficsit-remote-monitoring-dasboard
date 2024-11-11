@@ -13,6 +13,7 @@ import { Skeleton } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
 
+import { DroneFlyingModeEnum } from "../../enums/droneFlyingMode.enum";
 import { DroneStationStatusEnum } from "../../enums/droneStationStatus.enum";
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
@@ -150,7 +151,7 @@ export const Drones: React.FC = () => {
                             }}
                           >
                             {homeStation.droneStatus ===
-                              DroneStationStatusEnum.No_Drones && (
+                              DroneStationStatusEnum.No_Drone && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -178,7 +179,7 @@ export const Drones: React.FC = () => {
                               </Chip>
                             )}
                             {homeStation.droneStatus ===
-                              DroneStationStatusEnum.Docked && (
+                              DroneStationStatusEnum.Docking && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -192,7 +193,7 @@ export const Drones: React.FC = () => {
                               </Chip>
                             )}
                             {homeStation.droneStatus ===
-                              DroneStationStatusEnum.Takeoff && (
+                              DroneStationStatusEnum.Taking_Off && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -249,7 +250,7 @@ export const Drones: React.FC = () => {
                             }}
                           >
                             {destStation.droneStatus ===
-                              DroneStationStatusEnum.No_Drones && (
+                              DroneStationStatusEnum.No_Drone && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -277,7 +278,7 @@ export const Drones: React.FC = () => {
                               </Chip>
                             )}
                             {destStation.droneStatus ===
-                              DroneStationStatusEnum.Docked && (
+                              DroneStationStatusEnum.Docking && (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -291,7 +292,7 @@ export const Drones: React.FC = () => {
                               </Chip>
                             )}
                             {destStation.droneStatus ===
-                              DroneStationStatusEnum.Takeoff && (
+                              DroneStationStatusEnum.Taking_Off && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -332,7 +333,8 @@ export const Drones: React.FC = () => {
                             alt="Satisfactory Drone illustration"
                             style={{ height: "100px" }}
                           />
-                          {drone.currentFlyingMode === "Flying" && (
+                          {drone.currentFlyingMode ===
+                            DroneFlyingModeEnum.Flying && (
                             <Chip
                               color="info"
                               size="sm"
@@ -345,7 +347,8 @@ export const Drones: React.FC = () => {
                               Flying
                             </Chip>
                           )}
-                          {drone.currentFlyingMode === "Travel" && (
+                          {drone.currentFlyingMode ===
+                            DroneFlyingModeEnum.Travelling && (
                             <Chip
                               color="info"
                               size="sm"
@@ -358,7 +361,8 @@ export const Drones: React.FC = () => {
                               Flying
                             </Chip>
                           )}
-                          {drone.currentFlyingMode === "None" && (
+                          {drone.currentFlyingMode ===
+                            DroneFlyingModeEnum.None && (
                             <Chip
                               color="info"
                               size="sm"
@@ -558,6 +562,7 @@ export const Drones: React.FC = () => {
                 sx={{ marginBottom: "30px", height: "300px" }}
                 display="flex"
                 alignItems="center"
+                key={drone.id}
               >
                 <Grid
                   xs={3}
@@ -619,7 +624,8 @@ export const Drones: React.FC = () => {
                           alt="Satisfactory Drone illustration"
                           style={{ height: "100px" }}
                         />
-                        {drone.currentFlyingMode === "Flying" && (
+                        {drone.currentFlyingMode ===
+                          DroneFlyingModeEnum.Flying && (
                           <Chip
                             color="info"
                             size="sm"
@@ -632,7 +638,8 @@ export const Drones: React.FC = () => {
                             Flying
                           </Chip>
                         )}
-                        {drone.currentFlyingMode === "Travel" && (
+                        {drone.currentFlyingMode ===
+                          DroneFlyingModeEnum.Travelling && (
                           <Chip
                             color="info"
                             size="sm"
@@ -645,7 +652,8 @@ export const Drones: React.FC = () => {
                             Flying
                           </Chip>
                         )}
-                        {drone.currentFlyingMode === "None" && (
+                        {drone.currentFlyingMode ===
+                          DroneFlyingModeEnum.Flying && (
                           <Chip
                             color="info"
                             size="sm"

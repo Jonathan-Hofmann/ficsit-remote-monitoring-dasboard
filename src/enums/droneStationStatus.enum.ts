@@ -1,6 +1,7 @@
 export enum DroneStationStatusEnum {
-  No_Drones = "No Drones",
-  Cannot_Unload = "Cannot Unload",
-  Docked = "Docked",
-  Takeoff = "Takeoff",
+  No_Drone = "No_Drone",
+  Cannot_Unload = "Cannot_Unload",
+  En_Route = "En_Route",
+  Docking = "Docking",
+  Taking_Off = "Taking_Off",
 }

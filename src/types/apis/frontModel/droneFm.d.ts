@@ -1,9 +1,11 @@
+import type { DroneFlyingModeEnum } from "../../../enums/droneFlyingMode.enum";
+
 export type DroneFm = {
   id: string;
   homeStation: string;
   pairedStation: string;
   currentDestination: string;
-  currentFlyingMode: "Flying" | "Travel" | "None";
+  currentFlyingMode: DroneFlyingModeEnum;
   flyingSpeed: number;
   location: {
     x: number;
