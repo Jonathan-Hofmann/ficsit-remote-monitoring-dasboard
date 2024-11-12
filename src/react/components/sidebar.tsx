@@ -15,7 +15,7 @@ import {
   BsLightningFill,
   BsList,
 } from "react-icons/bs";
-import { /* FaBoxes, */ FaTruck } from "react-icons/fa";
+import { FaBoxes, FaTruck } from "react-icons/fa";
 // import { MdTrain } from "react-icons/md";
 import { TbDrone } from "react-icons/tb";
 import { Link } from "react-router-dom";
@@ -417,24 +417,24 @@ export const Sidebar: React.FC = () => {
                 </IconButton>
               </Link>
             </Tooltip> */}
-        {/* <Tooltip
-              placement="right"
-              title="Awesome Sink"
+        <Tooltip
+          placement="right"
+          title="Awesome Sink"
+        >
+          <Link
+            style={{ textDecoration: "none" }}
+            to="/awesomeSink"
+          >
+            <IconButton
+              size="lg"
+              color="neutral"
+              variant="plain"
             >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/awesomeSink"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <FaBoxes />
-                </IconButton>
-              </Link>
-            </Tooltip>
-            <Tooltip
+              <FaBoxes />
+            </IconButton>
+          </Link>
+        </Tooltip>
+        {/* <Tooltip
               placement="right"
               title="test"
             >

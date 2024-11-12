@@ -27,7 +27,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import type { WorldInvDto } from "../../types/apis/dataTransferObject/worldInvDto";
 import type { WorldInvFm } from "../../types/apis/frontModel/worldInvFm";
 import type { GameItems } from "../../types/gameItems/gameItems";
-import { AwesomeSink } from "../components/awesomeSink";
+import { AwesomeSink } from "./awesomeSink";
 
 export const Start: React.FC = () => {
   const { value: itemSelection, setValue: setItemSelection } = useLocalStorage<
@@ -347,7 +347,7 @@ export const Start: React.FC = () => {
           )}
         </Grid>
         <Grid xs={6}>
-          <AwesomeSink />
+          <AwesomeSink display="both" />
         </Grid>
       </Grid>
     </Container>

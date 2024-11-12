@@ -3,7 +3,7 @@ type CouponType = {
   ClassName: string;
 };
 
-export type ExplorationSinkDto = {
+export type AwesomeSinkDto = {
   Name: string;
   ClassName: string;
   CouponType: CouponType;

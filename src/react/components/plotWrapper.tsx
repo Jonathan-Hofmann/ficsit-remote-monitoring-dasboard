@@ -1,11 +1,10 @@
-// @ts-ignore
 import * as Plot from "@observablehq/plot";
 import React, { useEffect, useRef } from "react";
 
-import { addTooltips } from "../components/tooltips";
+import { addTooltips } from "./tooltips";
 
 type Props = {
-  options: any;
+  options: Plot.PlotOptions;
 };
 
 export const PlotFigure: React.FC<Props> = ({ options }) => {

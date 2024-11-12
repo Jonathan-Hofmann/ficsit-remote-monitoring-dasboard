@@ -29,7 +29,7 @@ import { objectEntriesToArrayHelper } from "../../helpers/objectEntriesToArray.h
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { PowerDto } from "../../types/apis/dataTransferObject/powerDto";
 import type { PowerFm } from "../../types/apis/frontModel/powerFm";
-import type { GameItems } from "../../types/apis/gameItems/gameItems";
+import type { GameItems } from "../../types/gameItems/gameItems";
 import type { Theme } from "../../types/theme";
 import { BuildingButton } from "../components/buildingButton";
 

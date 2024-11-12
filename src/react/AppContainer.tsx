@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
+import { AwesomeSink } from "./views/awesomeSink";
 import { ConnectionChecker } from "./components/connectionChecker";
-// import { AwesomeSink } from "./components/awesomeSink";
 import { Footer } from "./components/footer";
 import { Sidebar } from "./components/sidebar";
 // import { Building } from "./views/building";
@@ -75,12 +75,12 @@ export const AppContainer: React.FC = () => {
               {/* <Route
                 path="/storageView"
                 element={<StorageView />}
-              />
+              /> */}
               <Route
                 path="/awesomeSink"
-                element={<AwesomeSink />}
+                element={<AwesomeSink display="resource" />}
               />
-              <Route
+              {/* <Route
                 path="/test"
                 element={<SocketTestSite />}
               />
