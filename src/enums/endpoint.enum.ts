@@ -8,5 +8,6 @@ export enum EndpointEnum {
   NUCLEAR_GENERATOR = "getNuclearGenerator",
   PLAYER = "getPlayer",
   POWER = "getPower",
+  VEHICLE = "getVehicles",
   WORLD_INV = "getWorldInv",
 }

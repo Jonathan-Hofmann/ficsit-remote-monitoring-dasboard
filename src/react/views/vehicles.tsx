@@ -11,45 +11,19 @@ import {
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BsQuestionCircle, BsXCircle } from "react-icons/bs";
 
-import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { useLocalStorage } from "../../hooks/localStorage";
-import type { SettingsData } from "../../types/settingsData";
+import { EndpointEnum } from "../../enums/endpoint.enum";
+import { GameItemsEnum } from "../../enums/gameItems.enum";
+import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import type { VehicleDto } from "../../types/apis/dataTransferObject/vehicleDto";
+import type { VehicleFm } from "../../types/apis/frontModel/vehicleFm";
 
 export const Vehicles: React.FC = () => {
-  const [doLoadData, setLoadData] = useState(true);
-  const [vehicles, setVehicles] = useState<undefined | any>(undefined);
-  const { value: settings } = useLocalStorage<SettingsData>(
-    "rmd_settings",
-    defaultSettingsData,
+  const { data: vehicles } = useAutoRefetch<VehicleDto[], VehicleFm[]>(
+    EndpointEnum.VEHICLE,
   );
-
-  const loadData = async () => {
-    if (doLoadData) {
-      //   const response = await axios.get(
-      //     `http://${settings.ip}:${settings.port}/getVehicles`,
-      //   );
-      //   const temp = [];
-      //   for (let index = 0; index < response.data.length; index++) {
-      //     const value = response.data[index];
-      //     if (!value.Fuel[0]) {
-      //       value.Fuel = [{ Name: "N/A", Amount: 0 }];
-      //     }
-      //     temp.push(value);
-      //   }
-      //   setVehicles(temp);
-      //   setTimeout(() => {
-      //     loadData();
-      //   }, settings.interval);
-    }
-  };
-
-  useEffect(() => {
-    loadData();
-  }, []);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -85,11 +59,11 @@ export const Vehicles: React.FC = () => {
             display="flex"
             alignItems="center"
           >
-            {vehicles.map((vehicle: any, index: number) => {
+            {vehicles.map((vehicle) => {
               return (
                 <Grid xs={3}>
                   <a
-                    href={`#${index}`}
+                    href={`#${vehicle.id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <Card
@@ -110,24 +84,24 @@ export const Vehicles: React.FC = () => {
                           sx={{ paddingX: 0 }}
                         >
                           <Grid>
-                            {vehicle.Name === "Explorer" && (
+                            {vehicle.name === GameItemsEnum.Explorer && (
                               <img
                                 src="./assets/Vehicle/Explorer.png"
-                                alt="image"
+                                alt="Satisfactory Explorer illustration"
                                 style={{ height: "70px", width: "70px" }}
                               />
                             )}
-                            {vehicle.Name === "Truck" && (
+                            {vehicle.name === GameItemsEnum.Truck && (
                               <img
                                 src="./assets/Vehicle/Truck.png"
-                                alt="image"
+                                alt="Satisfactory Truck illustration"
                                 style={{ height: "70px", width: "70px" }}
                               />
                             )}
-                            {vehicle.Name === "Tractor" && (
+                            {vehicle.name === GameItemsEnum.Tractor && (
                               <img
                                 src="./assets/Vehicle/Tractor.png"
-                                alt="image"
+                                alt="Satisfactory Tractor illustration"
                                 style={{ height: "70px", width: "70px" }}
                               />
                             )}
@@ -135,7 +109,7 @@ export const Vehicles: React.FC = () => {
 
                           <Grid xs>
                             <Box sx={{ marginBottom: "10px" }}>
-                              {vehicle.Autopilot === false ? (
+                              {vehicle.autopilot === false ? (
                                 <Chip
                                   color="primary"
                                   size="sm"
@@ -162,7 +136,7 @@ export const Vehicles: React.FC = () => {
                               )}
                             </Box>
                             <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                              Speed: {parseInt(vehicle.ForwardSpeed)} km/h
+                              Speed: {vehicle.speed} km/h
                             </Typography>
                           </Grid>
                         </Grid>
@@ -191,15 +165,13 @@ export const Vehicles: React.FC = () => {
             display="flex"
             alignItems="center"
           >
-            {vehicles.map((vehicle: any, index: number) => {
-              if (vehicle.Autopilot != false) {
-                // Mode Manual -> show
-                return <></>;
-              }
+            {vehicles.map((vehicle) => {
+              if (vehicle.autopilot) return null;
+
               // Mode Autopilot -> hide
               return (
                 <Grid xs={4}>
-                  <div id={index.toString()} />
+                  <div id={vehicle.id} />
                   <Card
                     sx={{ position: "relative", paddingBottom: 0 }}
                     variant="outlined"
@@ -211,24 +183,24 @@ export const Vehicles: React.FC = () => {
                         justifyContent="center"
                         flexDirection="column"
                       >
-                        {vehicle.Name === "Explorer" && (
+                        {vehicle.name === GameItemsEnum.Explorer && (
                           <img
                             src="../assets/Vehicle/Explorer.png"
-                            alt="image"
+                            alt="Satisfactory Explorer illustration"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
-                        {vehicle.Name === "Truck" && (
+                        {vehicle.name === GameItemsEnum.Truck && (
                           <img
                             src="../assets/Vehicle/Truck.png"
-                            alt="image"
+                            alt="Satisfactory Truck illustration"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
-                        {vehicle.Name === "Tractor" && (
+                        {vehicle.name === GameItemsEnum.Tractor && (
                           <img
                             src="../assets/Vehicle/Tractor.png"
-                            alt="image"
+                            alt="Satisfactory Tractor illustration"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
@@ -240,7 +212,7 @@ export const Vehicles: React.FC = () => {
                             alignItems="center"
                           >
                             <Grid>
-                              {vehicle.Airborne === false ? (
+                              {vehicle.airborne === false ? (
                                 <Chip
                                   color="success"
                                   size="sm"
@@ -267,7 +239,7 @@ export const Vehicles: React.FC = () => {
                               )}
                             </Grid>
                             <Grid>
-                              {vehicle.Autopilot === true ? (
+                              {vehicle.autopilot ? (
                                 <Chip
                                   color="neutral"
                                   size="sm"
@@ -299,7 +271,7 @@ export const Vehicles: React.FC = () => {
                           marginLeft="5px"
                           level="body2"
                         >
-                          VehicleID: #{vehicle.ID}
+                          VehicleID: #{vehicle.id}
                         </Typography>
                       </Stack>
 
@@ -321,7 +293,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {parseInt(vehicle.ForwardSpeed) / 30} km/h
+                                {vehicle.speed / 30} km/h
                               </Typography>
                             </Grid>
                           </Grid>
@@ -337,7 +309,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {parseInt(vehicle.CurrentGear)}
+                                {vehicle.currentGear}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -353,7 +325,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {Math.max(0, parseInt(vehicle.EngineRPM))} RPM
+                                {Math.max(0, vehicle.engineRPM)} RPM
                               </Typography>
                             </Grid>
                           </Grid>
@@ -369,7 +341,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {parseInt(vehicle.Fuel[0].Amount)}
+                                {vehicle.fuel?.[0].amount}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -382,21 +354,17 @@ export const Vehicles: React.FC = () => {
                               </Typography>
                             </Grid>
                             <Grid>
-                              {vehicle.Fuel[0].Name !== "N/A" && (
-                                <img
-                                  src={`./assets/Resource/${
-                                    vehicle.Fuel[0].Name
-                                  }.png`}
-                                  alt="image"
-                                  style={{ height: "30px", width: "30px" }}
-                                />
-                              )}
-                              {vehicle.Fuel[0].Name === "N/A" && (
-                                <BsXCircle
-                                  color="red"
-                                  size="25px"
-                                />
-                              )}
+                              <img
+                                src={`./assets/Resource/${
+                                  vehicle.fuel?.[0].name
+                                }.png`}
+                                alt="Satisfactory Tractor fuel illustration"
+                                style={{ height: "30px", width: "30px" }}
+                              />
+                              <BsXCircle
+                                color="red"
+                                size="25px"
+                              />
                             </Grid>
                           </Grid>
                         </Grid>
@@ -421,11 +389,8 @@ export const Vehicles: React.FC = () => {
             container
             spacing={3}
           >
-            {vehicles.map((vehicle: any, index: number) => {
-              if (vehicle.Autopilot === false) {
-                // Mode Manual -> show
-                return <></>;
-              }
+            {vehicles.map((vehicle, index: number) => {
+              if (!vehicle.autopilot) return null;
               return (
                 <Grid xs={4}>
                   <div id={index.toString()} />
@@ -440,24 +405,24 @@ export const Vehicles: React.FC = () => {
                         justifyContent="center"
                         flexDirection="column"
                       >
-                        {vehicle.Name === "Explorer" && (
+                        {vehicle.name === GameItemsEnum.Explorer && (
                           <img
                             src="./assets/Vehicle/Explorer.png"
-                            alt="image"
+                            alt="Satisfactory Explorer fuel illustration"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
-                        {vehicle.Name === "Truck" && (
+                        {vehicle.name === GameItemsEnum.Truck && (
                           <img
                             src="./assets/Vehicle/Truck.png"
-                            alt="image"
+                            alt="Satisfactory Truck fuel illustration"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
-                        {vehicle.Name === "Tractor" && (
+                        {vehicle.name === GameItemsEnum.Truck && (
                           <img
                             src="./assets/Vehicle/Tractor.png"
-                            alt="image"
+                            alt="Satisfactory Tractor fuel illustration"
                             style={{ height: "100px", width: "100px" }}
                           />
                         )}
@@ -469,7 +434,7 @@ export const Vehicles: React.FC = () => {
                             alignItems="center"
                           >
                             <Grid>
-                              {vehicle.Airborne === false ? (
+                              {vehicle.airborne === false ? (
                                 <Chip
                                   color="success"
                                   size="sm"
@@ -496,7 +461,7 @@ export const Vehicles: React.FC = () => {
                               )}
                             </Grid>
                             <Grid>
-                              {vehicle.Autopilot === false ? (
+                              {vehicle.autopilot ? (
                                 <Chip
                                   color="primary"
                                   size="sm"
@@ -528,7 +493,7 @@ export const Vehicles: React.FC = () => {
                           marginLeft="5px"
                           level="body2"
                         >
-                          VehicleID: #{vehicle.ID}
+                          VehicleID: #{vehicle.id}
                         </Typography>
                       </Stack>
 
@@ -557,11 +522,10 @@ export const Vehicles: React.FC = () => {
                                 <Typography
                                   sx={{ color: "rgba(255,255,255,0.9)" }}
                                 >
-                                  {parseInt(vehicle.ForwardSpeed) / 30} km/h
+                                  {vehicle.speed / 30} km/h
                                 </Typography>
-                                {vehicle.ForwardSpeed === 0 &&
-                                  Math.max(0, parseInt(vehicle.EngineRPM)) >
-                                    0 && (
+                                {vehicle.speed === 0 &&
+                                  Math.max(0, vehicle.engineRPM) > 0 && (
                                     <Tooltip title="If the vehicle is too far away from player the speed cannot be read.">
                                       <IconButton
                                         sx={{ marginLeft: "10px" }}
@@ -588,7 +552,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {parseInt(vehicle.CurrentGear)}
+                                {vehicle.currentGear}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -604,7 +568,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {Math.max(0, parseInt(vehicle.EngineRPM))} RPM
+                                {Math.max(0, vehicle.engineRPM)} RPM
                               </Typography>
                             </Grid>
                           </Grid>
@@ -620,7 +584,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {parseInt(vehicle.Fuel[0].Amount)}
+                                {vehicle.fuel?.[0].amount}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -633,26 +597,21 @@ export const Vehicles: React.FC = () => {
                               </Typography>
                             </Grid>
                             <Grid>
-                              {vehicle.Fuel[0].Name !== "N/A" && (
-                                <img
-                                  src={`./assets/Resource/${
-                                    vehicle.Fuel[0].Name
-                                  }.png`}
-                                  alt="image"
-                                  style={{ height: "30px", width: "30px" }}
-                                />
-                              )}
-                              {vehicle.Fuel[0].Name === "N/A" && (
-                                <BsXCircle
-                                  color="red"
-                                  size="25px"
-                                />
-                              )}
+                              <img
+                                src={`./assets/Resource/${
+                                  vehicle.fuel?.[0].name
+                                }.png`}
+                                alt="Satisfactory Tractor fuel illustration"
+                                style={{ height: "30px", width: "30px" }}
+                              />
+                              <BsXCircle
+                                color="red"
+                                size="25px"
+                              />
                             </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                      {/* <LinearProgress color="info" variant="determinate" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} /> */}
                     </CardContent>
                   </Card>
                 </Grid>
@@ -681,27 +640,6 @@ export const Vehicles: React.FC = () => {
                     sx={{ paddingX: 0 }}
                   >
                     <Grid>
-                      {vehicle.VehicleType === "Explorer" && (
-                        <img
-                          src="./assets/Vehicle/Explorer.png"
-                          alt="image"
-                          style={{ height: "70px", width: "70px" }}
-                        />
-                      )}
-                      {vehicle.VehicleType === "Truck" && (
-                        <img
-                          src="./assets/Vehicle/Truck.png"
-                          alt="image"
-                          style={{ height: "70px", width: "70px" }}
-                        />
-                      )}
-                      {vehicle.VehicleType === "Tractor" && (
-                        <img
-                          src="./assets/Vehicle/Tractor.png"
-                          alt="image"
-                          style={{ height: "70px", width: "70px" }}
-                        />
-                      )}
                       <Skeleton
                         variant="circular"
                         height="50px"
@@ -717,7 +655,7 @@ export const Vehicles: React.FC = () => {
                           width="70px"
                         />
                       </Box>
-                      {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.ForwardSpeed)} km/h</Typography> */}
+                      {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.speed)} km/h</Typography> */}
                       <Skeleton width="50px" />
                     </Grid>
                   </Grid>
@@ -736,27 +674,6 @@ export const Vehicles: React.FC = () => {
                     sx={{ paddingX: 0 }}
                   >
                     <Grid>
-                      {vehicle.VehicleType === "Explorer" && (
-                        <img
-                          src="./assets/Vehicle/Explorer.png"
-                          alt="image"
-                          style={{ height: "70px", width: "70px" }}
-                        />
-                      )}
-                      {vehicle.VehicleType === "Truck" && (
-                        <img
-                          src="./assets/Vehicle/Truck.png"
-                          alt="image"
-                          style={{ height: "70px", width: "70px" }}
-                        />
-                      )}
-                      {vehicle.VehicleType === "Tractor" && (
-                        <img
-                          src="./assets/Vehicle/Tractor.png"
-                          alt="image"
-                          style={{ height: "70px", width: "70px" }}
-                        />
-                      )}
                       <Skeleton
                         variant="circular"
                         height="50px"
@@ -772,7 +689,7 @@ export const Vehicles: React.FC = () => {
                           width="70px"
                         />
                       </Box>
-                      {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.ForwardSpeed)} km/h</Typography> */}
+                      {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.speed)} km/h</Typography> */}
                       <Skeleton width="50px" />
                     </Grid>
                   </Grid>

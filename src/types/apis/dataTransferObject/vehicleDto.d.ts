@@ -4,7 +4,7 @@ type Location = {
   z: number;
   rotation: number;
 };
-type FuelInventoryEntity = {
+type InventoryEntity = {
   Name: string;
   ClassName: string;
   Amount: number;
@@ -27,7 +27,7 @@ type Coordinates = {
   z: number;
 };
 
-export type ExplorerDto = {
+export type VehicleDto = {
   ID: string;
   Name: string;
   ClassName: string;
@@ -41,7 +41,7 @@ export type ExplorerDto = {
   Airborne: boolean;
   FollowingPath: boolean;
   Autopilot: boolean;
-  Inventory?: null[] | null;
-  FuelInventory?: (FuelInventoryEntity | null)[] | null;
+  Inventory?: (InventoryEntity | null)[] | null;
+  FuelInventory?: (InventoryEntity | null)[] | null;
   features: Features;
 };

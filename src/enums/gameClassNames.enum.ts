@@ -273,12 +273,12 @@ export enum GameClassNamesEnum {
   Build_PortalSatellite_C = "Build_PortalSatellite_C",
 
   // Vehicles
-  Desc_Tractor_C = "Desc_Tractor_C",
-  Desc_Truck_C = "Desc_Truck_C",
-  Desc_CyberWagon_C = "Desc_CyberWagon_C",
-  Desc_Explorer_C = "Desc_Explorer_C",
-  Desc_GolfCart_C = "Desc_GolfCart_C",
-  Desc_GolfCartGold_C = "Desc_GolfCartGold_C",
+  BP_Tractor_C = "BP_Tractor_C",
+  BP_Truck_C = "BP_Truck_C",
+  Testa_BP_WB_C = "Testa_BP_WB_C",
+  BP_Explorer_C = "BP_Explorer_C",
+  BP_Golfcart_C = "BP_Golfcart_C",
+  BP_GolfCartGold_C = "BP_GolfCartGold_C",
   Desc_DroneTransport_C = "Desc_DroneTransport_C",
   Desc_Locomotive_C = "Desc_Locomotive_C",
   Desc_FreightWagon_C = "Desc_FreightWagon_C",

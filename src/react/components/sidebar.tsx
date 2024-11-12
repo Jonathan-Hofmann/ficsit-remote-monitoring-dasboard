@@ -15,7 +15,7 @@ import {
   BsLightningFill,
   BsList,
 } from "react-icons/bs";
-// import { FaBoxes, FaTruck } from "react-icons/fa";
+import { /* FaBoxes, */ FaTruck } from "react-icons/fa";
 // import { MdTrain } from "react-icons/md";
 import { TbDrone } from "react-icons/tb";
 import { Link } from "react-router-dom";
@@ -131,6 +131,20 @@ export const Sidebar: React.FC = () => {
         </Link> */}
           <Link
             style={{ textDecoration: "none" }}
+            to="/vehicles"
+          >
+            <Button
+              fullWidth
+              color="neutral"
+              variant="soft"
+              sx={{ display: "flex", justifyContent: "flex-start" }}
+              startDecorator={<FaTruck />}
+            >
+              Vehicles
+            </Button>
+          </Link>
+          <Link
+            style={{ textDecoration: "none" }}
             to="/drones"
           >
             <Button
@@ -155,20 +169,6 @@ export const Sidebar: React.FC = () => {
             startDecorator={<MdTrain />}
           >
             Trains
-          </Button>
-        </Link> */}
-          {/* <Link
-          style={{ textDecoration: "none" }}
-          to="/vehicles"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<FaTruck />}
-          >
-            Vehicles
           </Button>
         </Link> */}
           {/* <Link
@@ -351,6 +351,23 @@ export const Sidebar: React.FC = () => {
             </Tooltip> */}
         <Tooltip
           placement="right"
+          title="Vehicles"
+        >
+          <Link
+            style={{ textDecoration: "none" }}
+            to="/vehicles"
+          >
+            <IconButton
+              size="lg"
+              color="neutral"
+              variant="plain"
+            >
+              <FaTruck />
+            </IconButton>
+          </Link>
+        </Tooltip>
+        <Tooltip
+          placement="right"
           title="Drones"
         >
           <Link
@@ -380,23 +397,6 @@ export const Sidebar: React.FC = () => {
                   variant="plain"
                 >
                   <MdTrain />
-                </IconButton>
-              </Link>
-            </Tooltip> */}
-        {/* <Tooltip
-              placement="right"
-              title="Vehicles"
-            >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/vehicles"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <FaTruck />
                 </IconButton>
               </Link>
             </Tooltip> */}

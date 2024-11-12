@@ -18,7 +18,7 @@ import { Start } from "./views/start";
 // import { StorageView } from "./views/storageView";
 // import { SocketTestSite } from "./views/testingSocket";
 // import { Trains } from "./views/trains";
-// import { Vehicles } from "./views/vehicles";
+import { Vehicles } from "./views/vehicles";
 
 export const AppContainer: React.FC = () => {
   return (
@@ -61,18 +61,18 @@ export const AppContainer: React.FC = () => {
                 element={<Building />}
               /> */}
               <Route
+                path="/vehicles"
+                element={<Vehicles />}
+              />
+              <Route
                 path="/drones"
                 element={<Drones />}
               />
               {/* <Route
                 path="/trains"
                 element={<Trains />}
-              />
-              <Route
-                path="/vehicles"
-                element={<Vehicles />}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 path="/storageView"
                 element={<StorageView />}
               />

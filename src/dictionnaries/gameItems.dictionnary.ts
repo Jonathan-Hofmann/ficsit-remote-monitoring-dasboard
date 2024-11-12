@@ -1155,27 +1155,27 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
   },
 
   // Vehicles
-  [GameClassNamesEnum.Desc_Tractor_C]: {
+  [GameClassNamesEnum.BP_Tractor_C]: {
     name: GameItemsEnum.Tractor,
     category: GameItemsCategoryEnum.Vehicle,
   },
-  [GameClassNamesEnum.Desc_Truck_C]: {
+  [GameClassNamesEnum.BP_Truck_C]: {
     name: GameItemsEnum.Truck,
     category: GameItemsCategoryEnum.Vehicle,
   },
-  [GameClassNamesEnum.Desc_CyberWagon_C]: {
+  [GameClassNamesEnum.Testa_BP_WB_C]: {
     name: GameItemsEnum.Cyber_Wagon,
     category: GameItemsCategoryEnum.Vehicle,
   },
-  [GameClassNamesEnum.Desc_Explorer_C]: {
+  [GameClassNamesEnum.BP_Explorer_C]: {
     name: GameItemsEnum.Explorer,
     category: GameItemsCategoryEnum.Vehicle,
   },
-  [GameClassNamesEnum.Desc_GolfCart_C]: {
+  [GameClassNamesEnum.BP_Golfcart_C]: {
     name: GameItemsEnum.FICSIT_Factory_Cart,
     category: GameItemsCategoryEnum.Vehicle,
   },
-  [GameClassNamesEnum.Desc_GolfCartGold_C]: {
+  [GameClassNamesEnum.BP_GolfCartGold_C]: {
     name: GameItemsEnum.Golden_Factory_Cart,
     category: GameItemsCategoryEnum.Vehicle,
   },
