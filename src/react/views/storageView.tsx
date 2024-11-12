@@ -8,7 +8,7 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
-import { useLocalStorage } from "../../hooks/localStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import type { SettingsData } from "../../types/settingsData";
 
 export const StorageView: React.FC = () => {

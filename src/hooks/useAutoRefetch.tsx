@@ -8,7 +8,7 @@ import { fetcherHelper } from "../helpers/fetcher.helper";
 import type { MapperFunction } from "../types/endpoint";
 import type { FetchResponse } from "../types/fetchResponse";
 import type { SettingsData } from "../types/settingsData";
-import { useLocalStorage } from "./localStorage";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useAutoRefetch = <Dto, Fm>(
   endPoint?: EndpointEnum,

@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
-import { useLocalStorage } from "../../hooks/localStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import type { SettingsData } from "../../types/settingsData";
 import { PlotFigure } from "../views/plotWrapper";
 // import { data } from "../constants/test-data";

@@ -13,7 +13,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { useLocalStorage } from "../../hooks/localStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import type { SettingsData } from "../../types/settingsData";
 
 export const Trains: React.FC = () => {

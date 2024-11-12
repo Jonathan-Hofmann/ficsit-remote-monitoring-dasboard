@@ -12,7 +12,7 @@ import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { useLocalStorage } from "../../hooks/localStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import type { SettingsData } from "../../types/settingsData";
 
 export const Settings: React.FC = () => {

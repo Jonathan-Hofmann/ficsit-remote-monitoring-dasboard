@@ -17,7 +17,7 @@ import { useSearchParams } from "react-router-dom";
 import { defaultSettingsData } from "../../constants/defaultSettingsData";
 import { fullRefs } from "../../constants/refs";
 import type { FullRefsEnum } from "../../enums/fullRefs.enum";
-import { useLocalStorage } from "../../hooks/localStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import type { SettingsData } from "../../types/settingsData";
 import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
