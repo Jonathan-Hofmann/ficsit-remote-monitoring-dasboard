@@ -347,7 +347,7 @@ export const Start: React.FC = () => {
           )}
         </Grid>
         <Grid xs={6}>
-          <AwesomeSink display="resource" />
+          <AwesomeSink />
         </Grid>
       </Grid>
     </Container>

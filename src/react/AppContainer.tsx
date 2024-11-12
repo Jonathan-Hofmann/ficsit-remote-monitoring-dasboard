@@ -78,7 +78,7 @@ export const AppContainer: React.FC = () => {
               /> */}
               <Route
                 path="/awesomeSink"
-                element={<AwesomeSink display="both" />}
+                element={<AwesomeSink />}
               />
               {/* <Route
                 path="/test"
