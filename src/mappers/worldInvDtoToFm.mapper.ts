@@ -5,19 +5,17 @@ import type { WorldInvFm } from "../types/apis/frontModel/worldInvFm";
 import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
 
 export const worldInvDtoToFmMapper = (dto: WorldInvDto[]): WorldInvFm[] => {
-  return dto.map((worldInv) => ({
-    name: gameItemsDictionnary[
-      enumDtoToFmMapper(
-        worldInv.ClassName,
-        GameClassNamesEnum,
-        "GameClassNamesEnum",
-      )
-    ].name,
-    className: enumDtoToFmMapper(
-      worldInv.ClassName,
+  return dto.map((worldInvDto) => {
+    const className = enumDtoToFmMapper(
+      worldInvDto.ClassName,
       GameClassNamesEnum,
       "GameClassNamesEnum",
-    ),
-    amount: worldInv.Amount,
-  }));
+    );
+
+    return {
+      name: gameItemsDictionnary[className].name,
+      className,
+      amount: worldInvDto.Amount,
+    };
+  });
 };
