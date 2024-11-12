@@ -17,12 +17,18 @@ export const AwesomeSink: React.FC<Props> = ({ display }) => {
   const { data: sinkExploration } = useAutoRefetch<
     AwesomeSinkDto[],
     AwesomeSinkFm[]
-  >(EndpointEnum.AWESOME_SINK_EXPLORATION);
+  >(
+    EndpointEnum.AWESOME_SINK_EXPLORATION,
+    ["resource", "both"].includes(display),
+  );
 
   const { data: sinkResource } = useAutoRefetch<
     AwesomeSinkDto[],
     AwesomeSinkFm[]
-  >(EndpointEnum.AWESOME_SINK_RESOURCE);
+  >(
+    EndpointEnum.AWESOME_SINK_RESOURCE,
+    ["exploration", "both"].includes(display),
+  );
 
   const [sinkExplorationGraphData, setSinkExplorationGraphData] =
     useState<{ index: number; value: number }[]>();
@@ -340,10 +346,9 @@ export const AwesomeSink: React.FC<Props> = ({ display }) => {
     <>
       {Array(display === "both" ? 2 : 1)
         .fill(crypto.randomUUID())
-        .map((uuid) => (
-          <>
+        .map((uuid: string) => (
+          <React.Fragment key={uuid}>
             <Card
-              key={uuid}
               variant="outlined"
               sx={{ marginBottom: "20px", opacity: 0.5 }}
             >
@@ -444,7 +449,7 @@ export const AwesomeSink: React.FC<Props> = ({ display }) => {
                 </Card>
               </Grid>
             </Grid>
-          </>
+          </React.Fragment>
         ))}
     </>
   );

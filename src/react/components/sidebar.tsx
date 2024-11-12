@@ -8,45 +8,130 @@ import {
   Tooltip,
   Typography,
 } from "@mui/joy";
-import React, { useState } from "react";
+import React, { type ReactElement, useState } from "react";
 import {
   BsGearFill,
   BsGridFill,
   BsLightningFill,
   BsList,
 } from "react-icons/bs";
-import { FaBoxes, FaTruck } from "react-icons/fa";
-// import { MdTrain } from "react-icons/md";
+import { FaBoxes, FaBuilding, FaTruck } from "react-icons/fa";
+import { GiFactory, GiTankTread } from "react-icons/gi";
+import { MdTrain } from "react-icons/md";
+import { RiCoupon2Fill, RiTestTubeFill } from "react-icons/ri";
 import { TbDrone } from "react-icons/tb";
 import { Link } from "react-router-dom";
+
+type LinksGroup = {
+  path: string;
+  label: string;
+  icon: ReactElement;
+  isDisabled: boolean;
+};
 
 export const Sidebar: React.FC = () => {
   const [isFullsize, setIsFullsize] = useState(false);
 
-  if (isFullsize)
-    return (
-      <Box
-        sx={{
-          width: "180px",
-          height: "100vh",
-          position: "sticky",
-          top: "0px",
-          bottom: "0px",
-          Left: "0px",
-          backgroundColor: "var(--joy-palette-background-surface)",
-          padding: "16px",
-        }}
-      >
-        <Stack spacing={2}>
+  const linksGroup: LinksGroup[][] = [
+    [
+      {
+        path: "/",
+        label: "Overview",
+        icon: <BsGridFill />,
+        isDisabled: false,
+      },
+      {
+        path: "/power",
+        label: "Power Screen",
+        icon: <BsLightningFill />,
+        isDisabled: false,
+      },
+      {
+        path: "/production",
+        label: "Production",
+        icon: <GiTankTread />,
+        isDisabled: true,
+      },
+      {
+        path: "/factory",
+        label: "Factory",
+        icon: <GiFactory />,
+        isDisabled: true,
+      },
+      {
+        path: "/building",
+        label: "Building",
+        icon: <FaBuilding />,
+        isDisabled: true,
+      },
+      {
+        path: "/vehicles",
+        label: "Vehicles",
+        icon: <FaTruck />,
+        isDisabled: false,
+      },
+      {
+        path: "/drones",
+        label: "Drones",
+        icon: <TbDrone />,
+        isDisabled: false,
+      },
+      {
+        path: "/trains",
+        label: "Trains",
+        icon: <MdTrain />,
+        isDisabled: true,
+      },
+      {
+        path: "/storageView",
+        label: "Storage View",
+        icon: <FaBoxes />,
+        isDisabled: true,
+      },
+      {
+        path: "/awesomeSink",
+        label: "Awesome Sink",
+        icon: <RiCoupon2Fill />,
+        isDisabled: false,
+      },
+      {
+        path: "/Test",
+        label: "Test",
+        icon: <RiTestTubeFill />,
+        isDisabled: true,
+      },
+    ],
+    [
+      {
+        path: "/settings",
+        label: "Settings",
+        icon: <BsGearFill />,
+        isDisabled: false,
+      },
+    ],
+  ];
+
+  return (
+    <Box
+      sx={{
+        width: isFullsize ? "180px" : undefined,
+        height: "100vh",
+        position: "sticky",
+        top: "0px",
+        bottom: "0px",
+        left: "0px",
+        backgroundColor: "var(--joy-palette-background-surface)",
+        padding: "12px",
+      }}
+    >
+      <Stack spacing={isFullsize ? 2 : 1}>
+        {isFullsize ? (
           <Grid
             container
             display="flex"
             alignItems="center"
           >
-            <Grid xs>
-              <Typography level="h6">FRM Dashboard</Typography>
-            </Grid>
-            <Grid>
+            <Grid marginRight="6px">
               <IconButton
                 onClick={() => {
                   setIsFullsize(false);
@@ -57,420 +142,76 @@ export const Sidebar: React.FC = () => {
                 <BsList />
               </IconButton>
             </Grid>
+            <Grid xs>
+              <Typography level="h6">FRM Dashboard</Typography>
+            </Grid>
           </Grid>
-
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/"
-          >
-            <Button
-              fullWidth
-              color="neutral"
-              variant="soft"
-              sx={{ display: "flex", justifyContent: "flex-start" }}
-              startDecorator={<BsGridFill />}
-            >
-              Overview
-            </Button>
-          </Link>
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/power"
-          >
-            <Button
-              fullWidth
-              color="neutral"
-              variant="soft"
-              sx={{ display: "flex", justifyContent: "flex-start" }}
-              startDecorator={<BsLightningFill />}
-            >
-              Power Screen
-            </Button>
-          </Link>
-          {/* <Link
-          style={{ textDecoration: "none" }}
-          to="/production"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<GiFactory />}
-          >
-            Production
-          </Button>
-        </Link> */}
-          {/* <Link
-          style={{ textDecoration: "none" }}
-          to="/factory"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<GiFactory />}
-          >
-            Factory
-          </Button>
-        </Link> */}
-          {/* <Link
-          style={{ textDecoration: "none" }}
-          to="/building"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<GiFactory />}
-          >
-            Building
-          </Button>
-        </Link> */}
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/vehicles"
-          >
-            <Button
-              fullWidth
-              color="neutral"
-              variant="soft"
-              sx={{ display: "flex", justifyContent: "flex-start" }}
-              startDecorator={<FaTruck />}
-            >
-              Vehicles
-            </Button>
-          </Link>
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/drones"
-          >
-            <Button
-              fullWidth
-              color="neutral"
-              variant="soft"
-              sx={{ display: "flex", justifyContent: "flex-start" }}
-              startDecorator={<TbDrone />}
-            >
-              Drones
-            </Button>
-          </Link>
-          {/* <Link
-          style={{ textDecoration: "none" }}
-          to="/trains"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<MdTrain />}
-          >
-            Trains
-          </Button>
-        </Link> */}
-          {/* <Link
-          style={{ textDecoration: "none" }}
-          to="/storageView"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<FaBoxes />}
-          >
-            Storage View
-          </Button>
-        </Link> */}
-          {/* <Link
-          style={{ textDecoration: "none", marginTop: "50px" }}
-          to="/awesomeSink"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<BsGearFill />}
-          >
-            Awesome Sink
-          </Button>
-        </Link>
-        <Link
-          style={{ textDecoration: "none", marginTop: "50px" }}
-          to="/test"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<BsGearFill />}
-          >
-            test
-          </Button>
-        </Link> */}
-          <Link
-            style={{ textDecoration: "none", marginTop: "50px" }}
-            to="/settings"
-          >
-            <Button
-              fullWidth
-              color="neutral"
-              variant="soft"
-              sx={{ display: "flex", justifyContent: "flex-start" }}
-              startDecorator={<BsGearFill />}
-            >
-              Settings
-            </Button>
-          </Link>
-        </Stack>
-      </Box>
-    );
-
-  return (
-    <Box
-      sx={{
-        // width: '180px',
-        height: "100vh",
-        position: "fixed",
-        top: "0px",
-        bottom: "0px",
-        Left: "0px",
-        backgroundColor: "var(--joy-palette-background-surface)",
-        padding: "15px",
-      }}
-    >
-      <Stack
-        spacing={1}
-        alignItems="center"
-      >
-        <Tooltip
-          placement="right"
-          title="Expand Menu"
-        >
-          <IconButton
-            size="lg"
-            onClick={() => {
-              setIsFullsize(true);
-            }}
-            color="neutral"
-            variant="plain"
-          >
-            <BsList />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip
-          placement="right"
-          title="Overview"
-        >
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/"
+        ) : (
+          <Tooltip
+            placement="right"
+            title="Expand Menu"
           >
             <IconButton
               size="lg"
+              onClick={() => {
+                setIsFullsize(true);
+              }}
               color="neutral"
               variant="plain"
             >
-              <BsGridFill />
+              <BsList />
             </IconButton>
-          </Link>
-        </Tooltip>
-        <Tooltip
-          placement="right"
-          title="Power Grids"
-        >
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/power"
-          >
-            <IconButton
-              size="lg"
-              color="neutral"
-              variant="plain"
-            >
-              <BsLightningFill />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        {/* <Tooltip
-              placement="right"
-              title="All Factories"
-            >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/production"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <GiFactory />
-                </IconButton>
-              </Link>
-            </Tooltip> */}
-        {/* <Tooltip
-              placement="right"
-              title="Factory"
-            >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/factory"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <GiFactory />
-                </IconButton>
-              </Link>
-            </Tooltip>
-            <Tooltip
-              placement="right"
-              title="Building"
-            >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/building"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <GiFactory />
-                </IconButton>
-              </Link>
-            </Tooltip> */}
-        <Tooltip
-          placement="right"
-          title="Vehicles"
-        >
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/vehicles"
-          >
-            <IconButton
-              size="lg"
-              color="neutral"
-              variant="plain"
-            >
-              <FaTruck />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        <Tooltip
-          placement="right"
-          title="Drones"
-        >
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/drones"
-          >
-            <IconButton
-              size="lg"
-              color="neutral"
-              variant="plain"
-            >
-              <TbDrone />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        {/* <Tooltip
-              placement="right"
-              title="Trains"
-            >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/trains"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <MdTrain />
-                </IconButton>
-              </Link>
-            </Tooltip> */}
-        {/* <Tooltip
-              placement="right"
-              title="Storage View"
-            >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/storageView"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <FaBoxes />
-                </IconButton>
-              </Link>
-            </Tooltip> */}
-        <Tooltip
-          placement="right"
-          title="Awesome Sink"
-        >
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/awesomeSink"
-          >
-            <IconButton
-              size="lg"
-              color="neutral"
-              variant="plain"
-            >
-              <FaBoxes />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        {/* <Tooltip
-              placement="right"
-              title="test"
-            >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/test"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <FaBoxes />
-                </IconButton>
-              </Link>
-            </Tooltip> */}
-
-        <Divider />
-
-        <Tooltip
-          placement="right"
-          title="Settings"
-        >
-          <Link
-            style={{ textDecoration: "none" }}
-            to="/settings"
-          >
-            <IconButton
-              size="lg"
-              color="neutral"
-              variant="plain"
-            >
-              <BsGearFill />
-            </IconButton>
-          </Link>
-        </Tooltip>
+          </Tooltip>
+        )}
+        {linksGroup.map((group) => {
+          return (
+            <React.Fragment key={crypto.randomUUID()}>
+              <Divider />
+              {group.map((link) => {
+                if (link.isDisabled) return null;
+                if (isFullsize) {
+                  return (
+                    <Link
+                      key={link.path}
+                      style={{ textDecoration: "none" }}
+                      to={link.path}
+                    >
+                      <Button
+                        fullWidth
+                        color="neutral"
+                        variant="soft"
+                        sx={{ display: "flex", justifyContent: "flex-start" }}
+                        startDecorator={link.icon}
+                      >
+                        {link.label}
+                      </Button>
+                    </Link>
+                  );
+                }
+                return (
+                  <Tooltip
+                    key={link.path}
+                    placement="right"
+                    title={link.label}
+                  >
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={link.path}
+                    >
+                      <IconButton
+                        size="lg"
+                        color="neutral"
+                        variant="plain"
+                      >
+                        {link.icon}
+                      </IconButton>
+                    </Link>
+                  </Tooltip>
+                );
+              })}
+            </React.Fragment>
+          );
+        })}
       </Stack>
     </Box>
   );
