@@ -72,14 +72,20 @@ export const Settings: React.FC = () => {
               <Select
                 sx={{ marginTop: "15px" }}
                 value={settings.interval}
-                onChange={(e, v) => {
-                  setSettings({ ...settings, interval: parseInt(v) });
+                onChange={(_e, value) => {
+                  setSettings({
+                    ...settings,
+                    interval: value ?? 10000,
+                  });
                 }}
               >
-                <Option value={100}>100 ms (VERY fast)</Option>
-                <Option value={250}>250 ms (very fast)</Option>
-                <Option value={500}>500 ms (fast)</Option>
-                <Option value={1000}>1 sek. (normal)</Option>
+                <Option value={500}>500 ms (VERY fast - Warning)</Option>
+                <Option value={1000}>1 seconde (Fast - Warning)</Option>
+                <Option value={5000}>5 secondes</Option>
+                <Option value={10000}>10 secondes (Default)</Option>
+                <Option value={30000}>30 secondes</Option>
+                <Option value={60000}>1 minute</Option>
+                <Option value={300000}>5 minutes</Option>
               </Select>
             </CardContent>
           </Card>

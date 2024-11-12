@@ -12,6 +12,7 @@
 - Handle all comments and todo
 - Handle sidebar, footer and components layout size
 - Rename components file/folder for more consistency
+- Add zustand store
 
 == All pages/views to do ==
   componentFile / Component - /route => State
@@ -27,4 +28,4 @@
 - storageView   / StorageView           - /storageView  =>
 - awesomeSink   / AwesomeSink           - /awesomeSink  => Done, no refacto
 - testingSocket / SocketTestSite        - /test         =>
-- settings      / Settings              - /settings     =>
+- settings      / Settings              - /settings     => Done, no refacto

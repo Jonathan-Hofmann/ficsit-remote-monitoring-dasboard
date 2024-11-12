@@ -10,7 +10,7 @@ import {
 } from "@mui/joy";
 import React, { useState } from "react";
 import {
-  // BsGearFill,
+  BsGearFill,
   BsGridFill,
   BsLightningFill,
   BsList,
@@ -213,20 +213,20 @@ export const Sidebar: React.FC = () => {
             test
           </Button>
         </Link> */}
-          {/* <Link
-          style={{ textDecoration: "none", marginTop: "50px" }}
-          to="/settings"
-        >
-          <Button
-            fullWidth
-            color="neutral"
-            variant="soft"
-            sx={{ display: "flex", justifyContent: "flex-start" }}
-            startDecorator={<BsGearFill />}
+          <Link
+            style={{ textDecoration: "none", marginTop: "50px" }}
+            to="/settings"
           >
-            Settings
-          </Button>
-        </Link> */}
+            <Button
+              fullWidth
+              color="neutral"
+              variant="soft"
+              sx={{ display: "flex", justifyContent: "flex-start" }}
+              startDecorator={<BsGearFill />}
+            >
+              Settings
+            </Button>
+          </Link>
         </Stack>
       </Box>
     );
@@ -454,23 +454,23 @@ export const Sidebar: React.FC = () => {
 
         <Divider />
 
-        {/* <Tooltip
-              placement="right"
-              title="Settings"
+        <Tooltip
+          placement="right"
+          title="Settings"
+        >
+          <Link
+            style={{ textDecoration: "none" }}
+            to="/settings"
+          >
+            <IconButton
+              size="lg"
+              color="neutral"
+              variant="plain"
             >
-              <Link
-                style={{ textDecoration: "none" }}
-                to="/settings"
-              >
-                <IconButton
-                  size="lg"
-                  color="neutral"
-                  variant="plain"
-                >
-                  <BsGearFill />
-                </IconButton>
-              </Link>
-            </Tooltip> */}
+              <BsGearFill />
+            </IconButton>
+          </Link>
+        </Tooltip>
       </Stack>
     </Box>
   );

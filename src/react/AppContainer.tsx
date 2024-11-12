@@ -3,17 +3,17 @@ import { Box } from "@mui/material";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { AwesomeSink } from "./views/awesomeSink";
 import { ConnectionChecker } from "./components/connectionChecker";
 import { Footer } from "./components/footer";
 import { Sidebar } from "./components/sidebar";
+import { AwesomeSink } from "./views/awesomeSink";
 // import { Building } from "./views/building";
 import { Drones } from "./views/drones";
 // import { DetailedFactoryView } from "./views/factoryView";
 import { DetailedGeneratorView } from "./views/generatorView";
 import { PowerMain } from "./views/powerMain";
 // import { FactorysSwitch } from "./views/production";
-// import { Settings } from "./views/settings";
+import { Settings } from "./views/settings";
 import { Start } from "./views/start";
 // import { StorageView } from "./views/storageView";
 // import { SocketTestSite } from "./views/testingSocket";
@@ -78,16 +78,16 @@ export const AppContainer: React.FC = () => {
               /> */}
               <Route
                 path="/awesomeSink"
-                element={<AwesomeSink display="resource" />}
+                element={<AwesomeSink display="both" />}
               />
               {/* <Route
                 path="/test"
                 element={<SocketTestSite />}
-              />
+              /> */}
               <Route
                 path="/settings"
                 element={<Settings />}
-              /> */}
+              />
             </Routes>
           </ConnectionChecker>
           <Footer />

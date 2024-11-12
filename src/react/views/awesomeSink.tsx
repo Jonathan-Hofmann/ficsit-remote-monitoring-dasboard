@@ -339,10 +339,11 @@ export const AwesomeSink: React.FC<Props> = ({ display }) => {
   return (
     <>
       {Array(display === "both" ? 2 : 1)
-        .fill("")
-        .map(() => (
+        .fill(crypto.randomUUID())
+        .map((uuid) => (
           <>
             <Card
+              key={uuid}
               variant="outlined"
               sx={{ marginBottom: "20px", opacity: 0.5 }}
             >
