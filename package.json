@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "check-types": "tsc --noEmit",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rm -rf node_modules/ node_modules/.cache/"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

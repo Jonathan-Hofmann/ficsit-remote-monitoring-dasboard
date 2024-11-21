@@ -1,7 +1,7 @@
 import { Grid } from "@mui/joy";
 import { Box } from "@mui/material";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { ConnectionChecker } from "./components/connectionChecker";
 import { Footer } from "./components/footer";
@@ -87,6 +87,15 @@ export const AppContainer: React.FC = () => {
               <Route
                 path="/settings"
                 element={<Settings />}
+              />
+              <Route
+                path="*"
+                element={
+                  <Navigate
+                    to="/"
+                    replace
+                  />
+                }
               />
             </Routes>
           </ConnectionChecker>
