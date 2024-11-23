@@ -11,7 +11,12 @@ import {
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
-import { BsBatteryHalf, BsBox, BsClockHistory } from "react-icons/bs";
+import {
+  BsBatteryHalf,
+  BsBox,
+  BsClockHistory,
+  BsLink45Deg,
+} from "react-icons/bs";
 
 import { DroneFlyingModeEnum } from "../../enums/droneFlyingMode.enum";
 import { DroneStationStatusEnum } from "../../enums/droneStationStatus.enum";
@@ -22,7 +27,7 @@ import type { DroneStationDto } from "../../types/apis/dataTransferObject/droneS
 import type { DroneFm } from "../../types/apis/frontModel/droneFm";
 import type { DroneStationFm } from "../../types/apis/frontModel/droneStationFm";
 
-// Type used only in this file but move it could be good
+// TODO Type used only in this file but move it could be good
 type DroneStationStep = Record<
   string,
   { homeStation: DroneStationFm; destStation: DroneStationFm }
@@ -125,7 +130,7 @@ export const Drones: React.FC = () => {
                         }}
                       >
                         <CardContent>
-                          {/* <BsLink45Deg size="28px"/> */}
+                          <BsLink45Deg size="28px" />
                           <img
                             src="./assets/Building/Drone_Port.png"
                             alt="Satisfactory Drone Port illustration"

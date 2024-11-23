@@ -129,7 +129,7 @@ export const StorageView: React.FC = () => {
                         : "1px",
                   }}
                 >
-                  {/* <Card variant="outlined" sx={{height: '100%', padding:0}}> */}
+                  <Card variant="outlined" sx={{height: '100%', padding:0}}>
                   <CardContent
                     sx={{
                       display: "flex",

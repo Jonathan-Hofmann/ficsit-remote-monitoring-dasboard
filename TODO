@@ -13,6 +13,8 @@
 - Handle sidebar, footer and components layout size
 - Rename components file/folder for more consistency
 - Add zustand store
+- Repasse on all my commits to see if some explanation of what i'm done is needed
+- Look if getRecipe can give ability to known wich other request can be made
 
 == All pages/views to do ==
   componentFile / Component - /route => State

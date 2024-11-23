@@ -4,12 +4,14 @@ import {
   Chip,
   Container,
   Grid,
+  IconButton,
   LinearProgress,
   Stack,
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
+import { GiCargoCrate } from "react-icons/gi";
 
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { TrainStationLoadingStatusEnum } from "../../enums/trainStationLoadingStatus.enum";
@@ -20,7 +22,7 @@ import type { TrainStationDto } from "../../types/apis/dataTransferObject/trainS
 import type { TrainFm } from "../../types/apis/frontModel/trainFm";
 import type { TrainStationFm } from "../../types/apis/frontModel/trainStationFm";
 
-// Type used only in this file but move it could be good
+// TODO Type used only in this file but move it could be good
 type TrainStationStep = Record<
   string,
   { previousStation: TrainStationFm; nextStation: TrainStationFm }
@@ -100,9 +102,12 @@ export const Trains: React.FC = () => {
               </Typography>
             </Grid>
             <Grid>
-              {/* <IconButton size="sm">
-                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                            </IconButton>  */}
+              <IconButton size="sm">
+                <GiCargoCrate
+                  size="22px"
+                  color="rgba(255,255,255,0.1)"
+                />
+              </IconButton>
             </Grid>
           </Grid>
         </CardContent>
@@ -141,8 +146,6 @@ export const Trains: React.FC = () => {
 
               percentDone = (left / totalLength) * 100;
             }
-            // const _percentDone = percentDone*100;
-            // console.log(index+" -> "+_percentDone);
             return (
               <Grid
                 key={train.name}
@@ -159,7 +162,7 @@ export const Trains: React.FC = () => {
                   >
                     {previousStation && nextStation ? (
                       <CardContent>
-                        {/* <GiCargoCrate size="36px"/> */}
+                        <GiCargoCrate size="36px" />
 
                         <Stack alignItems="center">
                           <img
@@ -243,12 +246,12 @@ export const Trains: React.FC = () => {
                             </Typography>
                           </Grid>
                           <Grid>
-                            {/* {tStation_PrevNext[index][0].location.x}
-                                                        {tStation_PrevNext[index][0].location.y}
-                                                        {tStation_PrevNext[index][0].location.z}
-                                                        {train.location.x}
-                                                        {train.location.y}
-                                                        {train.location.z} */}
+                            {previousStation.location.x}
+                            {previousStation.location.y}
+                            {previousStation.location.z}
+                            {train.location.x}
+                            {train.location.y}
+                            {train.location.z}
                             {left} m
                           </Grid>
                         </Grid>
@@ -590,12 +593,6 @@ export const Trains: React.FC = () => {
                     height="80px"
                     sx={{ marginTop: "10px" }}
                   />
-                  <Typography
-                    level="h6"
-                    sx={{ marginBottom: "5px", marginTop: "10px" }}
-                  >
-                    {/* {train.TrainName} */}
-                  </Typography>
                   <Grid
                     container
                     sx={{ marginBottom: "15px", marginTop: "10px" }}
@@ -640,7 +637,6 @@ export const Trains: React.FC = () => {
                     <Skeleton width="50px" />
                   </Grid>
                 </Grid>
-                {/* <LinearProgress color="primary" determinate variant="soft" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} /> */}
               </CardContent>
             </Card>
           </Grid>

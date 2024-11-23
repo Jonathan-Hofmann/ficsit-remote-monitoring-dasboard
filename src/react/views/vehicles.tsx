@@ -167,8 +167,6 @@ export const Vehicles: React.FC = () => {
           >
             {vehicles.map((vehicle) => {
               if (vehicle.autopilot) return null;
-
-              // Mode Autopilot -> hide
               return (
                 <Grid xs={4}>
                   <div id={vehicle.id} />
@@ -369,7 +367,6 @@ export const Vehicles: React.FC = () => {
                           </Grid>
                         </Grid>
                       </Grid>
-                      {/* <LinearProgress color="info" variant="determinate" value={percentDone} sx={{position: 'absolute', bottom: '0px', left: '0px', right: '0px'}} /> */}
                     </CardContent>
                   </Card>
                 </Grid>
@@ -655,7 +652,6 @@ export const Vehicles: React.FC = () => {
                           width="70px"
                         />
                       </Box>
-                      {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.speed)} km/h</Typography> */}
                       <Skeleton width="50px" />
                     </Grid>
                   </Grid>
@@ -689,7 +685,6 @@ export const Vehicles: React.FC = () => {
                           width="70px"
                         />
                       </Box>
-                      {/* <Typography sx={{color: 'rgba(255,255,255,0.9)'}}>Speed: {parseInt(vehicle.speed)} km/h</Typography> */}
                       <Skeleton width="50px" />
                     </Grid>
                   </Grid>
