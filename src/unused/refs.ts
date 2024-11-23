@@ -1,5 +1,5 @@
-import { FullRefsEnum } from "../enums/fullRefs.enum";
-import type { FullRefs } from "../types/fullRefs";
+import { FullRefsEnum } from "./fullRefs.enum";
+import type { FullRefs } from "./fullRefs";
 
 export const fullRefs: FullRefs = {
   [FullRefsEnum.Adaptive_Control_Unit]: {

@@ -1,4 +1,4 @@
-import type { FullRefsEnum } from "../enums/fullRefs.enum";
+import type { FullRefsEnum } from "./fullRefs.enum";
 
 type FullRefsObject = {
   type: string;
