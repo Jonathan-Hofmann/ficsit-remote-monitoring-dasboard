@@ -933,11 +933,13 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
     name: GameItemsEnum.Smelter,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.SMELTER,
   },
   [GameClassNamesEnum.Build_FoundryMk1_C]: {
     name: GameItemsEnum.Foundry,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.FOUNDRY,
   },
 
   // Manufacturers buildings
@@ -945,46 +947,55 @@ export const gameItemsDictionnary: GameItemsDictionnary = {
     name: GameItemsEnum.Constructor,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.CONSTRUCTOR,
   },
   [GameClassNamesEnum.Build_AssemblerMk1_C]: {
     name: GameItemsEnum.Assembler,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.ASSEMBLER,
   },
   [GameClassNamesEnum.Build_ManufacturerMk1_C]: {
     name: GameItemsEnum.Manufacturer,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.MANUFACTURER,
   },
   [GameClassNamesEnum.Build_Packager_C]: {
     name: GameItemsEnum.Packager,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.PACKAGER,
   },
   [GameClassNamesEnum.Build_OilRefinery_C]: {
     name: GameItemsEnum.Refinery,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.REFINERY,
   },
   [GameClassNamesEnum.Build_Blender_C]: {
     name: GameItemsEnum.Blender,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.BLENDER,
   },
   [GameClassNamesEnum.Build_HadronCollider_C]: {
     name: GameItemsEnum.Particle_Accelerator,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.PARTICLE_ACCELERATOR,
   },
   [GameClassNamesEnum.Build_QuantumEncoder_C]: {
     name: GameItemsEnum.Quantum_Encoder,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.QUANTUM_ENCODER,
   },
   [GameClassNamesEnum.Build_Converter_C]: {
     name: GameItemsEnum.Converter,
     category: GameItemsCategoryEnum.Building,
     buildingType: GameBuildingsTypeEnum.Manufacturer,
+    endpoint: EndpointEnum.CONVERTER,
   },
 
   // Generators buildings

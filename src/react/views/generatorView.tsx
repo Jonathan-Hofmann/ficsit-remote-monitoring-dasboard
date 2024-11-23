@@ -36,19 +36,19 @@ export const DetailedGeneratorView: React.FC = () => {
     }),
   );
 
-  const endpoint = currentGeneratorName
+  const generatorEndpoint = currentGeneratorName
     ? (
         generatorsList.find(
           (generator) => generator.name === currentGeneratorName,
         ) as GameItemGeneratorBuilding
       ).endpoint
     : undefined;
-  if (!endpoint) redirect("/power");
+  if (!generatorEndpoint) redirect("/power");
 
   const { data: generators } = useAutoRefetch<
     GeneratorDto[] | GeothermalGeneratorDto[],
     GeneratorFm[]
-  >(endpoint, !endpoint);
+  >(generatorEndpoint, !generatorEndpoint);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>

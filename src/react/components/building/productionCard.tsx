@@ -1,16 +1,20 @@
 import { Card, CardContent, Grid, Typography } from "@mui/joy";
 import React from "react";
 
+import { gameItemsDictionnary } from "../../../dictionnaries/gameItems.dictionnary";
+import { GameResourcesTypeEnum } from "../../../enums/gameResourcesType.enum";
+import type { RecipeItemFm } from "../../../types/apis/frontModel/recipeItemFm";
+import type { GameItemResource } from "../../../types/gameItems/resource";
+
 type Props = {
-  product: any;
-  fullRefs: any;
+  product: RecipeItemFm;
 };
 
-export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
-  let exists = false;
-  if (fullRefs[product.Name] != null) {
-    exists = true;
-  }
+export const ProductionCard: React.FC<Props> = ({ product }) => {
+  const item = gameItemsDictionnary[product.className];
+  const isItemSolid =
+    (item as GameItemResource).resourceType === GameResourcesTypeEnum.Solid;
+
   return (
     <Card
       variant="outlined"
@@ -18,15 +22,13 @@ export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
         padding: "3px",
         borderColor:
           Math.floor(
-            exists
-              ? fullRefs[product.Name].type === "l"
-                ? Math.round(product.Amount / 10) / 10
-                : product.Amount
-              : product.Amount,
+            item && isItemSolid
+              ? product.amount
+              : Math.round(product.amount / 10) / 10,
           ) > 50
             ? "var(--joy-palette-warning-main)"
             : "var(--joy-palette-neutral-outlinedBorder)",
-        borderWidth: Math.floor(product.Inventory) > 50 ? "3px" : "1px",
+        borderWidth: Math.floor(product.amount) > 50 ? "3px" : "1px",
       }}
     >
       <CardContent>
@@ -35,7 +37,7 @@ export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
           alignSelf="center"
           sx={{ paddingTop: "3px", paddingBottom: "2px" }}
         >
-          {product.Name}
+          {product.name}
         </Typography>
         <Grid
           spacing={2}
@@ -45,13 +47,11 @@ export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
           <Grid>
             <img
               src={
-                exists
-                  ? `/assets/${fullRefs[product.Name].category}/${
-                      product.Name
-                    }.png`
+                item
+                  ? `/assets/${item.category}/${product.name}.png`
                   : undefined
               }
-              alt={product.Name}
+              alt={product.name}
               style={{ height: "30px", width: "30px" }}
             />
           </Grid>
@@ -67,11 +67,9 @@ export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
               <Grid>
                 <Typography>
                   {`${
-                    exists
-                      ? fullRefs[product.Name].type === "l"
-                        ? `${Math.round(product.CurrentProd / 10) / 100} m³`
-                        : product.CurrentProd.toFixed(2)
-                      : product.CurrentProd.toFixed(2)
+                    item && isItemSolid
+                      ? product.currentUsage.toFixed(2)
+                      : `${Math.round(product.currentUsage / 10) / 100} m³`
                   }/min`}
                 </Typography>
               </Grid>
@@ -87,11 +85,9 @@ export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
               <Grid>
                 <Typography>
                   {`${
-                    exists
-                      ? fullRefs[product.Name].type === "l"
-                        ? `${Math.round(product.MaxProd / 10) / 100} m³`
-                        : product.MaxProd.toFixed(2)
-                      : product.MaxProd.toFixed(2)
+                    item && isItemSolid
+                      ? product.maxUsage.toFixed(2)
+                      : `${Math.round(product.maxUsage / 10) / 100} m³`
                   }/min`}
                 </Typography>
               </Grid>
@@ -105,7 +101,7 @@ export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
                 <Typography level="body2">Efficency Production</Typography>
               </Grid>
               <Grid>
-                <Typography>{product.ProdPercent.toFixed(2)} %</Typography>
+                <Typography>{product.usingPercent.toFixed(2)} %</Typography>
               </Grid>
             </Grid>
             <Grid
@@ -119,22 +115,19 @@ export const ProductionCard: React.FC<Props> = ({ product, fullRefs }) => {
               <Grid>
                 <Typography
                   sx={{
-                    color: exists
-                      ? Math.floor(
-                          fullRefs[product.Name].type === "l"
-                            ? Math.round(product.Amount / 10) / 10
-                            : product.Amount,
-                        )
-                      : product.Amount > 50
+                    color: (() => {
+                      if (item && isItemSolid) {
+                        return "inherit";
+                      }
+                      return product.amount > 50
                         ? "var(--joy-palette-warning-main)"
-                        : "var(--joy-palette-text-main)",
+                        : "var(--joy-palette-text-main)";
+                    })(),
                   }}
                 >
-                  {exists
-                    ? fullRefs[product.Name].type === "l"
-                      ? `${Math.round(product.Amount / 10) / 100} m³`
-                      : product.Amount
-                    : product.Amount}
+                  {item && isItemSolid
+                    ? product.amount
+                    : `${(Math.round(product.amount / 10) / 100).toFixed(2)} m³`}
                 </Typography>
               </Grid>
             </Grid>

@@ -3,11 +3,12 @@ import type { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import { GameItemsCategoryEnum } from "../enums/gameItemsCategory.enum";
 import type { GameItems } from "../types/gameItems/gameItems";
 import type { GameItemGeneratorBuilding } from "../types/gameItems/generatorBuilding";
+import type { GameItemManufacturerBuilding } from "../types/gameItems/manufacturerBuilding";
 import type { GameItemsDictionnary } from "../types/gameItemsDictionnary";
 
 type Args = {
   gameItemsDictionnary: GameItemsDictionnary;
-  filter: GameItemsCategoryEnum | "generatorsWithEndpoint";
+  filter: GameItemsCategoryEnum | "generatorsWithEndpoint" | "factories";
 };
 
 export const gameItemFilterHelper = ({
@@ -31,6 +32,14 @@ export const gameItemFilterHelper = ({
           buildingItem.category === GameItemsCategoryEnum.Building &&
           buildingItem.buildingType === GameBuildingsTypeEnum.Generator &&
           !!buildingItem.endpoint
+        );
+      });
+    case "factories":
+      return filteredArray.filter(([, item]) => {
+        const buildingItem = item as GameItemManufacturerBuilding;
+        return (
+          buildingItem.category === GameItemsCategoryEnum.Building &&
+          buildingItem.buildingType === GameBuildingsTypeEnum.Manufacturer
         );
       });
     default:

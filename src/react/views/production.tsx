@@ -1,21 +1,29 @@
-import { Card, CardContent, Container, Grid, Typography } from "@mui/joy";
+import {
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/joy";
 import React from "react";
+import { GiCargoCrate } from "react-icons/gi";
 
+import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
+import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
+import { objectEntriesToArrayHelper } from "../../helpers/objectEntriesToArray.helper";
+import type { GameItems } from "../../types/gameItems/gameItems";
 import { BuildingButton } from "../components/buildingButton";
 
 export const FactorysSwitch: React.FC = () => {
-  const factories = [
-    "Smelter",
-    "Constructor",
-    "Assembler",
-    "Foundry",
-    "Refinery",
-    "Manufacturer",
-    "Blender",
-    "Particle Accelerator",
-    "Converter",
-    "Quantum Encoder",
-  ];
+  const factories = objectEntriesToArrayHelper<GameItems>(
+    gameItemFilterHelper({
+      gameItemsDictionnary,
+      filter: "factories",
+    }),
+  );
+
   return (
     <Container sx={{ paddingTop: "50px" }}>
       <Card
@@ -38,9 +46,12 @@ export const FactorysSwitch: React.FC = () => {
               </Typography>
             </Grid>
             <Grid>
-              {/* <IconButton size="lg">
-                                <GiCargoCrate size="22px" color="rgba(255,255,255,0.1)" />
-                            </IconButton>  */}
+              <IconButton size="lg">
+                <GiCargoCrate
+                  size="22px"
+                  color="rgba(255,255,255,0.1)"
+                />
+              </IconButton>
             </Grid>
           </Grid>
         </CardContent>
@@ -50,12 +61,13 @@ export const FactorysSwitch: React.FC = () => {
         container
         spacing={3}
       >
-        {factories.map((factory: any, index: any) => {
+        {factories.map((factory) => {
           return (
             <BuildingButton
-              key={index}
-              factory={factory}
+              key={factory.name}
+              factory={factory.name}
               page="factory"
+              assetsLocation={GameItemsCategoryEnum.Building}
             />
           );
         })}

@@ -9,57 +9,47 @@ import {
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BsArrowRightShort, BsExclamationTriangleFill } from "react-icons/bs";
-import { useSearchParams } from "react-router-dom";
+import { redirect, useSearchParams } from "react-router-dom";
 
-import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { fullRefs } from "../../constants/refs";
-import type { FullRefsEnum } from "../../enums/fullRefs.enum";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import type { SettingsData } from "../../types/settingsData";
+import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import type { GameItemsEnum } from "../../enums/gameItems.enum";
+import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
+import { getImageHelper } from "../../helpers/getImage.helper";
+import { objectEntriesToArrayHelper } from "../../helpers/objectEntriesToArray.helper";
+import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import type { FactoryDto } from "../../types/apis/dataTransferObject/factoryDto";
+import type { FactoryFm } from "../../types/apis/frontModel/factoryFm";
+import type { GameItems } from "../../types/gameItems/gameItems";
+import type { GameItemManufacturerBuilding } from "../../types/gameItems/manufacturerBuilding";
 import { IngredientCard } from "../components/building/ingredientCard";
 import { ProductionCard } from "../components/building/productionCard";
 
 export const DetailedFactoryView: React.FC = () => {
   const [params] = useSearchParams();
-  const factory = params.get("factory");
-  const factoryEndpoint = params.get("endpoint");
-  const [FactoryData, setFactoryData] = useState<undefined | any>(undefined);
-  const { value: settings } = useLocalStorage<SettingsData>(
-    "rmd_settings",
-    defaultSettingsData,
+  const currentFactoryName = params.get("factory") as GameItemsEnum;
+
+  const factoriesList = objectEntriesToArrayHelper<GameItems>(
+    gameItemFilterHelper({
+      gameItemsDictionnary,
+      filter: "generatorsWithEndpoint",
+    }),
   );
-  let intervalVar: any;
 
-  const loadData = async (endpoint: string) => {
-    // intervalVar = setInterval(async () => {
-    //   const response = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/${endpoint}`,
-    //   );
-    //   if (response.data[0]) {
-    //     setFactoryData(response.data);
-    //   } else {
-    //     setFactoryData([]);
-    //   }
-    // }, settings.interval);
-  };
+  const factoryEndpoint = currentFactoryName
+    ? (
+        factoriesList.find(
+          (factory) => factory.name === currentFactoryName,
+        ) as GameItemManufacturerBuilding
+      ).endpoint
+    : undefined;
+  if (!factoryEndpoint) redirect("/power");
 
-  useEffect(() => {
-    if (factoryEndpoint) loadData(factoryEndpoint);
-    return () => {
-      clearInterval(intervalVar);
-    };
-  });
-
-  function getImage(item: FullRefsEnum): string | null {
-    let value = null;
-    if (fullRefs[item]) {
-      value = `/assets/${fullRefs[item].category}/${item}.png`;
-    }
-    return value;
-  }
+  const { data: factories } = useAutoRefetch<FactoryDto[], FactoryFm[]>(
+    factoryEndpoint,
+    !factoryEndpoint,
+  );
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -79,23 +69,23 @@ export const DetailedFactoryView: React.FC = () => {
                 marginBottom="5px"
                 fontWeight={600}
               >
-                {factory}
+                {currentFactoryName}
               </Typography>
             </Grid>
           </Grid>
         </CardContent>
       </Card>
 
-      {FactoryData ? (
+      {factories ? (
         <Grid
           container
           spacing={3}
         >
-          {FactoryData.map((_factory: any, index: any) => {
+          {factories.map((factory) => {
             return (
               <Grid
                 xs={4}
-                key={index}
+                key={factory.id}
               >
                 <Card variant="outlined">
                   <CardContent>
@@ -104,7 +94,7 @@ export const DetailedFactoryView: React.FC = () => {
                       container
                     >
                       <Grid xs>
-                        {_factory.IsProducing === true ? (
+                        {factory.isProducing ? (
                           <Chip
                             size="sm"
                             color="success"
@@ -128,7 +118,7 @@ export const DetailedFactoryView: React.FC = () => {
                         )}
                       </Grid>
                       <Grid>
-                        {_factory.IsConfigured === true ? (
+                        {factory.isConfigured ? (
                           <Chip
                             size="sm"
                             color="neutral"
@@ -149,7 +139,7 @@ export const DetailedFactoryView: React.FC = () => {
                     </Grid>
                     <Stack alignItems="center">
                       <img
-                        src={getImage(_factory.Name)}
+                        src={getImageHelper(factory.className)}
                         alt=""
                         style={{
                           height: "100px",
@@ -158,9 +148,9 @@ export const DetailedFactoryView: React.FC = () => {
                         }}
                       />
                       <Typography sx={{ marginTop: "5px" }}>
-                        {_factory.Recipe}
+                        {factory.recipe}
                       </Typography>
-                      {_factory.IsConfigured === true && (
+                      {factory.isConfigured && (
                         <Box>
                           <Grid
                             spacing={0}
@@ -168,37 +158,37 @@ export const DetailedFactoryView: React.FC = () => {
                             sx={{ marginTop: "5px" }}
                           >
                             <Grid>
-                              {_factory.ingredients.map(
-                                (ingredient: any, index: any) => (
-                                  <img
-                                    key={index}
-                                    src={getImage(ingredient.Name) ?? null}
-                                    alt={ingredient.Name}
-                                    style={{ height: "40px", width: "40px" }}
-                                  />
-                                ),
-                              )}
+                              {factory.ingredients.map((ingredient) => (
+                                <img
+                                  key={ingredient.className}
+                                  src={
+                                    getImageHelper(ingredient.className) ?? null
+                                  }
+                                  alt={ingredient.name}
+                                  style={{ height: "40px", width: "40px" }}
+                                />
+                              ))}
                             </Grid>
                             <Grid>
                               <BsArrowRightShort size="36px" />
                             </Grid>
                             <Grid>
-                              {_factory.production.map(
-                                (product: any, index: any) => (
-                                  <img
-                                    key={index}
-                                    src={getImage(product.Name) ?? null}
-                                    alt={product.Name}
-                                    style={{ height: "40px", width: "40px" }}
-                                  />
-                                ),
-                              )}
+                              {factory.products.map((product) => (
+                                <img
+                                  key={product.className}
+                                  src={
+                                    getImageHelper(product.className) ?? null
+                                  }
+                                  alt={product.name}
+                                  style={{ height: "40px", width: "40px" }}
+                                />
+                              ))}
                             </Grid>
                           </Grid>
                         </Box>
                       )}
                     </Stack>
-                    {_factory.IsConfigured && (
+                    {factory.isConfigured && (
                       <Box>
                         <Grid
                           container
@@ -216,22 +206,19 @@ export const DetailedFactoryView: React.FC = () => {
                                 style={{ height: "22px", width: "22px" }}
                               />
                               <Typography marginLeft="10px">
-                                {_factory.ManuSpeed.toFixed(2)} %
+                                {factory.clockSpeed.toFixed(2)} %
                               </Typography>
                             </Box>
                           </Grid>
                         </Grid>
-                        {_factory.ingredients.map(
-                          (product: any, index: any) => {
-                            return (
-                              <IngredientCard
-                                key={index}
-                                product={product}
-                                fullRefs={fullRefs}
-                              />
-                            );
-                          },
-                        )}
+                        {factory.ingredients.map((ingredient) => {
+                          return (
+                            <IngredientCard
+                              key={ingredient.className}
+                              product={ingredient}
+                            />
+                          );
+                        })}
 
                         <Typography
                           marginBottom="15px"
@@ -239,12 +226,11 @@ export const DetailedFactoryView: React.FC = () => {
                         >
                           Products
                         </Typography>
-                        {_factory.production.map((product: any, index: any) => {
+                        {factory.products.map((product) => {
                           return (
                             <ProductionCard
-                              key={index}
+                              key={product.className}
                               product={product}
-                              fullRefs={fullRefs}
                             />
                           );
                         })}

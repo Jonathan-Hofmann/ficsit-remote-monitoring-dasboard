@@ -5,5 +5,8 @@ export type GameItemOtherBuilding = {
   name: GameItemsEnum;
   category: GameItemsCategoryEnum.Building;
   // Exclude references other buildings type file handled
-  buildingType: Exclude<GameBuildingsTypeEnum, GameBuildingsTypeEnum.Generator>;
+  buildingType: Exclude<
+    GameBuildingsTypeEnum,
+    GameBuildingsTypeEnum.Generator | GameBuildingsTypeEnum.Manufacturer
+  >;
 };

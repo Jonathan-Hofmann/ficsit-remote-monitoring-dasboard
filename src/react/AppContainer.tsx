@@ -8,10 +8,10 @@ import { Footer } from "./components/footer";
 import { Sidebar } from "./components/sidebar";
 import { AwesomeSink } from "./views/awesomeSink";
 import { Drones } from "./views/drones";
-// import { DetailedFactoryView } from "./views/factoryView";
+import { DetailedFactoryView } from "./views/factoryView";
 import { DetailedGeneratorView } from "./views/generatorView";
 import { PowerMain } from "./views/powerMain";
-// import { FactorysSwitch } from "./views/production";
+import { FactorysSwitch } from "./views/production";
 import { Settings } from "./views/settings";
 import { Start } from "./views/start";
 // import { StorageView } from "./views/storageView";
@@ -46,14 +46,14 @@ export const AppContainer: React.FC = () => {
                 path="/generator"
                 element={<DetailedGeneratorView />}
               />
-              {/* <Route
+              <Route
                 path="/production"
                 element={<FactorysSwitch />}
               />
               <Route
                 path="/factory"
                 element={<DetailedFactoryView />}
-              /> */}
+              />
               <Route
                 path="/vehicles"
                 element={<Vehicles />}

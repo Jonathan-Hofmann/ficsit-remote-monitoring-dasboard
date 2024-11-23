@@ -284,10 +284,9 @@ export const PowerMain: React.FC = () => {
                 sx={{
                   marginBottom: "30px",
                   padding: "20px",
-                  backgroundColor:
-                    powerGroup.fuseTriggered === true
-                      ? "var(--joy-palette-danger-solidBg)"
-                      : "var(--joy-palette-background-surface)",
+                  backgroundColor: powerGroup.fuseTriggered
+                    ? "var(--joy-palette-danger-solidBg)"
+                    : "var(--joy-palette-background-surface)",
                 }}
               >
                 <CardContent>

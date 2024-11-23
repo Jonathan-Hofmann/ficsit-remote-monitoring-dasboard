@@ -1,7 +1,7 @@
 import { Alert, Button, Container } from "@mui/joy";
-import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
@@ -49,15 +49,18 @@ export const ConnectionChecker: React.FC<Props> = ({ children }) => {
           }
         >
           Could not connect to Satisfactory through{" "}
-          <Box
-            sx={{
-              textDecoration: "underline",
+          <Link
+            style={{
+              color: "var(--joy-palette-primary-main)",
               fontWeight: 400,
-              marginX: "5px",
+              marginInline: "5px",
+              textDecoration: "underline",
             }}
+            target="_blank"
+            to="https://ficsit.app/mod/FicsitRemoteMonitoring"
           >
             Ficsit Remote Monitoring
-          </Box>{" "}
+          </Link>{" "}
           Mod.
         </Alert>
       </Container>

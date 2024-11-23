@@ -16,7 +16,7 @@ import {
   BsList,
 } from "react-icons/bs";
 import { FaBoxes, FaTruck } from "react-icons/fa";
-import { GiFactory, GiTankTread } from "react-icons/gi";
+import { GiFactory } from "react-icons/gi";
 import { MdTrain } from "react-icons/md";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { TbDrone } from "react-icons/tb";
@@ -49,14 +49,8 @@ export const Sidebar: React.FC = () => {
       {
         path: "/production",
         label: "Production",
-        icon: <GiTankTread />,
-        isDisabled: true,
-      },
-      {
-        path: "/factory",
-        label: "Factory",
         icon: <GiFactory />,
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         path: "/vehicles",
