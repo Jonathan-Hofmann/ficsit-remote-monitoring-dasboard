@@ -18,6 +18,7 @@ export enum EndpointEnum {
   PARTICLE_ACCELERATOR = "getParticle",
   PLAYER = "getPlayer",
   POWER = "getPower",
+  PRODUCTION_STAT = "getProdStats",
   QUANTUM_ENCODER = "getEncoder",
   REFINERY = "getRefinery",
   SMELTER = "getSmelter",

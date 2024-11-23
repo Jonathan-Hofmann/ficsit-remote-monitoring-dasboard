@@ -74,7 +74,7 @@ export const Sidebar: React.FC = () => {
         path: "/storageView",
         label: "Storage View",
         icon: <FaBoxes />,
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         path: "/awesomeSink",

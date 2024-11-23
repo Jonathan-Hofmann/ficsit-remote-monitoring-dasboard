@@ -6,6 +6,7 @@ import { factoryDtoToFmMapper } from "../mappers/factoryDtoToFm.mapper";
 import { generatorsDtoToFmMapper } from "../mappers/generatorsDtoToFm.mapper";
 import { playerDtoToFmMapper } from "../mappers/playerDtoToFm.mapper";
 import { powerDtoToFmMapper } from "../mappers/powerDtoToFm.mapper";
+import { productionStatDtoToFMapper } from "../mappers/productionStatDtoToFm.mapper";
 import { trainDtoToFmMapper } from "../mappers/trainDtoToFm.mapper";
 import { trainStationDtoToFmMapper } from "../mappers/trainStationDtoToFm.mapper";
 import { vehicleDtoToFmMapper } from "../mappers/vehicleDtoToFm.mapper";
@@ -32,6 +33,7 @@ export const endPointDictionnary: EndPoint = {
   [EndpointEnum.PARTICLE_ACCELERATOR]: factoryDtoToFmMapper,
   [EndpointEnum.PLAYER]: playerDtoToFmMapper,
   [EndpointEnum.POWER]: powerDtoToFmMapper,
+  [EndpointEnum.PRODUCTION_STAT]: productionStatDtoToFMapper,
   [EndpointEnum.QUANTUM_ENCODER]: factoryDtoToFmMapper,
   [EndpointEnum.REFINERY]: factoryDtoToFmMapper,
   [EndpointEnum.SMELTER]: factoryDtoToFmMapper,

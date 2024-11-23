@@ -14,7 +14,7 @@ import { PowerMain } from "./views/powerMain";
 import { FactorysSwitch } from "./views/production";
 import { Settings } from "./views/settings";
 import { Start } from "./views/start";
-// import { StorageView } from "./views/storageView";
+import { StorageView } from "./views/storageView";
 import { Trains } from "./views/trains";
 import { Vehicles } from "./views/vehicles";
 
@@ -66,10 +66,10 @@ export const AppContainer: React.FC = () => {
                 path="/trains"
                 element={<Trains />}
               />
-              {/* <Route
+              <Route
                 path="/storageView"
                 element={<StorageView />}
-              /> */}
+              />
               <Route
                 path="/awesomeSink"
                 element={<AwesomeSink />}

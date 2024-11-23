@@ -1,80 +1,58 @@
-// noinspection JSIgnoredPromiseFromCall
-
 import { Card, CardContent, Container, Grid, Typography } from "@mui/joy";
 import { Skeleton } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
-import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { fullRefs } from "../../constants/refs";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import type { SettingsData } from "../../types/settingsData";
+import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import { EndpointEnum } from "../../enums/endpoint.enum";
+import { getImageHelper } from "../../helpers/getImage.helper";
+import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import type { ProdStatsDto } from "../../types/apis/dataTransferObject/prodStatsDto";
+import type { WorldInvDto } from "../../types/apis/dataTransferObject/worldInvDto";
+import type { ProductionStatFm } from "../../types/apis/frontModel/productionStatFm";
+import type { WorldInvFm } from "../../types/apis/frontModel/worldInvFm";
+
+type ItemData = ProductionStatFm & Pick<WorldInvFm, "amount">;
 
 export const StorageView: React.FC = () => {
-  const [doLoadData] = useState(true);
-  const [worldInv, setWorldInv] = useState<undefined | any>(undefined);
-  const [prodStats, setProdStats] = useState<undefined | any>(undefined);
-  const [items, setItems] = useState<undefined | any>(undefined);
-  const { value: settings } = useLocalStorage<SettingsData>(
-    "rmd_settings",
-    defaultSettingsData,
+  const { data: worldInv } = useAutoRefetch<WorldInvDto[], WorldInvFm[]>(
+    EndpointEnum.WORLD_INV,
   );
 
-  const loadData = async () => {
-    // if (doLoadData) {
-    //   const response = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getWorldInv`,
-    //   );
-    //   const response_extra = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getProdStats`,
-    //   );
-    //   // console.info(response);
-    //   setWorldInv(response.data);
-    //   setProdStats(response_extra.data);
-    //   setTimeout(() => {
-    //     loadData();
-    //   }, settings.interval);
-    // }
-  };
+  const { data: prodStats } = useAutoRefetch<
+    ProdStatsDto[],
+    ProductionStatFm[]
+  >(EndpointEnum.PRODUCTION_STAT);
 
-  const prepItems = async () => {
-    const temp = [];
-    for (let index = 0; index < worldInv.length; index++) {
-      let found = false;
-      const item = worldInv[index];
-      for (let i = 0; i < prodStats.length; i++) {
-        const prodStat = prodStats[i];
-        if (item.Name === prodStat.Name) {
-          temp.push({ item, prodStat });
-          found = true;
-        }
-      }
-      if (!found) {
+  const [items, setItems] = useState<ItemData[]>();
+
+  const handlePrepareItems = useCallback(() => {
+    const temp: ItemData[] = [];
+    worldInv?.forEach((item) => {
+      const foundedItem = prodStats?.find(
+        (prodItem) => prodItem.name === item.name,
+      );
+      if (foundedItem) temp.push({ ...foundedItem, amount: item.amount });
+      if (!foundedItem)
         temp.push({
-          item,
-          prodStat: { ProdPerMin: "P:0.0/min - C: 0.0/min" },
+          name: item.name,
+          className: item.className,
+          amount: 0,
+          currentProduction: 0,
+          currentConsumption: 0,
+          percentProduction: 0,
+          percentConsumption: 0,
+          maxProduction: 0,
+          maxConsumption: 0,
+          productionPerMinunte: "P:0.0/min - C: 0.0/min",
         });
-      }
-    }
+    });
     setItems(temp);
-  };
-
-  function getImage(item: any): any {
-    let value = null;
-    if (item != null) {
-      value = `./assets/${fullRefs[item].category}/${item}.png`;
-    }
-    return value;
-  }
+  }, [worldInv, prodStats]);
 
   useEffect(() => {
-    prepItems();
-  });
-
-  useEffect(() => {
-    loadData();
-  });
+    handlePrepareItems();
+  }, [handlePrepareItems]);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -107,29 +85,28 @@ export const StorageView: React.FC = () => {
           px={0}
           spacing={2}
         >
-          {items.map((data: any, index: number) => {
+          {items.map((item) => {
             return (
               <Grid
                 xs={4}
-                key={index}
+                key={item.className}
               >
                 <Card
                   variant="outlined"
                   sx={{
                     padding: "3px",
                     borderColor:
-                      Math.floor(data.prodStat.CurrentConsumed) >
-                      Math.floor(data.prodStat.CurrentProd)
+                      Math.floor(item.currentConsumption) >
+                      Math.floor(item.currentProduction)
                         ? "var(--joy-palette-warning-main)"
                         : "var(--joy-palette-neutral-outlinedBorder)",
                     borderWidth:
-                      Math.floor(data.prodStat.CurrentConsumed) >
-                      Math.floor(data.prodStat.CurrentProd)
+                      Math.floor(item.currentConsumption) >
+                      Math.floor(item.currentProduction)
                         ? "3px"
                         : "1px",
                   }}
                 >
-                  <Card variant="outlined" sx={{height: '100%', padding:0}}>
                   <CardContent
                     sx={{
                       display: "flex",
@@ -138,22 +115,20 @@ export const StorageView: React.FC = () => {
                       padding: "16px",
                     }}
                   >
-                    {fullRefs[data.item.Name] !== undefined && (
+                    {gameItemsDictionnary[item.className] !== undefined && (
                       <img
-                        src={getImage(data.item.Name) ?? null}
-                        alt=""
+                        src={getImageHelper(item.className) ?? null}
+                        alt="Satisfactory item illustration"
                         style={{ height: "70px", width: "70px" }}
                       />
                     )}
-                    {fullRefs[data.item.Name] === undefined && (
+                    {gameItemsDictionnary[item.className] === undefined && (
                       <HiOutlineQuestionMarkCircle size="70px" />
                     )}
-                    <Typography marginBottom="5px">{data.item.Name}</Typography>
+                    <Typography marginBottom="5px">{item.name}</Typography>
+                    <Typography level="body2">Total: {item.amount}</Typography>
                     <Typography level="body2">
-                      Total: {data.item.Amount}
-                    </Typography>
-                    <Typography level="body2">
-                      {data.prodStat.ProdPerMin}
+                      {item.productionPerMinunte}
                     </Typography>
                   </CardContent>
                 </Card>
