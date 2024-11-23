@@ -7,7 +7,6 @@ import { ConnectionChecker } from "./components/connectionChecker";
 import { Footer } from "./components/footer";
 import { Sidebar } from "./components/sidebar";
 import { AwesomeSink } from "./views/awesomeSink";
-// import { Building } from "./views/building";
 import { Drones } from "./views/drones";
 // import { DetailedFactoryView } from "./views/factoryView";
 import { DetailedGeneratorView } from "./views/generatorView";
@@ -16,7 +15,6 @@ import { PowerMain } from "./views/powerMain";
 import { Settings } from "./views/settings";
 import { Start } from "./views/start";
 // import { StorageView } from "./views/storageView";
-// import { SocketTestSite } from "./views/testingSocket";
 import { Trains } from "./views/trains";
 import { Vehicles } from "./views/vehicles";
 
@@ -55,10 +53,6 @@ export const AppContainer: React.FC = () => {
               <Route
                 path="/factory"
                 element={<DetailedFactoryView />}
-              />
-              <Route
-                path="/building"
-                element={<Building />}
               /> */}
               <Route
                 path="/vehicles"
@@ -80,10 +74,6 @@ export const AppContainer: React.FC = () => {
                 path="/awesomeSink"
                 element={<AwesomeSink />}
               />
-              {/* <Route
-                path="/test"
-                element={<SocketTestSite />}
-              /> */}
               <Route
                 path="/settings"
                 element={<Settings />}

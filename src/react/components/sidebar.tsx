@@ -15,10 +15,10 @@ import {
   BsLightningFill,
   BsList,
 } from "react-icons/bs";
-import { FaBoxes, FaBuilding, FaTruck } from "react-icons/fa";
+import { FaBoxes, FaTruck } from "react-icons/fa";
 import { GiFactory, GiTankTread } from "react-icons/gi";
 import { MdTrain } from "react-icons/md";
-import { RiCoupon2Fill, RiTestTubeFill } from "react-icons/ri";
+import { RiCoupon2Fill } from "react-icons/ri";
 import { TbDrone } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
@@ -59,12 +59,6 @@ export const Sidebar: React.FC = () => {
         isDisabled: true,
       },
       {
-        path: "/building",
-        label: "Building",
-        icon: <FaBuilding />,
-        isDisabled: true,
-      },
-      {
         path: "/vehicles",
         label: "Vehicles",
         icon: <FaTruck />,
@@ -93,12 +87,6 @@ export const Sidebar: React.FC = () => {
         label: "Awesome Sink",
         icon: <RiCoupon2Fill />,
         isDisabled: false,
-      },
-      {
-        path: "/Test",
-        label: "Test",
-        icon: <RiTestTubeFill />,
-        isDisabled: true,
       },
     ],
     [

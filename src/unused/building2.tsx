@@ -14,8 +14,8 @@ import React, { useEffect, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 
-import type { LocationState } from "../../types/locationState";
-import type { Theme } from "../../types/theme";
+import type { LocationState } from "../types/locationState";
+import type { Theme } from "../types/theme";
 
 export const Building: React.FC = () => {
   const theme: Theme = useTheme();
