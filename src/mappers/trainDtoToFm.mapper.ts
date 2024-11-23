@@ -14,7 +14,7 @@ export const trainDtoToFmMapper = (dto: TrainsDto[]): TrainFm[] => {
     ),
     nextStation: trainDto.TrainStation,
     stationPlanning: (trainDto.TimeTable ?? [])
-      .filter((station) => !!station)
+      .filter((el): el is NonNullable<typeof el> => !!el)
       .map((station) => station.StationName),
     isDerailed: trainDto.Derailed,
     forwardSpeed: trainDto.ForwardSpeed,

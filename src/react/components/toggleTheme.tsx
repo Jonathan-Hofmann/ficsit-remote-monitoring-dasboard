@@ -11,7 +11,7 @@ export const ToggleTheme: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     setMode("dark");
-  }, []);
+  }, [setMode]);
 
   return children;
 };

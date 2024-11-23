@@ -40,45 +40,42 @@ export const Trains: React.FC = () => {
   const [trainStationsStep, setTrainStationsStep] =
     useState<TrainStationStep>();
 
-  const handlePrepareTrainStationsStep = useCallback(
-    (trainsData: TrainFm[]) => {
-      let temporaryStationStep: TrainStationStep = {};
-      if (!trainStations) return;
-      trainsData.forEach((train) => {
-        const nextStationId = train.stationPlanning.findIndex(
-          (station) => station === train.nextStation,
-        );
-        if (nextStationId === undefined) return;
+  const handlePrepareTrainStationsStep = useCallback(() => {
+    let temporaryStationStep: TrainStationStep = {};
+    if (!trainStations) return;
+    trains?.forEach((train) => {
+      const nextStationId = train.stationPlanning.findIndex(
+        (station) => station === train.nextStation,
+      );
+      if (nextStationId === undefined) return;
 
-        const previousStationId =
-          (nextStationId - 1 + train.stationPlanning.length) %
-          train.stationPlanning.length;
+      const previousStationId =
+        (nextStationId - 1 + train.stationPlanning.length) %
+        train.stationPlanning.length;
 
-        const nextStation = trainStations.find(
-          (el) => el.name === train.stationPlanning[nextStationId],
-        );
-        const previousStation = trainStations.find(
-          (el) => el.name === train.stationPlanning[previousStationId],
-        );
+      const nextStation = trainStations.find(
+        (el) => el.name === train.stationPlanning[nextStationId],
+      );
+      const previousStation = trainStations.find(
+        (el) => el.name === train.stationPlanning[previousStationId],
+      );
 
-        if (nextStation && previousStation) {
-          temporaryStationStep = {
-            ...temporaryStationStep,
-            [train.name]: {
-              previousStation,
-              nextStation,
-            },
-          };
-        }
-      });
-      setTrainStationsStep(temporaryStationStep);
-    },
-    [trainStations],
-  );
+      if (nextStation && previousStation) {
+        temporaryStationStep = {
+          ...temporaryStationStep,
+          [train.name]: {
+            previousStation,
+            nextStation,
+          },
+        };
+      }
+    });
+    setTrainStationsStep(temporaryStationStep);
+  }, [trains, trainStations]);
 
   useEffect(() => {
-    if (trains && trains.length > 0) handlePrepareTrainStationsStep(trains);
-  }, [trains, handlePrepareTrainStationsStep]);
+    handlePrepareTrainStationsStep();
+  }, [handlePrepareTrainStationsStep]);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>

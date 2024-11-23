@@ -45,35 +45,32 @@ export const Drones: React.FC = () => {
   const [droneStationsStep, setDroneStationsStep] =
     useState<DroneStationStep>();
 
-  const handlePrepareDroneStationsStep = useCallback(
-    (dronesData: DroneFm[]) => {
-      let temporaryStationStep: DroneStationStep = {};
-      dronesData.forEach((drone) => {
-        const homeStation = droneStations?.find(
-          (el) => el.name === drone.homeStation,
-        );
-        const destStation = droneStations?.find(
-          (el) => el.name === drone.pairedStation,
-        );
+  const handlePrepareDroneStationsStep = useCallback(() => {
+    let temporaryStationStep: DroneStationStep = {};
+    drones?.forEach((drone) => {
+      const homeStation = droneStations?.find(
+        (el) => el.name === drone.homeStation,
+      );
+      const destStation = droneStations?.find(
+        (el) => el.name === drone.pairedStation,
+      );
 
-        if (homeStation && destStation) {
-          temporaryStationStep = {
-            ...temporaryStationStep,
-            [drone.id]: {
-              homeStation,
-              destStation,
-            },
-          };
-        }
-      });
-      setDroneStationsStep(temporaryStationStep);
-    },
-    [droneStations],
-  );
+      if (homeStation && destStation) {
+        temporaryStationStep = {
+          ...temporaryStationStep,
+          [drone.id]: {
+            homeStation,
+            destStation,
+          },
+        };
+      }
+    });
+    setDroneStationsStep(temporaryStationStep);
+  }, [drones, droneStations]);
 
   useEffect(() => {
-    if (drones && drones.length > 0) handlePrepareDroneStationsStep(drones);
-  }, [drones, handlePrepareDroneStationsStep]);
+    handlePrepareDroneStationsStep();
+  }, [handlePrepareDroneStationsStep]);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>

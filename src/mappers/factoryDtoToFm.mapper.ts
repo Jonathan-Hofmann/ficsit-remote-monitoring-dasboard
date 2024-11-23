@@ -16,8 +16,8 @@ export const factoryDtoToFmMapper = (dto: FactoryDto[]): FactoryFm[] => {
     isProducing: factoryDto.IsProducing,
     recipe: factoryDto.Recipe,
     ingredients: (factoryDto.ingredients ?? [])
+      .filter((el): el is NonNullable<typeof el> => !!el)
       .map((ingredientDto) => {
-        if (!ingredientDto) return undefined;
         return {
           name: ingredientDto?.Name,
           className: enumDtoToFmMapper(
@@ -30,11 +30,10 @@ export const factoryDtoToFmMapper = (dto: FactoryDto[]): FactoryFm[] => {
           maxUsage: ingredientDto?.MaxConsumed,
           usingPercent: ingredientDto?.ConsPercent,
         };
-      })
-      .filter((el) => !!el),
+      }),
     products: (factoryDto.production ?? [])
+      .filter((el): el is NonNullable<typeof el> => !!el)
       .map((productDto) => {
-        if (!productDto) return undefined;
         return {
           name: productDto?.Name,
           className: enumDtoToFmMapper(
@@ -47,8 +46,7 @@ export const factoryDtoToFmMapper = (dto: FactoryDto[]): FactoryFm[] => {
           maxUsage: productDto?.MaxProd,
           usingPercent: productDto?.ProdPercent,
         };
-      })
-      .filter((el) => !!el),
+      }),
     clockSpeed: factoryDto.ManuSpeed,
   }));
 };

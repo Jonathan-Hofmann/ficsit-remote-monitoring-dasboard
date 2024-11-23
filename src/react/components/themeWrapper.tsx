@@ -49,7 +49,7 @@ const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
   },
 });
 
-const _joyTheme = extendTheme({
+const joyThemeVar = extendTheme({
   cssVarPrefix: "joy",
   colorSchemes: {
     dark: {
@@ -109,12 +109,11 @@ const _joyTheme = extendTheme({
   },
 });
 
-const { unstable_sxConfig: joySxConfig, ...joyTheme } =
-  extendJoyTheme(_joyTheme);
+const { unstable_sxConfig: joySxConfig } = extendJoyTheme(joyThemeVar);
 
 // You can use your own `deepmerge` function.
 // joyTheme will deeply merge to muiTheme.
-const mergedTheme = deepmerge(muiTheme, joyTheme) as unknown as ReturnType<
+const mergedTheme = deepmerge(muiTheme, joyThemeVar) as unknown as ReturnType<
   typeof extendJoyTheme
 >;
 
@@ -131,7 +130,7 @@ export const ThemeWrapper: React.FC<Props> = ({ children }) => {
   return (
     <CssVarsProvider
       theme={mergedTheme}
-      shouldSkipGeneratingVar={(keys: any) =>
+      shouldSkipGeneratingVar={(keys) =>
         muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)
       }
     >
