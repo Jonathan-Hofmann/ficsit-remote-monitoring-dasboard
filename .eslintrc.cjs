@@ -16,7 +16,6 @@ module.exports = {
     "airbnb",
     "airbnb/hooks",
     "airbnb-typescript",
-    "plugin:vitest/recommended",
     "plugin:prettier/recommended",
   ],
   plugins: [
@@ -26,7 +25,6 @@ module.exports = {
     "@typescript-eslint",
     "promise",
     "import",
-    "vitest",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -75,11 +73,7 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       {
-        devDependencies: [
-          "vite.config.ts",
-          "vitest.setup.ts",
-          "**/*.test.ts?(x)",
-        ],
+        devDependencies: ["vite.config.ts"],
       },
     ],
     "import/no-unused-modules": [
