@@ -5,6 +5,8 @@ import { droneStationDtoToFmMapper } from "../mappers/droneStationDtoToFm.mapper
 import { generatorsDtoToFmMapper } from "../mappers/generatorsDtoToFm.mapper";
 import { playerDtoToFmMapper } from "../mappers/playerDtoToFm.mapper";
 import { powerDtoToFmMapper } from "../mappers/powerDtoToFm.mapper";
+import { trainDtoToFmMapper } from "../mappers/trainDtoToFm.mapper";
+import { trainStationDtoToFmMapper } from "../mappers/trainStationDtoToFm.mapper";
 import { vehicleDtoToFmMapper } from "../mappers/vehicleDtoToFm.mapper";
 import { worldInvDtoToFmMapper } from "../mappers/worldInvDtoToFm.mapper";
 import type { EndPoint } from "../types/endpoint";
@@ -21,6 +23,8 @@ export const endPointDictionnary: EndPoint = {
   [EndpointEnum.NUCLEAR_GENERATOR]: generatorsDtoToFmMapper,
   [EndpointEnum.PLAYER]: playerDtoToFmMapper,
   [EndpointEnum.POWER]: powerDtoToFmMapper,
+  [EndpointEnum.TRAIN]: trainDtoToFmMapper,
+  [EndpointEnum.TRAIN_STATION]: trainStationDtoToFmMapper,
   [EndpointEnum.VEHICLE]: vehicleDtoToFmMapper,
   [EndpointEnum.WORLD_INV]: worldInvDtoToFmMapper,
 };

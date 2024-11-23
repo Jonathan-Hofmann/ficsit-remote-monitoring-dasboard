@@ -36,9 +36,11 @@ export const Drones: React.FC = () => {
     DroneStationDto[],
     DroneStationFm[]
   >(EndpointEnum.DRONE_STATION);
-  const [droneStationStep, setDroneStationStep] = useState<DroneStationStep>();
 
-  const handlePrepareTStationsForUI = useCallback(
+  const [droneStationsStep, setDroneStationsStep] =
+    useState<DroneStationStep>();
+
+  const handlePrepareDroneStationsStep = useCallback(
     (dronesData: DroneFm[]) => {
       let temporaryStationStep: DroneStationStep = {};
       dronesData.forEach((drone) => {
@@ -59,14 +61,14 @@ export const Drones: React.FC = () => {
           };
         }
       });
-      setDroneStationStep(temporaryStationStep);
+      setDroneStationsStep(temporaryStationStep);
     },
     [droneStations],
   );
 
   useEffect(() => {
-    if (drones && drones.length > 0) handlePrepareTStationsForUI(drones);
-  }, [drones, handlePrepareTStationsForUI]);
+    if (drones && drones.length > 0) handlePrepareDroneStationsStep(drones);
+  }, [drones, handlePrepareDroneStationsStep]);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -93,11 +95,11 @@ export const Drones: React.FC = () => {
         </CardContent>
       </Card>
 
-      {drones && droneStationStep ? (
+      {drones && droneStationsStep ? (
         <>
           {drones.map((drone) => {
-            if (droneStationStep[drone.id]) {
-              const { homeStation, destStation } = droneStationStep[drone.id];
+            if (droneStationsStep[drone.id]) {
+              const { homeStation, destStation } = droneStationsStep[drone.id];
 
               return (
                 <Grid

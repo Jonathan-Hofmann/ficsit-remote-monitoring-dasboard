@@ -80,7 +80,7 @@ export const Sidebar: React.FC = () => {
         path: "/trains",
         label: "Trains",
         icon: <MdTrain />,
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         path: "/storageView",

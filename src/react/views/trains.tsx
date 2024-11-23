@@ -9,93 +9,74 @@ import {
   Typography,
 } from "@mui/joy";
 import { Skeleton } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-import { defaultSettingsData } from "../../constants/defaultSettingsData";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import type { SettingsData } from "../../types/settingsData";
+import { EndpointEnum } from "../../enums/endpoint.enum";
+import { TrainStationLoadingStatusEnum } from "../../enums/trainStationLoadingStatus.enum";
+import { TrainStatusEnum } from "../../enums/trainStatus.enum";
+import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import type { TrainsDto } from "../../types/apis/dataTransferObject/trainsDto";
+import type { TrainStationDto } from "../../types/apis/dataTransferObject/trainStationDto";
+import type { TrainFm } from "../../types/apis/frontModel/trainFm";
+import type { TrainStationFm } from "../../types/apis/frontModel/trainStationFm";
+
+// Type used only in this file but move it could be good
+type TrainStationStep = Record<
+  string,
+  { previousStation: TrainStationFm; nextStation: TrainStationFm }
+>;
 
 export const Trains: React.FC = () => {
-  const [doLoadData, setLoadData] = useState(true);
-  const [trains, setTrains] = useState<undefined | any>(undefined);
-  const [trainstaions, setTrainstations] = useState<undefined | any>(undefined);
-
-  const [tStation_PrevNext, setTStation_PrevNext] = useState<undefined | any[]>(
-    undefined,
+  const { data: trains } = useAutoRefetch<TrainsDto[], TrainFm[]>(
+    EndpointEnum.TRAIN,
   );
-  const { value: settings } = useLocalStorage<SettingsData>(
-    "rmd_settings",
-    defaultSettingsData,
+  const { data: trainStations } = useAutoRefetch<
+    TrainStationDto[],
+    TrainStationFm[]
+  >(EndpointEnum.TRAIN_STATION);
+
+  const [trainStationsStep, setTrainStationsStep] =
+    useState<TrainStationStep>();
+
+  const handlePrepareTrainStationsStep = useCallback(
+    (trainsData: TrainFm[]) => {
+      let temporaryStationStep: TrainStationStep = {};
+      if (!trainStations) return;
+      trainsData.forEach((train) => {
+        const nextStationId = train.stationPlanning.findIndex(
+          (station) => station === train.nextStation,
+        );
+        if (nextStationId === undefined) return;
+
+        const previousStationId =
+          (nextStationId - 1 + train.stationPlanning.length) %
+          train.stationPlanning.length;
+
+        const nextStation = trainStations.find(
+          (el) => el.name === train.stationPlanning[nextStationId],
+        );
+        const previousStation = trainStations.find(
+          (el) => el.name === train.stationPlanning[previousStationId],
+        );
+
+        if (nextStation && previousStation) {
+          temporaryStationStep = {
+            ...temporaryStationStep,
+            [train.name]: {
+              previousStation,
+              nextStation,
+            },
+          };
+        }
+      });
+      setTrainStationsStep(temporaryStationStep);
+    },
+    [trainStations],
   );
-
-  const loadData = async () => {
-    // if (doLoadData) {
-    //   const response = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getTrains`,
-    //   );
-    //   const response_trainstaions = await axios.get(
-    //     `http://${settings.ip}:${settings.port}/getTrainStation`,
-    //   );
-    //   // // console.info(trainsData);
-    //   setTrains(response.data);
-    //   setTrainstations(response_trainstaions.data);
-    //   setTimeout(() => {
-    //     loadData();
-    //   }, settings.interval);
-    // }
-  };
-
-  const handlePrepareTStationsForUI = (trains_data: Record<string, any>[]) => {
-    const tmp: any[] = [];
-
-    for (let i = 0; i < trains_data.length; i++) {
-      const train = trains_data[i];
-      const timetable: Record<string, any>[] = train.TimeTable;
-
-      if (timetable.length > 0) {
-        let foundIndex = 0;
-        for (let index = 0; index < timetable.length; index++) {
-          const station = timetable[index];
-          if (station.StationName === train.TrainStation) {
-            foundIndex = index;
-          }
-        }
-
-        for (let index = 0; index < trainstaions.length; index++) {
-          const station = trainstaions[index];
-          if (station.Name === timetable[foundIndex].StationName) {
-            tmp.push([station]);
-          }
-        }
-
-        for (let index = 0; index < trainstaions.length; index++) {
-          const station = trainstaions[index];
-          if (foundIndex === 0) {
-            if (station.Name === timetable[timetable.length - 1].StationName) {
-              tmp[tmp.length - 1].unshift(station);
-            }
-          } else if (station.Name === timetable[foundIndex - 1].StationName) {
-            tmp[tmp.length - 1].unshift(station);
-          }
-        }
-      } else {
-        tmp.push([]);
-      }
-
-      // tmp.push([timetable[foundIndex]]);
-      setTStation_PrevNext(tmp);
-    }
-  };
 
   useEffect(() => {
-    loadData();
-  }, []);
-
-  useEffect(() => {
-    if (trains && trains.length > 0) handlePrepareTStationsForUI(trains);
-    // console.log(trains);
-  }, [trains]);
+    if (trains && trains.length > 0) handlePrepareTrainStationsStep(trains);
+  }, [trains, handlePrepareTrainStationsStep]);
 
   return (
     <Container sx={{ paddingTop: "50px" }}>
@@ -127,38 +108,33 @@ export const Trains: React.FC = () => {
         </CardContent>
       </Card>
 
-      {trains && tStation_PrevNext ? (
+      {trains && trainStationsStep ? (
         <>
-          {trains.map((train: any, index: number) => {
+          {trains.map((train) => {
+            if (!trainStationsStep[train.name]) return null;
+            const { previousStation, nextStation } =
+              trainStationsStep[train.name];
             let percentDone = 0;
             let left = 0;
             let right = 0;
             let totalLength = 0;
-            if (tStation_PrevNext[index].length > 0) {
+            if (previousStation && nextStation) {
               left = Math.floor(
-                ((tStation_PrevNext[index][0].location.x - train.location.x) **
-                  2 +
-                  (tStation_PrevNext[index][0].location.y - train.location.y) **
-                    2) **
+                ((previousStation.location.x - train.location.x) ** 2 +
+                  (previousStation.location.y - train.location.y) ** 2) **
                   0.5 /
                   100,
               );
               right = Math.floor(
-                ((tStation_PrevNext[index][1].location.x - train.location.x) **
-                  2 +
-                  (tStation_PrevNext[index][1].location.y - train.location.y) **
-                    2) **
+                ((nextStation.location.x - train.location.x) ** 2 +
+                  (nextStation.location.y - train.location.y) ** 2) **
                   0.5 /
                   100,
               );
 
               totalLength = Math.floor(
-                ((tStation_PrevNext[index][0].location.x -
-                  tStation_PrevNext[index][1].location.x) **
-                  2 +
-                  (tStation_PrevNext[index][0].location.y -
-                    tStation_PrevNext[index][1].location.y) **
-                    2) **
+                ((previousStation.location.x - nextStation.location.x) ** 2 +
+                  (previousStation.location.y - nextStation.location.y) ** 2) **
                   0.5 /
                   100,
               );
@@ -169,6 +145,7 @@ export const Trains: React.FC = () => {
             // console.log(index+" -> "+_percentDone);
             return (
               <Grid
+                key={train.name}
                 container
                 spacing={2}
                 sx={{ marginY: "30px" }}
@@ -180,21 +157,21 @@ export const Trains: React.FC = () => {
                     variant="outlined"
                     sx={{ position: "relative" }}
                   >
-                    {tStation_PrevNext[index].length > 0 ? (
+                    {previousStation && nextStation ? (
                       <CardContent>
                         {/* <GiCargoCrate size="36px"/> */}
 
                         <Stack alignItems="center">
                           <img
                             src="./assets/Building/Train_Station.png"
-                            alt="image"
+                            alt="Satisfactory train station illustration"
                             style={{ height: "70px", width: "70px" }}
                           />
                           <Typography
                             level="h6"
                             sx={{ marginBottom: "5px", marginTop: "10px" }}
                           >
-                            {tStation_PrevNext[index][0].Name}
+                            {previousStation.name}
                           </Typography>
                           <Typography
                             level="body3"
@@ -215,8 +192,8 @@ export const Trains: React.FC = () => {
                             </Typography>
                           </Grid>
                           <Grid>
-                            {tStation_PrevNext[index][0].LoadingStatus ===
-                              "Idle" && (
+                            {previousStation.loadingStatus ===
+                              TrainStationLoadingStatusEnum.Idle && (
                               <Chip
                                 color="success"
                                 size="sm"
@@ -229,8 +206,8 @@ export const Trains: React.FC = () => {
                                 Platform Idle
                               </Chip>
                             )}
-                            {tStation_PrevNext[index][0].LoadingStatus ===
-                              "Loading" && (
+                            {previousStation.loadingStatus ===
+                              TrainStationLoadingStatusEnum.Loading && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -243,8 +220,8 @@ export const Trains: React.FC = () => {
                                 Loading ...
                               </Chip>
                             )}
-                            {tStation_PrevNext[index][0].LoadingStatus ===
-                              "Unloading" && (
+                            {previousStation.loadingStatus ===
+                              TrainStationLoadingStatusEnum.Unloading && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -296,22 +273,22 @@ export const Trains: React.FC = () => {
                     <CardContent>
                       <Stack alignItems="center">
                         <img
-                          src="./assets/Vehicle/Electric_Locomotive.png.png"
-                          alt="image"
+                          src="./assets/Vehicle/Electric_Locomotive.png"
+                          alt="Satisfactory train locomotive illustration"
                           style={{ height: "80px", width: "80px" }}
                         />
                         <Typography
                           level="h6"
                           sx={{ marginBottom: "5px", marginTop: "10px" }}
                         >
-                          {train.Name}
+                          {train.name}
                         </Typography>
                         <Grid
                           container
                           sx={{ marginBottom: "15px" }}
                         >
                           <Grid>
-                            {!train.Derailed ? (
+                            {!train.isDerailed ? (
                               <Chip
                                 color="success"
                                 size="sm"
@@ -339,7 +316,7 @@ export const Trains: React.FC = () => {
                           </Grid>
 
                           <Grid>
-                            {train.Status === "Self-Driving" ? (
+                            {train.status === TrainStatusEnum.Self_Driving ? (
                               <Chip
                                 color="info"
                                 size="sm"
@@ -376,9 +353,15 @@ export const Trains: React.FC = () => {
                         </Grid>
                         <Grid>
                           <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                            {parseFloat(train.ForwardSpeed) < 0
-                              ? parseInt(train.ForwardSpeed) * -1
-                              : parseInt(train.ForwardSpeed)}{" "}
+                            {/* Speed is in cm / sec, so / 100 => m / sec, so / 1000 => km / sec, so * 3600 => km / h */}
+                            {(
+                              ((train.forwardSpeed < 0
+                                ? train.forwardSpeed * -1
+                                : train.forwardSpeed) /
+                                100 /
+                                1000) *
+                              3600
+                            ).toFixed(1)}{" "}
                             km/h
                           </Typography>
                         </Grid>
@@ -391,7 +374,7 @@ export const Trains: React.FC = () => {
                         </Grid>
                         <Grid>
                           <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                            {train.ThrottlePercent.toFixed(2)} %
+                            {train.throttlePercent.toFixed(2)} %
                           </Typography>
                         </Grid>
                       </Grid>
@@ -403,7 +386,7 @@ export const Trains: React.FC = () => {
                         </Grid>
                         <Grid>
                           <Typography sx={{ color: "rgba(255,255,255,0.9)" }}>
-                            {train.PowerConsumed} MW
+                            {train.powerConsumed.toFixed(2)} MW
                           </Typography>
                         </Grid>
                       </Grid>
@@ -430,19 +413,19 @@ export const Trains: React.FC = () => {
                     variant="outlined"
                     sx={{ position: "relative" }}
                   >
-                    {tStation_PrevNext[index].length > 0 ? (
+                    {previousStation && nextStation ? (
                       <CardContent>
                         <Stack alignItems="center">
                           <img
                             src="./assets/Building/Train_Station.png"
-                            alt="image"
+                            alt="Satisfactory train station illustration"
                             style={{ height: "70px", width: "70px" }}
                           />
                           <Typography
                             level="h6"
                             sx={{ marginBottom: "5px", marginTop: "10px" }}
                           >
-                            {tStation_PrevNext[index][1].Name}
+                            {nextStation.name}
                           </Typography>
                           <Typography
                             level="body3"
@@ -463,8 +446,8 @@ export const Trains: React.FC = () => {
                             </Typography>
                           </Grid>
                           <Grid>
-                            {tStation_PrevNext[index][1].LoadingStatus ===
-                              "Idle" && (
+                            {nextStation.loadingStatus ===
+                              TrainStationLoadingStatusEnum.Idle && (
                               <Chip
                                 color="success"
                                 size="sm"
@@ -477,8 +460,8 @@ export const Trains: React.FC = () => {
                                 Platform Idle
                               </Chip>
                             )}
-                            {tStation_PrevNext[index][1].LoadingStatus ===
-                              "Loading" && (
+                            {nextStation.loadingStatus ===
+                              TrainStationLoadingStatusEnum.Loading && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -491,8 +474,8 @@ export const Trains: React.FC = () => {
                                 Loading ...
                               </Chip>
                             )}
-                            {tStation_PrevNext[index][1].LoadingStatus ===
-                              "Unloading" && (
+                            {nextStation.loadingStatus ===
+                              TrainStationLoadingStatusEnum.Unloading && (
                               <Chip
                                 color="danger"
                                 size="sm"
@@ -598,7 +581,7 @@ export const Trains: React.FC = () => {
                 <Stack alignItems="center">
                   <img
                     src="./assets/Vehicle/Electric_Locomotive.png"
-                    alt="image"
+                    alt="Satisfactory train locomotive illustration"
                     style={{ height: "80px", width: "80px" }}
                   />
                   <Skeleton
@@ -611,7 +594,7 @@ export const Trains: React.FC = () => {
                     level="h6"
                     sx={{ marginBottom: "5px", marginTop: "10px" }}
                   >
-                    {train.TrainName}
+                    {/* {train.TrainName} */}
                   </Typography>
                   <Grid
                     container
