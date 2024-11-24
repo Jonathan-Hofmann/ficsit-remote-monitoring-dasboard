@@ -126,8 +126,10 @@ export const StorageView: React.FC = () => {
                       <HiOutlineQuestionMarkCircle size="70px" />
                     )}
                     <Typography marginBottom="5px">{item.name}</Typography>
-                    <Typography level="body2">Total: {item.amount}</Typography>
-                    <Typography level="body2">
+                    <Typography level="body-md">
+                      Total: {item.amount}
+                    </Typography>
+                    <Typography level="body-md">
                       {item.productionPerMinunte}
                     </Typography>
                   </CardContent>

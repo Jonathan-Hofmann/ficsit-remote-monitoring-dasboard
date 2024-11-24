@@ -267,7 +267,7 @@ export const Vehicles: React.FC = () => {
                         </Box>
                         <Typography
                           marginLeft="5px"
-                          level="body2"
+                          level="body-md"
                         >
                           VehicleID: #{vehicle.id}
                         </Typography>
@@ -488,7 +488,7 @@ export const Vehicles: React.FC = () => {
                         </Box>
                         <Typography
                           marginLeft="5px"
-                          level="body2"
+                          level="body-md"
                         >
                           VehicleID: #{vehicle.id}
                         </Typography>

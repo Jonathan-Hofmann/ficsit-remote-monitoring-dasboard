@@ -62,7 +62,7 @@ export const Start: React.FC = () => {
       </Typography>
       <Typography
         marginBottom="50px"
-        level="h5"
+        level="h4"
         color="neutral"
         fontWeight={400}
       >
@@ -85,7 +85,7 @@ export const Start: React.FC = () => {
               >
                 <ModalDialog sx={{ maxWidth: "450px" }}>
                   <ModalClose />
-                  <Typography level="h5">Edit Favorite Items List</Typography>
+                  <Typography level="h4">Edit Favorite Items List</Typography>
 
                   <Autocomplete
                     sx={{ marginY: "20px" }}
@@ -131,19 +131,19 @@ export const Start: React.FC = () => {
                     padding={0}
                   >
                     <Grid xs>
-                      <Typography level="h5">
+                      <Typography level="h4">
                         {itemSelection.length} Favorite Items
                       </Typography>
                       <Typography
                         my="5px"
                         startDecorator={<BsExclamationCircle />}
-                        level="body2"
+                        level="body-md"
                       >
                         Only shows stored and available items.
                       </Typography>
                       <Typography
                         startDecorator={<BsExclamationTriangleFill />}
-                        level="body2"
+                        level="body-md"
                       >
                         Players Inventory is not taken into account.
                       </Typography>
@@ -201,7 +201,7 @@ export const Start: React.FC = () => {
                               >
                                 {item.name}
                               </Typography>
-                              <Typography level="body2">
+                              <Typography level="body-md">
                                 {item.amount} Items
                               </Typography>
                             </CardContent>

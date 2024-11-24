@@ -29,7 +29,7 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
     >
       <CardContent>
         <Typography
-          level="body1"
+          level="body-lg"
           alignSelf="center"
           sx={{ paddingTop: "3px", paddingBottom: "2px" }}
         >
@@ -58,7 +58,7 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
               sx={{ paddingTop: 0 }}
             >
               <Grid xs>
-                <Typography level="body2">Current Consumed</Typography>
+                <Typography level="body-md">Current Consumed</Typography>
               </Grid>
               <Grid>
                 <Typography>
@@ -76,7 +76,7 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
               sx={{ paddingTop: 0 }}
             >
               <Grid xs>
-                <Typography level="body2">Max Consumed</Typography>
+                <Typography level="body-md">Max Consumed</Typography>
               </Grid>
               <Grid>
                 <Typography>
@@ -94,7 +94,7 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
               sx={{ paddingTop: 0 }}
             >
               <Grid xs>
-                <Typography level="body2">Efficency Consume</Typography>
+                <Typography level="body-md">Efficency Consume</Typography>
               </Grid>
               <Grid>
                 <Typography>{product.usingPercent.toFixed(2)} %</Typography>
@@ -112,7 +112,7 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
               }}
             >
               <Grid xs>
-                <Typography level="body2">Input Inventory</Typography>
+                <Typography level="body-md">Input Inventory</Typography>
               </Grid>
               <Grid>
                 {item && isItemSolid

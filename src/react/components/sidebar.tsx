@@ -125,7 +125,7 @@ export const Sidebar: React.FC = () => {
               </IconButton>
             </Grid>
             <Grid xs>
-              <Typography level="h6">FRM Dashboard</Typography>
+              <Typography level="h4">FRM Dashboard</Typography>
             </Grid>
           </Grid>
         ) : (

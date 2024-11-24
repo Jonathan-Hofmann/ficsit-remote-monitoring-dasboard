@@ -6,7 +6,7 @@
                                                     <Box sx={{position: 'relative'}}>
                                                         <Grid container spacing={1} display={'flex'} alignItems={'center'}>
                                                             <Grid xs>
-                                                                <Typography level="h6">{drone.VehicleType} #{drone.ID}</Typography>
+                                                                <Typography level="h4">{drone.VehicleType} #{drone.ID}</Typography>
                                                             </Grid>
                                                             <Grid>
                                                             </Grid>

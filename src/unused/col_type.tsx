@@ -25,7 +25,7 @@ export const FactoryTypeCol: React.FC<Props> = ({ factorys }) => {
             sx={{ marginBottom: "15px" }}
           >
             <Grid xs>
-              <Typography level="h5">{factorys[0].building} </Typography>
+              <Typography level="h4">{factorys[0].building} </Typography>
             </Grid>
             <Grid>
               <Typography>{factorys.length}</Typography>
@@ -97,10 +97,10 @@ export const FactoryTypeCol: React.FC<Props> = ({ factorys }) => {
                         alignItems="center"
                       >
                         <Grid xs>
-                          <Typography level="body2">Producing:</Typography>
+                          <Typography level="body-md">Producing:</Typography>
                         </Grid>
                         <Grid>
-                          <Typography level="body2">
+                          <Typography level="body-md">
                             {factory.Recipe}
                           </Typography>
                         </Grid>

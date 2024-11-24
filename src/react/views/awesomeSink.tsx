@@ -69,7 +69,7 @@ export const AwesomeSink: React.FC = () => {
                         style: "decimal",
                       }).format(sinkResource[0].totalPoints)}
                     </Typography>
-                    <Typography level="body2">Total Points</Typography>
+                    <Typography level="body-md">Total Points</Typography>
                   </Grid>
                 </Grid>
 
@@ -105,37 +105,37 @@ export const AwesomeSink: React.FC = () => {
           <Grid xs={4}>
             <Card variant="outlined">
               <CardContent>
-                <Typography level="h5">
+                <Typography level="h4">
                   {new Intl.NumberFormat("en-US", {
                     style: "decimal",
                   }).format(sinkResource[0].nextCouponsRemainingPoints)}
                 </Typography>
-                <Typography level="body2">Next Coupon in</Typography>
+                <Typography level="body-md">Next Coupon in</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid xs={4}>
             <Card variant="outlined">
               <CardContent>
-                <Typography level="h5">
+                <Typography level="h4">
                   {new Intl.NumberFormat("en-US", {
                     style: "decimal",
                   }).format(sinkResource[0].progressionPercent * 100)}{" "}
                   %
                 </Typography>
-                <Typography level="body2">Next Coupon (%)</Typography>
+                <Typography level="body-md">Next Coupon (%)</Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid xs={4}>
             <Card variant="outlined">
               <CardContent>
-                <Typography level="h5">
+                <Typography level="h4">
                   {new Intl.NumberFormat("en-US", {
                     style: "decimal",
                   }).format(sinkResource[0].couponNumber)}
                 </Typography>
-                <Typography level="body2">Total Coupon(s)</Typography>
+                <Typography level="body-md">Total Coupon(s)</Typography>
               </CardContent>
             </Card>
           </Grid>

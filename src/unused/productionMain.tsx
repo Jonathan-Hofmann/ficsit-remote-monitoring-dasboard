@@ -109,14 +109,14 @@ const Factorys: React.FC = () => {
               <Card>
                 {/* <CardHeader title={factorys.length} subheader="Total Number of Factorys"></CardHeader> */}
                 <Typography level="h3">{factorys.length}</Typography>
-                <Typography level="body2">Total Number of Factorys</Typography>
+                <Typography level="body-md">Total Number of Factorys</Typography>
               </Card>
             </Grid>
             <Grid xs>
               <Card>
                 {/* <CardHeader title={ " MW"} subheader="Total Power Production"></CardHeader> */}
                 <Typography level="h3">{factorys.length} MW</Typography>
-                <Typography level="body2">Total Number of Factorys</Typography>
+                <Typography level="body-md">Total Number of Factorys</Typography>
               </Card>
             </Grid>
           </Grid>

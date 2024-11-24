@@ -41,7 +41,7 @@ export const Settings: React.FC = () => {
         <Grid xs={6}>
           <Card variant="outlined">
             <CardContent>
-              <Typography level="h5">Connection</Typography>
+              <Typography level="h4">Connection</Typography>
 
               <Input
                 sx={{ marginTop: "15px" }}
@@ -67,7 +67,7 @@ export const Settings: React.FC = () => {
         <Grid xs={3}>
           <Card variant="outlined">
             <CardContent>
-              <Typography level="h5">Data Interval Speed</Typography>
+              <Typography level="h4">Data Interval Speed</Typography>
 
               <Select
                 sx={{ marginTop: "15px" }}
@@ -93,10 +93,10 @@ export const Settings: React.FC = () => {
         <Grid xs={3}>
           <Card variant="outlined">
             <CardContent>
-              <Typography level="h5">Preferences</Typography>
+              <Typography level="h4">Preferences</Typography>
 
               <Typography
-                level="body2"
+                level="body-md"
                 marginTop="15px"
               >
                 More preferences coming soon.
@@ -109,7 +109,7 @@ export const Settings: React.FC = () => {
         <CardContent>
           <Typography
             startDecorator={<BsExclamationCircle />}
-            level="body3"
+            level="body-sm"
           >
             All Changes have immidiate effect.
           </Typography>

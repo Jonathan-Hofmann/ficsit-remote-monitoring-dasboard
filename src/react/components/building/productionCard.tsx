@@ -33,7 +33,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
     >
       <CardContent>
         <Typography
-          level="body1"
+          level="body-lg"
           alignSelf="center"
           sx={{ paddingTop: "3px", paddingBottom: "2px" }}
         >
@@ -62,7 +62,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               sx={{ paddingTop: 0 }}
             >
               <Grid xs>
-                <Typography level="body2">Current Production</Typography>
+                <Typography level="body-md">Current Production</Typography>
               </Grid>
               <Grid>
                 <Typography>
@@ -80,7 +80,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               sx={{ paddingTop: 0 }}
             >
               <Grid xs>
-                <Typography level="body2">Max. Production</Typography>
+                <Typography level="body-md">Max. Production</Typography>
               </Grid>
               <Grid>
                 <Typography>
@@ -98,7 +98,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               sx={{ paddingTop: 0 }}
             >
               <Grid xs>
-                <Typography level="body2">Efficency Production</Typography>
+                <Typography level="body-md">Efficency Production</Typography>
               </Grid>
               <Grid>
                 <Typography>{product.usingPercent.toFixed(2)} %</Typography>
@@ -110,7 +110,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               sx={{ paddingY: 0 }}
             >
               <Grid xs>
-                <Typography level="body2">Output Inventory</Typography>
+                <Typography level="body-md">Output Inventory</Typography>
               </Grid>
               <Grid>
                 <Typography

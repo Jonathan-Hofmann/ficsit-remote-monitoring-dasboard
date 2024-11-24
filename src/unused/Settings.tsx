@@ -73,7 +73,7 @@ const SettingsProvider: React.FC<Props> = ({ children }) => {
         <ModalDialog sx={{ width: "100%", maxWidth: "350px" }}>
           <ModalClose />
           <Typography
-            level="h6"
+            level="h4"
             marginBottom="15px"
           >
             Global Settings

@@ -134,14 +134,14 @@ export const Drones: React.FC = () => {
                             style={{ height: "35px", width: "35px" }}
                           />
                           <Typography
-                            level="h6"
+                            level="h4"
                             sx={{ marginTop: "10px" }}
                           >
                             {drone.homeStation}
                           </Typography>
 
                           <Typography
-                            level="body2"
+                            level="body-md"
                             sx={{ color: "rgba(255,255,255,0.5)" }}
                           >
                             Home Port
@@ -157,7 +157,7 @@ export const Drones: React.FC = () => {
                             {homeStation.droneStatus ===
                               DroneStationStatusEnum.No_Drone && (
                               <Chip
-                                color="info"
+                                color="warning"
                                 size="sm"
                                 variant="outlined"
                                 sx={{
@@ -171,7 +171,7 @@ export const Drones: React.FC = () => {
                             {homeStation.droneStatus ===
                               DroneStationStatusEnum.Cannot_Unload && (
                               <Chip
-                                color="info"
+                                color="warning"
                                 size="sm"
                                 variant="outlined"
                                 sx={{
@@ -185,7 +185,7 @@ export const Drones: React.FC = () => {
                             {homeStation.droneStatus ===
                               DroneStationStatusEnum.Docking && (
                               <Chip
-                                color="info"
+                                color="warning"
                                 size="sm"
                                 variant="outlined"
                                 sx={{
@@ -231,7 +231,7 @@ export const Drones: React.FC = () => {
                             style={{ height: "35px", width: "35px" }}
                           />
                           <Typography
-                            level="h6"
+                            level="h4"
                             sx={{ marginTop: "10px" }}
                           >
                             {drone.currentDestination === ""
@@ -240,7 +240,7 @@ export const Drones: React.FC = () => {
                           </Typography>
 
                           <Typography
-                            level="body2"
+                            level="body-md"
                             sx={{ color: "rgba(255,255,255,0.5)" }}
                           >
                             Linked Port
@@ -256,7 +256,7 @@ export const Drones: React.FC = () => {
                             {destStation.droneStatus ===
                               DroneStationStatusEnum.No_Drone && (
                               <Chip
-                                color="info"
+                                color="warning"
                                 size="sm"
                                 variant="outlined"
                                 sx={{
@@ -270,7 +270,7 @@ export const Drones: React.FC = () => {
                             {destStation.droneStatus ===
                               DroneStationStatusEnum.Cannot_Unload && (
                               <Chip
-                                color="info"
+                                color="warning"
                                 size="sm"
                                 variant="outlined"
                                 sx={{
@@ -284,7 +284,7 @@ export const Drones: React.FC = () => {
                             {destStation.droneStatus ===
                               DroneStationStatusEnum.Docking && (
                               <Chip
-                                color="info"
+                                color="warning"
                                 size="sm"
                                 variant="outlined"
                                 sx={{
@@ -340,7 +340,7 @@ export const Drones: React.FC = () => {
                           {drone.currentFlyingMode ===
                             DroneFlyingModeEnum.Flying && (
                             <Chip
-                              color="info"
+                              color="warning"
                               size="sm"
                               variant="outlined"
                               sx={{
@@ -354,7 +354,7 @@ export const Drones: React.FC = () => {
                           {drone.currentFlyingMode ===
                             DroneFlyingModeEnum.Travelling && (
                             <Chip
-                              color="info"
+                              color="warning"
                               size="sm"
                               variant="outlined"
                               sx={{
@@ -368,7 +368,7 @@ export const Drones: React.FC = () => {
                           {drone.currentFlyingMode ===
                             DroneFlyingModeEnum.None && (
                             <Chip
-                              color="info"
+                              color="warning"
                               size="sm"
                               variant="outlined"
                               sx={{
@@ -453,7 +453,7 @@ export const Drones: React.FC = () => {
                             >
                               {homeStation.averageRoundTrip}
                             </Typography>
-                            <Typography level="body2">
+                            <Typography level="body-md">
                               Avg. Round Trip Time
                             </Typography>
                           </CardContent>
@@ -481,7 +481,7 @@ export const Drones: React.FC = () => {
                             >
                               {homeStation.latestRoundTrip}
                             </Typography>
-                            <Typography level="body2">
+                            <Typography level="body-md">
                               Last Round Trip Time
                             </Typography>
                           </CardContent>
@@ -517,7 +517,7 @@ export const Drones: React.FC = () => {
                               )}{" "}
                               / min
                             </Typography>
-                            <Typography level="body2">
+                            <Typography level="body-md">
                               Estimated Battery Rate
                             </Typography>
                           </CardContent>
@@ -548,7 +548,7 @@ export const Drones: React.FC = () => {
                               )}{" "}
                               stacks
                             </Typography>
-                            <Typography level="body2">
+                            <Typography level="body-md">
                               Estimated Transfer Rate (per minute)
                             </Typography>
                           </CardContent>
@@ -631,7 +631,7 @@ export const Drones: React.FC = () => {
                         {drone.currentFlyingMode ===
                           DroneFlyingModeEnum.Flying && (
                           <Chip
-                            color="info"
+                            color="warning"
                             size="sm"
                             variant="outlined"
                             sx={{
@@ -645,7 +645,7 @@ export const Drones: React.FC = () => {
                         {drone.currentFlyingMode ===
                           DroneFlyingModeEnum.Travelling && (
                           <Chip
-                            color="info"
+                            color="warning"
                             size="sm"
                             variant="outlined"
                             sx={{
@@ -659,7 +659,7 @@ export const Drones: React.FC = () => {
                         {drone.currentFlyingMode ===
                           DroneFlyingModeEnum.Flying && (
                           <Chip
-                            color="info"
+                            color="warning"
                             size="sm"
                             variant="outlined"
                             sx={{

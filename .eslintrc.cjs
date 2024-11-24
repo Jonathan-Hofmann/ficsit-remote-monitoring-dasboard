@@ -123,4 +123,8 @@ module.exports = {
       },
     },
   ],
+  globals: {
+    window: "readonly",
+    document: "readonly",
+  },
 };

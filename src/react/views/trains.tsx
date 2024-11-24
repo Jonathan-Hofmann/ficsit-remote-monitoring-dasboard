@@ -168,13 +168,13 @@ export const Trains: React.FC = () => {
                             style={{ height: "70px", width: "70px" }}
                           />
                           <Typography
-                            level="h6"
+                            level="h4"
                             sx={{ marginBottom: "5px", marginTop: "10px" }}
                           >
                             {previousStation.name}
                           </Typography>
                           <Typography
-                            level="body3"
+                            level="body-sm"
                             sx={{ marginBottom: "20px" }}
                           >
                             Departure Station
@@ -255,7 +255,7 @@ export const Trains: React.FC = () => {
                       </CardContent>
                     ) : (
                       <CardContent>
-                        <Typography level="body2">
+                        <Typography level="body-md">
                           No Timetable connected
                         </Typography>
                       </CardContent>
@@ -278,7 +278,7 @@ export const Trains: React.FC = () => {
                           style={{ height: "80px", width: "80px" }}
                         />
                         <Typography
-                          level="h6"
+                          level="h4"
                           sx={{ marginBottom: "5px", marginTop: "10px" }}
                         >
                           {train.name}
@@ -318,7 +318,7 @@ export const Trains: React.FC = () => {
                           <Grid>
                             {train.status === TrainStatusEnum.Self_Driving ? (
                               <Chip
-                                color="info"
+                                color="warning"
                                 size="sm"
                                 variant="outlined"
                                 sx={{
@@ -422,13 +422,13 @@ export const Trains: React.FC = () => {
                             style={{ height: "70px", width: "70px" }}
                           />
                           <Typography
-                            level="h6"
+                            level="h4"
                             sx={{ marginBottom: "5px", marginTop: "10px" }}
                           >
                             {nextStation.name}
                           </Typography>
                           <Typography
-                            level="body3"
+                            level="body-sm"
                             sx={{ marginBottom: "20px" }}
                           >
                             Destination Station
@@ -501,7 +501,7 @@ export const Trains: React.FC = () => {
                       </CardContent>
                     ) : (
                       <CardContent>
-                        <Typography level="body2">
+                        <Typography level="body-md">
                           No Timetable connected
                         </Typography>
                       </CardContent>

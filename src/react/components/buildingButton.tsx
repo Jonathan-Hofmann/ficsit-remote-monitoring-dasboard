@@ -40,7 +40,7 @@ export const BuildingButton: React.FC<Props> = ({
                 alt={factory}
                 style={{ height: "70px", width: "70px" }}
               />
-              <Typography level="h5">{`Open ${factory} Panel`}</Typography>
+              <Typography level="h4">{`Open ${factory} Panel`}</Typography>
             </Stack>
           </CardContent>
         </Card>

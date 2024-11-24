@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
         <Divider sx={{ marginTop: "40px", marginBottom: "20px" }} />
         <Grid container>
           <Grid xs>
-            <Typography level="body2">
+            <Typography level="body-md">
               Created with lots of ☕ by{" "}
               <Link
                 style={{
@@ -48,14 +48,14 @@ export const Footer: React.FC = () => {
           </Grid>
           <Grid xs>
             <Typography
-              level="body1"
+              level="body-lg"
               marginBottom="5px"
               textAlign="center"
             >
               Ficsit Remote Monitoring Dashboard
             </Typography>
             <Typography
-              level="body2"
+              level="body-md"
               textAlign="center"
             >
               Github Repository{" "}
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
           <Grid xs>
             <Typography
               textAlign="right"
-              level="body2"
+              level="body-md"
             >
               Base Mod for Satisfactory:{" "}
               <Link
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
             </Typography>
             <Typography
               textAlign="right"
-              level="body2"
+              level="body-md"
             >
               Start mod with{" "}
               <Typography
