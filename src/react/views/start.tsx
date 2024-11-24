@@ -10,7 +10,7 @@ import {
   ModalDialog,
   Typography,
 } from "@mui/joy";
-import { Skeleton } from "@mui/material";
+import Skeleton from '@mui/joy/Skeleton';
 import React, { useState } from "react";
 import { BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 
@@ -242,12 +242,12 @@ export const Start: React.FC = () => {
                         />
 
                         <Skeleton
-                          variant="rounded"
+                          variant="rectangular"
                           sx={{ marginTop: "20px", marginBottom: "10px" }}
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton width="60px" />
+                        <Skeleton variant="text" width="60px" />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -272,12 +272,12 @@ export const Start: React.FC = () => {
                         />
 
                         <Skeleton
-                          variant="rounded"
+                          variant="rectangular"
                           sx={{ marginTop: "20px", marginBottom: "10px" }}
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton width="60px" />
+                        <Skeleton variant="text" width="60px" />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -302,12 +302,12 @@ export const Start: React.FC = () => {
                         />
 
                         <Skeleton
-                          variant="rounded"
+                          variant="rectangular"
                           sx={{ marginTop: "20px", marginBottom: "10px" }}
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton width="60px" />
+                        <Skeleton variant="text" width="60px" />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -332,12 +332,12 @@ export const Start: React.FC = () => {
                         />
 
                         <Skeleton
-                          variant="rounded"
+                          variant="rectangular"
                           sx={{ marginTop: "20px", marginBottom: "10px" }}
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton width="60px" />
+                        <Skeleton variant="text" width="60px" />
                       </CardContent>
                     </Card>
                   </Grid>

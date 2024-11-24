@@ -7,9 +7,9 @@ import {
   Divider,
   Grid,
   IconButton,
+  Skeleton,
   Typography,
 } from "@mui/joy";
-import { CardHeader, Skeleton } from "@mui/material";
 import React from "react";
 import {
   BsBatteryHalf,
@@ -141,15 +141,13 @@ export const PowerMain: React.FC = () => {
       >
         <Grid xs>
           <Card>
-            <CardHeader
-              title={`${allCapacity} MW`}
-              subheader="Total Power Capacity"
-            />
+            <Typography level="body-lg">{allCapacity} MW</Typography>
+            <Typography level="body-sm">Total Power Capacity</Typography>
             <Typography level="h3">
               {!power ? (
                 <Skeleton
                   sx={{ marginBottom: "8px" }}
-                  variant="rounded"
+                  variant="rectangular"
                   height="30px"
                   width="80px"
                 />
@@ -169,15 +167,13 @@ export const PowerMain: React.FC = () => {
         </Grid>
         <Grid xs>
           <Card>
-            <CardHeader
-              title={`${allProduction} MW`}
-              subheader="Total Power Production"
-            />
+            <Typography level="body-lg">{allProduction} MW</Typography>
+            <Typography level="body-sm">Total Power Production</Typography>
             <Typography level="h3">
               {!power ? (
                 <Skeleton
                   sx={{ marginBottom: "8px" }}
-                  variant="rounded"
+                  variant="rectangular"
                   height="30px"
                   width="80px"
                 />
@@ -197,15 +193,13 @@ export const PowerMain: React.FC = () => {
         </Grid>
         <Grid xs>
           <Card>
-            <CardHeader
-              title={`${allBatteryCapacity} MW`}
-              subheader="Total Battery Capacity"
-            />
+            <Typography level="body-lg">{allBatteryCapacity} MW</Typography>
+            <Typography level="body-sm">Total Battery Capacity</Typography>
             <Typography level="h3">
               {!power ? (
                 <Skeleton
                   sx={{ marginBottom: "8px" }}
-                  variant="rounded"
+                  variant="rectangular"
                   height="30px"
                   width="80px"
                 />
@@ -215,7 +209,7 @@ export const PowerMain: React.FC = () => {
               {!power ? (
                 <Skeleton
                   sx={{ marginBottom: "8px" }}
-                  variant="rounded"
+                  variant="rectangular"
                   height="30px"
                   width="80px"
                 />
@@ -237,26 +231,22 @@ export const PowerMain: React.FC = () => {
           {!power && (
             <Skeleton
               sx={{ marginBottom: "8px", width: "100%", borderRadius: "10px" }}
-              variant="rounded"
+              variant="rectangular"
               height="93px"
             />
           )}
           {!!power && !fuseBroken && (
             <Card>
-              <CardHeader
-                title="All Good"
-                subheader="Fuse Status"
-              />
+              <Typography level="body-lg">All Good</Typography>
+              <Typography level="body-sm">Fuse Status</Typography>
               <Typography level="h3">No Problems</Typography>
               <Typography>Current Status</Typography>
             </Card>
           )}
           {!!power && !fuseBroken && (
             <Card>
-              <CardHeader
-                title="Broken!"
-                subheader="Fuse Status"
-              />
+              <Typography level="body-lg">Broken!</Typography>
+              <Typography level="body-sm">Fuse Status</Typography>
               <Typography level="h3">Broken!</Typography>
               <Typography>Current Status</Typography>
             </Card>
@@ -339,10 +329,8 @@ export const PowerMain: React.FC = () => {
                   >
                     <Grid xs>
                       <Card variant="outlined">
-                        <CardHeader
-                          title={`${powerGroup.powerCapacity} MW`}
-                          subheader="Power Capacity"
-                        />
+                        <Typography level="body-lg">{powerGroup.powerCapacity}</Typography>
+                        <Typography level="body-sm">Power Capacity</Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -364,10 +352,8 @@ export const PowerMain: React.FC = () => {
                               : "var(--joy-palette-background-surface)",
                         }}
                       >
-                        <CardHeader
-                          title={`${powerGroup.powerProduction} MW`}
-                          subheader="Power Production"
-                        />
+                        <Typography level="body-lg">{powerGroup.powerProduction}</Typography>
+                        <Typography level="body-sm">Power Production</Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -383,10 +369,8 @@ export const PowerMain: React.FC = () => {
                     </Grid>
                     <Grid xs>
                       <Card variant="outlined">
-                        <CardHeader
-                          title={`${powerGroup.powerConsumed} MW`}
-                          subheader="Power Consumed"
-                        />
+                        <Typography level="body-lg">{powerGroup.powerConsumed}</Typography>
+                        <Typography level="body-sm">Power Consumed</Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -402,10 +386,8 @@ export const PowerMain: React.FC = () => {
                     </Grid>
                     <Grid xs>
                       <Card variant="outlined">
-                        <CardHeader
-                          title={`${powerGroup.powerMaxConsumed} MW`}
-                          subheader="Power max. Consumed"
-                        />
+                        <Typography level="body-lg">{powerGroup.powerMaxConsumed}</Typography>
+                        <Typography level="body-sm">Power max. Consumed</Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -457,10 +439,8 @@ export const PowerMain: React.FC = () => {
                       >
                         <Grid xs>
                           <Card variant="outlined">
-                            <CardHeader
-                              title={`${powerGroup.batteryCapacity} MW`}
-                              subheader="Battery Capacity"
-                            />
+                            <Typography level="body-lg">{powerGroup.batteryCapacity}</Typography>
+                            <Typography level="body-sm">Battery Capacity</Typography>
                             <Typography>
                               {powerGroup.batteryCapacity} MWh
                             </Typography>
@@ -471,10 +451,8 @@ export const PowerMain: React.FC = () => {
                         </Grid>
                         <Grid xs>
                           <Card variant="outlined">
-                            <CardHeader
-                              title={`${powerGroup.batteryPercent} %`}
-                              subheader="Battery Filled Percent"
-                            />
+                            <Typography level="body-lg">{powerGroup.batteryPercent}</Typography>
+                            <Typography level="body-sm">Battery Filled Percent</Typography>
                             <Typography>
                               {Math.round(powerGroup.batteryPercent * 100) /
                                 100}{" "}
@@ -487,10 +465,8 @@ export const PowerMain: React.FC = () => {
                         </Grid>
                         <Grid xs>
                           <Card variant="outlined">
-                            <CardHeader
-                              title={`${powerGroup.batteryDifferential} MW`}
-                              subheader="Battery Differential"
-                            />
+                            <Typography level="body-lg">{powerGroup.batteryDifferential}</Typography>
+                            <Typography level="body-sm">Battery Differential</Typography>
                             <Typography>
                               {Math.round(
                                 powerGroup.batteryDifferential * 100,
@@ -504,10 +480,8 @@ export const PowerMain: React.FC = () => {
                         </Grid>
                         <Grid xs>
                           <Card variant="outlined">
-                            <CardHeader
-                              title={powerGroup.batteryTimeFull}
-                              subheader="Battery Full At Time"
-                            />
+                            <Typography level="body-lg">{powerGroup.batteryTimeFull}</Typography>
+                            <Typography level="body-sm">Battery Full At Time</Typography>
                             <Typography>
                               {powerGroup.batteryTimeEmpty !== "00:00:00"
                                 ? powerGroup.batteryTimeEmpty
@@ -542,11 +516,11 @@ export const PowerMain: React.FC = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Skeleton width="80px" />
+                  <Skeleton variant="text" width="80px" />
                 </Box>
               </Grid>
               <Grid>
-                <Skeleton width="120px" />
+                <Skeleton variant="text" width="120px" />
               </Grid>
             </Grid>
             <Grid
@@ -556,7 +530,7 @@ export const PowerMain: React.FC = () => {
               <Grid xs>
                 <Card variant="outlined">
                   <Typography level="h4">
-                    <Skeleton width="110px" />
+                    <Skeleton variant="text" width="110px" />
                   </Typography>
                   <Typography
                     marginTop="10px"
@@ -569,7 +543,7 @@ export const PowerMain: React.FC = () => {
               <Grid xs>
                 <Card variant="outlined">
                   <Typography level="h4">
-                    <Skeleton width="80px" />
+                    <Skeleton variant="text" width="80px" />
                   </Typography>
                   <Typography
                     marginTop="10px"
@@ -582,7 +556,7 @@ export const PowerMain: React.FC = () => {
               <Grid xs>
                 <Card variant="outlined">
                   <Typography level="h4">
-                    <Skeleton width="90px" />
+                    <Skeleton variant="text" width="90px" />
                   </Typography>
                   <Typography
                     marginTop="10px"
@@ -595,7 +569,7 @@ export const PowerMain: React.FC = () => {
               <Grid xs>
                 <Card variant="outlined">
                   <Typography level="h4">
-                    <Skeleton width="80px" />
+                    <Skeleton variant="text" width="80px" />
                   </Typography>
                   <Typography
                     marginTop="10px"
@@ -615,7 +589,7 @@ export const PowerMain: React.FC = () => {
                 <Typography level="h4">Battery</Typography>
               </Grid>
               <Grid>
-                <Skeleton width="80px" />
+                <Skeleton variant="text" width="80px" />
               </Grid>
             </Grid>
           </CardContent>

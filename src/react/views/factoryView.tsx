@@ -5,10 +5,10 @@ import {
   Chip,
   Container,
   Grid,
+  Skeleton,
   Stack,
   Typography,
 } from "@mui/joy";
-import { Skeleton } from "@mui/material";
 import React from "react";
 import { BsArrowRightShort, BsExclamationTriangleFill } from "react-icons/bs";
 import { redirect, useSearchParams } from "react-router-dom";
@@ -258,7 +258,7 @@ export const DetailedFactoryView: React.FC = () => {
                   />
 
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ marginTop: "20px", marginBottom: "10px" }}
                     width="120px"
                     height="20px"
@@ -275,11 +275,11 @@ export const DetailedFactoryView: React.FC = () => {
                       <Typography>PRODUCTION</Typography>
                     </Grid>
                     <Grid>
-                      <Skeleton width="80px" />
+                      <Skeleton variant="text" width="80px" />
                     </Grid>
                   </Grid>
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ width: "100%" }}
                     height="140px"
                   />
@@ -291,7 +291,7 @@ export const DetailedFactoryView: React.FC = () => {
                     INGREDIENTS
                   </Typography>
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ width: "100%" }}
                     height="140px"
                   />
@@ -311,7 +311,7 @@ export const DetailedFactoryView: React.FC = () => {
                   />
 
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ marginTop: "20px", marginBottom: "10px" }}
                     width="120px"
                     height="20px"
@@ -328,11 +328,11 @@ export const DetailedFactoryView: React.FC = () => {
                       <Typography>PRODUCTION</Typography>
                     </Grid>
                     <Grid>
-                      <Skeleton width="80px" />
+                      <Skeleton variant="text" width="80px" />
                     </Grid>
                   </Grid>
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ width: "100%" }}
                     height="140px"
                   />
@@ -344,7 +344,7 @@ export const DetailedFactoryView: React.FC = () => {
                     INGREDIENTS
                   </Typography>
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ width: "100%" }}
                     height="140px"
                   />
@@ -364,7 +364,7 @@ export const DetailedFactoryView: React.FC = () => {
                   />
 
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ marginTop: "20px", marginBottom: "10px" }}
                     width="120px"
                     height="20px"
@@ -381,11 +381,11 @@ export const DetailedFactoryView: React.FC = () => {
                       <Typography>PRODUCTION</Typography>
                     </Grid>
                     <Grid>
-                      <Skeleton width="80px" />
+                      <Skeleton variant="text" width="80px" />
                     </Grid>
                   </Grid>
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ width: "100%" }}
                     height="140px"
                   />
@@ -397,7 +397,7 @@ export const DetailedFactoryView: React.FC = () => {
                     INGREDIENTS
                   </Typography>
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ width: "100%" }}
                     height="140px"
                   />

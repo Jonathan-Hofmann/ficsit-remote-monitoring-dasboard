@@ -1,5 +1,4 @@
-import { Box, Card, CardContent, Grid, Stack, Typography } from "@mui/joy";
-import { Skeleton } from "@mui/material";
+import { Box, Card, CardContent, Grid, Skeleton, Stack, Typography } from "@mui/joy";
 import React, { useEffect, useRef } from "react";
 
 import { EndpointEnum } from "../../enums/endpoint.enum";
@@ -172,7 +171,7 @@ export const AwesomeSink: React.FC = () => {
                   />
 
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ marginTop: "20px", marginBottom: "10px" }}
                     width="120px"
                     height="20px"
@@ -184,7 +183,7 @@ export const AwesomeSink: React.FC = () => {
                   flexDirection="column"
                 >
                   <Skeleton
-                    variant="rounded"
+                    variant="rectangular"
                     sx={{ marginBottom: "10px" }}
                     width="80px"
                     height="40px"
@@ -192,12 +191,13 @@ export const AwesomeSink: React.FC = () => {
                   <Skeleton
                     sx={{ marginBottom: "10px" }}
                     width="120px"
+                     variant="text"
                   />
                 </Grid>
               </Grid>
 
               <Skeleton
-                variant="rounded"
+                variant="rectangular"
                 sx={{ width: "100%" }}
                 height="140px"
               />
@@ -215,12 +215,12 @@ export const AwesomeSink: React.FC = () => {
           <Card variant="outlined">
             <CardContent>
               <Skeleton
-                variant="rounded"
+                variant="rectangular"
                 sx={{ marginBottom: "10px" }}
                 width="80px"
                 height="40px"
               />
-              <Skeleton width="120px" />
+              <Skeleton variant="text" width="120px" />
             </CardContent>
           </Card>
         </Grid>
@@ -228,12 +228,12 @@ export const AwesomeSink: React.FC = () => {
           <Card variant="outlined">
             <CardContent>
               <Skeleton
-                variant="rounded"
+                variant="rectangular"
                 sx={{ marginBottom: "10px" }}
                 width="80px"
                 height="40px"
               />
-              <Skeleton width="120px" />
+              <Skeleton variant="text" width="120px" />
             </CardContent>
           </Card>
         </Grid>
@@ -241,12 +241,12 @@ export const AwesomeSink: React.FC = () => {
           <Card variant="outlined">
             <CardContent>
               <Skeleton
-                variant="rounded"
+                variant="rectangular"
                 sx={{ marginBottom: "10px" }}
                 width="80px"
                 height="40px"
               />
-              <Skeleton width="120px" />
+              <Skeleton variant="text" width="120px" />
             </CardContent>
           </Card>
         </Grid>

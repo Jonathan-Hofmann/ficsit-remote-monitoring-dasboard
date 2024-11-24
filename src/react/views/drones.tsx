@@ -6,10 +6,10 @@ import {
   CircularProgress,
   Container,
   Grid,
+  Skeleton,
   Stack,
   Typography,
 } from "@mui/joy";
-import { Skeleton } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   BsBatteryHalf,
@@ -841,13 +841,13 @@ export const Drones: React.FC = () => {
                 />
 
                 <Skeleton
-                  variant="rounded"
+                  variant="rectangular"
                   sx={{ marginTop: "10px", marginBottom: "10px" }}
                   width="120px"
                   height="20px"
                 />
 
-                <Skeleton width="80px" />
+                <Skeleton variant="text" width="80px" />
               </CardContent>
             </Card>
 
@@ -868,13 +868,13 @@ export const Drones: React.FC = () => {
                 />
 
                 <Skeleton
-                  variant="rounded"
+                  variant="rectangular"
                   sx={{ marginTop: "10px", marginBottom: "10px" }}
                   width="120px"
                   height="20px"
                 />
 
-                <Skeleton width="80px" />
+                <Skeleton variant="text" width="80px" />
               </CardContent>
             </Card>
           </Grid>
@@ -897,14 +897,8 @@ export const Drones: React.FC = () => {
                     alt="Satisfactory Drone illustration"
                     style={{ height: "100px" }}
                   />
-                  <Skeleton
-                    variant="circular"
-                    sx={{ marginTop: "20px", marginBottom: "10px" }}
-                    width="80px"
-                    height="80px"
-                  />
 
-                  <Skeleton width="80px" />
+                  <Skeleton variant="text" width="80px" />
                 </Stack>
 
                 <Grid container>
@@ -914,7 +908,7 @@ export const Drones: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid>
-                    <Skeleton width="100px" />
+                    <Skeleton variant="text" width="100px" />
                   </Grid>
                 </Grid>
                 <Grid container>
@@ -924,7 +918,7 @@ export const Drones: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid>
-                    <Skeleton width="60px" />
+                    <Skeleton variant="text" width="60px" />
                   </Grid>
                 </Grid>
                 <Grid container>
@@ -934,7 +928,7 @@ export const Drones: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid>
-                    <Skeleton width="50px" />
+                    <Skeleton variant="text" width="50px" />
                   </Grid>
                 </Grid>
               </CardContent>
@@ -969,13 +963,13 @@ export const Drones: React.FC = () => {
                     />
 
                     <Skeleton
-                      variant="rounded"
+                      variant="rectangular"
                       sx={{ marginTop: "10px", marginBottom: "10px" }}
                       width="120px"
                       height="20px"
                     />
 
-                    <Skeleton width="80px" />
+                    <Skeleton variant="text" width="80px" />
                   </CardContent>
                 </Card>
               </Grid>
@@ -1000,13 +994,13 @@ export const Drones: React.FC = () => {
                     />
 
                     <Skeleton
-                      variant="rounded"
+                      variant="rectangular"
                       sx={{ marginTop: "10px", marginBottom: "10px" }}
                       width="120px"
                       height="20px"
                     />
 
-                    <Skeleton width="80px" />
+                    <Skeleton variant="text" width="80px" />
                   </CardContent>
                 </Card>
               </Grid>
@@ -1036,13 +1030,13 @@ export const Drones: React.FC = () => {
                     />
 
                     <Skeleton
-                      variant="rounded"
+                      variant="rectangular"
                       sx={{ marginTop: "10px", marginBottom: "10px" }}
                       width="120px"
                       height="20px"
                     />
 
-                    <Skeleton width="80px" />
+                    <Skeleton variant="text" width="80px" />
                   </CardContent>
                 </Card>
               </Grid>
@@ -1067,13 +1061,13 @@ export const Drones: React.FC = () => {
                     />
 
                     <Skeleton
-                      variant="rounded"
+                      variant="rectangular"
                       sx={{ marginTop: "10px", marginBottom: "10px" }}
                       width="120px"
                       height="20px"
                     />
 
-                    <Skeleton width="80px" />
+                    <Skeleton variant="text" width="80px" />
                   </CardContent>
                 </Card>
               </Grid>

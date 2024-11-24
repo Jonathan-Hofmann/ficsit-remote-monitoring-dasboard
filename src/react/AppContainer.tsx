@@ -1,5 +1,4 @@
-import { Grid } from "@mui/joy";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/joy";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 

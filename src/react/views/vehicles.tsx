@@ -6,11 +6,11 @@ import {
   Container,
   Grid,
   IconButton,
+  Skeleton,
   Stack,
   Tooltip,
   Typography,
 } from "@mui/joy";
-import { Skeleton } from "@mui/material";
 import React from "react";
 import { BsQuestionCircle, BsXCircle } from "react-icons/bs";
 
@@ -326,9 +326,8 @@ export const Vehicles: React.FC = () => {
                             </Grid>
                             <Grid>
                               <img
-                                src={`/assets/Resource/${
-                                  vehicle.fuel?.[0]?.name
-                                }.png`}
+                                src={`/assets/Resource/${vehicle.fuel?.[0]?.name
+                                  }.png`}
                                 alt="Satisfactory Tractor fuel illustration"
                                 style={{ height: "30px", width: "30px" }}
                               />
@@ -555,9 +554,8 @@ export const Vehicles: React.FC = () => {
                             </Grid>
                             <Grid>
                               <img
-                                src={`/assets/Resource/${
-                                  vehicle.fuel?.[0]?.name
-                                }.png`}
+                                src={`/assets/Resource/${vehicle.fuel?.[0]?.name
+                                  }.png`}
                                 alt="Satisfactory Tractor fuel illustration"
                                 style={{ height: "30px", width: "30px" }}
                               />
@@ -607,12 +605,12 @@ export const Vehicles: React.FC = () => {
                     <Grid xs>
                       <Box sx={{ marginBottom: "10px" }}>
                         <Skeleton
-                          variant="rounded"
+                          variant="rectangular"
                           height="20px"
                           width="70px"
                         />
                       </Box>
-                      <Skeleton width="50px" />
+                      <Skeleton variant="text" width="50px" />
                     </Grid>
                   </Grid>
                 </CardContent>
@@ -640,12 +638,12 @@ export const Vehicles: React.FC = () => {
                     <Grid xs>
                       <Box sx={{ marginBottom: "10px" }}>
                         <Skeleton
-                          variant="rounded"
+                          variant="rectangular"
                           height="20px"
                           width="70px"
                         />
                       </Box>
-                      <Skeleton width="50px" />
+                      <Skeleton variant="text" width="50px" />
                     </Grid>
                   </Grid>
                 </CardContent>
@@ -695,21 +693,21 @@ export const Vehicles: React.FC = () => {
                       >
                         <Grid>
                           <Skeleton
-                            variant="rounded"
+                            variant="rectangular"
                             height="20px"
                             width="70px"
                           />
                         </Grid>
                         <Grid>
                           <Skeleton
-                            variant="rounded"
+                            variant="rectangular"
                             height="20px"
                             width="90px"
                           />
                         </Grid>
                       </Grid>
                     </Box>
-                    <Skeleton width="50px" />
+                    <Skeleton variant="text" width="50px" />
                   </Stack>
 
                   <Grid
@@ -725,7 +723,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="120px" />
+                          <Skeleton variant="text" width="120px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -735,7 +733,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="100px" />
+                          <Skeleton variant="text" width="100px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -745,7 +743,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="80px" />
+                          <Skeleton variant="text" width="80px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -755,7 +753,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="110px" />
+                          <Skeleton variant="text" width="110px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -765,7 +763,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="50px" />
+                          <Skeleton variant="text" width="50px" />
                         </Grid>
                       </Grid>
                     </Grid>
@@ -799,21 +797,21 @@ export const Vehicles: React.FC = () => {
                       >
                         <Grid>
                           <Skeleton
-                            variant="rounded"
+                            variant="rectangular"
                             height="20px"
                             width="70px"
                           />
                         </Grid>
                         <Grid>
                           <Skeleton
-                            variant="rounded"
+                            variant="rectangular"
                             height="20px"
                             width="90px"
                           />
                         </Grid>
                       </Grid>
                     </Box>
-                    <Skeleton width="50px" />
+                    <Skeleton variant="text" width="50px" />
                   </Stack>
 
                   <Grid
@@ -829,7 +827,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="120px" />
+                          <Skeleton variant="text" width="120px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -839,7 +837,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="100px" />
+                          <Skeleton variant="text" width="100px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -849,7 +847,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="80px" />
+                          <Skeleton variant="text" width="80px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -859,7 +857,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="110px" />
+                          <Skeleton variant="text" width="110px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -869,7 +867,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="50px" />
+                          <Skeleton variant="text" width="50px" />
                         </Grid>
                       </Grid>
                     </Grid>
@@ -921,21 +919,21 @@ export const Vehicles: React.FC = () => {
                       >
                         <Grid>
                           <Skeleton
-                            variant="rounded"
+                            variant="rectangular"
                             height="20px"
                             width="70px"
                           />
                         </Grid>
                         <Grid>
                           <Skeleton
-                            variant="rounded"
+                            variant="rectangular"
                             height="20px"
                             width="90px"
                           />
                         </Grid>
                       </Grid>
                     </Box>
-                    <Skeleton width="50px" />
+                    <Skeleton variant="text" width="50px" />
                   </Stack>
 
                   <Grid
@@ -951,7 +949,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="120px" />
+                          <Skeleton variant="text" width="120px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -961,7 +959,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="100px" />
+                          <Skeleton variant="text" width="100px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -971,7 +969,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="80px" />
+                          <Skeleton variant="text" width="80px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -981,7 +979,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="110px" />
+                          <Skeleton variant="text" width="110px" />
                         </Grid>
                       </Grid>
                       <Grid container>
@@ -991,7 +989,7 @@ export const Vehicles: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid>
-                          <Skeleton width="50px" />
+                          <Skeleton variant="text" width="50px" />
                         </Grid>
                       </Grid>
                     </Grid>
