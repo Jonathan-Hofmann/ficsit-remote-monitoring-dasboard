@@ -3,6 +3,7 @@ import React from "react";
 
 import { gameItemsDictionnary } from "../../../dictionnaries/gameItems.dictionnary";
 import { GameResourcesTypeEnum } from "../../../enums/gameResourcesType.enum";
+import { getImageHelper } from "../../../helpers/getImage.helper";
 import type { RecipeItemFm } from "../../../types/apis/frontModel/recipeItemFm";
 import type { GameItemResource } from "../../../types/gameItems/resource";
 
@@ -22,9 +23,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
         padding: "3px",
         borderColor:
           Math.floor(
-            item && isItemSolid
-              ? product.amount
-              : Math.round(product.amount / 10) / 10,
+            isItemSolid ? product.amount : Math.round(product.amount / 10) / 10,
           ) > 50
             ? "var(--joy-palette-warning-main)"
             : "var(--joy-palette-neutral-outlinedBorder)",
@@ -46,11 +45,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
         >
           <Grid>
             <img
-              src={
-                item
-                  ? `/assets/${item.category}/${product.name}.png`
-                  : undefined
-              }
+              src={getImageHelper(product.className)}
               alt={product.name}
               style={{ height: "30px", width: "30px" }}
             />
@@ -67,7 +62,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               <Grid>
                 <Typography>
                   {`${
-                    item && isItemSolid
+                    isItemSolid
                       ? product.currentUsage.toFixed(2)
                       : `${Math.round(product.currentUsage / 10) / 100} m³`
                   }/min`}
@@ -85,7 +80,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               <Grid>
                 <Typography>
                   {`${
-                    item && isItemSolid
+                    isItemSolid
                       ? product.maxUsage.toFixed(2)
                       : `${Math.round(product.maxUsage / 10) / 100} m³`
                   }/min`}
@@ -116,7 +111,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
                 <Typography
                   sx={{
                     color: (() => {
-                      if (item && isItemSolid) {
+                      if (isItemSolid) {
                         return "inherit";
                       }
                       return product.amount > 50
@@ -125,7 +120,7 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
                     })(),
                   }}
                 >
-                  {item && isItemSolid
+                  {isItemSolid
                     ? product.amount
                     : `${(Math.round(product.amount / 10) / 100).toFixed(2)} m³`}
                 </Typography>

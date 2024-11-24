@@ -8,7 +8,7 @@
     "lint": "eslint src",
     "lint-fix": "eslint src --fix",
     "check-types": "tsc --noEmit",
-    "preview": "vite preview",
+    "preview": "vite preview --open",
     "clean": "rm -rf node_modules/ node_modules/.cache/"
   },
   "dependencies": {

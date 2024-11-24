@@ -15,7 +15,6 @@ import React from "react";
 import { BsQuestionCircle, BsXCircle } from "react-icons/bs";
 
 import { EndpointEnum } from "../../enums/endpoint.enum";
-import { GameItemsEnum } from "../../enums/gameItems.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { VehicleDto } from "../../types/apis/dataTransferObject/vehicleDto";
 import type { VehicleFm } from "../../types/apis/frontModel/vehicleFm";
@@ -61,7 +60,10 @@ export const Vehicles: React.FC = () => {
           >
             {vehicles.map((vehicle) => {
               return (
-                <Grid xs={3}>
+                <Grid
+                  key={vehicle.id}
+                  xs={3}
+                >
                   <a
                     href={`#${vehicle.id}`}
                     style={{ textDecoration: "none" }}
@@ -84,27 +86,11 @@ export const Vehicles: React.FC = () => {
                           sx={{ paddingX: 0 }}
                         >
                           <Grid>
-                            {vehicle.name === GameItemsEnum.Explorer && (
-                              <img
-                                src="./assets/Vehicle/Explorer.png"
-                                alt="Satisfactory Explorer illustration"
-                                style={{ height: "70px", width: "70px" }}
-                              />
-                            )}
-                            {vehicle.name === GameItemsEnum.Truck && (
-                              <img
-                                src="./assets/Vehicle/Truck.png"
-                                alt="Satisfactory Truck illustration"
-                                style={{ height: "70px", width: "70px" }}
-                              />
-                            )}
-                            {vehicle.name === GameItemsEnum.Tractor && (
-                              <img
-                                src="./assets/Vehicle/Tractor.png"
-                                alt="Satisfactory Tractor illustration"
-                                style={{ height: "70px", width: "70px" }}
-                              />
-                            )}
+                            <img
+                              src={`/assets/Vehicle/${vehicle.name}.png`}
+                              alt={`Satisfactory ${vehicle.name} vehicle illustration`}
+                              style={{ height: "70px", width: "70px" }}
+                            />
                           </Grid>
 
                           <Grid xs>
@@ -168,7 +154,10 @@ export const Vehicles: React.FC = () => {
             {vehicles.map((vehicle) => {
               if (vehicle.autopilot) return null;
               return (
-                <Grid xs={4}>
+                <Grid
+                  key={vehicle.id}
+                  xs={4}
+                >
                   <div id={vehicle.id} />
                   <Card
                     sx={{ position: "relative", paddingBottom: 0 }}
@@ -181,27 +170,11 @@ export const Vehicles: React.FC = () => {
                         justifyContent="center"
                         flexDirection="column"
                       >
-                        {vehicle.name === GameItemsEnum.Explorer && (
-                          <img
-                            src="../assets/Vehicle/Explorer.png"
-                            alt="Satisfactory Explorer illustration"
-                            style={{ height: "100px", width: "100px" }}
-                          />
-                        )}
-                        {vehicle.name === GameItemsEnum.Truck && (
-                          <img
-                            src="../assets/Vehicle/Truck.png"
-                            alt="Satisfactory Truck illustration"
-                            style={{ height: "100px", width: "100px" }}
-                          />
-                        )}
-                        {vehicle.name === GameItemsEnum.Tractor && (
-                          <img
-                            src="../assets/Vehicle/Tractor.png"
-                            alt="Satisfactory Tractor illustration"
-                            style={{ height: "100px", width: "100px" }}
-                          />
-                        )}
+                        <img
+                          src={`/assets/Vehicle/${vehicle.name}.png`}
+                          alt={`Satisfactory ${vehicle.name} vehicle illustration`}
+                          style={{ height: "100px", width: "100px" }}
+                        />
                         <Box sx={{ position: "relative" }}>
                           <Grid
                             container
@@ -339,7 +312,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {vehicle.fuel?.[0].amount}
+                                {vehicle.fuel?.[0]?.amount}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -353,8 +326,8 @@ export const Vehicles: React.FC = () => {
                             </Grid>
                             <Grid>
                               <img
-                                src={`./assets/Resource/${
-                                  vehicle.fuel?.[0].name
+                                src={`/assets/Resource/${
+                                  vehicle.fuel?.[0]?.name
                                 }.png`}
                                 alt="Satisfactory Tractor fuel illustration"
                                 style={{ height: "30px", width: "30px" }}
@@ -389,7 +362,10 @@ export const Vehicles: React.FC = () => {
             {vehicles.map((vehicle, index: number) => {
               if (!vehicle.autopilot) return null;
               return (
-                <Grid xs={4}>
+                <Grid
+                  key={vehicle.id}
+                  xs={4}
+                >
                   <div id={index.toString()} />
                   <Card
                     sx={{ position: "relative", paddingBottom: 0 }}
@@ -402,27 +378,11 @@ export const Vehicles: React.FC = () => {
                         justifyContent="center"
                         flexDirection="column"
                       >
-                        {vehicle.name === GameItemsEnum.Explorer && (
-                          <img
-                            src="./assets/Vehicle/Explorer.png"
-                            alt="Satisfactory Explorer fuel illustration"
-                            style={{ height: "100px", width: "100px" }}
-                          />
-                        )}
-                        {vehicle.name === GameItemsEnum.Truck && (
-                          <img
-                            src="./assets/Vehicle/Truck.png"
-                            alt="Satisfactory Truck fuel illustration"
-                            style={{ height: "100px", width: "100px" }}
-                          />
-                        )}
-                        {vehicle.name === GameItemsEnum.Truck && (
-                          <img
-                            src="./assets/Vehicle/Tractor.png"
-                            alt="Satisfactory Tractor fuel illustration"
-                            style={{ height: "100px", width: "100px" }}
-                          />
-                        )}
+                        <img
+                          src={`/assets/Vehicle/${vehicle.name}.png`}
+                          alt={`Satisfactory ${vehicle.name} vehicle illustration`}
+                          style={{ height: "100px", width: "100px" }}
+                        />
                         <Box sx={{ position: "relative" }}>
                           <Grid
                             container
@@ -581,7 +541,7 @@ export const Vehicles: React.FC = () => {
                               <Typography
                                 sx={{ color: "rgba(255,255,255,0.9)" }}
                               >
-                                {vehicle.fuel?.[0].amount}
+                                {vehicle.fuel?.[0]?.amount}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -595,8 +555,8 @@ export const Vehicles: React.FC = () => {
                             </Grid>
                             <Grid>
                               <img
-                                src={`./assets/Resource/${
-                                  vehicle.fuel?.[0].name
+                                src={`/assets/Resource/${
+                                  vehicle.fuel?.[0]?.name
                                 }.png`}
                                 alt="Satisfactory Tractor fuel illustration"
                                 style={{ height: "30px", width: "30px" }}

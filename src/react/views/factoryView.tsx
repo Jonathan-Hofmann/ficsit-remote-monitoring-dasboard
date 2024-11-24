@@ -33,17 +33,15 @@ export const DetailedFactoryView: React.FC = () => {
   const factoriesList = objectEntriesToArrayHelper<GameItems>(
     gameItemFilterHelper({
       gameItemsDictionnary,
-      filter: "generatorsWithEndpoint",
+      filter: "factories",
     }),
   );
-
-  const factoryEndpoint = currentFactoryName
-    ? (
-        factoriesList.find(
-          (factory) => factory.name === currentFactoryName,
-        ) as GameItemManufacturerBuilding
-      ).endpoint
+  const currentFactory = currentFactoryName
+    ? (factoriesList.find(
+        (factory) => factory.name === currentFactoryName,
+      ) as GameItemManufacturerBuilding)
     : undefined;
+  const factoryEndpoint = currentFactory ? currentFactory.endpoint : undefined;
   if (!factoryEndpoint) redirect("/power");
 
   const { data: factories } = useAutoRefetch<FactoryDto[], FactoryFm[]>(
@@ -201,7 +199,7 @@ export const DetailedFactoryView: React.FC = () => {
                           <Grid>
                             <Box sx={{ display: "flex", flexDirection: "row" }}>
                               <img
-                                src="./assets/Icon/Overclocking_Icon.png"
+                                src="/assets/Icon/Overclocking_Icon.png"
                                 alt=""
                                 style={{ height: "22px", width: "22px" }}
                               />

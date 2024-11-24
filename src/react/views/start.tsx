@@ -93,7 +93,7 @@ export const Start: React.FC = () => {
                       setTmpItemSelection(v);
                     }}
                     multiple
-                    defaultValue={tmpItemSelection}
+                    value={tmpItemSelection}
                     options={Object.values(gameResources)
                       .map((it) => it.name as string)
                       .sort((a, b) => stringSorterHelper(a, b))}
