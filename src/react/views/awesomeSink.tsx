@@ -54,7 +54,7 @@ export const AwesomeSink: React.FC = () => {
                 >
                   <Grid xs>
                     <img
-                      src="./assets/Building/AWESOME_Sink.png"
+                      src="/assets/Building/AWESOME_Sink.png"
                       alt="Satisfactory Awesome sink illustration"
                       style={{ height: "70px", width: "70px" }}
                     />
@@ -89,7 +89,11 @@ export const AwesomeSink: React.FC = () => {
                   }}
                 >
                   <div
-                    style={{ overflow: "visible", width: "100%" }}
+                    style={{
+                      overflow: "visible",
+                      width: "100%",
+                      color: "black",
+                    }}
                     ref={awesomeSinkRef}
                   />
                 </Box>

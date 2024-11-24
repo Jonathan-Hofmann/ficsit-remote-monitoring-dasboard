@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/joy";
 import { CardHeader, Skeleton } from "@mui/material";
-import { useTheme } from "@mui/system";
 import React from "react";
 import {
   BsBatteryHalf,
@@ -30,7 +29,6 @@ import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import type { PowerDto } from "../../types/apis/dataTransferObject/powerDto";
 import type { PowerFm } from "../../types/apis/frontModel/powerFm";
 import type { GameItems } from "../../types/gameItems/gameItems";
-import type { Theme } from "../../types/theme";
 import { BuildingButton } from "../components/buildingButton";
 
 export const PowerMain: React.FC = () => {
@@ -44,8 +42,6 @@ export const PowerMain: React.FC = () => {
       filter: "generatorsWithEndpoint",
     }),
   );
-
-  const theme: Theme = useTheme();
 
   let allCapacity = 0;
   let allProduction = 0;
@@ -246,7 +242,7 @@ export const PowerMain: React.FC = () => {
             />
           )}
           {!!power && !fuseBroken && (
-            <Card sx={{ backgroundColor: theme.palette.success.main }}>
+            <Card>
               <CardHeader
                 title="All Good"
                 subheader="Fuse Status"
@@ -256,7 +252,7 @@ export const PowerMain: React.FC = () => {
             </Card>
           )}
           {!!power && !fuseBroken && (
-            <Card sx={{ backgroundColor: theme.palette.error.main }}>
+            <Card>
               <CardHeader
                 title="Broken!"
                 subheader="Fuse Status"

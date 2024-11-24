@@ -36,7 +36,7 @@ export const BuildingButton: React.FC<Props> = ({
           <CardContent>
             <Stack alignItems="center">
               <img
-                src={`./assets/${assetsLocation}/${factory}.png`}
+                src={`/assets/${assetsLocation}/${factory}.png`}
                 alt={factory}
                 style={{ height: "70px", width: "70px" }}
               />

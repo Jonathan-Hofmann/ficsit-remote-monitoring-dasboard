@@ -163,7 +163,7 @@ export const Trains: React.FC = () => {
 
                         <Stack alignItems="center">
                           <img
-                            src="./assets/Building/Train_Station.png"
+                            src="/assets/Building/Train_Station.png"
                             alt="Satisfactory train station illustration"
                             style={{ height: "70px", width: "70px" }}
                           />
@@ -242,15 +242,7 @@ export const Trains: React.FC = () => {
                               Distance to train
                             </Typography>
                           </Grid>
-                          <Grid>
-                            {previousStation.location.x}
-                            {previousStation.location.y}
-                            {previousStation.location.z}
-                            {train.location.x}
-                            {train.location.y}
-                            {train.location.z}
-                            {left} m
-                          </Grid>
+                          <Grid>{left} m</Grid>
                         </Grid>
                       </CardContent>
                     ) : (
@@ -273,7 +265,7 @@ export const Trains: React.FC = () => {
                     <CardContent>
                       <Stack alignItems="center">
                         <img
-                          src="./assets/Vehicle/Electric_Locomotive.png"
+                          src="/assets/Vehicle/Electric_Locomotive.png"
                           alt="Satisfactory train locomotive illustration"
                           style={{ height: "80px", width: "80px" }}
                         />
@@ -417,7 +409,7 @@ export const Trains: React.FC = () => {
                       <CardContent>
                         <Stack alignItems="center">
                           <img
-                            src="./assets/Building/Train_Station.png"
+                            src="/assets/Building/Train_Station.png"
                             alt="Satisfactory train station illustration"
                             style={{ height: "70px", width: "70px" }}
                           />
@@ -580,7 +572,7 @@ export const Trains: React.FC = () => {
               <CardContent>
                 <Stack alignItems="center">
                   <img
-                    src="./assets/Vehicle/Electric_Locomotive.png"
+                    src="/assets/Vehicle/Electric_Locomotive.png"
                     alt="Satisfactory train locomotive illustration"
                     style={{ height: "80px", width: "80px" }}
                   />

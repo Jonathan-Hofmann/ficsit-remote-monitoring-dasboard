@@ -129,7 +129,7 @@ export const Drones: React.FC = () => {
                         <CardContent>
                           <BsLink45Deg size="28px" />
                           <img
-                            src="./assets/Building/Drone_Port.png"
+                            src="/assets/Building/Drone_Port.png"
                             alt="Satisfactory Drone Port illustration"
                             style={{ height: "35px", width: "35px" }}
                           />
@@ -226,7 +226,7 @@ export const Drones: React.FC = () => {
                       >
                         <CardContent>
                           <img
-                            src="./assets/Building/Drone_Port.png"
+                            src="/assets/Building/Drone_Port.png"
                             alt="Satisfactory Drone Port illustration"
                             style={{ height: "35px", width: "35px" }}
                           />
@@ -333,7 +333,7 @@ export const Drones: React.FC = () => {
                           sx={{ marginBottom: "15px" }}
                         >
                           <img
-                            src="./assets/Vehicle/Drone.png"
+                            src="/assets/Vehicle/Drone.png"
                             alt="Satisfactory Drone illustration"
                             style={{ height: "100px" }}
                           />
@@ -479,7 +479,7 @@ export const Drones: React.FC = () => {
                               level="h4"
                               marginTop="10px"
                             >
-                              {homeStation.latestRoundTrip}
+                              {Math.round(homeStation.latestRoundTrip)} sec
                             </Typography>
                             <Typography level="body-md">
                               Last Round Trip Time
@@ -624,7 +624,7 @@ export const Drones: React.FC = () => {
                         sx={{ marginBottom: "15px" }}
                       >
                         <img
-                          src="./assets/Vehicle/Drone.png"
+                          src="/assets/Vehicle/Drone.png"
                           alt="Satisfactory Drone illustration"
                           style={{ height: "100px" }}
                         />
@@ -893,7 +893,7 @@ export const Drones: React.FC = () => {
                   sx={{ marginBottom: "5px" }}
                 >
                   <img
-                    src="./assets/Vehicle/Drone.png"
+                    src="/assets/Vehicle/Drone.png"
                     alt="Satisfactory Drone illustration"
                     style={{ height: "100px" }}
                   />
