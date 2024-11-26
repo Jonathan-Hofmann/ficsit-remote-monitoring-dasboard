@@ -847,7 +847,10 @@ export const Drones: React.FC = () => {
                   height="20px"
                 />
 
-                <Skeleton variant="text" width="80px" />
+                <Skeleton
+                  variant="text"
+                  width="80px"
+                />
               </CardContent>
             </Card>
 
@@ -874,7 +877,10 @@ export const Drones: React.FC = () => {
                   height="20px"
                 />
 
-                <Skeleton variant="text" width="80px" />
+                <Skeleton
+                  variant="text"
+                  width="80px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -898,7 +904,10 @@ export const Drones: React.FC = () => {
                     style={{ height: "100px" }}
                   />
 
-                  <Skeleton variant="text" width="80px" />
+                  <Skeleton
+                    variant="text"
+                    width="80px"
+                  />
                 </Stack>
 
                 <Grid container>
@@ -908,7 +917,10 @@ export const Drones: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid>
-                    <Skeleton variant="text" width="100px" />
+                    <Skeleton
+                      variant="text"
+                      width="100px"
+                    />
                   </Grid>
                 </Grid>
                 <Grid container>
@@ -918,7 +930,10 @@ export const Drones: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid>
-                    <Skeleton variant="text" width="60px" />
+                    <Skeleton
+                      variant="text"
+                      width="60px"
+                    />
                   </Grid>
                 </Grid>
                 <Grid container>
@@ -928,7 +943,10 @@ export const Drones: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid>
-                    <Skeleton variant="text" width="50px" />
+                    <Skeleton
+                      variant="text"
+                      width="50px"
+                    />
                   </Grid>
                 </Grid>
               </CardContent>
@@ -969,7 +987,10 @@ export const Drones: React.FC = () => {
                       height="20px"
                     />
 
-                    <Skeleton variant="text" width="80px" />
+                    <Skeleton
+                      variant="text"
+                      width="80px"
+                    />
                   </CardContent>
                 </Card>
               </Grid>
@@ -1000,7 +1021,10 @@ export const Drones: React.FC = () => {
                       height="20px"
                     />
 
-                    <Skeleton variant="text" width="80px" />
+                    <Skeleton
+                      variant="text"
+                      width="80px"
+                    />
                   </CardContent>
                 </Card>
               </Grid>
@@ -1036,7 +1060,10 @@ export const Drones: React.FC = () => {
                       height="20px"
                     />
 
-                    <Skeleton variant="text" width="80px" />
+                    <Skeleton
+                      variant="text"
+                      width="80px"
+                    />
                   </CardContent>
                 </Card>
               </Grid>
@@ -1067,7 +1094,10 @@ export const Drones: React.FC = () => {
                       height="20px"
                     />
 
-                    <Skeleton variant="text" width="80px" />
+                    <Skeleton
+                      variant="text"
+                      width="80px"
+                    />
                   </CardContent>
                 </Card>
               </Grid>

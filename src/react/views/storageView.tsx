@@ -1,8 +1,15 @@
-import { Card, CardContent, Container, Grid, Skeleton, Typography } from "@mui/joy";
+import {
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Skeleton,
+  Typography,
+} from "@mui/joy";
 import React, { useCallback, useEffect, useState } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
-import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import { gameItemsDictionnary } from "../../dictionaries/gameItems.dictionary";
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { getImageHelper } from "../../helpers/getImage.helper";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
@@ -96,12 +103,12 @@ export const StorageView: React.FC = () => {
                     padding: "3px",
                     borderColor:
                       Math.floor(item.currentConsumption) >
-                        Math.floor(item.currentProduction)
+                      Math.floor(item.currentProduction)
                         ? "var(--joy-palette-warning-main)"
                         : "var(--joy-palette-neutral-outlinedBorder)",
                     borderWidth:
                       Math.floor(item.currentConsumption) >
-                        Math.floor(item.currentProduction)
+                      Math.floor(item.currentProduction)
                         ? "3px"
                         : "1px",
                   }}
@@ -173,7 +180,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -206,7 +216,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -239,7 +252,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -272,7 +288,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -305,7 +324,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -338,7 +360,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -371,7 +396,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -404,7 +432,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -437,7 +468,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -470,7 +504,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -503,7 +540,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -536,7 +576,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -569,7 +612,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -602,7 +648,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -635,7 +684,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>
@@ -668,7 +720,10 @@ export const StorageView: React.FC = () => {
                   width="50px"
                   sx={{ marginBottom: "10px" }}
                 />
-                <Skeleton variant="text" width="150px" />
+                <Skeleton
+                  variant="text"
+                  width="150px"
+                />
               </CardContent>
             </Card>
           </Grid>

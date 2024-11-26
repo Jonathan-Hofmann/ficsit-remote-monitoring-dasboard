@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { GiCargoCrate } from "react-icons/gi";
 
-import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import { gameItemsDictionnary } from "../../dictionaries/gameItems.dictionary";
 import { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
 import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
 import { objectEntriesToArrayHelper } from "../../helpers/objectEntriesToArray.helper";

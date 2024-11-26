@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { defaultSettingsData } from "../constants/defaultSettingsData";
-import { endPointDictionnary } from "../dictionnaries/endPoint.dictionnary";
+import { endPointDictionnary } from "../dictionaries/endPoint.dictionary";
 import type { EndpointEnum } from "../enums/endpoint.enum";
 import { FetchMethodsEnum } from "../enums/fetchMethods.enum";
 import { fetcherHelper } from "../helpers/fetcher.helper";

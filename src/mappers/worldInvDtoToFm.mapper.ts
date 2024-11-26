@@ -1,4 +1,4 @@
-import { gameItemsDictionnary } from "../dictionnaries/gameItems.dictionnary";
+import { gameItemsDictionnary } from "../dictionaries/gameItems.dictionary";
 import { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import type { WorldInvDto } from "../types/apis/dataTransferObject/worldInvDto";
 import type { WorldInvFm } from "../types/apis/frontModel/worldInvFm";

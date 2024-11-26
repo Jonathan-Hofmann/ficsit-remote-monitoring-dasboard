@@ -1,10 +1,17 @@
-import { Box, Card, CardContent, Grid, Skeleton, Stack, Typography } from "@mui/joy";
+import {
+  Box,
+  Card,
+  CardContent,
+  Grid,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/joy";
 import React, { useEffect, useRef } from "react";
 
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import { useGetAwesomeSinkGraph } from "../../hooks/useGetAwesomeSinkGraph";
-import { useGetRefElementSize } from "../../hooks/useGetRefElementSize";
 import type { AwesomeSinkDto } from "../../types/apis/dataTransferObject/awesomeSinkDto";
 import type { AwesomeSinkFm } from "../../types/apis/frontModel/awesomeSinkFm";
 
@@ -21,12 +28,9 @@ export const AwesomeSink: React.FC = () => {
     AwesomeSinkFm[]
   >(EndpointEnum.AWESOME_SINK_EXPLORATION);
 
-  const { width } = useGetRefElementSize(awesomeSinkRef);
-
   const { sinkChart } = useGetAwesomeSinkGraph({
     sinkResource,
     sinkExploration,
-    width: width ?? 400,
   });
 
   useEffect(() => {
@@ -91,7 +95,7 @@ export const AwesomeSink: React.FC = () => {
                     style={{
                       overflow: "visible",
                       width: "100%",
-                      color: "black",
+                      color: "white",
                     }}
                     ref={awesomeSinkRef}
                   />
@@ -191,7 +195,7 @@ export const AwesomeSink: React.FC = () => {
                   <Skeleton
                     sx={{ marginBottom: "10px" }}
                     width="120px"
-                     variant="text"
+                    variant="text"
                   />
                 </Grid>
               </Grid>
@@ -220,7 +224,10 @@ export const AwesomeSink: React.FC = () => {
                 width="80px"
                 height="40px"
               />
-              <Skeleton variant="text" width="120px" />
+              <Skeleton
+                variant="text"
+                width="120px"
+              />
             </CardContent>
           </Card>
         </Grid>
@@ -233,7 +240,10 @@ export const AwesomeSink: React.FC = () => {
                 width="80px"
                 height="40px"
               />
-              <Skeleton variant="text" width="120px" />
+              <Skeleton
+                variant="text"
+                width="120px"
+              />
             </CardContent>
           </Card>
         </Grid>
@@ -246,7 +256,10 @@ export const AwesomeSink: React.FC = () => {
                 width="80px"
                 height="40px"
               />
-              <Skeleton variant="text" width="120px" />
+              <Skeleton
+                variant="text"
+                width="120px"
+              />
             </CardContent>
           </Card>
         </Grid>

@@ -13,7 +13,7 @@ import React from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 import { redirect, useSearchParams } from "react-router-dom";
 
-import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import { gameItemsDictionnary } from "../../dictionaries/gameItems.dictionary";
 import type { GameItemsEnum } from "../../enums/gameItems.enum";
 import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
 import { getImageHelper } from "../../helpers/getImage.helper";
@@ -207,7 +207,10 @@ export const DetailedGeneratorView: React.FC = () => {
                       <Typography>PRODUCTION</Typography>
                     </Grid>
                     <Grid>
-                      <Skeleton variant="text" width="80px" />
+                      <Skeleton
+                        variant="text"
+                        width="80px"
+                      />
                     </Grid>
                   </Grid>
                   <Skeleton
@@ -260,7 +263,10 @@ export const DetailedGeneratorView: React.FC = () => {
                       <Typography>PRODUCTION</Typography>
                     </Grid>
                     <Grid>
-                      <Skeleton variant="text" width="80px" />
+                      <Skeleton
+                        variant="text"
+                        width="80px"
+                      />
                     </Grid>
                   </Grid>
                   <Skeleton
@@ -313,7 +319,10 @@ export const DetailedGeneratorView: React.FC = () => {
                       <Typography>PRODUCTION</Typography>
                     </Grid>
                     <Grid>
-                      <Skeleton variant="text" width="80px" />
+                      <Skeleton
+                        variant="text"
+                        width="80px"
+                      />
                     </Grid>
                   </Grid>
                   <Skeleton

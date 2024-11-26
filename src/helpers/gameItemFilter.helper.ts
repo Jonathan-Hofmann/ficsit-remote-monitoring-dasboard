@@ -4,7 +4,7 @@ import { GameItemsCategoryEnum } from "../enums/gameItemsCategory.enum";
 import type { GameItems } from "../types/gameItems/gameItems";
 import type { GameItemGeneratorBuilding } from "../types/gameItems/generatorBuilding";
 import type { GameItemManufacturerBuilding } from "../types/gameItems/manufacturerBuilding";
-import type { GameItemsDictionnary } from "../types/gameItemsDictionnary";
+import type { GameItemsDictionnary } from "../types/gameItemsDictionary";
 
 type Args = {
   gameItemsDictionnary: GameItemsDictionnary;

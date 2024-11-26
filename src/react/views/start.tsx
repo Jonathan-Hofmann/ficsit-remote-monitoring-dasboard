@@ -10,11 +10,11 @@ import {
   ModalDialog,
   Typography,
 } from "@mui/joy";
-import Skeleton from '@mui/joy/Skeleton';
+import Skeleton from "@mui/joy/Skeleton";
 import React, { useState } from "react";
 import { BsExclamationCircle, BsExclamationTriangleFill } from "react-icons/bs";
 
-import { gameItemsDictionnary } from "../../dictionnaries/gameItems.dictionnary";
+import { gameItemsDictionnary } from "../../dictionaries/gameItems.dictionary";
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import type { GameClassNamesEnum } from "../../enums/gameClassNames.enum";
 import { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
@@ -247,7 +247,10 @@ export const Start: React.FC = () => {
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton variant="text" width="60px" />
+                        <Skeleton
+                          variant="text"
+                          width="60px"
+                        />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -277,7 +280,10 @@ export const Start: React.FC = () => {
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton variant="text" width="60px" />
+                        <Skeleton
+                          variant="text"
+                          width="60px"
+                        />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -307,7 +313,10 @@ export const Start: React.FC = () => {
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton variant="text" width="60px" />
+                        <Skeleton
+                          variant="text"
+                          width="60px"
+                        />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -337,7 +346,10 @@ export const Start: React.FC = () => {
                           width="120px"
                           height="20px"
                         />
-                        <Skeleton variant="text" width="60px" />
+                        <Skeleton
+                          variant="text"
+                          width="60px"
+                        />
                       </CardContent>
                     </Card>
                   </Grid>

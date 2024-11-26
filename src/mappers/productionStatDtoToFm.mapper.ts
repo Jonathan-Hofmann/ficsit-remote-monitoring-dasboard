@@ -1,4 +1,4 @@
-import { gameItemsDictionnary } from "../dictionnaries/gameItems.dictionnary";
+import { gameItemsDictionnary } from "../dictionaries/gameItems.dictionary";
 import { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import type { ProdStatsDto } from "../types/apis/dataTransferObject/prodStatsDto";
 import type { ProductionStatFm } from "../types/apis/frontModel/productionStatFm";

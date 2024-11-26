@@ -15,13 +15,11 @@ type GraphValue = {
 type Props = {
   sinkResource: AwesomeSinkFm[] | undefined;
   sinkExploration: AwesomeSinkFm[] | undefined;
-  width: number;
 };
 
 export const useGetAwesomeSinkGraph = ({
   sinkResource,
   sinkExploration,
-  width,
 }: Props) => {
   const sinkPoints: GraphValue[] = useMemo(
     () => [
@@ -50,7 +48,6 @@ export const useGetAwesomeSinkGraph = ({
           line: true,
           label: "Last 10",
         },
-        width,
         marginLeft: 60,
         marginTop: 40,
         marginBottom: 45,
@@ -79,7 +76,7 @@ export const useGetAwesomeSinkGraph = ({
           ),
         ],
       }),
-    [sinkPoints, width],
+    [sinkPoints],
   );
 
   return { sinkChart };

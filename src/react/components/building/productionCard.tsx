@@ -1,7 +1,7 @@
 import { Card, CardContent, Grid, Typography } from "@mui/joy";
 import React from "react";
 
-import { gameItemsDictionnary } from "../../../dictionnaries/gameItems.dictionnary";
+import { gameItemsDictionnary } from "../../../dictionaries/gameItems.dictionary";
 import { GameResourcesTypeEnum } from "../../../enums/gameResourcesType.enum";
 import { getImageHelper } from "../../../helpers/getImage.helper";
 import type { RecipeItemFm } from "../../../types/apis/frontModel/recipeItemFm";
