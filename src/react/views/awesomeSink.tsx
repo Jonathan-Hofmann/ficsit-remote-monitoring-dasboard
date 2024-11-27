@@ -2,6 +2,7 @@ import {
   Box,
   Card,
   CardContent,
+  Container,
   Grid,
   Skeleton,
   Stack,
@@ -42,7 +43,7 @@ export const AwesomeSink: React.FC = () => {
 
   if (sinkExploration && sinkResource) {
     return (
-      <>
+      <Container>
         <Card
           variant="outlined"
           sx={{ marginBottom: "20px" }}
@@ -108,6 +109,7 @@ export const AwesomeSink: React.FC = () => {
         <Grid
           container
           padding={0}
+          spacing={2}
         >
           <Grid xs={4}>
             <Card variant="outlined">
@@ -147,12 +149,12 @@ export const AwesomeSink: React.FC = () => {
             </Card>
           </Grid>
         </Grid>
-      </>
+      </Container>
     );
   }
 
   return (
-    <>
+    <Container>
       <Card
         variant="outlined"
         sx={{ marginBottom: "20px", opacity: 0.5 }}
@@ -214,6 +216,7 @@ export const AwesomeSink: React.FC = () => {
         container
         padding={0}
         sx={{ opacity: 0.5 }}
+        spacing={2}
       >
         <Grid xs={4}>
           <Card variant="outlined">
@@ -264,6 +267,6 @@ export const AwesomeSink: React.FC = () => {
           </Card>
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 };

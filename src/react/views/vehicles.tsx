@@ -332,10 +332,10 @@ export const Vehicles: React.FC = () => {
                                 alt="Satisfactory Tractor fuel illustration"
                                 style={{ height: "30px", width: "30px" }}
                               />
-                              <BsXCircle
+                              {/* <BsXCircle
                                 color="red"
                                 size="25px"
-                              />
+                              /> */}
                             </Grid>
                           </Grid>
                         </Grid>

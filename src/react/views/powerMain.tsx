@@ -141,8 +141,6 @@ export const PowerMain: React.FC = () => {
       >
         <Grid xs>
           <Card>
-            <Typography level="body-lg">{allCapacity} MW</Typography>
-            <Typography level="body-sm">Total Power Capacity</Typography>
             <Typography level="h3">
               {!power ? (
                 <Skeleton
@@ -167,8 +165,6 @@ export const PowerMain: React.FC = () => {
         </Grid>
         <Grid xs>
           <Card>
-            <Typography level="body-lg">{allProduction} MW</Typography>
-            <Typography level="body-sm">Total Power Production</Typography>
             <Typography level="h3">
               {!power ? (
                 <Skeleton
@@ -193,10 +189,8 @@ export const PowerMain: React.FC = () => {
         </Grid>
         <Grid xs>
           <Card>
-            <Typography level="body-lg">{allBatteryCapacity} MW</Typography>
-            <Typography level="body-sm">Total Battery Capacity</Typography>
             <Typography level="h3">
-              {!power ? (
+              {/* {!power ? (
                 <Skeleton
                   sx={{ marginBottom: "8px" }}
                   variant="rectangular"
@@ -205,7 +199,7 @@ export const PowerMain: React.FC = () => {
                 />
               ) : (
                 <>{allBatteryCapacity.toFixed(2)} MW</>
-              )}
+              )} */}
               {!power ? (
                 <Skeleton
                   sx={{ marginBottom: "8px" }}
@@ -237,17 +231,17 @@ export const PowerMain: React.FC = () => {
           )}
           {!!power && !fuseBroken && (
             <Card>
-              <Typography level="body-lg">All Good</Typography>
-              <Typography level="body-sm">Fuse Status</Typography>
+              {/* <Typography level="body-lg">All Good</Typography>
+              <Typography level="body-sm">Fuse Status</Typography> */}
               <Typography level="h3">No Problems</Typography>
               <Typography>Current Status</Typography>
             </Card>
           )}
-          {!!power && !fuseBroken && (
+          {!!power && fuseBroken && (
             <Card>
-              <Typography level="body-lg">Broken!</Typography>
-              <Typography level="body-sm">Fuse Status</Typography>
-              <Typography level="h3">Broken!</Typography>
+              {/* <Typography level="body-lg">Broken!</Typography>
+              <Typography level="body-sm">Fuse Status</Typography> */}
+              <Typography level="h3">Fuse Broken!</Typography>
               <Typography>Current Status</Typography>
             </Card>
           )}
@@ -329,10 +323,6 @@ export const PowerMain: React.FC = () => {
                   >
                     <Grid xs>
                       <Card variant="outlined">
-                        <Typography level="body-lg">
-                          {powerGroup.powerCapacity}
-                        </Typography>
-                        <Typography level="body-sm">Power Capacity</Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -354,12 +344,6 @@ export const PowerMain: React.FC = () => {
                               : "var(--joy-palette-background-surface)",
                         }}
                       >
-                        <Typography level="body-lg">
-                          {powerGroup.powerProduction}
-                        </Typography>
-                        <Typography level="body-sm">
-                          Power Production
-                        </Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -375,10 +359,6 @@ export const PowerMain: React.FC = () => {
                     </Grid>
                     <Grid xs>
                       <Card variant="outlined">
-                        <Typography level="body-lg">
-                          {powerGroup.powerConsumed}
-                        </Typography>
-                        <Typography level="body-sm">Power Consumed</Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -394,12 +374,6 @@ export const PowerMain: React.FC = () => {
                     </Grid>
                     <Grid xs>
                       <Card variant="outlined">
-                        <Typography level="body-lg">
-                          {powerGroup.powerMaxConsumed}
-                        </Typography>
-                        <Typography level="body-sm">
-                          Power max. Consumed
-                        </Typography>
                         <Typography level="h4">
                           {new Intl.NumberFormat("en-US", {
                             style: "decimal",
@@ -421,8 +395,7 @@ export const PowerMain: React.FC = () => {
                       <Typography level="h4">Battery</Typography>
                     </Grid>
                     <Grid>
-                      {powerGroup.batteryCapacity === 0 &&
-                      powerGroup.batteryTimeFull === "00:00:00" ? (
+                      {powerGroup.batteryCapacity === 0 ? (
                         <Chip
                           startDecorator={<BsCloudSlash size="20px" />}
                           sx={{ paddingLeft: "6px" }}
@@ -442,8 +415,7 @@ export const PowerMain: React.FC = () => {
                       )}
                     </Grid>
                   </Grid>
-                  {powerGroup.batteryCapacity === 0 &&
-                    powerGroup.batteryTimeFull !== "00:00:00" && (
+                  {powerGroup.batteryCapacity != 0 && (
                       <Grid
                         container
                         spacing={2}
@@ -451,13 +423,7 @@ export const PowerMain: React.FC = () => {
                       >
                         <Grid xs>
                           <Card variant="outlined">
-                            <Typography level="body-lg">
-                              {powerGroup.batteryCapacity}
-                            </Typography>
-                            <Typography level="body-sm">
-                              Battery Capacity
-                            </Typography>
-                            <Typography>
+                            <Typography level="h4">
                               {powerGroup.batteryCapacity} MWh
                             </Typography>
                             <Typography level="body-md">
@@ -467,13 +433,7 @@ export const PowerMain: React.FC = () => {
                         </Grid>
                         <Grid xs>
                           <Card variant="outlined">
-                            <Typography level="body-lg">
-                              {powerGroup.batteryPercent}
-                            </Typography>
-                            <Typography level="body-sm">
-                              Battery Filled Percent
-                            </Typography>
-                            <Typography>
+                            <Typography level="h4">
                               {Math.round(powerGroup.batteryPercent * 100) /
                                 100}{" "}
                               %
@@ -485,13 +445,7 @@ export const PowerMain: React.FC = () => {
                         </Grid>
                         <Grid xs>
                           <Card variant="outlined">
-                            <Typography level="body-lg">
-                              {powerGroup.batteryDifferential}
-                            </Typography>
-                            <Typography level="body-sm">
-                              Battery Differential
-                            </Typography>
-                            <Typography>
+                            <Typography level="h4">
                               {Math.round(
                                 powerGroup.batteryDifferential * 100,
                               ) / 100}{" "}
@@ -504,13 +458,7 @@ export const PowerMain: React.FC = () => {
                         </Grid>
                         <Grid xs>
                           <Card variant="outlined">
-                            <Typography level="body-lg">
-                              {powerGroup.batteryTimeFull}
-                            </Typography>
-                            <Typography level="body-sm">
-                              Battery Full At Time
-                            </Typography>
-                            <Typography>
+                            <Typography level="h4">
                               {powerGroup.batteryTimeEmpty !== "00:00:00"
                                 ? powerGroup.batteryTimeEmpty
                                 : powerGroup.batteryTimeFull}
