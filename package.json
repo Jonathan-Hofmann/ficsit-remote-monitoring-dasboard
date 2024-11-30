@@ -3,22 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "===== DEV =====": "",
+    "start": "next dev --turbopack",
+    "start-open": "xdg-open http://localhost:3000 || open http://localhost:3000 || start http://localhost:3000 && next dev --turbopack",
+    "check-types": "tsc --noemit",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build-start": "next start"
   },
   "dependencies": {
+    "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "next": "15.0.3"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }

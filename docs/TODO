@@ -1,0 +1,33 @@
+- Refacto all components
+- Refacto all types
+- Signal to FRM dev following errors :
+  - /getResourceGeyser don't work
+- Rename Start to Homepage
+- Handle unused folder/files
+- Add more info to buildings and equipements
+- Verify Biomass generator
+- Verify Desc_Crystal_mk2_C and BP_Crystal_mk2_C (power slug classname)
+- Add handling for unfinished requests (for things the player does not yet have access to and therefore FRM cannot extract data from)
+- Add webhook https://docs.ficsit.app/ficsitremotemonitoring/latest/webhook.html
+- Handle all comments and todo
+- Handle sidebar, footer and components layout size
+- Rename components file/folder for more consistency
+- Add zustand store
+- Repasse on all my commits to see if some explanation of what i'm done is needed
+- Look if getRecipe can give ability to known wich other request can be made
+
+== All pages/views to do ==
+  componentFile / Component - /route => State
+- start         / Start                 - /             => Done, no refacto
+- powerMain     / PowerMain             - /power        => Done, no refacto
+- generatorView / DetailedGeneratorView - /generator    => Done, no refacto
+- production    / FactorysSwitch        - /production   =>
+- factoryView   / DetailedFactoryView   - /factory      =>
+- building      / Building              - /building     =>
+- drones        / Drones                - /drones       => Done, no refacto
+- trains        / Trains                - /trains       =>
+- vehicles      / Vehicles              - /vehicles     => Done, no refacto
+- storageView   / StorageView           - /storageView  =>
+- awesomeSink   / AwesomeSink           - /awesomeSink  => Done, no refacto
+- testingSocket / SocketTestSite        - /test         =>
+- settings      / Settings              - /settings     => Done, no refacto

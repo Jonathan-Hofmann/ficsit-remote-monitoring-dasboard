@@ -1,0 +1,168 @@
+@baseUrl = http://localhost:8080
+
+# Don't forget to start the server in satisfactory using : /frm http start
+
+// Simple endpoints
+### Route GET /getAssembler
+GET {{baseUrl}}/getAssembler
+
+### Route GET /getBelts
+GET {{baseUrl}}/getBelts
+
+### Route GET /getBiomassGenerator
+GET {{baseUrl}}/getBiomassGenerator
+
+### Route GET /getBlender
+GET {{baseUrl}}/getBlender
+
+### Route GET /getCloudInv
+GET {{baseUrl}}/getCloudInv
+
+### Route GET /getCoalGenerator
+GET {{baseUrl}}/getCoalGenerator
+
+### Route GET /getConstructor
+GET {{baseUrl}}/getConstructor
+
+### Route GET /getConverter
+GET {{baseUrl}}/getConverter
+
+### Route GET /getDoggo
+GET {{baseUrl}}/getDoggo
+
+### Route GET /getDrone
+GET {{baseUrl}}/getDrone
+
+### Route GET /getDroneStation
+GET {{baseUrl}}/getDroneStation
+
+### Route GET /getDropPod
+GET {{baseUrl}}/getDropPod
+
+### Route GET /getEncoder
+GET {{baseUrl}}/getEncoder
+
+### Route GET /getExplorationSink
+GET {{baseUrl}}/getExplorationSink
+
+### Route GET /getExplorer
+GET {{baseUrl}}/getExplorer
+
+### Route GET /getExtractor
+GET {{baseUrl}}/getExtractor
+
+### Route GET /getFactoryCart
+GET {{baseUrl}}/getFactoryCart
+
+### Route GET /getFoundry
+GET {{baseUrl}}/getFoundry
+
+### Route GET /getFuelGenerator
+GET {{baseUrl}}/getFuelGenerator
+
+### Route GET /getGeothermalGenerator
+GET {{baseUrl}}/getGeothermalGenerator
+
+### Route GET /getHUBTerminal
+GET {{baseUrl}}/getHUBTerminal
+
+### Route GET /getManufacturer
+GET {{baseUrl}}/getManufacturer
+
+### Route GET /getModList
+GET {{baseUrl}}/getModList
+
+### Route GET /getNuclearGenerator
+GET {{baseUrl}}/getNuclearGenerator
+
+### Route GET /getPackager
+GET {{baseUrl}}/getPackager
+
+### Route GET /getParticle
+GET {{baseUrl}}/getParticle
+
+### Route GET /getPaths
+GET {{baseUrl}}/getPaths
+
+### Route GET /getPipes
+GET {{baseUrl}}/getPipes
+
+### Route GET /getPlayer WORK EVERYTIME
+GET {{baseUrl}}/getPlayer
+
+### Route GET /getPower
+GET {{baseUrl}}/getPower
+
+### Route GET /getPowerSlug
+GET {{baseUrl}}/getPowerSlug
+
+### Route GET /getProdStats
+GET {{baseUrl}}/getProdStats
+
+### Route GET /getRadarTower
+GET {{baseUrl}}/getRadarTower
+
+### Route GET /getRecipes
+GET {{baseUrl}}/getRecipes
+
+### Route GET /getRefinery
+GET {{baseUrl}}/getRefinery
+
+### Route GET /getResourceNode
+GET {{baseUrl}}/getResourceNode
+
+### Route GET /getResourceSink
+GET {{baseUrl}}/getResourceSink
+
+### Route GET /getResourceWell
+GET {{baseUrl}}/getResourceWell
+
+### Route GET /getSchematics
+GET {{baseUrl}}/getSchematics
+
+### Route GET /getSinkList
+GET {{baseUrl}}/getSinkList
+
+### Route GET /getSmelter
+GET {{baseUrl}}/getSmelter
+
+### Route GET /getSpaceElevator
+GET {{baseUrl}}/getSpaceElevator
+
+### Route GET /getStorageInv
+GET {{baseUrl}}/getStorageInv
+
+### Route GET /getSwitches
+GET {{baseUrl}}/getSwitches
+
+### Route GET /getTractor
+GET {{baseUrl}}/getTractor
+
+### Route GET /getTrains
+GET {{baseUrl}}/getTrains
+
+### Route GET /getTrainStation
+GET {{baseUrl}}/getTrainStation
+
+### Route GET /getTruck
+GET {{baseUrl}}/getTruck
+
+### Route GET /getTruckStation
+GET {{baseUrl}}/getTruckStation
+
+### Route GET /getWorldInv
+GET {{baseUrl}}/getWorldInv
+
+
+// Grouped endpoints (warning: can slow down the game)
+### Route GET /getAll
+GET {{baseUrl}}/getAll
+
+### Route GET /getFactory
+GET {{baseUrl}}/getFactory
+
+### Route GET /getGenerators
+GET {{baseUrl}}/getGenerators
+
+### Route GET /getVehicles
+GET {{baseUrl}}/getVehicles

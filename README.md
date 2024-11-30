@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## ⚠ Information
 
-## Getting Started
+The original authors of FRMD don't have that much time (at the moment) to further develop this dashboard.
 
-First, run the development server:
+So feel free to contribute to this project and enhance the features! Just make a pull request when you have something ready!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Ficsit Remote Monitoring Dashboard [ FRMD ]
+![my_image](./docs/readmeImage/header_image.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# How to use FRMD 
+## Prequisites
+You need to have the [Ficsit Remote Monitoring mod](https://ficsit.app/mod/FicsitRemoteMonitoring) by @porisius installed and running.
+### Starting Ficsit Remote Monitoring in Satisfactory
+To start the base-mod open the chat in game (with `ENTER`) and type in `/frm http start`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Using Ficsit Remote Monitoring Dashboard
+Once the base mod is started, you can access our dashboard via https://ficsit-rmd.vercel.app/ or alternatively access the mod-included page at http://localhost:8080/. 
 
-## Learn More
+## Viewing the Dashboard via https://ficsit-rmd.vercel.app/
+1. Start Satisfactory and run `/frm http start` in the chat
+2. Open https://ficsit-rmd.vercel.app/ in a webbrowser.
+2. Now you can see the data flying into the dashboard.
 
-To learn more about Next.js, take a look at the following resources:
+## Starting the Dashboard locally
+### Prequisites
+For running FRMD locally, you will need to have NodeJS 16.0+ installed on your system.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Pull this Repository and open it with f.ex. Visual Studio Code
+2. Install all dependencies with `npm install` via a terminal
+2. Start the Webserver with `npm start`
+3. Access the Dashboard via http://localhost:3000/
+4. Load into a savefile from Satisfactory and run `/frm http start` in the chat. 
+5. Now you can see the data flying into the dashboard.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Contributors
+Thanks to all Contributors!
+- Jonathan-Hofmann (Original Author)
+- arfla (Original Author)
+- tomatosauc (Active Contributor)
+- LouisForaux (Active Contributor)
+- Alexandre-RICHARD (Active Contributor)
 
-## Deploy on Vercel
+# Gallery
+![my_image](./docs/readmeImage/Frame_1592.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![my_image](./docs/readmeImage/Frame_1593.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Images of all managed items in the game stored into folders according to their category. Data located in `src\dictionnaries\gameItems.dictionnary`.
+
+All images are in `256x256` pixels format, in `PNG` format. Exception for buildings in `512x512` format.  
+The name of the images corresponds to the enum `GameItemsEnum` located `src\enums\gameItems.enum` in `Pascal_Snake_Case` format.
