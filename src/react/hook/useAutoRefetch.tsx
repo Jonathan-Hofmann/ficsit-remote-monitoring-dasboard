@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { defaultSettingsData } from "../constants/defaultSettingsData";
-import { endPointDictionnary } from "../dictionaries/endPoint.dictionary";
-import type { EndpointEnum } from "../enums/endpoint.enum";
-import { FetchMethodsEnum } from "../enums/fetchMethods.enum";
-import { fetcherHelper } from "../helpers/fetcher.helper";
-import type { MapperFunction } from "../types/endpoint";
-import type { FetchResponse } from "../types/fetchResponse";
-import type { SettingsData } from "../types/settingsData";
+import { defaultSettingsData } from "../../dictionaries/defaultSettingsData";
+import { endPointDictionnary } from "../../dictionaries/endPoint.dictionary";
+import type { EndpointEnum } from "../../enums/endpoint.enum";
+import { FetchMethodsEnum } from "../../enums/fetchMethods.enum";
+import { fetcherHelper } from "../../helpers/fetcher.helper";
+import type { MapperFunction } from "../../types/endpoint";
+import type { FetchResponse } from "../../types/fetchResponse";
+import type { SettingsData } from "../../types/settingsData";
 import { useLocalStorage } from "./useLocalStorage";
 
 export const useAutoRefetch = <Dto, Fm>(

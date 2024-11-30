@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
+    "@observablehq/plot": "^0.6.16",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -47,6 +48,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
+    "d3-format": "^3.1.0",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.5.1",
     "input-otp": "^1.4.1",

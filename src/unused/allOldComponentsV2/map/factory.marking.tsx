@@ -1,4 +1,4 @@
-import { getCorrectCoordinateOnMap, rotatePolygon } from "@/helper/coordinates.helper";
+import { getCorrectCoordinateOnMap, rotatePolygon } from '../coordinates.helper'
 import L, { LatLngExpression } from "leaflet";
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";

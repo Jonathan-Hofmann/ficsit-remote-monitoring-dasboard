@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import { format } from "d3-format";
 import { useMemo } from "react";
 
-import type { AwesomeSinkFm } from "../types/apis/frontModel/awesomeSinkFm";
+import type { AwesomeSinkFm } from "../../../types/apis/frontModel/awesomeSinkFm";
 
 const formatYAxis = format(".2s");
 

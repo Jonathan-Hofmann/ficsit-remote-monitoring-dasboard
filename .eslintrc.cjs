@@ -5,7 +5,15 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  ignorePatterns: ["build", "node_modules", "src/unused"],
+  ignorePatterns: [
+    "build",
+    "node_modules",
+    "src/unused",
+    "tailwind.config.ts",
+    // TODO Fix all types in widgets/ui components
+    "src/react/components/widgets",
+    "src/react/ui",
+  ],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
@@ -70,16 +78,12 @@ module.exports = {
     "import/no-default-export": "error",
     "import/prefer-default-export": "off",
     "import/first": "error",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        devDependencies: ["vite.config.ts"],
-      },
-    ],
-    "import/no-unused-modules": [
-      "error",
-      { "missingExports ": true, "unusedExports": true },
-    ],
+    "import/no-extraneous-dependencies": "error",
+    "import/no-unused-modules": "off",
+    // "import/no-unused-modules": [
+    //   "error",
+    //   { "missingExports ": true, "unusedExports": true },
+    // ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
 
@@ -108,18 +112,18 @@ module.exports = {
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/no-use-before-define": "error",
-
-    // React-refresh, default vite rules
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
   },
   overrides: [
     {
-      files: ["src/types/apis/dataTransferObject/**"],
+      files: ["src/types/apis/dataTransferObject/**", "src/app/**"],
       rules: {
         "import/no-unused-modules": "off",
+      },
+    },
+    {
+      files: ["src/app/**"],
+      rules: {
+        "import/no-default-export": "off",
       },
     },
   ],

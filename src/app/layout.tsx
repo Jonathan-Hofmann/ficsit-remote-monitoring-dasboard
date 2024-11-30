@@ -1,8 +1,10 @@
+import "../styles/globalStyles.scss";
+
 import type { Metadata } from "next";
-import { SideBarNavigation } from "../react/components/sideBarNavigation";
-import '../styles/globalStyles.scss';
 import React from "react";
+
 import { Footer } from "../react/components/footer";
+import { SideBarNavigation } from "../react/components/sideBarNavigation";
 
 export const metadata: Metadata = {
   title: "Satisfactory Dashboard Ficsit Remote Monitoring",
@@ -10,18 +12,23 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const GlobalLayout =({
-  children,
-}: Props): React.JSX.Element => {
+const GlobalLayout = ({ children }: Props): React.JSX.Element => {
   return (
     <html lang="en">
-      <link rel="icon" href="/favicon.ico" sizes="any" />
-      <link rel="apple-touch-icon" href="/frmd-icon-192.png" />
+      <link
+        rel="icon"
+        href="/favicon.ico"
+        sizes="any"
+      />
+      <link
+        rel="apple-touch-icon"
+        href="/frmd-icon-192.png"
+      />
       <body>
-        <div className={`bg-black flex flex-row text-white min-w-full max-w-full min-h-screen max-h-screen overflow-hidden`}>
+        <div className="bg-black flex flex-row text-white min-w-full max-w-full min-h-screen max-h-screen overflow-hidden">
           <SideBarNavigation />
           <div className="w-full flex flex-col h-screen">
             <main className="flex-1 overflow-y-auto">
@@ -37,6 +44,6 @@ const GlobalLayout =({
       </body>
     </html>
   );
-}
+};
 
 export default GlobalLayout;

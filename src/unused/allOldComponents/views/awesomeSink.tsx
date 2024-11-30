@@ -12,7 +12,7 @@ import React, { useEffect, useRef } from "react";
 
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
-import { useGetAwesomeSinkGraph } from "../../hooks/useGetAwesomeSinkGraph";
+import { useGetAwesomeSinkGraph } './useGetAwesomeSinkGraph'
 import type { AwesomeSinkDto } from "../../types/apis/dataTransferObject/awesomeSinkDto";
 import type { AwesomeSinkFm } from "../../types/apis/frontModel/awesomeSinkFm";
 
