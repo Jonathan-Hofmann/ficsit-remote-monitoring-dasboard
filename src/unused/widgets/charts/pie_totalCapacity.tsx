@@ -13,13 +13,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import type { ChartConfig } from "@/components/ui/chart";
+} from "@/react/ui/card";
+import type { ChartConfig } from "@/react/ui/chart";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from "@/react/ui/chart";
 
 export const PieCompontent1 = ({ data }: { data: any[] }) => {
   const chartConfig = {

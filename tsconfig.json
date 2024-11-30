@@ -50,7 +50,7 @@
     "node_modules",
     "./src/unused/**",
     // TODO Fix all types in widgets/ui components
-    "./src/react/components/widgets/**",
-    "./src/react/ui/**"
+    // "./src/react/components/widgets/**",
+    // "./src/react/ui/**"
   ]
 }
