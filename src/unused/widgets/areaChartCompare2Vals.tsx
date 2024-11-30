@@ -12,17 +12,17 @@ import {
 } from "recharts";
 import { v4 } from "uuid";
 
-import { SubManager } from "@/class/subManager";
+// import { SubManager } from "@/class/subManager";
 import {
   type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from "@/react/ui/chart";
 import { cn } from "@/lib/utils";
-import type { EnergyData } from "@/types/energy";
+// import type { EnergyData } from "@/types/energy";
 
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "@/react/ui/card";
 
 export const AreaChartCompare2Vals = ({
   data,
@@ -31,7 +31,8 @@ export const AreaChartCompare2Vals = ({
   index,
   className,
 }: {
-  data: EnergyData;
+  // data: EnergyData;
+  data:any[];
   dataKey1: string;
   dataKey2: string;
   index?: number;
@@ -50,11 +51,11 @@ export const AreaChartCompare2Vals = ({
     },
   } satisfies ChartConfig;
 
-  const [history, setHistory] = useState<EnergyData[]>([]);
+  const [history, setHistory] = useState<any[]>([]);
 
   useEffect(() => {
     if (!data) return;
-    setHistory((old: EnergyData[]) => {
+    setHistory((old: any[]) => {
       if (old.length >= MAX_HISTORY_DEPTH) {
         old.shift();
         old.push(data);

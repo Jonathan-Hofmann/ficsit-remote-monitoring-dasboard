@@ -12,16 +12,16 @@ import {
 } from "recharts";
 import { v4 } from "uuid";
 
-import { SubManager } from "@/class/subManager";
-import { Card, CardContent } from "@/components/ui/card";
+// import { SubManager } from "@/class/subManager";
+import { Card, CardContent } from "@/react/ui/card";
 import {
   type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from "@/react/ui/chart";
 import { cn } from "@/lib/utils";
-import type { EnergyData } from "@/types/energy";
+// import type { EnergyData } from "@/types/energy";
 
 export const AreaChartCompare2ValsBig = ({
   data,
@@ -30,7 +30,8 @@ export const AreaChartCompare2ValsBig = ({
   index,
   className,
 }: {
-  data: EnergyData[];
+  // data: EnergyData[];
+  data: any[],
   dataKey1: string;
   dataKey2: string;
   index?: number;
