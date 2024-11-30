@@ -19,6 +19,7 @@ const GlobalLayout =({
   return (
     <html lang="en">
       <link rel="icon" href="/favicon.ico" sizes="any" />
+      <link rel="apple-touch-icon" href="/frmd-icon-192.png" />
       <body>
         <div className={`bg-black flex flex-row text-white min-w-full max-w-full min-h-screen max-h-screen overflow-hidden`}>
           <SideBarNavigation />

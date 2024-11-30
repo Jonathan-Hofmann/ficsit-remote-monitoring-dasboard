@@ -1,9 +1,11 @@
 @use "../../../styles/globalVariables.scss" as global;
 
 .sidebar_navigation_small {
-  width: global.$navSideBarWitdthSmall;
+  min-width: global.$navSideBarWitdthSmall;
+  max-width: global.$navSideBarWitdthSmall;
 }
 
 .sidebar_navigation_large {
-  width: global.$navSideBarWitdthLarge;
+  min-width: global.$navSideBarWitdthLarge;
+  max-width: global.$navSideBarWitdthLarge;
 }
