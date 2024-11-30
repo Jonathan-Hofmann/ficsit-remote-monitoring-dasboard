@@ -1,0 +1,9 @@
+@use "../../../styles/globalVariables.scss" as global;
+
+.sidebar_navigation_small {
+  width: global.$navSideBarWitdthSmall;
+}
+
+.sidebar_navigation_large {
+  width: global.$navSideBarWitdthLarge;
+}
