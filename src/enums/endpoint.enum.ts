@@ -26,4 +26,5 @@ export enum EndpointEnum {
   TRAIN_STATION = "getTrainStation",
   VEHICLE = "getVehicles",
   WORLD_INV = "getWorldInv",
+  GENERATORS = "getGenerators",
 }
