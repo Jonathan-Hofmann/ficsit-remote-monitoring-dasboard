@@ -1,23 +1,23 @@
 // Grouped type from BiomassGeneratorDto ; CoalGeneratorDto ; FuelGeneratorDto ; NuclearGeneratorDto but not Geothermal wich have specifications
-type Location = {
+export type Location = {
   x: number;
   y: number;
   z: number;
   rotation: number;
 };
-type Supplement = {
+export type Supplement = {
   Name: string;
   ClassName: string;
   CurrentConsumed: number;
   MaxConsumed: number;
   PercentFull: number;
 };
-type AvailableFuelEntity = {
+export type AvailableFuelEntity = {
   Name: string;
   ClassName: string;
   Amount: number;
 };
-type Features = {
+export type Features = {
   properties: Properties;
   geometry: Geometry;
 };
@@ -40,6 +40,12 @@ type PowerInfo = {
   PowerConsumed: number;
   MaxPowerConsumed: number;
 };
+export type FuelInventoryItem = {
+  Name: string;
+  ClassName: string;
+  Amount: number;
+  MaxAmount: number;
+}
 
 export type GeneratorDto = {
   Name: string;
@@ -67,4 +73,5 @@ export type GeneratorDto = {
   WasteInventory?: null[] | null;
   features: Features;
   PowerInfo: PowerInfo;
+  FuelInventory: FuelInventoryItem[]
 };

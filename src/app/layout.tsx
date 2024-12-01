@@ -28,7 +28,7 @@ const GlobalLayout = ({ children }: Props): React.JSX.Element => {
         rel="apple-touch-icon"
         href="/frmd-icon-192.png"
       />
-      <body>
+      <body className="min-h-screen bg-zinc-100 dark:bg-zinc-900">
         <ClientSideProviders>
           {children}
         </ClientSideProviders>

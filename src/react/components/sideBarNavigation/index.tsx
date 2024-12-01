@@ -33,16 +33,16 @@ const subMenus = [
                 link: "/power"
             },
             {
+                title: "Circuits",
+                link: "/power/circuits"
+            },
+            {
                 title: "Generators",
                 link: "/power/generators"
             },
             {
                 title: "Batteries",
                 link: "/power/batteries"
-            },
-            {
-                title: "Circuits",
-                link: "/power/circuits"
             }
         ]
     },
@@ -91,7 +91,7 @@ export const SidebarNavigation = () => {
     const path = usePathname();
     const [openedMenus, setOpenedMenus] = useState<string[]>([])
     return (
-        <Sidebar collapsible="none" className="h-screen">
+        <Sidebar variant="inset" collapsible="none" className="h-screen">
             <SidebarHeader className="pb-0">
                 <div className="p-2 pb-0">
                     <p className="font-bold text-lg">FRM Dashboard</p>

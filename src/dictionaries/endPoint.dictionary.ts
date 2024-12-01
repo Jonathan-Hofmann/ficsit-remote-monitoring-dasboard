@@ -33,6 +33,7 @@ export const endPointDictionnary: EndPoint = {
   [EndpointEnum.PARTICLE_ACCELERATOR]: factoryDtoToFmMapper,
   [EndpointEnum.PLAYER]: playerDtoToFmMapper,
   [EndpointEnum.POWER]: powerDtoToFmMapper,
+  [EndpointEnum.GENERATORS]: generatorsDtoToFmMapper,
   [EndpointEnum.PRODUCTION_STAT]: productionStatDtoToFMapper,
   [EndpointEnum.QUANTUM_ENCODER]: factoryDtoToFmMapper,
   [EndpointEnum.REFINERY]: factoryDtoToFmMapper,
