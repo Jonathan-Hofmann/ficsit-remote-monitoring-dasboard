@@ -4,8 +4,8 @@ import type { GameItemsEnum } from "../../enums/gameItems.enum";
 import type { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
 
 export type GameItemManufacturerBuilding = {
-  name: GameItemsEnum;
-  category: GameItemsCategoryEnum.Building;
-  buildingType: GameBuildingsTypeEnum.Manufacturer;
-  endpoint: EndpointEnum;
+	name: GameItemsEnum;
+	category: GameItemsCategoryEnum.Building;
+	buildingType: GameBuildingsTypeEnum.Manufacturer;
+	endpoint: EndpointEnum;
 };

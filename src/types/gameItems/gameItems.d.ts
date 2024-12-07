@@ -7,10 +7,10 @@ import type { GameItemResource } from "./resource";
 import type { GameItemVehicle } from "./vehicle";
 
 export type GameItems =
-  | GameItemDefault
-  | GameItemResource
-  | GameItemGeneratorBuilding
-  | GameItemManufacturerBuilding
-  | GameItemOtherBuilding
-  | GameItemEquipment
-  | GameItemVehicle;
+	| GameItemDefault
+	| GameItemResource
+	| GameItemGeneratorBuilding
+	| GameItemManufacturerBuilding
+	| GameItemOtherBuilding
+	| GameItemEquipment
+	| GameItemVehicle;

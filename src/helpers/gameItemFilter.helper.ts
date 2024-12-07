@@ -7,42 +7,42 @@ import type { GameItemManufacturerBuilding } from "../types/gameItems/manufactur
 import type { GameItemsDictionnary } from "../types/gameItemsDictionary";
 
 type Args = {
-  gameItemsDictionnary: GameItemsDictionnary;
-  filter: GameItemsCategoryEnum | "generatorsWithEndpoint" | "factories";
+	gameItemsDictionnary: GameItemsDictionnary;
+	filter: GameItemsCategoryEnum | "generatorsWithEndpoint" | "factories";
 };
 
 export const gameItemFilterHelper = ({
-  gameItemsDictionnary,
-  filter,
+	gameItemsDictionnary,
+	filter,
 }: Args): [GameClassNamesEnum, GameItems][] => {
-  const filteredArray = Object.entries(gameItemsDictionnary) as [
-    GameClassNamesEnum,
-    GameItems,
-  ][];
-  switch (filter) {
-    case GameItemsCategoryEnum.Resource: {
-      return filteredArray.filter(
-        ([, item]) => item.category === GameItemsCategoryEnum.Resource,
-      );
-    }
-    case "generatorsWithEndpoint":
-      return filteredArray.filter(([, item]) => {
-        const buildingItem = item as GameItemGeneratorBuilding;
-        return (
-          buildingItem.category === GameItemsCategoryEnum.Building &&
-          buildingItem.buildingType === GameBuildingsTypeEnum.Generator &&
-          !!buildingItem.endpoint
-        );
-      });
-    case "factories":
-      return filteredArray.filter(([, item]) => {
-        const buildingItem = item as GameItemManufacturerBuilding;
-        return (
-          buildingItem.category === GameItemsCategoryEnum.Building &&
-          buildingItem.buildingType === GameBuildingsTypeEnum.Manufacturer
-        );
-      });
-    default:
-      return filteredArray;
-  }
+	const filteredArray = Object.entries(gameItemsDictionnary) as [
+		GameClassNamesEnum,
+		GameItems,
+	][];
+	switch (filter) {
+		case GameItemsCategoryEnum.Resource: {
+			return filteredArray.filter(
+				([, item]) => item.category === GameItemsCategoryEnum.Resource,
+			);
+		}
+		case "generatorsWithEndpoint":
+			return filteredArray.filter(([, item]) => {
+				const buildingItem = item as GameItemGeneratorBuilding;
+				return (
+					buildingItem.category === GameItemsCategoryEnum.Building &&
+					buildingItem.buildingType === GameBuildingsTypeEnum.Generator &&
+					!!buildingItem.endpoint
+				);
+			});
+		case "factories":
+			return filteredArray.filter(([, item]) => {
+				const buildingItem = item as GameItemManufacturerBuilding;
+				return (
+					buildingItem.category === GameItemsCategoryEnum.Building &&
+					buildingItem.buildingType === GameBuildingsTypeEnum.Manufacturer
+				);
+			});
+		default:
+			return filteredArray;
+	}
 };

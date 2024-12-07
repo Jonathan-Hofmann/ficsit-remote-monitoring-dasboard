@@ -1,5 +1,5 @@
 export type SettingsData = {
-  ip: string;
-  port: string;
-  interval: number;
+	ip: string;
+	port: string;
+	interval: number;
 };

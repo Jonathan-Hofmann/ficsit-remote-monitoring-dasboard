@@ -1,5 +1,5 @@
 export enum DroneFlyingModeEnum {
-  Flying = "Flying",
-  Travelling = "Travelling",
-  None = "None",
+	Flying = "Flying",
+	Travelling = "Travelling",
+	None = "None",
 }

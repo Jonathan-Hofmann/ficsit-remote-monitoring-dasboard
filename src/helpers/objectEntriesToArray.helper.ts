@@ -1,5 +1,5 @@
 export const objectEntriesToArrayHelper = <T>(
-  objectEntries: [string, T][],
+	objectEntries: [string, T][],
 ): T[] => {
-  return objectEntries.map(([, value]) => value);
+	return objectEntries.map(([, value]) => value);
 };

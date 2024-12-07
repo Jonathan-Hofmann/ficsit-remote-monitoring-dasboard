@@ -4,21 +4,21 @@ import type { TrainStationFm } from "../types/apis/frontModel/trainStationFm";
 import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
 
 export const trainStationDtoToFmMapper = (
-  dto: TrainStationDto[],
+	dto: TrainStationDto[],
 ): TrainStationFm[] => {
-  return dto.map((trainStationDto) => {
-    const loadingStatusDto = trainStationDto.CargoInventory?.[0].LoadingStatus;
+	return dto.map((trainStationDto) => {
+		const loadingStatusDto = trainStationDto.CargoInventory?.[0].LoadingStatus;
 
-    return {
-      name: trainStationDto.Name,
-      loadingStatus: loadingStatusDto
-        ? enumDtoToFmMapper(
-            loadingStatusDto,
-            TrainStationLoadingStatusEnum,
-            "TrainStationLoadingStatusEnum",
-          )
-        : TrainStationLoadingStatusEnum.Idle,
-      location: trainStationDto.location,
-    };
-  });
+		return {
+			name: trainStationDto.Name,
+			loadingStatus: loadingStatusDto
+				? enumDtoToFmMapper(
+						loadingStatusDto,
+						TrainStationLoadingStatusEnum,
+						"TrainStationLoadingStatusEnum",
+					)
+				: TrainStationLoadingStatusEnum.Idle,
+			location: trainStationDto.location,
+		};
+	});
 };

@@ -1,5 +1,5 @@
 export type WorldInvDto = {
-  Name: string;
-  ClassName: string;
-  Amount: number;
+	Name: string;
+	ClassName: string;
+	Amount: number;
 };

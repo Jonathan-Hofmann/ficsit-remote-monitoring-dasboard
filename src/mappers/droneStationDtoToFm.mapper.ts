@@ -4,20 +4,20 @@ import type { DroneStationFm } from "../types/apis/frontModel/droneStationFm";
 import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
 
 export const droneStationDtoToFmMapper = (
-  dto: DroneStationDto[],
+	dto: DroneStationDto[],
 ): DroneStationFm[] => {
-  return dto.map((droneStationDto) => ({
-    name: droneStationDto.Name,
-    droneStatus: enumDtoToFmMapper(
-      droneStationDto.DroneStatus,
-      DroneStationStatusEnum,
-      "DroneStationStatusEnum",
-    ),
-    totalTransportRateEstimation: droneStationDto.EstTotalTransRate,
-    activeFuel: {
-      fuelCostRateEstimation: droneStationDto.ActiveFuel.EstimatedFuelCostRate,
-    },
-    latestRoundTrip: droneStationDto.LatestRndTrip,
-    averageRoundTrip: droneStationDto.AvgRndTrip,
-  }));
+	return dto.map((droneStationDto) => ({
+		name: droneStationDto.Name,
+		droneStatus: enumDtoToFmMapper(
+			droneStationDto.DroneStatus,
+			DroneStationStatusEnum,
+			"DroneStationStatusEnum",
+		),
+		totalTransportRateEstimation: droneStationDto.EstTotalTransRate,
+		activeFuel: {
+			fuelCostRateEstimation: droneStationDto.ActiveFuel.EstimatedFuelCostRate,
+		},
+		latestRoundTrip: droneStationDto.LatestRndTrip,
+		averageRoundTrip: droneStationDto.AvgRndTrip,
+	}));
 };

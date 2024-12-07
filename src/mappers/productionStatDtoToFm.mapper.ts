@@ -5,25 +5,25 @@ import type { ProductionStatFm } from "../types/apis/frontModel/productionStatFm
 import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
 
 export const productionStatDtoToFMapper = (
-  dto: ProdStatsDto[],
+	dto: ProdStatsDto[],
 ): ProductionStatFm[] => {
-  return dto.map((prodStatDto) => {
-    const className = enumDtoToFmMapper(
-      prodStatDto.ClassName,
-      GameClassNamesEnum,
-      "GameClassNamesEnum",
-    );
+	return dto.map((prodStatDto) => {
+		const className = enumDtoToFmMapper(
+			prodStatDto.ClassName,
+			GameClassNamesEnum,
+			"GameClassNamesEnum",
+		);
 
-    return {
-      name: gameItemsDictionnary[className].name,
-      className,
-      currentProduction: prodStatDto.CurrentProd,
-      currentConsumption: prodStatDto.CurrentConsumed,
-      percentProduction: prodStatDto.ProdPercent,
-      percentConsumption: prodStatDto.ConsPercent,
-      maxProduction: prodStatDto.MaxProd,
-      maxConsumption: prodStatDto.MaxConsumed,
-      productionPerMinunte: prodStatDto.ProdPerMin,
-    };
-  });
+		return {
+			name: gameItemsDictionnary[className].name,
+			className,
+			currentProduction: prodStatDto.CurrentProd,
+			currentConsumption: prodStatDto.CurrentConsumed,
+			percentProduction: prodStatDto.ProdPercent,
+			percentConsumption: prodStatDto.ConsPercent,
+			maxProduction: prodStatDto.MaxProd,
+			maxConsumption: prodStatDto.MaxConsumed,
+			productionPerMinunte: prodStatDto.ProdPerMin,
+		};
+	});
 };

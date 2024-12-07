@@ -1,4 +1,4 @@
 export enum GameResourcesTypeEnum {
-  Solid = "Solid",
-  Fluid = "Fluid",
+	Solid = "Solid",
+	Fluid = "Fluid",
 }
