@@ -145,9 +145,9 @@ export const Sidebar: React.FC = () => {
             </IconButton>
           </Tooltip>
         )}
-        {linksGroup.map((group) => {
+        {linksGroup.map((group, index) => {
           return (
-            <React.Fragment key={crypto.randomUUID()}>
+            <React.Fragment key={index}>
               <Divider />
               {group.map((link) => {
                 if (link.isDisabled) return null;

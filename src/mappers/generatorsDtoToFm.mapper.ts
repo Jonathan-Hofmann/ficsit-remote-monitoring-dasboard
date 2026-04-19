@@ -3,12 +3,13 @@ import type { GeneratorDto } from "../types/apis/dataTransferObject/generatorsDt
 import type { GeothermalGeneratorDto } from "../types/apis/dataTransferObject/geothermalGeneratorDto";
 import type { GeneratorFm } from "../types/apis/frontModel/generatorsFm";
 import { enumDtoToFmMapper } from "./enumDtoToFm.mapper";
+import { v4 as uuidv4 } from 'uuid';
 
 export const generatorsDtoToFmMapper = (
   dto: GeneratorDto[] | GeothermalGeneratorDto[],
 ): GeneratorFm[] => {
   return dto.map((generatorDto) => ({
-    id: crypto.randomUUID(),
+    id: uuidv4(),
     className: enumDtoToFmMapper(
       generatorDto.ClassName,
       GameClassNamesEnum,
