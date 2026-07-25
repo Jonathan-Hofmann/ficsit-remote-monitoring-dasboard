@@ -10,6 +10,7 @@ import {
 } from "@mui/joy";
 import React, { type ReactElement, useState } from "react";
 import {
+  BsClipboardData,
   BsGearFill,
   BsGridFill,
   BsLightningFill,
@@ -82,6 +83,12 @@ export const Sidebar: React.FC = () => {
         icon: <RiCoupon2Fill />,
         isDisabled: false,
       },
+      {
+        path: "/recipes",
+        label: "Unlocked Recipe list",
+        icon: <BsClipboardData />,
+        isDisabled: false,
+      },
     ],
     [
       {
@@ -145,9 +152,9 @@ export const Sidebar: React.FC = () => {
             </IconButton>
           </Tooltip>
         )}
-        {linksGroup.map((group) => {
+        {linksGroup.map((group, index) => {
           return (
-            <React.Fragment key={crypto.randomUUID()}>
+            <React.Fragment key={index}>
               <Divider />
               {group.map((link) => {
                 if (link.isDisabled) return null;

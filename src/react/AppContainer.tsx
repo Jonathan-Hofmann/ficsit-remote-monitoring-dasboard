@@ -11,6 +11,7 @@ import { DetailedFactoryView } from "./views/factoryView";
 import { DetailedGeneratorView } from "./views/generatorView";
 import { PowerMain } from "./views/powerMain";
 import { FactorysSwitch } from "./views/production";
+import { Recipes } from "./views/recipes";
 import { Settings } from "./views/settings";
 import { Start } from "./views/start";
 import { StorageView } from "./views/storageView";
@@ -72,6 +73,10 @@ export const AppContainer: React.FC = () => {
               <Route
                 path="/awesomeSink"
                 element={<AwesomeSink />}
+              />
+              <Route 
+                path="/recipes"
+                element={<Recipes />}
               />
               <Route
                 path="/settings"

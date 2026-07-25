@@ -8,17 +8,21 @@ import { BrowserRouter } from "react-router-dom";
 import { FRMDtheme } from "./constants/theme";
 import { AppContainer } from "./react/AppContainer";
 
+import { StorageProvider } from "./hooks/localStorageContext";
+
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
-    <CssVarsProvider
-      defaultColorScheme="dark"
-      defaultMode="dark"
-      theme={FRMDtheme}
-    >
-      <BrowserRouter>
-        <AppContainer />
-      </BrowserRouter>
-    </CssVarsProvider>
+    <StorageProvider>
+      <CssVarsProvider
+        defaultColorScheme="dark"
+        defaultMode="dark"
+        theme={FRMDtheme}
+      >
+        <BrowserRouter>
+          <AppContainer />
+        </BrowserRouter>
+      </CssVarsProvider>
+    </StorageProvider>
   </React.StrictMode>,
 );

@@ -20,6 +20,18 @@ type IngredientsEntity = {
   MaxConsumed: number;
   ConsPercent: number;
 };
+type IngredientInventoryEntity = {
+  Name: string;
+  ClassName: string;
+  Amount: number;
+  MaxAmount: number;
+}
+type ProductInventoryEntity = {
+  Name: string;
+  ClassName: string;
+  Amount: number;
+  MaxAmount: number;
+}
 type PowerInfo = {
   CircuitGroupID: number;
   CircuitID: number;
@@ -53,6 +65,8 @@ export type FactoryDto = {
   RecipeClassName: string;
   production?: ProductionEntity[] | null;
   ingredients?: (IngredientsEntity | null)[] | null;
+  InputInventory?: (IngredientInventoryEntity | null)[] | null;
+  OutputInventory?: (ProductInventoryEntity | null)[] | null;
   Productivity: number;
   ManuSpeed: number;
   IsConfigured: boolean;

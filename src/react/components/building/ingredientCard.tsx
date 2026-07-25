@@ -1,7 +1,7 @@
 import { Card, CardContent, Grid, Typography } from "@mui/joy";
 import React from "react";
 
-import { gameItemsDictionnary } from "../../../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../../../dictionaries/gameItems.dictionary";
 import { GameResourcesTypeEnum } from "../../../enums/gameResourcesType.enum";
 import { getImageHelper } from "../../../helpers/getImage.helper";
 import type { RecipeItemFm } from "../../../types/apis/frontModel/recipeItemFm";
@@ -12,9 +12,9 @@ type Props = {
 };
 
 export const IngredientCard: React.FC<Props> = ({ product }) => {
-  const item = gameItemsDictionnary[product.className];
-  const isItemSolid =
-    (item as GameItemResource).resourceType === GameResourcesTypeEnum.Solid;
+  const item = gameItemsDictionary[product.className];
+  const isItemNotLiquid =
+    (item as GameItemResource).resourceType !== GameResourcesTypeEnum.Fluid;
 
   return (
     <Card
@@ -22,7 +22,7 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
       sx={{
         padding: "3px",
         borderColor:
-          Math.floor(product.amount) === 0
+          Math.floor(product.amount) < Math.floor(product.recipeAmount)
             ? "var(--joy-palette-error-main)"
             : "var(--joy-palette-neutral-outlinedBorder)",
         borderWidth: Math.floor(product.currentUsage) === 0 ? "3px" : "1px",
@@ -60,9 +60,9 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
               <Grid>
                 <Typography>
                   {`${
-                    isItemSolid
+                    isItemNotLiquid
                       ? product.currentUsage.toFixed(2)
-                      : `${Math.round(product.currentUsage / 10) / 100} m³`
+                      : `${product.currentUsage.toFixed(2)} m³`
                   }/min`}
                 </Typography>
               </Grid>
@@ -78,9 +78,9 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
               <Grid>
                 <Typography>
                   {`${
-                    isItemSolid
+                    isItemNotLiquid
                       ? product.maxUsage.toFixed(2)
-                      : `${Math.round(product.maxUsage / 10) / 100} m³`
+                      : `${product.maxUsage.toFixed(2)} m³`
                   }/min`}
                 </Typography>
               </Grid>
@@ -100,9 +100,26 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
             <Grid
               spacing={0}
               container
+              sx={{ paddingTop: 0 }}
+            >
+              <Grid xs>
+                <Typography level="body-md">Consumption amount amount</Typography>
+              </Grid>
+              <Grid>
+                <Typography>
+                  {isItemNotLiquid
+                    ? product.recipeAmount
+                    : `${(product.recipeAmount).toFixed(2)} m³`
+                  }
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              spacing={0}
+              container
               sx={{
                 color:
-                  Math.floor(product.amount) === 0
+                  Math.floor(product.amount) < Math.floor(product.recipeAmount)
                     ? "var(--joy-palette-error-main)"
                     : "var(--joy-palette-text-main)",
                 paddingY: 0,
@@ -112,9 +129,9 @@ export const IngredientCard: React.FC<Props> = ({ product }) => {
                 <Typography level="body-md">Input Inventory</Typography>
               </Grid>
               <Grid>
-                {isItemSolid
+                {isItemNotLiquid
                   ? product.amount
-                  : `${Math.round(product.amount / 10) / 100} m³`}
+                  : `${product.amount.toFixed(2)} m³`}
               </Grid>
             </Grid>
           </Grid>

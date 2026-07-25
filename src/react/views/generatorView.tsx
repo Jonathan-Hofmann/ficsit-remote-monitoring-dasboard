@@ -13,7 +13,7 @@ import React from "react";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 import { redirect, useSearchParams } from "react-router-dom";
 
-import { gameItemsDictionnary } from "../../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../../dictionaries/gameItems.dictionary";
 import type { GameItemsEnum } from "../../enums/gameItems.enum";
 import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
 import { getImageHelper } from "../../helpers/getImage.helper";
@@ -31,7 +31,7 @@ export const DetailedGeneratorView: React.FC = () => {
 
   const generatorsList = objectEntriesToArrayHelper<GameItems>(
     gameItemFilterHelper({
-      gameItemsDictionnary,
+      gameItemsDictionary,
       filter: "generatorsWithEndpoint",
     }),
   );
@@ -68,7 +68,7 @@ export const DetailedGeneratorView: React.FC = () => {
                 marginBottom="5px"
                 fontWeight={600}
               >
-                {currentGeneratorName}
+                {currentGeneratorName.replaceAll("_", " ")}
               </Typography>
             </Grid>
           </Grid>

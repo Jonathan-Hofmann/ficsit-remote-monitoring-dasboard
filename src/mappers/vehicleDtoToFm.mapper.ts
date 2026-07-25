@@ -1,4 +1,4 @@
-import { gameItemsDictionnary } from "../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../dictionaries/gameItems.dictionary";
 import { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import type { VehicleDto } from "../types/apis/dataTransferObject/vehicleDto";
 import type { VehicleFm } from "../types/apis/frontModel/vehicleFm";
@@ -14,7 +14,7 @@ export const vehicleDtoToFmMapper = (dto: VehicleDto[]): VehicleFm[] => {
 
     return {
       id: vehicleDto.ID,
-      name: gameItemsDictionnary[vehicleClassName].name,
+      name: gameItemsDictionary[vehicleClassName].name,
       className: vehicleClassName,
       autopilot: vehicleDto.Autopilot,
       speed: vehicleDto.ForwardSpeed,
@@ -24,7 +24,7 @@ export const vehicleDtoToFmMapper = (dto: VehicleDto[]): VehicleFm[] => {
       fuel: vehicleDto?.FuelInventory?.flatMap((inventory) => {
         if (!inventory) return [];
         return {
-          name: gameItemsDictionnary[
+          name: gameItemsDictionary[
             enumDtoToFmMapper(
               inventory.ClassName,
               GameClassNamesEnum,

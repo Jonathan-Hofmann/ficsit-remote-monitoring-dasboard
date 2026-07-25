@@ -1,4 +1,4 @@
-import { gameItemsDictionnary } from "../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../dictionaries/gameItems.dictionary";
 import { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import type { WorldInvDto } from "../types/apis/dataTransferObject/worldInvDto";
 import type { WorldInvFm } from "../types/apis/frontModel/worldInvFm";
@@ -13,7 +13,7 @@ export const worldInvDtoToFmMapper = (dto: WorldInvDto[]): WorldInvFm[] => {
     );
 
     return {
-      name: gameItemsDictionnary[className].name,
+      name: gameItemsDictionary[className].name,
       className,
       amount: worldInvDto.Amount,
     };

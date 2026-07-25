@@ -37,10 +37,10 @@ export const BuildingButton: React.FC<Props> = ({
             <Stack alignItems="center">
               <img
                 src={`/assets/${assetsLocation}/${factory}.png`}
-                alt={factory}
+                alt={factory.replace(/_/g, " ")}
                 style={{ height: "70px", width: "70px" }}
               />
-              <Typography level="h4">{`Open ${factory} Panel`}</Typography>
+              <Typography level="h4">{`Open ${factory.replace(/_/g," ")} Panel`}</Typography>
             </Stack>
           </CardContent>
         </Card>

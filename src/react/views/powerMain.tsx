@@ -20,7 +20,7 @@ import {
 } from "react-icons/bs";
 import { GiCargoCrate } from "react-icons/gi";
 
-import { gameItemsDictionnary } from "../../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../../dictionaries/gameItems.dictionary";
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { GameItemsCategoryEnum } from "../../enums/gameItemsCategory.enum";
 import { gameItemFilterHelper } from "../../helpers/gameItemFilter.helper";
@@ -38,7 +38,7 @@ export const PowerMain: React.FC = () => {
 
   const generators = objectEntriesToArrayHelper<GameItems>(
     gameItemFilterHelper({
-      gameItemsDictionnary,
+      gameItemsDictionary,
       filter: "generatorsWithEndpoint",
     }),
   );

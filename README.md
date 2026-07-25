@@ -18,9 +18,9 @@ To start the base-mod open the chat (with `ENTER`) and type in `/frmweb start`.
 ## Using Ficsit Remote Monitoring Dashboard
 Once the base mod is started, you can access our dashboard via https://ficsit-rmd.vercel.app/ or alternatively access the mod-included page at http://localhost:8080/. 
 
-## Viewing the Dashboard via https://ficsit-rmd.vercel.app/
+## Viewing the Dashboard (my fork) via https://ficsit-remote-monitoring-dasboard.vercel.app/
 1. Start Satisfactory and run `/frmweb start` in the chat
-2. Open https://ficsit-rmd.vercel.app/ in a webbrowser.
+2. Open https://ficsit-remote-monitoring-dasboard.vercel.app/ in a webbrowser.
 2. Now you can see the data flying into the dashboard.
 
 ## Starting the Dashboard locally

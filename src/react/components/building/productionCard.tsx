@@ -1,7 +1,7 @@
 import { Card, CardContent, Grid, Typography } from "@mui/joy";
 import React from "react";
 
-import { gameItemsDictionnary } from "../../../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../../../dictionaries/gameItems.dictionary";
 import { GameResourcesTypeEnum } from "../../../enums/gameResourcesType.enum";
 import { getImageHelper } from "../../../helpers/getImage.helper";
 import type { RecipeItemFm } from "../../../types/apis/frontModel/recipeItemFm";
@@ -12,9 +12,9 @@ type Props = {
 };
 
 export const ProductionCard: React.FC<Props> = ({ product }) => {
-  const item = gameItemsDictionnary[product.className];
-  const isItemSolid =
-    (item as GameItemResource).resourceType === GameResourcesTypeEnum.Solid;
+  const item = gameItemsDictionary[product.className];
+  const isItemNotLiquid =
+    (item as GameItemResource).resourceType !== GameResourcesTypeEnum.Fluid;
 
   return (
     <Card
@@ -22,12 +22,10 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
       sx={{
         padding: "3px",
         borderColor:
-          Math.floor(
-            isItemSolid ? product.amount : Math.round(product.amount / 10) / 10,
-          ) > 50
+          (Math.floor(product.amount) > (Math.floor(product.maxAmount)-2*Math.floor(product.recipeAmount)))
             ? "var(--joy-palette-warning-main)"
             : "var(--joy-palette-neutral-outlinedBorder)",
-        borderWidth: Math.floor(product.amount) > 50 ? "3px" : "1px",
+        borderWidth: Math.floor(product.amount) > (Math.floor(product.maxAmount)/3*2) ? "3px" : "1px",
       }}
     >
       <CardContent>
@@ -62,9 +60,9 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               <Grid>
                 <Typography>
                   {`${
-                    isItemSolid
+                    isItemNotLiquid
                       ? product.currentUsage.toFixed(2)
-                      : `${Math.round(product.currentUsage / 10) / 100} m³`
+                      : `${product.currentUsage.toFixed(2)} m³`
                   }/min`}
                 </Typography>
               </Grid>
@@ -80,9 +78,9 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
               <Grid>
                 <Typography>
                   {`${
-                    isItemSolid
+                    isItemNotLiquid
                       ? product.maxUsage.toFixed(2)
-                      : `${Math.round(product.maxUsage / 10) / 100} m³`
+                      : `${product.maxUsage.toFixed(2)} m³`
                   }/min`}
                 </Typography>
               </Grid>
@@ -102,6 +100,23 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
             <Grid
               spacing={0}
               container
+              sx={{ paddingTop: 0 }}
+            >
+              <Grid xs>
+                <Typography level="body-md">Production amount</Typography>
+              </Grid>
+              <Grid>
+                <Typography>
+                  {isItemNotLiquid
+                    ? product.recipeAmount
+                    : `${(product.recipeAmount).toFixed(2)} m³`
+                  }
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              spacing={0}
+              container
               sx={{ paddingY: 0 }}
             >
               <Grid xs>
@@ -111,18 +126,18 @@ export const ProductionCard: React.FC<Props> = ({ product }) => {
                 <Typography
                   sx={{
                     color: (() => {
-                      if (isItemSolid) {
+                      if (isItemNotLiquid) {
                         return "inherit";
                       }
-                      return product.amount > 50
+                      return Math.floor(product.amount) > (Math.floor(product.maxAmount)/3*2)
                         ? "var(--joy-palette-warning-main)"
                         : "var(--joy-palette-text-main)";
                     })(),
                   }}
                 >
-                  {isItemSolid
+                  {isItemNotLiquid
                     ? product.amount
-                    : `${(Math.round(product.amount / 10) / 100).toFixed(2)} m³`}
+                    : `${(product.amount).toFixed(2)} m³`}
                 </Typography>
               </Grid>
             </Grid>

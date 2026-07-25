@@ -4,9 +4,13 @@ import { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import { GameItemsEnum } from "../enums/gameItems.enum";
 import { GameItemsCategoryEnum } from "../enums/gameItemsCategory.enum";
 import { GameResourcesTypeEnum } from "../enums/gameResourcesType.enum";
-import type { GameItemsDictionnary } from "../types/gameItemsDictionary";
+import type { GameItemsDictionary } from "../types/gameItemsDictionary";
 
-export const gameItemsDictionnary: GameItemsDictionnary = {
+export const gameItemsDictionary: GameItemsDictionary = {
+  [GameClassNamesEnum.Undefined]: {
+    name: GameItemsEnum.FGAnyUndefinedDescriptor,
+    category: GameItemsCategoryEnum.Default,
+  },
   // Raw resources items
   [GameClassNamesEnum.Desc_OreIron_C]: {
     name: GameItemsEnum.Iron_Ore,

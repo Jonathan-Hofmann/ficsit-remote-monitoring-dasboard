@@ -9,7 +9,7 @@ import {
 import React, { useCallback, useEffect, useState } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
-import { gameItemsDictionnary } from "../../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../../dictionaries/gameItems.dictionary";
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { getImageHelper } from "../../helpers/getImage.helper";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
@@ -121,17 +121,17 @@ export const StorageView: React.FC = () => {
                       padding: "16px",
                     }}
                   >
-                    {gameItemsDictionnary[item.className] !== undefined && (
+                    {gameItemsDictionary[item.className] !== undefined && (
                       <img
                         src={getImageHelper(item.className) ?? null}
                         alt="Satisfactory item illustration"
                         style={{ height: "70px", width: "70px" }}
                       />
                     )}
-                    {gameItemsDictionnary[item.className] === undefined && (
+                    {gameItemsDictionary[item.className] === undefined && (
                       <HiOutlineQuestionMarkCircle size="70px" />
                     )}
-                    <Typography marginBottom="5px">{item.name}</Typography>
+                    <Typography marginBottom="5px">{item.name.replace(/_/g," ")}</Typography>
                     <Typography level="body-md">
                       Total: {item.amount}
                     </Typography>

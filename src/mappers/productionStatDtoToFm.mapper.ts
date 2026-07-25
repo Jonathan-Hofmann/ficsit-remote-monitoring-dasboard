@@ -1,4 +1,4 @@
-import { gameItemsDictionnary } from "../dictionaries/gameItems.dictionary";
+import { gameItemsDictionary } from "../dictionaries/gameItems.dictionary";
 import { GameClassNamesEnum } from "../enums/gameClassNames.enum";
 import type { ProdStatsDto } from "../types/apis/dataTransferObject/prodStatsDto";
 import type { ProductionStatFm } from "../types/apis/frontModel/productionStatFm";
@@ -15,7 +15,7 @@ export const productionStatDtoToFMapper = (
     );
 
     return {
-      name: gameItemsDictionnary[className].name,
+      name: gameItemsDictionary[className].name,
       className,
       currentProduction: prodStatDto.CurrentProd,
       currentConsumption: prodStatDto.CurrentConsumed,
