@@ -21,6 +21,47 @@ import type { StorageItemRow } from "../../../types/storageItem";
 
 const ALL_MACHINES = "all";
 
+type UnderMode = {
+  value: string;
+  label: string;
+  // Shortfall for one item, or 0 when it is keeping up. Worked out on rounded
+  // figures so the result matches the rendered columns exactly and a sub-unit
+  // gap never shows as "-0".
+  compute: (item: StorageItemRow) => number;
+};
+
+const underHelper = (consumption: number, production: number): number => {
+  const shortfall = Math.round(consumption) - Math.round(production);
+  return shortfall > 0 ? shortfall : 0;
+};
+
+const UNDER_MODES: UnderMode[] = [
+  {
+    // Demand beats what is actually coming out right now. The capacity may well
+    // exist, so this catches starved inputs and paused or underclocked machines.
+    value: "curConsOverCurProd",
+    label: "Current Consumption > Current Production",
+    compute: (item) =>
+      underHelper(item.currentConsumption, item.currentProduction),
+  },
+  {
+    // Demand beats what the recipe could ever deliver, even at 100% clock.
+    // A pipeline design problem: no amount of overclocking fixes it.
+    value: "curConsOverMaxProd",
+    label: "Current Consumption > Max Production",
+    compute: (item) => underHelper(item.currentConsumption, item.maxProduction),
+  },
+  {
+    // Both sides at full tilt still leaves a gap, independent of what happens to
+    // be running. The structural version of the one above.
+    value: "maxConsOverMaxProd",
+    label: "Max Consumption > Max Production",
+    compute: (item) => underHelper(item.maxConsumption, item.maxProduction),
+  },
+];
+
+const DEFAULT_UNDER_MODE = UNDER_MODES[0];
+
 type SortKey = keyof Pick<
   StorageItemRow,
   "name" | "amount" | "currentProduction" | "currentConsumption" | "deficit"
@@ -36,47 +77,64 @@ type SortState = {
 type ColumnDefinition = {
   key: SortKey;
   label: string;
-  width: string;
   align: "left" | "right";
   defaultDirection: SortDirection;
+  // Rate columns are rendered as a pair of cells, so the current values line up
+  // under each other and the "/ max min" halves do the same, instead of one
+  // string per row drifting left and right with the digit count.
+  span: number;
 };
 
 const COLUMNS: ColumnDefinition[] = [
   {
     key: "name",
     label: "Item",
-    width: "auto",
     align: "left",
     defaultDirection: "asc",
+    span: 1,
   },
   {
     key: "amount",
-    label: "Total",
-    width: "110px",
+    label: "Stored",
     align: "right",
     defaultDirection: "desc",
+    span: 1,
   },
   {
     key: "currentProduction",
     label: "Produced",
-    width: "120px",
     align: "right",
     defaultDirection: "desc",
+    span: 2,
   },
   {
     key: "currentConsumption",
     label: "Consumed",
-    width: "120px",
     align: "right",
     defaultDirection: "desc",
+    span: 2,
   },
   {
     key: "deficit",
-    label: "Under produced",
-    width: "160px",
+    label: "Under",
     align: "right",
     defaultDirection: "desc",
+    span: 1,
   },
+];
+
+// Icon, item, stored, produced current + max, consumed current + max, deficit.
+// Widths live here rather than on the header cells because the rate headers
+// span two columns and so cannot size them individually.
+const COLUMN_WIDTHS = [
+  "60px",
+  "auto",
+  "100px",
+  "80px",
+  "110px",
+  "80px",
+  "110px",
+  "110px",
 ];
 
 const sortDirectionIcons: Record<SortDirection, React.ReactNode> = {
@@ -86,8 +144,8 @@ const sortDirectionIcons: Record<SortDirection, React.ReactNode> = {
 
 const SKELETON_ROWS_COUNT = 12;
 
-const formatRateHelper = (rate: number): string => {
-  return `${Math.round(rate)}/min`;
+const formatAmountHelper = (value: number): string => {
+  return Math.round(value).toLocaleString();
 };
 
 // Item names carry underscores ("Reinforced_Iron_Plate"), so both sides are
@@ -110,12 +168,22 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
   const [sort, setSort] = useState<SortState>();
   const [search, setSearch] = useState("");
   const [machine, setMachine] = useState<string>(ALL_MACHINES);
+  const [underMode, setUnderMode] = useState<string>(DEFAULT_UNDER_MODE.value);
 
   const rows = useMemo((): StorageItemRow[] | undefined => {
     if (!items) return undefined;
 
+    // The Under column is recomputed here rather than reusing the deficit the
+    // view supplies, so the chosen mode stays local to this table and leaves the
+    // panels layout on its own reading.
+    const mode =
+      UNDER_MODES.find((entry) => entry.value === underMode) ??
+      DEFAULT_UNDER_MODE;
+
     const needle = normaliseHelper(search);
-    let filtered = items;
+    let filtered = items.map((item) => {
+      return { ...item, deficit: mode.compute(item) };
+    });
 
     if (needle)
       filtered = filtered.filter((item) =>
@@ -135,7 +203,7 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
         key === "name" ? a.name.localeCompare(b.name) : a[key] - b[key];
       return direction === "asc" ? comparison : -comparison;
     });
-  }, [items, sort, search, machine, producersByItem]);
+  }, [items, sort, search, machine, underMode, producersByItem]);
 
   const handleSort = useCallback((column: ColumnDefinition) => {
     setSort((previous) => {
@@ -151,6 +219,13 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
   const handleChangeMachine = useCallback(
     (_event: React.SyntheticEvent | null, value: string | null) => {
       setMachine(value ?? ALL_MACHINES);
+    },
+    [],
+  );
+
+  const handleChangeUnderMode = useCallback(
+    (_event: React.SyntheticEvent | null, value: string | null) => {
+      setUnderMode(value ?? DEFAULT_UNDER_MODE.value);
     },
     [],
   );
@@ -199,6 +274,27 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
             );
           })}
         </Select>
+        <Select
+          size="sm"
+          value={underMode}
+          onChange={handleChangeUnderMode}
+          startDecorator="Under:"
+          sx={{ minWidth: "380px" }}
+          slotProps={{
+            button: { "aria-label": "How the Under column is calculated" },
+          }}
+        >
+          {UNDER_MODES.map((mode) => {
+            return (
+              <Option
+                key={mode.value}
+                value={mode.value}
+              >
+                {mode.label}
+              </Option>
+            );
+          })}
+        </Select>
       </Box>
       <Table
         stickyHeader
@@ -209,15 +305,27 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
           "& tbody tr td:first-of-type": { paddingY: "4px" },
         }}
       >
+        <colgroup>
+          {COLUMN_WIDTHS.map((width, index) => {
+            return (
+              <col
+                key={`storage-col-${String(index)}`}
+                style={width === "auto" ? undefined : { width }}
+              />
+            );
+          })}
+        </colgroup>
         <thead>
           <tr>
-            <th style={{ width: "60px" }}>Icon</th>
+            <th>Icon</th>
             {COLUMNS.map((column) => {
               const isSorted = sort?.key === column.key;
+              const isPaired = column.span > 1;
 
               return (
                 <th
                   key={column.key}
+                  colSpan={column.span}
                   aria-sort={
                     isSorted
                       ? ((sort.direction === "asc"
@@ -225,7 +333,7 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                           : "descending") as React.AriaAttributes["aria-sort"])
                       : undefined
                   }
-                  style={{ width: column.width, textAlign: column.align }}
+                  style={{ textAlign: isPaired ? "center" : column.align }}
                 >
                   <Button
                     variant="plain"
@@ -243,8 +351,11 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                       paddingX: "4px",
                       minHeight: "unset",
                       // Pushes the label to the column edge so right aligned
-                      // headers stay above the figures they describe.
-                      marginLeft: column.align === "right" ? "auto" : "-4px",
+                      // headers stay above the figures they describe, and
+                      // centres it over the two cells of a paired column.
+                      marginLeft:
+                        isPaired || column.align === "right" ? "auto" : "-4px",
+                      marginRight: isPaired ? "auto" : 0,
                     }}
                   >
                     {column.label}
@@ -258,7 +369,7 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
           {rows?.length === 0 && (
             <tr>
               <td
-                colSpan={COLUMNS.length + 1}
+                colSpan={COLUMN_WIDTHS.length}
                 style={{ textAlign: "center" }}
               >
                 <Typography
@@ -302,21 +413,37 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                     </td>
                     <td style={{ textAlign: "right" }}>
                       <Typography level="body-md">
-                        {item.amount.toLocaleString()}
+                        {item.amount === 0 ? "-" : item.amount.toLocaleString()}
                       </Typography>
                     </td>
-                    <td style={{ textAlign: "right" }}>
+                    <td style={{ textAlign: "right", paddingRight: "6px" }}>
                       <Typography level="body-md">
-                        {formatRateHelper(item.currentProduction)}
+                        {formatAmountHelper(item.currentProduction)}
                       </Typography>
                     </td>
-                    <td style={{ textAlign: "right" }}>
+                    <td style={{ textAlign: "left", paddingLeft: 0 }}>
+                      <Typography
+                        level="body-md"
+                        textColor="text.tertiary"
+                      >
+                        / {formatAmountHelper(item.maxProduction)}
+                      </Typography>
+                    </td>
+                    <td style={{ textAlign: "right", paddingRight: "6px" }}>
                       <Typography
                         level="body-md"
                         color={isUnderProduced ? "warning" : "neutral"}
                         fontWeight={isUnderProduced ? 600 : 400}
                       >
-                        {formatRateHelper(item.currentConsumption)}
+                        {formatAmountHelper(item.currentConsumption)}
+                      </Typography>
+                    </td>
+                    <td style={{ textAlign: "left", paddingLeft: 0 }}>
+                      <Typography
+                        level="body-md"
+                        textColor="text.tertiary"
+                      >
+                        / {formatAmountHelper(item.maxConsumption)}
                       </Typography>
                     </td>
                     <td style={{ textAlign: "right" }}>
@@ -326,7 +453,7 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                         fontWeight={isUnderProduced ? 600 : 400}
                       >
                         {isUnderProduced
-                          ? `-${formatRateHelper(item.deficit)}`
+                          ? `-${formatAmountHelper(item.deficit)}`
                           : "-"}
                       </Typography>
                     </td>
@@ -349,12 +476,12 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                         width="160px"
                       />
                     </td>
-                    {COLUMNS.slice(1).map((column) => {
+                    {COLUMN_WIDTHS.slice(2).map((_width, cellIndex) => {
                       return (
-                        <td key={column.key}>
+                        <td key={`storage-skeleton-cell-${String(cellIndex)}`}>
                           <Skeleton
                             variant="text"
-                            width="70px"
+                            width="60px"
                             sx={{ marginLeft: "auto" }}
                           />
                         </td>
