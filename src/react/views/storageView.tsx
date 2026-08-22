@@ -4,6 +4,7 @@ import {
   Container,
   Grid,
   IconButton,
+  Switch,
   ToggleButtonGroup,
   Tooltip,
   Typography,
@@ -12,6 +13,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { MdOutlineGridView, MdOutlineTableRows } from "react-icons/md";
 
 import { EndpointEnum } from "../../enums/endpoint.enum";
+import { StorageItemSetEnum } from "../../enums/storageItemSet.enum";
 import { StorageLayoutEnum } from "../../enums/storageLayout.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
 import { useItemProducers } from "../../hooks/useItemProducers";
@@ -22,6 +24,11 @@ import type { WorldInvFm } from "../../types/apis/frontModel/worldInvFm";
 import type { StorageItemFm, StorageItemRow } from "../../types/storageItem";
 import { StorageItemPanels } from "../components/storage/storageItemPanels";
 import { StorageItemTable } from "../components/storage/storageItemTable";
+
+const ITEM_SET_TITLES: Record<StorageItemSetEnum, string> = {
+  [StorageItemSetEnum.STORAGE]: "All Storage Items",
+  [StorageItemSetEnum.PRODUCED]: "All Produced Items",
+};
 
 // Rates are displayed as whole numbers, so the shortfall is derived from the
 // same rounded figures. That keeps the column equal to the difference the user
@@ -47,6 +54,9 @@ export const StorageView: React.FC = () => {
   const [layout, setLayout] = useState<StorageLayoutEnum>(
     StorageLayoutEnum.PANELS,
   );
+  const [itemSet, setItemSet] = useState<StorageItemSetEnum>(
+    StorageItemSetEnum.STORAGE,
+  );
 
   // Only the grid layout offers the machine filter, and pulling every factory
   // endpoint is expensive, so the panels layout skips those requests entirely.
@@ -56,6 +66,19 @@ export const StorageView: React.FC = () => {
 
   const handlePrepareItems = useCallback(() => {
     const temp: StorageItemFm[] = [];
+
+    // Produced items are driven by the production stats, which cover items that
+    // never sit in a container. Ingots are the clearest case: they go straight
+    // from smelter to the next machine, so world inventory never reports them.
+    if (itemSet === StorageItemSetEnum.PRODUCED) {
+      prodStats?.forEach((prodItem) => {
+        const stored = worldInv?.find((item) => item.name === prodItem.name);
+        temp.push({ ...prodItem, amount: stored?.amount ?? 0 });
+      });
+      setItems(temp);
+      return;
+    }
+
     worldInv?.forEach((item) => {
       const foundedItem = prodStats?.find(
         (prodItem) => prodItem.name === item.name,
@@ -76,7 +99,7 @@ export const StorageView: React.FC = () => {
         });
     });
     setItems(temp);
-  }, [worldInv, prodStats]);
+  }, [worldInv, prodStats, itemSet]);
 
   useEffect(() => {
     handlePrepareItems();
@@ -87,6 +110,17 @@ export const StorageView: React.FC = () => {
       return { ...item, deficit: getDeficitHelper(item) };
     });
   }, [items]);
+
+  const handleChangeItemSet = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setItemSet(
+        event.target.checked
+          ? StorageItemSetEnum.PRODUCED
+          : StorageItemSetEnum.STORAGE,
+      );
+    },
+    [],
+  );
 
   const handleChangeLayout = useCallback(
     (_event: React.MouseEvent, value: StorageLayoutEnum | null) => {
@@ -115,8 +149,19 @@ export const StorageView: React.FC = () => {
                 level="h2"
                 fontWeight={600}
               >
-                All Items in World
+                {ITEM_SET_TITLES[itemSet]}
               </Typography>
+            </Grid>
+            <Grid sx={{ paddingRight: "20px" }}>
+              <Switch
+                checked={itemSet === StorageItemSetEnum.PRODUCED}
+                onChange={handleChangeItemSet}
+                startDecorator="Storage"
+                endDecorator="Produced"
+                slotProps={{
+                  input: { "aria-label": "Show all produced items" },
+                }}
+              />
             </Grid>
             <Grid>
               <ToggleButtonGroup
