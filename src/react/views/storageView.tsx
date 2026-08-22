@@ -14,6 +14,7 @@ import { MdOutlineGridView, MdOutlineTableRows } from "react-icons/md";
 import { EndpointEnum } from "../../enums/endpoint.enum";
 import { StorageLayoutEnum } from "../../enums/storageLayout.enum";
 import { useAutoRefetch } from "../../hooks/useAutoRefetch";
+import { useItemProducers } from "../../hooks/useItemProducers";
 import type { ProdStatsDto } from "../../types/apis/dataTransferObject/prodStatsDto";
 import type { WorldInvDto } from "../../types/apis/dataTransferObject/worldInvDto";
 import type { ProductionStatFm } from "../../types/apis/frontModel/productionStatFm";
@@ -45,6 +46,12 @@ export const StorageView: React.FC = () => {
   const [items, setItems] = useState<StorageItemFm[]>();
   const [layout, setLayout] = useState<StorageLayoutEnum>(
     StorageLayoutEnum.PANELS,
+  );
+
+  // Only the grid layout offers the machine filter, and pulling every factory
+  // endpoint is expensive, so the panels layout skips those requests entirely.
+  const { machines, producersByItem } = useItemProducers(
+    layout !== StorageLayoutEnum.GRID,
   );
 
   const handlePrepareItems = useCallback(() => {
@@ -142,7 +149,11 @@ export const StorageView: React.FC = () => {
       {layout === StorageLayoutEnum.PANELS ? (
         <StorageItemPanels items={rows} />
       ) : (
-        <StorageItemTable items={rows} />
+        <StorageItemTable
+          items={rows}
+          machines={machines}
+          producersByItem={producersByItem}
+        />
       )}
     </Container>
   );

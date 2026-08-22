@@ -1,11 +1,25 @@
-import { Button, Card, Skeleton, Table, Typography } from "@mui/joy";
+import {
+  Box,
+  Button,
+  Card,
+  Input,
+  Option,
+  Select,
+  Skeleton,
+  Table,
+  Typography,
+} from "@mui/joy";
 import React, { useCallback, useMemo, useState } from "react";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
+import { MdSearch } from "react-icons/md";
 
 import { gameItemsDictionnary } from "../../../dictionaries/gameItems.dictionary";
+import type { GameClassNamesEnum } from "../../../enums/gameClassNames.enum";
 import { getImageHelper } from "../../../helpers/getImage.helper";
 import type { StorageItemRow } from "../../../types/storageItem";
+
+const ALL_MACHINES = "all";
 
 type SortKey = keyof Pick<
   StorageItemRow,
@@ -76,25 +90,52 @@ const formatRateHelper = (rate: number): string => {
   return `${Math.round(rate)}/min`;
 };
 
+// Item names carry underscores ("Reinforced_Iron_Plate"), so both sides are
+// normalised and someone typing "iron plate" still matches.
+const normaliseHelper = (value: string): string => {
+  return value.replace(/_/g, " ").trim().toLowerCase();
+};
+
 type StorageItemTableProps = {
   items?: StorageItemRow[];
+  machines: string[];
+  producersByItem: Map<GameClassNamesEnum, Set<string>>;
 };
 
 export const StorageItemTable: React.FC<StorageItemTableProps> = ({
   items,
+  machines,
+  producersByItem,
 }) => {
   const [sort, setSort] = useState<SortState>();
+  const [search, setSearch] = useState("");
+  const [machine, setMachine] = useState<string>(ALL_MACHINES);
 
   const rows = useMemo((): StorageItemRow[] | undefined => {
-    if (!items || !sort) return items;
+    if (!items) return undefined;
+
+    const needle = normaliseHelper(search);
+    let filtered = items;
+
+    if (needle)
+      filtered = filtered.filter((item) =>
+        normaliseHelper(item.name).includes(needle),
+      );
+
+    if (machine !== ALL_MACHINES)
+      filtered = filtered.filter((item) =>
+        producersByItem.get(item.className)?.has(machine),
+      );
+
+    if (!sort) return filtered;
 
     const { key, direction } = sort;
-    return [...items].sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       const comparison =
         key === "name" ? a.name.localeCompare(b.name) : a[key] - b[key];
       return direction === "asc" ? comparison : -comparison;
     });
-  }, [items, sort]);
+  }, [items, sort, search, machine, producersByItem]);
 
   const handleSort = useCallback((column: ColumnDefinition) => {
     setSort((previous) => {
@@ -107,11 +148,58 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
     });
   }, []);
 
+  const handleChangeMachine = useCallback(
+    (_event: React.SyntheticEvent | null, value: string | null) => {
+      setMachine(value ?? ALL_MACHINES);
+    },
+    [],
+  );
+
   return (
     <Card
       variant="outlined"
       sx={{ padding: "0px", overflow: "hidden" }}
     >
+      <Box
+        sx={{
+          display: "flex",
+          gap: "12px",
+          flexWrap: "wrap",
+          padding: "12px",
+          borderBottom: "1px solid var(--joy-palette-neutral-outlinedBorder)",
+        }}
+      >
+        <Input
+          size="sm"
+          placeholder="Search items..."
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+          startDecorator={<MdSearch size="18px" />}
+          sx={{ flex: 1, minWidth: "220px" }}
+        />
+        <Select
+          size="sm"
+          value={machine}
+          onChange={handleChangeMachine}
+          startDecorator="Machine:"
+          sx={{ minWidth: "240px" }}
+          slotProps={{ button: { "aria-label": "Filter by machine" } }}
+        >
+          <Option value={ALL_MACHINES}>All</Option>
+          {machines.map((machineName) => {
+            return (
+              <Option
+                key={machineName}
+                value={machineName}
+              >
+                {machineName}
+              </Option>
+            );
+          })}
+        </Select>
+      </Box>
       <Table
         stickyHeader
         hoverRow
@@ -167,6 +255,22 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
           </tr>
         </thead>
         <tbody>
+          {rows?.length === 0 && (
+            <tr>
+              <td
+                colSpan={COLUMNS.length + 1}
+                style={{ textAlign: "center" }}
+              >
+                <Typography
+                  level="body-md"
+                  color="neutral"
+                  sx={{ paddingY: "24px" }}
+                >
+                  No items match the current filters.
+                </Typography>
+              </td>
+            </tr>
+          )}
           {rows
             ? rows.map((item) => {
                 const isUnderProduced = item.deficit > 0;
