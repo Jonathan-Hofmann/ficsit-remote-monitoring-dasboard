@@ -17,7 +17,7 @@ import { MdSearch } from "react-icons/md";
 import { gameItemsDictionnary } from "../../../dictionaries/gameItems.dictionary";
 import type { GameClassNamesEnum } from "../../../enums/gameClassNames.enum";
 import { getImageHelper } from "../../../helpers/getImage.helper";
-import type { StorageItemRow } from "../../../types/storageItem";
+import type { StorageItemFm, StorageItemRow } from "../../../types/storageItem";
 
 const ALL_MACHINES = "all";
 
@@ -27,7 +27,10 @@ type UnderMode = {
   // Shortfall for one item, or 0 when it is keeping up. Worked out on rounded
   // figures so the result matches the rendered columns exactly and a sub-unit
   // gap never shows as "-0".
-  compute: (item: StorageItemRow) => number;
+  compute: (item: StorageItemFm) => number;
+  // The production figure this mode compares against, and so the one the
+  // percentage is a share of.
+  baseline: (item: StorageItemFm) => number;
 };
 
 const underHelper = (consumption: number, production: number): number => {
@@ -35,28 +38,33 @@ const underHelper = (consumption: number, production: number): number => {
   return shortfall > 0 ? shortfall : 0;
 };
 
+// Ordered by how much a hit should worry you, hence the numbered labels. The
+// first is the default because it is the one that cannot be fixed by tuning.
 const UNDER_MODES: UnderMode[] = [
-  {
-    // Demand beats what is actually coming out right now. The capacity may well
-    // exist, so this catches starved inputs and paused or underclocked machines.
-    value: "curConsOverCurProd",
-    label: "Current Consumption > Current Production",
-    compute: (item) =>
-      underHelper(item.currentConsumption, item.currentProduction),
-  },
   {
     // Demand beats what the recipe could ever deliver, even at 100% clock.
     // A pipeline design problem: no amount of overclocking fixes it.
     value: "curConsOverMaxProd",
-    label: "Current Consumption > Max Production",
+    label: "1. Current Cons > Max Prod (critical)",
     compute: (item) => underHelper(item.currentConsumption, item.maxProduction),
+    baseline: (item) => item.maxProduction,
+  },
+  {
+    // Demand beats what is actually coming out right now. The capacity may well
+    // exist, so this catches starved inputs and paused or underclocked machines.
+    value: "curConsOverCurProd",
+    label: "2. Current Cons > Current Prod",
+    compute: (item) =>
+      underHelper(item.currentConsumption, item.currentProduction),
+    baseline: (item) => item.currentProduction,
   },
   {
     // Both sides at full tilt still leaves a gap, independent of what happens to
-    // be running. The structural version of the one above.
+    // be running. The structural reading, and the one to design against.
     value: "maxConsOverMaxProd",
-    label: "Max Consumption > Max Production",
+    label: "3. Max Cons > Max Prod (idyllic)",
     compute: (item) => underHelper(item.maxConsumption, item.maxProduction),
+    baseline: (item) => item.maxProduction,
   },
 ];
 
@@ -64,7 +72,12 @@ const DEFAULT_UNDER_MODE = UNDER_MODES[0];
 
 type SortKey = keyof Pick<
   StorageItemRow,
-  "name" | "amount" | "currentProduction" | "currentConsumption" | "deficit"
+  | "name"
+  | "amount"
+  | "currentProduction"
+  | "currentConsumption"
+  | "deficit"
+  | "deficitPercent"
 >;
 
 type SortDirection = "asc" | "desc";
@@ -80,8 +93,8 @@ type ColumnDefinition = {
   align: "left" | "right";
   defaultDirection: SortDirection;
   // Rate columns are rendered as a pair of cells, so the current values line up
-  // under each other and the "/ max min" halves do the same, instead of one
-  // string per row drifting left and right with the digit count.
+  // under each other and the "/ max" halves do the same, instead of one string
+  // per row drifting left and right with the digit count.
   span: number;
 };
 
@@ -105,14 +118,14 @@ const COLUMNS: ColumnDefinition[] = [
     label: "Produced",
     align: "right",
     defaultDirection: "desc",
-    span: 2,
+    span: 3,
   },
   {
     key: "currentConsumption",
     label: "Consumed",
     align: "right",
     defaultDirection: "desc",
-    span: 2,
+    span: 3,
   },
   {
     key: "deficit",
@@ -121,21 +134,49 @@ const COLUMNS: ColumnDefinition[] = [
     defaultDirection: "desc",
     span: 1,
   },
+  {
+    key: "deficitPercent",
+    label: "Under %",
+    align: "right",
+    defaultDirection: "desc",
+    span: 1,
+  },
 ];
 
-// Icon, item, stored, produced current + max, consumed current + max, deficit.
+// A rate is three cells: the current value, the divider, then the max. Holding
+// the two value columns at the same width is what puts the divider on the exact
+// centre line of the header that spans them.
+const RATE_VALUE_WIDTH = "85px";
+const RATE_DIVIDER_WIDTH = "18px";
+const RATE_WIDTHS = [RATE_VALUE_WIDTH, RATE_DIVIDER_WIDTH, RATE_VALUE_WIDTH];
+
 // Widths live here rather than on the header cells because the rate headers
-// span two columns and so cannot size them individually.
+// span several columns and so cannot size them individually.
 const COLUMN_WIDTHS = [
   "60px",
   "auto",
   "100px",
-  "80px",
-  "110px",
-  "80px",
+  ...RATE_WIDTHS,
+  ...RATE_WIDTHS,
   "110px",
   "110px",
 ];
+
+// The divider sits flush between its neighbours; the gap either side comes from
+// the divider column's own width, so it stays symmetric.
+const RATE_CURRENT_CELL: React.CSSProperties = {
+  textAlign: "right",
+  paddingRight: 0,
+};
+const RATE_DIVIDER_CELL: React.CSSProperties = {
+  textAlign: "center",
+  paddingLeft: 0,
+  paddingRight: 0,
+};
+const RATE_MAX_CELL: React.CSSProperties = {
+  textAlign: "left",
+  paddingLeft: 0,
+};
 
 const sortDirectionIcons: Record<SortDirection, React.ReactNode> = {
   asc: <FaSortUp size="12px" />,
@@ -148,6 +189,14 @@ const formatAmountHelper = (value: number): string => {
   return Math.round(value).toLocaleString();
 };
 
+// Nothing is produced to measure the shortfall against, so the gap is total
+// rather than a percentage of anything.
+const formatUnderPercentHelper = (item: StorageItemRow): string => {
+  if (item.deficit <= 0) return "-";
+  if (!Number.isFinite(item.deficitPercent)) return "∞";
+  return `-${formatAmountHelper(item.deficitPercent)}%`;
+};
+
 // Item names carry underscores ("Reinforced_Iron_Plate"), so both sides are
 // normalised and someone typing "iron plate" still matches.
 const normaliseHelper = (value: string): string => {
@@ -155,7 +204,7 @@ const normaliseHelper = (value: string): string => {
 };
 
 type StorageItemTableProps = {
-  items?: StorageItemRow[];
+  items?: StorageItemFm[];
   machines: string[];
   producersByItem: Map<GameClassNamesEnum, Set<string>>;
 };
@@ -173,16 +222,21 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
   const rows = useMemo((): StorageItemRow[] | undefined => {
     if (!items) return undefined;
 
-    // The Under column is recomputed here rather than reusing the deficit the
-    // view supplies, so the chosen mode stays local to this table and leaves the
-    // panels layout on its own reading.
+    // The Under value is derived here rather than by the view, so the chosen
+    // mode stays local to the table that offers the setting.
     const mode =
       UNDER_MODES.find((entry) => entry.value === underMode) ??
       DEFAULT_UNDER_MODE;
 
     const needle = normaliseHelper(search);
     let filtered = items.map((item) => {
-      return { ...item, deficit: mode.compute(item) };
+      const deficit = mode.compute(item);
+      const baseline = mode.baseline(item);
+      return {
+        ...item,
+        deficit,
+        deficitPercent: deficit > 0 ? (deficit / baseline) * 100 : 0,
+      };
     });
 
     if (needle)
@@ -200,7 +254,7 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
     const { key, direction } = sort;
     return [...filtered].sort((a, b) => {
       const comparison =
-        key === "name" ? a.name.localeCompare(b.name) : a[key] - b[key];
+        key === "name" ? a.name.localeCompare(b.name) : a[key] - b[key] || 0;
       return direction === "asc" ? comparison : -comparison;
     });
   }, [items, sort, search, machine, underMode, producersByItem]);
@@ -416,20 +470,28 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                         {item.amount === 0 ? "-" : item.amount.toLocaleString()}
                       </Typography>
                     </td>
-                    <td style={{ textAlign: "right", paddingRight: "6px" }}>
+                    <td style={RATE_CURRENT_CELL}>
                       <Typography level="body-md">
                         {formatAmountHelper(item.currentProduction)}
                       </Typography>
                     </td>
-                    <td style={{ textAlign: "left", paddingLeft: 0 }}>
+                    <td style={RATE_DIVIDER_CELL}>
                       <Typography
                         level="body-md"
                         textColor="text.tertiary"
                       >
-                        / {formatAmountHelper(item.maxProduction)}
+                        /
                       </Typography>
                     </td>
-                    <td style={{ textAlign: "right", paddingRight: "6px" }}>
+                    <td style={RATE_MAX_CELL}>
+                      <Typography
+                        level="body-md"
+                        textColor="text.tertiary"
+                      >
+                        {formatAmountHelper(item.maxProduction)}
+                      </Typography>
+                    </td>
+                    <td style={RATE_CURRENT_CELL}>
                       <Typography
                         level="body-md"
                         color={isUnderProduced ? "warning" : "neutral"}
@@ -438,12 +500,20 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                         {formatAmountHelper(item.currentConsumption)}
                       </Typography>
                     </td>
-                    <td style={{ textAlign: "left", paddingLeft: 0 }}>
+                    <td style={RATE_DIVIDER_CELL}>
                       <Typography
                         level="body-md"
                         textColor="text.tertiary"
                       >
-                        / {formatAmountHelper(item.maxConsumption)}
+                        /
+                      </Typography>
+                    </td>
+                    <td style={RATE_MAX_CELL}>
+                      <Typography
+                        level="body-md"
+                        textColor="text.tertiary"
+                      >
+                        {formatAmountHelper(item.maxConsumption)}
                       </Typography>
                     </td>
                     <td style={{ textAlign: "right" }}>
@@ -455,6 +525,15 @@ export const StorageItemTable: React.FC<StorageItemTableProps> = ({
                         {isUnderProduced
                           ? `-${formatAmountHelper(item.deficit)}`
                           : "-"}
+                      </Typography>
+                    </td>
+                    <td style={{ textAlign: "right" }}>
+                      <Typography
+                        level="body-md"
+                        color={isUnderProduced ? "warning" : "neutral"}
+                        fontWeight={isUnderProduced ? 600 : 400}
+                      >
+                        {formatUnderPercentHelper(item)}
                       </Typography>
                     </td>
                   </tr>

@@ -4,20 +4,20 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 import { gameItemsDictionnary } from "../../../dictionaries/gameItems.dictionary";
 import { getImageHelper } from "../../../helpers/getImage.helper";
-import type { StorageItemRow } from "../../../types/storageItem";
+import type { StorageItemFm } from "../../../types/storageItem";
 
 const SKELETON_PANELS_COUNT = 16;
 
 // Built from the numeric rates rather than the API's ProdPerMin string, which
 // carries the raw float precision (for example "P: 20.799999/ min").
-const formatRatesHelper = (item: StorageItemRow): string => {
+const formatRatesHelper = (item: StorageItemFm): string => {
   const production = item.currentProduction.toFixed(1);
   const consumption = item.currentConsumption.toFixed(1);
   return `P: ${production}/min - C: ${consumption}/min`;
 };
 
 type StorageItemPanelsProps = {
-  items?: StorageItemRow[];
+  items?: StorageItemFm[];
 };
 
 export const StorageItemPanels: React.FC<StorageItemPanelsProps> = ({
@@ -32,7 +32,9 @@ export const StorageItemPanels: React.FC<StorageItemPanelsProps> = ({
     >
       {items
         ? items.map((item) => {
-            const isUnderProduced = item.deficit > 0;
+            const isUnderProduced =
+              Math.floor(item.currentConsumption) >
+              Math.floor(item.currentProduction);
 
             return (
               <Grid
@@ -69,7 +71,7 @@ export const StorageItemPanels: React.FC<StorageItemPanelsProps> = ({
                     )}
                     <Typography marginBottom="5px">{item.name}</Typography>
                     <Typography level="body-md">
-                      Total: {item.amount.toLocaleString()}
+                      Total: {item.amount}
                     </Typography>
                     <Typography level="body-md">
                       {formatRatesHelper(item)}

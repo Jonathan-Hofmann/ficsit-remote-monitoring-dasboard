@@ -14,6 +14,7 @@ import {
   BsGridFill,
   BsLightningFill,
   BsList,
+  BsTable,
 } from "react-icons/bs";
 import { FaBoxes, FaTruck } from "react-icons/fa";
 import { GiFactory } from "react-icons/gi";
@@ -74,6 +75,12 @@ export const Sidebar: React.FC = () => {
         path: "/storageView",
         label: "Storage View",
         icon: <FaBoxes />,
+        isDisabled: false,
+      },
+      {
+        path: "/items",
+        label: "Items",
+        icon: <BsTable />,
         isDisabled: false,
       },
       {

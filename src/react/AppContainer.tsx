@@ -9,6 +9,7 @@ import { AwesomeSink } from "./views/awesomeSink";
 import { Drones } from "./views/drones";
 import { DetailedFactoryView } from "./views/factoryView";
 import { DetailedGeneratorView } from "./views/generatorView";
+import { ItemsView } from "./views/itemsView";
 import { PowerMain } from "./views/powerMain";
 import { FactorysSwitch } from "./views/production";
 import { Settings } from "./views/settings";
@@ -68,6 +69,10 @@ export const AppContainer: React.FC = () => {
               <Route
                 path="/storageView"
                 element={<StorageView />}
+              />
+              <Route
+                path="/items"
+                element={<ItemsView />}
               />
               <Route
                 path="/awesomeSink"
