@@ -44,15 +44,18 @@ export const useAutoRefetch = <Dto, Fm>(
       }
     };
 
+    let timeoutId: ReturnType<typeof setTimeout>;
+
     const refetchLoop = () => {
       fetchData().catch((error) => console.error(error));
-      setTimeout(refetchLoop, settings.interval);
+      timeoutId = setTimeout(refetchLoop, settings.interval);
     };
 
     refetchLoop();
 
     return () => {
       isMounted = false;
+      clearTimeout(timeoutId);
     };
   }, [endPoint, mapper, settings, skip]);
 
